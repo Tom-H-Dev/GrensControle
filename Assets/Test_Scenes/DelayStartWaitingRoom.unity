@@ -929,7 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectionScreen: 2
   _menuSceneIndex: 0
-  _minPlayersToStart: 2
+  _minPlayersToStart: 1
   _roomCountDisplay: {fileID: 1655957111}
   _timerToStartDisplay: {fileID: 340233965}
   _maxWaitTime: 10

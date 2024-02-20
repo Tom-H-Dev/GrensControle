@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 {
@@ -117,6 +118,14 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     private void Update()
     {
         WaitingForMorePlayers();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                StartGame();
+            }
+        }
     }
 
     void WaitingForMorePlayers()

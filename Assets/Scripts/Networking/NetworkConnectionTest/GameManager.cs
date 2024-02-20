@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private PhotonView _photonView;
+    [SerializeField] private List<Transform> _spawnpoints = new List<Transform>();
     void Start()
     {
         CreatePlayer();
-        _photonView = GetComponent<PhotonView>();
         // CreateEnviroment();
     }
 
@@ -18,7 +17,11 @@ public class GameManager : MonoBehaviour
     {
 
         var position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-2, 5));
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonPlayer"), position, Quaternion.identity);
+        GameObject l_player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonPlayer"), position, Quaternion.identity);
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            l_player.transform.position = _spawnpoints[i].position;
+        }
 
     }
 

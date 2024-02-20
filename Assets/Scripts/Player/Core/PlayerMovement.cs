@@ -49,12 +49,12 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        //controller = GetComponent<CharacterController>();
     }
     [PunRPC]
     private void FixedUpdate()
     {
-        if (!photonView.IsMine)
+        if (photonView.IsMine)
         {
 
 
@@ -68,20 +68,21 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             };
 
             //All input cases get constant speed
-            if (PlayerInput.magnitude > 1f)
-            {
-                PlayerInput.Normalize();
-            }
+            //if (PlayerInput.magnitude > 1f)
+            //{
+            //    PlayerInput.Normalize();
+            //}
 
             //Moving playerObject in direction relative to Player lookat
-            Vector3 MoveVector = transform.TransformDirection(PlayerInput);
+            //Vector3 MoveVector = transform.TransformDirection(PlayerInput);
             //LeftShift key sprint
-            float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? RunSpeed : WalkSpeed;
+            //float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? RunSpeed : WalkSpeed;
 
             //smoothing of CurrentMoveVelocity
-            CurrentMoveVelocity = Vector3.SmoothDamp(CurrentMoveVelocity, MoveVector * CurrentSpeed, ref MoveDampVelocity, MoveSmoothTime);
+            //CurrentMoveVelocity = Vector3.SmoothDamp(CurrentMoveVelocity, MoveVector * CurrentSpeed, ref MoveDampVelocity, MoveSmoothTime);
 
-            controller.Move(CurrentMoveVelocity * Time.deltaTime);
+            //controller.Move(CurrentMoveVelocity * Time.deltaTime);
+            _rigidbody.velocity = new Vector3(PlayerInput.x, PlayerInput.y, PlayerInput.z);
         }
         else
         {
