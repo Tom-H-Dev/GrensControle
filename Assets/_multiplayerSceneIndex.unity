@@ -494,6 +494,8 @@ MonoBehaviour:
   - {fileID: 264788067}
   - {fileID: 994021673}
   - {fileID: 895327990}
+  _playerPrefab: {fileID: 4846532456289914760, guid: a466fb60afd4a7345853666c452e22c7,
+    type: 3}
 --- !u!1 &1630499717
 GameObject:
   m_ObjectHideFlags: 0
