@@ -12,25 +12,21 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CreatePlayer();
-        // CreateEnviroment();
     }
 
     private void CreatePlayer()
     {
-
-        //var position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-2, 5));
-        //GameObject l_player = PhotonNetwork.Instantiate(_playerPrefab.name, position, Quaternion.identity);
-
-        if (spawnIndex >= _spawnpoints.Count) spawnIndex = 0;
-        Vector3 l_position = _spawnpoints[spawnIndex].transform.position;
-
-        GameObject newPlayerObject = PhotonNetwork.Instantiate(_playerPrefab.name, l_position, Quaternion.identity);
-        spawnIndex++;
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
+        {
+            PhotonNetwork.Instantiate(_playerPrefab.name, _spawnpoints[0].position, Quaternion.identity);
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
+        {
+            PhotonNetwork.Instantiate(_playerPrefab.name, _spawnpoints[1].position, Quaternion.identity);
+        }
+        if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
+        {
+            PhotonNetwork.Instantiate(_playerPrefab.name, _spawnpoints[2].position, Quaternion.identity);
+        }
     }
-
-    /* private void CreateEnviroment()
-     {
-         var position = new Vector3(5, -3, 0);
-         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Plane"), position, Quaternion.identity);
-     } */
 }
