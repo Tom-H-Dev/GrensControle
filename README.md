@@ -1,3 +1,10 @@
+# Code Convension
+Private variables:     _privateVariables  
+Public variables:    _publicVariables  
+Protected variables:    p_protectedVariables  
+Local variables:    l_localVariables  
+Class names:        ClassName()  
+
 # GrensControle
  
 elke speler heeft een apart gebied om te interacteren met het voertuig:
