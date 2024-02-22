@@ -1,9 +1,9 @@
 # Code Convension
-Private variables:     _privateVariables
-Public variables:    publicVariables
-Protected variables:    p_protectedVariables
-Local variables:    l_localVariables
-Class names:        ClassName()
+Private variables:     _privateVariables  
+Public variables:    _publicVariables  
+Protected variables:    p_protectedVariables  
+Local variables:    l_localVariables  
+Class names:        ClassName()  
 
 # GrensControle
  
