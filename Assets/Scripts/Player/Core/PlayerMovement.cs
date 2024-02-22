@@ -3,53 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon;
 using Photon.Pun;
-using ExitGames.Client.Photon;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private float MoveSmoothTime;
-    [SerializeField] private float WalkSpeed;
-    [SerializeField] private float RunSpeed;
+    [SerializeField] private float _moveSmoothTime;
+    [SerializeField] private float _walkSpeed;
+    [SerializeField] private float _runSpeed;
 
-    private CharacterController controller;
-    private Vector3 CurrentMoveVelocity;
-    private Vector3 MoveDampVelocity;
+    private CharacterController _controller;
+    private Vector3 _currentMoveVelocity;
+    private Vector3 _moveDampVelocity;
 
-    private Vector3 CurrentForceVelocity;
+    private Vector3 _currentForceVelocity;
 
 
     [SerializeField] private Rigidbody _rigidbody;
-    private float _lastSynchronizationTime = 0f;
-    private float _syncDelay = 0f;
-    private float _syncTime = 0f;
-    private Vector3 _syncStartPosition = Vector3.zero;
-    private Vector3 _syncEndPosition = Vector3.zero;
-
-    //void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-
-    //    if (stream.IsWriting == true)
-    //    {
-    //        stream.SendNext(_syncEndPosition);
-    //       // stream.SendNext(_syncStartPosition);
-
-    //    }
-    //    else if (stream.IsReading)
-    //    {
-    //        _syncEndPosition = (Vector3)stream.ReceiveNext();
-    //        _syncStartPosition = _rigidbody.position;
-
-    //        _syncTime = 0f;
-    //        _syncDelay = Time.time - _lastSynchronizationTime; // delay
-    //        _lastSynchronizationTime = Time.time;   
 
 
-    //    }
-    //} 
+    private Animator _animator;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()
@@ -59,12 +35,10 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         {
             Vector3 PlayerInput = new Vector3
             {
-                x = Input.GetAxisRaw("Horizontal") * WalkSpeed,
+                x = Input.GetAxisRaw("Horizontal") * _walkSpeed,
                 y = 0f,
-                z = Input.GetAxisRaw("Vertical") * WalkSpeed,
+                z = Input.GetAxisRaw("Vertical") * _walkSpeed,
             };
-            Debug.Log(PlayerInput.x + " | " + PlayerInput.z);
-            //_rigidbody.velocity = new Vector3(PlayerInput.x, PlayerInput.y, PlayerInput.z);
 
 
             //Get KeyInput of player on axis
@@ -78,22 +52,33 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
             //Moving playerObject in direction relative to Player lookat
             Vector3 MoveVector = transform.TransformDirection(PlayerInput);
             //LeftShift key sprint
-            float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? RunSpeed : WalkSpeed;
+            float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? IsRunning() : IsWalking();
 
             //smoothing of CurrentMoveVelocity
-            CurrentMoveVelocity = Vector3.SmoothDamp(CurrentMoveVelocity, MoveVector * CurrentSpeed, ref MoveDampVelocity, MoveSmoothTime);
+            _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, MoveVector * CurrentSpeed, ref _moveDampVelocity, _moveSmoothTime);
 
-            controller.Move(CurrentMoveVelocity * Time.deltaTime);
+            _controller.Move(_currentMoveVelocity * Time.deltaTime);
+            if (_currentMoveVelocity == Vector3.zero)
+                Idle();
         }
-        //else
-        //{
-        //    SyncedMovement();
-        //} 
     }
 
-    //private void SyncedMovement()
-    //{
-    //    _syncTime += Time.deltaTime;
-    //    _rigidbody.position = Vector3.Lerp(_syncStartPosition, _syncEndPosition, _syncTime / _syncDelay);
-    //} 
+    private float IsRunning()
+    {
+        _animator.SetBool("isRunning", true);
+        _animator.SetBool("isWalking", false);
+        return _runSpeed;
+    }
+    private float IsWalking()
+    {
+        _animator.SetBool("isRunning", false);
+        _animator.SetBool("isWalking", true);
+        return _walkSpeed;
+    }
+
+    private void Idle()
+    {
+        _animator.SetBool("isRunning", false);
+        _animator.SetBool("isWalking", false);
+    }
 }
