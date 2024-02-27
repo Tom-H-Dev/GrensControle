@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon;
 using Photon.Pun;
+using UnityEngine.AI;
 
 public class CarBehaviour : MonoBehaviour
 {
@@ -15,6 +16,6 @@ public class CarBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
