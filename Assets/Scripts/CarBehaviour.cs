@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon;
+using Photon.Pun;
 
-public class CarManager : MonoBehaviour
+public class CarBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject[] _wheels; //1: linksvoor, 2: rechtsvoor, 3: linksachter, 4: rechtsachter
     void Start()
     {
         
