@@ -11,6 +11,12 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
+        PlayerLookAround();
+        PlayerLookRaycast();
+    }
+
+    private void PlayerLookAround()
+    {
         //Get MouseInput of player on axis
         //Up, Down, Left, Right
         Vector2 MouseInput = new Vector2
@@ -31,5 +37,19 @@ public class PlayerLook : MonoBehaviour
 
         //Lock Cursor to playWindow
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void PlayerLookRaycast()
+    {
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward,out RaycastHit l_hit, 2f))
+        {
+            if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc))
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    l_pc.OpenPc();
+                }
+            }
+        }
     }
 }
