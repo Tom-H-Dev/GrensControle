@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VehicleManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject startLocation;
     void Start()
     {
         
