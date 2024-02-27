@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private bool isOnPC = false;
     void Start()
     {
         
@@ -13,11 +13,24 @@ public class Computer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.GetKeyDown(KeyCode.E))
+            ClosePC();
     }
 
     public void OpenPc()
     {
+        isOnPC = true;
+        //Player Cannot Move anymore
+        //Player lerps toward the pc
+        //Player sits down animation
+        //Screen in Big
+        //Mouse gets enabled
+        //Can scroll through pc
+    }
 
+    private void ClosePC()
+    {
+        isOnPC = false;
     }
 }
