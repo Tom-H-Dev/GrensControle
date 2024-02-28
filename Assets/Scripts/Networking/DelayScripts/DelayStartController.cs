@@ -2,14 +2,21 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DelayStartController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _delayStartButton; //Button used for creating and joining a game.
     [SerializeField] private GameObject _delayCancelButton; //Button used to stop searching for a game to join.
     [SerializeField] private int _roomSize; //Manual set number of players in the room at one time.
+    [SerializeField] private TMP_InputField _nameInputField;
 
+    private void Start()
+    {
+        _delayStartButton.GetComponent<Button>().interactable = false;
+    }
     public override void OnConnectedToMaster() //Callback function for when the first connection is established.
     {
         base.OnConnected();
@@ -31,12 +38,12 @@ public class DelayStartController : MonoBehaviourPunCallbacks
         CreateRoom(); //If it fails to join a room then it will try to create its own.
     }
 
-     void CreateRoom()
+    void CreateRoom()
     {
         Debug.Log("Creating room now");
         int _randomRoomNumber = Random.Range(0, 10000); //Creating a random name for the room.
-        RoomOptions _roomOptions = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)_roomSize };
-        PhotonNetwork.CreateRoom("Room" + _randomRoomNumber, _roomOptions ); //Attempting to create a new room.
+        RoomOptions _roomOptions = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = _roomSize };
+        PhotonNetwork.CreateRoom("Room" + _randomRoomNumber, _roomOptions); //Attempting to create a new room.
         Debug.Log(_randomRoomNumber);
     }
 
@@ -52,5 +59,14 @@ public class DelayStartController : MonoBehaviourPunCallbacks
         _delayCancelButton.SetActive(false);
         _delayStartButton.SetActive(true);
         PhotonNetwork.LeaveRoom();
+    }
+
+    public void ChangeNickname()
+    {
+        PhotonNetwork.NickName = _nameInputField.text;
+        if (_nameInputField.text != "" || _nameInputField.text != null)
+            _delayStartButton.GetComponent<Button>().interactable = true;
+
+        if (_nameInputField.text == string.Empty) _delayStartButton.GetComponent<Button>().interactable = false;
     }
 }
