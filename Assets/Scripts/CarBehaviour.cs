@@ -8,6 +8,14 @@ using Unity.VisualScripting;
 
 public class CarBehaviour : MonoBehaviour
 {
+    [Header("Voertuig Data")]
+    public bool _isMillitairyVehicle;
+    public bool _hasDutcLicensePlate;
+    public string _duplicateCode = null;
+    public string _landCode;
+    public string _licensePlate;
+    [SerializeField] LicensePlateManager[] _licensePlates;
+    [Header("Vehicle dynamics")]
     NavMeshAgent _agent;
     [SerializeField] GameObject[] _wheels; //LF, RF, LB, RB
     [SerializeField] Transform[] _stopLocations;
@@ -19,8 +27,61 @@ public class CarBehaviour : MonoBehaviour
     [SerializeField] float _stoppingRadius;
     void Start()
     {
+        string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string _middleText = null;
         _agent = GetComponent<NavMeshAgent>();
+        if (_isMillitairyVehicle )
+        { 
+        _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Voeg DM toe omdat het een militair voertuig is
+        }
+        else
+        {
+            _middleText = _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString();
+        }
 
+        _licensePlate = Random.Range(0, 9).ToString() + Random.Range(0, 9).ToString() + "-" + _middleText + "-" + Random.Range(0, 9).ToString();
+
+        float a = Random.value;
+        if (a < 0.05f)
+        {
+            _duplicateCode = "1";
+        }
+
+        float b = Random.value; 
+        if (b < 0.10f)
+        {
+            print(b);
+            _hasDutcLicensePlate = false;
+        }
+        else
+        {
+            _hasDutcLicensePlate = true;
+        }
+
+        for (int i = 0; i < _licensePlates.Length; i++)
+        {
+            _licensePlates[i]._licenseText.text = _licensePlate;
+            _licensePlates[i]._landCodeText.text = _landCode;
+            _licensePlates[i]._duplicateText.text = _duplicateCode;
+
+            if (_hasDutcLicensePlate)
+            {
+                print("yellow plate");
+                Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
+                materials[3] = _licensePlates[i]._yellowPlate;
+                materials[4] = _licensePlates[i]._yellowPlate;
+                _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+            }
+            else if (!_hasDutcLicensePlate)
+            {
+                print("yellow plate");
+                Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
+                materials[3] = _licensePlates[i]._whitePlate;
+                materials[4] = _licensePlates[i]._whitePlate;
+                _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +91,6 @@ public class CarBehaviour : MonoBehaviour
         _agent.stoppingDistance = _stoppingRadius;
 
         float agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.transform.position);
-        print(agentToFinishDistance);
 
         if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
