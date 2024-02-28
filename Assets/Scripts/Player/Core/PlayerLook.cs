@@ -8,10 +8,14 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private Vector2 Senstivity;
 
     private Vector2 XYRotation;
+    public bool _canLook = true;
+    public bool _canInteract = true;
 
     private void Update()
     {
-        PlayerLookAround();
+        if (_canLook)
+            PlayerLookAround();
+
         PlayerLookRaycast();
     }
 
@@ -41,13 +45,13 @@ public class PlayerLook : MonoBehaviour
 
     private void PlayerLookRaycast()
     {
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward,out RaycastHit l_hit, 2f))
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, 2f))
         {
             if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc))
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && _canInteract)
                 {
-                    l_pc.OpenPc();
+                    l_pc.OpenPc(GetComponent<PlayerMovement>(), this);
                 }
             }
         }

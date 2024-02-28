@@ -10,6 +10,7 @@ public class PlayerMultiplayerObjectSelection : MonoBehaviourPunCallbacks, IPunO
     //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
     public MonoBehaviour[] localScripts;
     //Values that will be synced over network
+    public GameObject[] personalTurnOffObjects;
     Vector3 latestPos;
     Quaternion latestRot;
     private void Start()
@@ -17,6 +18,10 @@ public class PlayerMultiplayerObjectSelection : MonoBehaviourPunCallbacks, IPunO
         if (photonView.IsMine)
         {
             //Player is local
+            for (int i = 0; i < personalTurnOffObjects.Length; i++)
+            {
+                personalTurnOffObjects[i].SetActive(false);
+            }
         }
         else
         {

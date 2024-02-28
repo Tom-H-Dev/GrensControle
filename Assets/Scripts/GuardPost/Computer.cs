@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour
 {
-    private bool isOnPC = false;
+    private bool _isOnPC = false;
+    [SerializeField] private PlayerMovement _playerMovement;
+    private PlayerLook _playerLook;
+
+    [SerializeField] private GameObject _computerScreen;
     void Start()
     {
         
@@ -14,23 +18,41 @@ public class Computer : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && _isOnPC)
             ClosePC();
     }
 
-    public void OpenPc()
+    public void OpenPc(PlayerMovement l_player, PlayerLook l_look)
     {
-        isOnPC = true;
+        Debug.Log("Open Computer");
+        _isOnPC = true;
         //Player Cannot Move anymore
+        _playerMovement = l_player;
+        l_player._canMove = false;
+        _playerLook = l_look;
+        l_look._canLook = false;
+        l_look._canInteract = false;
         //Player lerps toward the pc
         //Player sits down animation
         //Screen in Big
+        _computerScreen.SetActive(true);
         //Mouse gets enabled
+
         //Can scroll through pc
     }
 
     private void ClosePC()
     {
-        isOnPC = false;
+        Debug.Log("Close Computer");
+        _isOnPC = false;
+        _computerScreen.SetActive(false);
+        _playerMovement.CanMoveChange(true);
+        _playerLook._canLook = true;
+    }
+
+    private IEnumerator ResetComputer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _playerLook._canInteract = true;
     }
 }
