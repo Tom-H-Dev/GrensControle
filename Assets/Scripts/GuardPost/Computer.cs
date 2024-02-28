@@ -5,24 +5,23 @@ using UnityEngine;
 public class Computer : MonoBehaviour
 {
     private bool _isOnPC = false;
-    [SerializeField] private PlayerMovement _playerMovement;
+    private PlayerMovement _playerMovement;
     private PlayerLook _playerLook;
+    private Animator _canvasAnimator;
 
     [SerializeField] private GameObject _computerScreen;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] private RectTransform _windows;
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.E) && _isOnPC)
-            ClosePC();
+        if (_isOnPC)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+                ClosePC();
+        }
     }
 
-    public void OpenPc(PlayerMovement l_player, PlayerLook l_look)
+    public void OpenPc(PlayerMovement l_player, PlayerLook l_look, Animator l_canvas)
     {
         Debug.Log("Open Computer");
         _isOnPC = true;
@@ -32,13 +31,20 @@ public class Computer : MonoBehaviour
         _playerLook = l_look;
         l_look._canLook = false;
         l_look._canInteract = false;
+
         //Player lerps toward the pc
         //Player sits down animation
+
         //Screen in Big
         _computerScreen.SetActive(true);
-        //Mouse gets enabled
 
-        //Can scroll through pc
+        //Animations
+        _canvasAnimator = l_canvas;
+        l_canvas.SetTrigger("FadeOutInteractOpen");
+        l_canvas.SetTrigger("InteractClose");
+        //Mouse gets enabled
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void ClosePC()
@@ -48,6 +54,10 @@ public class Computer : MonoBehaviour
         _computerScreen.SetActive(false);
         _playerMovement.CanMoveChange(true);
         _playerLook._canLook = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        StartCoroutine(ResetComputer());
+        _canvasAnimator.SetTrigger("FadeOutInteractClose");
     }
 
     private IEnumerator ResetComputer()

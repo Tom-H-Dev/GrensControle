@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using UnityEngine;
 
@@ -8,7 +9,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnpoints = new List<Transform>();
     [SerializeField] private GameObject _playerPrefab;
-    private int spawnIndex;
+    public Animator _canvasAnimator;
+    public static GameManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         CreatePlayer();
