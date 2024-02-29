@@ -8,10 +8,19 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private Vector2 Senstivity;
 
     private Vector2 XYRotation;
+    public bool _canLook = true;
+    public bool _canInteract = true;
+    private Animator _canvasAnimator;
 
+    private void Start()
+    {
+        _canvasAnimator = GameManager.instance._canvasAnimator;
+    }
     private void Update()
     {
-        PlayerLookAround();
+        if (_canLook)
+            PlayerLookAround();
+
         PlayerLookRaycast();
     }
 
@@ -38,16 +47,23 @@ public class PlayerLook : MonoBehaviour
         //Lock Cursor to playWindow
         Cursor.lockState = CursorLockMode.Locked;
     }
-
+    bool once = true;
     private void PlayerLookRaycast()
     {
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward,out RaycastHit l_hit, 2f))
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, 2f))
         {
-            if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc))
+            if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
             {
+                if (once)
+                {
+                    _canvasAnimator.SetTrigger("InteractOpen");
+                    once = false;
+                }
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    l_pc.OpenPc();
+                    l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
+                    once = true;
                 }
             }
         }
