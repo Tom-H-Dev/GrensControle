@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class StartDialoge : MonoBehaviour
@@ -13,10 +14,19 @@ public class StartDialoge : MonoBehaviour
 
     [SerializeField] private GameObject talk;
 
+    private PlayerMovement PlayerMV;
+    private PlayerLook PlayerLK;
+    
+
     void Start()
     {
+        PlayerMV = GetComponent<PlayerMovement>();
+        PlayerLK = GetComponent<PlayerLook>();
         mycam = Camera.main;
         talk.SetActive(false);
+        
+        PlayerLK.enabled = true;
+        PlayerMV.enabled = true;
     }
 
     void Update()
@@ -30,6 +40,10 @@ public class StartDialoge : MonoBehaviour
                 if (hit.collider.CompareTag("Driver"))
                 {
                     startText();
+                    Cursor.lockState = CursorLockMode.None;
+                    PlayerLK.enabled = false;
+                    PlayerMV.enabled = false;
+                    this.enabled = false;
                 }
             }
         }

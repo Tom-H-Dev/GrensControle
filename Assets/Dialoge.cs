@@ -1,55 +1,75 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Dialoge : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI TextComponent;
     
-    [SerializeField] private  string[] lines;
 
     [SerializeField] private float textspeed = 0.5f;
 
     [SerializeField] private GameObject button;
     
     private int index;
+    private int Lineindex;
+    private int closestmadnessIndex;
+
+    [SerializeField] public List<customlist> mylist = new List<customlist>();
+
+    public int npcMadness;
+
+    [SerializeField] private GameObject Startd;
+    private StartDialoge STD;
     
     void Start()
     {
+        STD = Startd.GetComponent<StartDialoge>();
         TextComponent.text = string.Empty;
         startDailogo();
     }
-
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (TextComponent.text == lines[index])
+            if (TextComponent.text == mylist[index].lines[Lineindex].ToString())
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                TextComponent.text = lines[index];
+                TextComponent.text = mylist[index].lines[Lineindex].ToString();
             }
         }
+        
     }
 
     void startDailogo()
     {
-        index = 0;
-        StartCoroutine(TypeLine());
+        int minDifference = int.MaxValue;
+
+        for (int i = 0; i < mylist.Count; i++)
+        {
+            int differnece = Mathf.Abs(npcMadness - mylist[i].madness);
+
+            if (differnece < minDifference)
+            {
+                minDifference = differnece;
+                closestmadnessIndex = i;
+            }
+        }
+        
+        if (npcMadness >= mylist[closestmadnessIndex].madness)
+        {
+            StartCoroutine(TypeLine(mylist[closestmadnessIndex].lines[Lineindex]));     
+        }
     }
-    IEnumerator TypeLine()
+
+    IEnumerator TypeLine(string line)
     {
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in line)
         {
             TextComponent.text += c;
             yield return new WaitForSeconds(textspeed);
@@ -57,16 +77,26 @@ public class Dialoge : MonoBehaviour
     }
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        Lineindex++;
+        if (Lineindex < mylist[index].lines.Length)
         {
-            index++;
             TextComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine(mylist[index].lines[Lineindex]));
         }
         else
         {
-            button.SetActive(true);
-            this.gameObject.SetActive(false);
+            Lineindex = 0;
+            index++;
+            if (index < mylist.Count)
+            {
+                startDailogo();
+            }
+            else
+            {
+                STD.enabled = true;
+                button.SetActive(false);
+                gameObject.SetActive(false);
+            }
         }
     }
 }
