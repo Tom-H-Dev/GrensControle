@@ -28,6 +28,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         _controller = GetComponent<CharacterController>();
         _animator = GetComponentInChildren<Animator>();
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+        {
+            // Get the value of the "Team" property
+            int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+
+            // Print the value using Debug.Log
+            Debug.Log("My Team: " + team);
+        }
     }
 
     private void FixedUpdate()
