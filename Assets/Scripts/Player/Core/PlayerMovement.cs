@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private Animator _animator;
 
+    public bool _canMove = true;
+
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -33,33 +35,36 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
         if (photonView.IsMine)
         {
-            Vector3 PlayerInput = new Vector3
+            if (_canMove)
             {
-                x = Input.GetAxisRaw("Horizontal") * _walkSpeed,
-                y = 0f,
-                z = Input.GetAxisRaw("Vertical") * _walkSpeed,
-            };
+                Vector3 PlayerInput = new Vector3
+                {
+                    x = Input.GetAxisRaw("Horizontal") * _walkSpeed,
+                    y = 0f,
+                    z = Input.GetAxisRaw("Vertical") * _walkSpeed,
+                };
 
 
-            //Get KeyInput of player on axis
-            //Forward, Backwards, Left, Right
-            //All input cases get constant speed
-            if (PlayerInput.magnitude > 1f)
-            {
-                PlayerInput.Normalize();
+                //Get KeyInput of player on axis
+                //Forward, Backwards, Left, Right
+                //All input cases get constant speed
+                if (PlayerInput.magnitude > 1f)
+                {
+                    PlayerInput.Normalize();
+                }
+
+                //Moving playerObject in direction relative to Player lookat
+                Vector3 MoveVector = transform.TransformDirection(PlayerInput);
+                //LeftShift key sprint
+                float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? IsRunning() : IsWalking();
+
+                //smoothing of CurrentMoveVelocity
+                _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, MoveVector * CurrentSpeed, ref _moveDampVelocity, _moveSmoothTime);
+
+                _controller.Move(_currentMoveVelocity * Time.deltaTime);
+                if (_currentMoveVelocity == Vector3.zero)
+                    Idle();
             }
-
-            //Moving playerObject in direction relative to Player lookat
-            Vector3 MoveVector = transform.TransformDirection(PlayerInput);
-            //LeftShift key sprint
-            float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? IsRunning() : IsWalking();
-
-            //smoothing of CurrentMoveVelocity
-            _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, MoveVector * CurrentSpeed, ref _moveDampVelocity, _moveSmoothTime);
-
-            _controller.Move(_currentMoveVelocity * Time.deltaTime);
-            if (_currentMoveVelocity == Vector3.zero)
-                Idle();
         }
     }
 
@@ -80,5 +85,12 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         _animator.SetBool("isRunning", false);
         _animator.SetBool("isWalking", false);
+    }
+
+    public void CanMoveChange(bool l_value)
+    {
+        Debug.Log("Function");
+        _canMove = l_value;
+        Debug.Log("_canMove is: " + _canMove);
     }
 }

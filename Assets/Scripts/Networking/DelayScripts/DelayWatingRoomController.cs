@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 
+[RequireComponent(typeof(PhotonView))]
 public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 {
+    public static DelayWatingRoomController instance;
+
     /*This object must be attached to an object
     / in the waiting room Scene of your project.*/
 
     //Photon view for sending rpc that updates the timer.
-    private PhotonView _photonView;
+    public PhotonView _photonView;
 
     //Scene navigation indexes
     [SerializeField] private int SelectionScreen;
@@ -43,6 +43,9 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
     public int syncVariable;
 
+    [Header("Players")]
+    public int _playersReady;
+
     private void Start()
     {
         //Initialize variables
@@ -57,9 +60,10 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true; //So if the master client is making a new level, that everyone joins that specific level.
+        instance = this;
     }
 
-    void PlayerCountUpdate()
+    public void PlayerCountUpdate()
     {
         //Updates player count when players join the room.
         //Displays player count.
@@ -68,13 +72,10 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
         _roomCountDisplay.text = _playerCount + ":" + _roomsize;
 
-        if (_playerCount == _roomsize)
+        if (_playersReady == _roomsize)
         {
+            Debug.Log("Enough players");
             _readyToStart = true;
-        }
-        else if (_playerCount >= _minPlayersToStart)
-        {
-            _readyToCountDown = true;
         }
         else
         {
@@ -140,11 +141,6 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         {
             _fullGameTimer -= Time.deltaTime;
             _timerToStartGame = _fullGameTimer;
-        }
-        else if(_readyToCountDown)
-        {
-            _notFullGameTimer -= Time.deltaTime;
-            _timerToStartGame = _notFullGameTimer;
         }
         //Format and display countdown timer.
         string tempTimer = string.Format("{0:00}", _timerToStartGame);

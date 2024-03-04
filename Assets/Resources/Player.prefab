@@ -165,6 +165,7 @@ MonoBehaviour:
   _walkSpeed: 4
   _runSpeed: 8
   _rigidbody: {fileID: 7904712108543336175}
+  _canMove: 1
 --- !u!114 &8591313288800628124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 6567718505920397474}
   Senstivity: {x: 2, y: 2}
+  _canLook: 1
+  _canInteract: 1
 --- !u!143 &878450100313127682
 CharacterController:
   m_ObjectHideFlags: 0
@@ -307,6 +310,8 @@ MonoBehaviour:
   localScripts:
   - {fileID: 8591313288800628124}
   - {fileID: 5671153366708613330}
+  personalTurnOffObjects:
+  - {fileID: 5774706146410431994}
 --- !u!1 &7115739104667717578
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 7115739104667717578}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.663, z: -0.053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -661,6 +666,12 @@ MonoBehaviour:
 --- !u!4 &1826058300188097997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c8055ffa17a3974387fd3390b2ebdc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2224161545043057190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5774706146410431994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3531332827177082916, guid: 4c8055ffa17a3974387fd3390b2ebdc2,
     type: 3}
   m_PrefabInstance: {fileID: 2224161545043057190}
   m_PrefabAsset: {fileID: 0}
