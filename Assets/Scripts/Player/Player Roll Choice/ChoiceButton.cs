@@ -20,6 +20,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     private void Start()
     {
         _playerName.text = string.Empty;
+        DelayWatingRoomController.instance.PlayerCountUpdate();
     }
 
     public void ChooseRoll(int l_team)
@@ -66,7 +67,13 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         }
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="l_playerName"></param>
+    /// <param name="l_isinteractacble"></param>
+    /// <param name="l_isChosen"></param>
+    /// <param name="l_removeOrAdd"></param>
     [PunRPC]
     private void SetRollChoice(string l_playerName, bool l_isinteractacble, bool l_isChosen, int l_removeOrAdd)
     {

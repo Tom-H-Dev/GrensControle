@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,20 +53,33 @@ public class PlayerLook : MonoBehaviour
     {
         if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, 2f))
         {
-            if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
+            if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
             {
-                if (once)
-                {
-                    _canvasAnimator.SetTrigger("InteractOpen");
-                    once = false;
-                }
+                int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (team == 1)
                 {
-                    l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
-                    once = true;
+                    if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
+                    {
+                        if (once)
+                        {
+                            _canvasAnimator.SetTrigger("InteractOpen");
+                            once = false;
+                        }
+
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
+                            once = true;
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.Log("Local Player is not in Team: " + 1);
                 }
             }
+            
         }
     }
 }
