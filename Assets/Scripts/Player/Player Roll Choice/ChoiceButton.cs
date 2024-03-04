@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
 
 public class ChoiceButton : MonoBehaviourPunCallbacks
 {
@@ -21,13 +22,27 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         _playerName.text = string.Empty;
     }
 
-    public void ChooseRoll()
+    public void ChooseRoll(int l_team)
     {
         if (_isChosen)
             return;
         photonView.RPC("SetRollChoice", RpcTarget.All, PhotonNetwork.NickName, true, true, 1);
 
-        
+        //Check if the player already has a CustonProperty with the key 'Team'.
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+        {
+            PhotonNetwork.LocalPlayer.CustomProperties["Team"] = l_team;
+        }
+        else //If the player has no CustomProperty is makes a new custom property.
+        {
+            //Makes a new CustomProperty for the player.
+            ExitGames.Client.Photon.Hashtable l_playerProps = new ExitGames.Client.Photon.Hashtable
+            {
+                {"Team", l_team }
+            };
+            //Adds the new CustomProperty to the player.
+            PhotonNetwork.LocalPlayer.SetCustomProperties(l_playerProps);
+        }
     }
 
     public void LeaveRoll()
@@ -36,7 +51,19 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
             return;
         photonView.RPC("SetRollChoice", RpcTarget.All, string.Empty, false, false, -1);
 
-        
+        //Removes the CustomProperty from the player.
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+        {
+            PhotonNetwork.LocalPlayer.CustomProperties["Team"] = 0;
+        }
+        else
+        {
+            ExitGames.Client.Photon.Hashtable l_playerProps = new ExitGames.Client.Photon.Hashtable
+            {
+                {"Team", 0 }
+            };
+            PhotonNetwork.LocalPlayer.SetCustomProperties(l_playerProps);
+        }
     }
 
 
