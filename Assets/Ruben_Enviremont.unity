@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 50794659}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1941908932}
+        m_TargetAssemblyTypeName: StartDialoge, Assembly-CSharp
+        m_MethodName: Active
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &50794659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,22 +643,13 @@ MonoBehaviour:
   TextComponent: {fileID: 158743125}
   textspeed: 0.2
   button: {fileID: 779119827}
+  ButtonContainer: {fileID: 1248093867}
   mylist:
   - lines:
-    - dadawdad
-    - dwadawdasafsafafasfaf
-    - luca
-    - thomas
-    - osama
-    madness: 100
-  - lines:
-    - 43ywy reyer
-    - yeryeyerye
+    - eatgesgwab rhj
+    - ejruthurhgf nfc njv
+    - thoams
     - jack
-    - smith
-    - mike
-    madness: 5
-  npcMadness: 40
   Startd: {fileID: 1941908931}
 --- !u!114 &158743125
 MonoBehaviour:
@@ -827,7 +830,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164342494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 779119832}
+        m_TargetAssemblyTypeName: ActivedText, Assembly-CSharp
+        m_MethodName: AskQuistion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &164342494
 MonoBehaviour:
   m_ObjectHideFlags: 0

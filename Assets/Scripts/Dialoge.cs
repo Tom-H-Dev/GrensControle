@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,15 @@ public class Dialoge : MonoBehaviour
     [SerializeField] private float textspeed = 0.5f;
 
     [SerializeField] private GameObject button;
-    
+    [SerializeField] private GameObject ButtonContainer;
+
+
+    private bool resetDialoge = true;
     private int index;
     private int Lineindex;
-    private int closestmadnessIndex;
 
     [SerializeField] public List<customlist> mylist = new List<customlist>();
-
-    public int npcMadness;
+    
 
     [SerializeField] private GameObject Startd;
     private StartDialoge STD;
@@ -36,35 +38,21 @@ public class Dialoge : MonoBehaviour
             if (TextComponent.text == mylist[index].lines[Lineindex].ToString())
             {
                 NextLine();
+                print("jack");
             }
             else
             {
                 StopAllCoroutines();
                 TextComponent.text = mylist[index].lines[Lineindex].ToString();
+                print("fack");
             }
         }
-        
     }
 
     void startDailogo()
     {
-        int minDifference = int.MaxValue;
-
-        for (int i = 0; i < mylist.Count; i++)
-        {
-            int differnece = Mathf.Abs(npcMadness - mylist[i].madness);
-
-            if (differnece < minDifference)
-            {
-                minDifference = differnece;
-                closestmadnessIndex = i;
-            }
-        }
         
-        if (npcMadness >= mylist[closestmadnessIndex].madness)
-        {
-            StartCoroutine(TypeLine(mylist[closestmadnessIndex].lines[Lineindex]));     
-        }
+        StartCoroutine(TypeLine(mylist[index].lines[Lineindex]));     
     }
 
     IEnumerator TypeLine(string line)
@@ -93,10 +81,16 @@ public class Dialoge : MonoBehaviour
             }
             else
             {
+                index = 0;
+                Lineindex = 0;
                 STD.enabled = true;
-                button.SetActive(false);
+                //button.SetActive(false);
                 gameObject.SetActive(false);
+                ButtonContainer.SetActive(true);
+                TextComponent.text = string.Empty;
             }
         }
     }
+
+    
 }

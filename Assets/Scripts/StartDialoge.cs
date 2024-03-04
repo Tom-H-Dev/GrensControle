@@ -62,4 +62,13 @@ public class StartDialoge : MonoBehaviour
         
         Gizmos.DrawWireSphere(transform.position + transform.forward * reach, 0.2f);
     }
+
+    public void Active()
+    {
+        talk.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        PlayerLK.enabled = true;
+        PlayerMV.enabled = true;
+        this.enabled = true;
+    }
 }
