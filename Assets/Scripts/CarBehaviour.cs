@@ -12,6 +12,7 @@ public class CarBehaviour : MonoBehaviour
     public bool _isMillitairyVehicle;
     public bool _hasDutchLicensePlate;
     public string _duplicateCode = null;
+    public string[] _landCodes;
     public string _landCode;
     public string _licensePlate;
     [SerializeField] LicensePlateManager[] _licensePlates;
@@ -57,10 +58,12 @@ public class CarBehaviour : MonoBehaviour
         {
             print(b);
             _hasDutchLicensePlate = false;
+            _landCode = _landCodes[Random.Range(1, _landCodes.Length)];
         }
         else
         {
             _hasDutchLicensePlate = true;
+            _landCode = _landCodes[0];
         }
 
         for (int i = 0; i < _licensePlates.Length; i++)
@@ -141,5 +144,15 @@ public class CarBehaviour : MonoBehaviour
         _brakeSound.Play();
         _honkSound.Play();
         //}
+    }
+
+    public void VehicleDenied()
+    {
+
+    }
+
+    public void VehicleAccepted()
+    {
+
     }
 }
