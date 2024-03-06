@@ -157,12 +157,7 @@ public class CarBehaviour : MonoBehaviour
         Gizmos.DrawWireCube(emergencyBreakPos.transform.position, emergencyBreakRadius);
     }
 
-    public void VehicleDenied()
-    {
-
-    }
-
-    public void VehicleAccepted()
+    public void NextStopPoint()
     {
 
     }
