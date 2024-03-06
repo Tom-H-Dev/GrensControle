@@ -27,7 +27,7 @@ public class BarrierManager : MonoBehaviour
 
         if (Input.GetKeyDown("o"))
         {
-            VehicleAccepted();
+            StartCoroutine(VehicleAcceptedCoroutine());
         }
     }
 
@@ -45,17 +45,6 @@ public class BarrierManager : MonoBehaviour
         }
     }
 
-
-    public void VehicleAccepted()
-    {
-        StartCoroutine(VehicleAcceptedCoroutine());
-    }
-
-    public void VehicleDenied()
-    {
-        StartCoroutine(VehicleDeniedCoroutine());
-    }
-
     public IEnumerator VehicleDeniedCoroutine()
     {
         yield return null;
@@ -67,14 +56,14 @@ public class BarrierManager : MonoBehaviour
         {
             _barrierAnimator.ResetTrigger("Close");
             _barrierAnimator.SetTrigger("Open");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             _vehicle.NextStopPoint(_insideLocation);
 
             while (_vehicle != null)
             {
                 yield return null;
             }
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             _barrierAnimator.ResetTrigger("Open");
             _barrierAnimator.SetTrigger("Close");
             yield return null;
