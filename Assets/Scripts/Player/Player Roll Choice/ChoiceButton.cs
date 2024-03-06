@@ -29,6 +29,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
             return;
 
         photonView.RPC("SetRollChoice", RpcTarget.All, PhotonNetwork.NickName, true, 1);
+        photonView.RPC("DisableButton", RpcTarget.All);
 
         // Disable other buttons locally
         foreach (Button button in _choiceButtons)
@@ -62,6 +63,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         if (!_isChosen)
             return;
         photonView.RPC("SetRollChoice", RpcTarget.All, string.Empty, false, -1);
+        photonView.RPC("EnableButton", RpcTarget.All);
 
         // Disable other buttons locally
         foreach (Button button in _choiceButtons)
@@ -105,5 +107,36 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
 
         DelayWatingRoomController.instance._playersReady += l_removeOrAdd;
         DelayWatingRoomController.instance.PlayerCountUpdate();
+    }
+
+    [PunRPC]
+    private void DisableButton()
+    {
+        _choiceButton.interactable = false;
+    }
+
+    [PunRPC]
+    private void EnableButton()
+    {
+        _choiceButton.interactable = true;
+    }
+    private void Update()
+    {
+        for (int i = 0; i < _choiceButtons.Count; i++)
+        {
+            if (_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
+            {
+                _choiceButtons[i].interactable = false;
+            }
+            else if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+            {
+                if ((int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 1 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 2 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 3)
+                {
+                    _choiceButtons[i].interactable = false;
+                }
+                else _choiceButtons[i].interactable = true;
+            }
+            else _choiceButtons[i].interactable = true;
+        }
     }
 }
