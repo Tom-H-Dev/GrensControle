@@ -2540,6 +2540,7 @@ GameObject:
   - component: {fileID: 8995557550753530400}
   - component: {fileID: 5641712994569486506}
   - component: {fileID: 1587171504320810232}
+  - component: {fileID: 3252682756516331536}
   m_Layer: 3
   m_Name: Trunk
   m_TagString: Untagged
@@ -2625,6 +2626,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highlightMaterial: {fileID: 2100000, guid: deb0a8baa43d33947bb8415b230fd2dc, type: 2}
+--- !u!95 &3252682756516331536
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209059887680877092}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c027325bc0b538445834139b5dca5e6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1231454553747686149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2659,7 @@ GameObject:
   - component: {fileID: 6342688593526496082}
   - component: {fileID: 3729001330890266498}
   - component: {fileID: 8692464459689177277}
+  - component: {fileID: 5150104290250149037}
   m_Layer: 3
   m_Name: Hood
   m_TagString: Untagged
@@ -2722,6 +2745,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highlightMaterial: {fileID: 2100000, guid: deb0a8baa43d33947bb8415b230fd2dc, type: 2}
+--- !u!95 &5150104290250149037
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231454553747686149}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67ecf35fe213f184d8afd3db4ea9e2e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1264881196362314725
 GameObject:
   m_ObjectHideFlags: 0
