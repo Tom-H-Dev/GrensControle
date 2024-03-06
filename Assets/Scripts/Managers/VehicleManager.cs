@@ -7,12 +7,7 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] Vector3 _checkCubeSize;
     [SerializeField] GameObject _startLocation;
     [SerializeField] LayerMask _layerMask;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z) / 2, Quaternion.identity, _layerMask);

@@ -30,6 +30,8 @@ public class CarBehaviour : MonoBehaviour
     [SerializeField] float _slowingRadius;
     [SerializeField] float _brakingRadius;
     [SerializeField] float _stoppingRadius;
+    [SerializeField] Vector3 emergencyBreakRadius;
+    [SerializeField] GameObject emergencyBreakPos;
     void Start()
     {
         _emergencyBrake = false;
@@ -121,6 +123,27 @@ public class CarBehaviour : MonoBehaviour
                 _agent.speed = _normalSpeed;
             }
         }
+
+        Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
+        {
+            if (colliders.Length > 0)
+            {
+                if (!_emergencyBrake)
+                {
+                    print("Braking!");
+                    _emergencyBrake = true;
+                    _agent.speed = 0;
+                    _brakeSound.Play();
+                    _honkSound.Play();
+                }
+            }
+            else
+            {
+                _emergencyBrake = false;
+            }
+           
+        }
+
     }
 
     private void OnDrawGizmos()
@@ -131,19 +154,7 @@ public class CarBehaviour : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _brakingRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _stoppingRadius);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print("Hit something!");
-        //if (collision.gameObject.layer == _CollisionLayerMask)
-        //{
-            print("Hit something!");
-            _emergencyBrake = true;
-            _agent.speed = 0;
-        _brakeSound.Play();
-        _honkSound.Play();
-        //}
+        Gizmos.DrawWireCube(emergencyBreakPos.transform.position, emergencyBreakRadius);
     }
 
     public void VehicleDenied()

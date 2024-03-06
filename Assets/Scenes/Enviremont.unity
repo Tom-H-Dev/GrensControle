@@ -5250,28 +5250,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
-      propertyPath: _landCodes.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      propertyPath: _landCodes.Array.data[0]
-      value: NL
-      objectReference: {fileID: 0}
-    - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      propertyPath: _landCodes.Array.data[1]
-      value: PL
-      objectReference: {fileID: 0}
-    - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      propertyPath: _landCodes.Array.data[2]
-      value: DE
-      objectReference: {fileID: 0}
-    - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      propertyPath: _landCodes.Array.data[3]
-      value: BE
+      propertyPath: emergencyBreakRadius.x
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4936008283488363491, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
@@ -5392,6 +5372,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211851524521333780, guid: dc72effb59b6d114b805ac861f2c94ef,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.000003695488
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211851524521333780, guid: dc72effb59b6d114b805ac861f2c94ef,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6328470787285279518, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
@@ -5650,7 +5640,7 @@ GameObject:
   - component: {fileID: 1952256776}
   - component: {fileID: 1952256775}
   - component: {fileID: 1952256774}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
