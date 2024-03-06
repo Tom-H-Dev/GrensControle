@@ -22,12 +22,12 @@ public class Dialoge : MonoBehaviour
     [SerializeField] public List<customlist> mylist = new List<customlist>();
     
 
-    [SerializeField] private GameObject Startd;
-    private StartDialoge STD;
+    //[SerializeField] private GameObject Startd;
+    private DialogeManager STD;
     
     void Start()
     {
-        STD = Startd.GetComponent<StartDialoge>();
+       // STD = Startd.GetComponent<DialogeManager>();
         TextComponent.text = string.Empty;
         startDailogo();
     }
@@ -49,9 +49,9 @@ public class Dialoge : MonoBehaviour
         }
     }
 
-    void startDailogo()
+    public void startDailogo()
     {
-        
+        print("test");
         StartCoroutine(TypeLine(mylist[index].lines[Lineindex]));     
     }
 

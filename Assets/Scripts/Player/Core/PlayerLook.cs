@@ -13,6 +13,9 @@ public class PlayerLook : MonoBehaviour
     public bool _canInteract = true;
     private Animator _canvasAnimator;
 
+    [SerializeField] private float Reach;
+    
+
     private void Start()
     {
         _canvasAnimator = GameManager.instance._canvasAnimator;
@@ -51,7 +54,7 @@ public class PlayerLook : MonoBehaviour
     bool once = true;
     private void PlayerLookRaycast()
     {
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, 2f))
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
         {
             if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
             {
@@ -76,10 +79,27 @@ public class PlayerLook : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Local Player is not in Team: " + 1);
+                    Debug.Log("hell");
+                    if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            l_Text.startText();
+                            print("jackjack");   
+                        }
+                    }
                 }
+                
             }
             
         }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        
+        Gizmos.DrawRay(transform.position, transform.forward * Reach);
+        
+        Gizmos.DrawWireSphere(transform.position + transform.forward * Reach, 0.2f);
     }
 }
