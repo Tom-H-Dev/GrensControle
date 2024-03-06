@@ -7,7 +7,7 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] Vector3 _checkCubeSize;
     [SerializeField] GameObject _insideLocation;
     [SerializeField] LayerMask _layerMask;
-    [SerializeField] CarBehaviour _vehicle;
+    public CarBehaviour _vehicle;
     [SerializeField] Animator _barrierAnimator;
     [SerializeField] bool _isExit;
     Collider[] _colliders;
@@ -69,6 +69,11 @@ public class BarrierManager : MonoBehaviour
             _barrierAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(2);
             _vehicle.NextStopPoint(_insideLocation);
+
+            while (_vehicle != null)
+            {
+                yield return null;
+            }
             yield return new WaitForSeconds(2);
             _barrierAnimator.ResetTrigger("Open");
             _barrierAnimator.SetTrigger("Close");
