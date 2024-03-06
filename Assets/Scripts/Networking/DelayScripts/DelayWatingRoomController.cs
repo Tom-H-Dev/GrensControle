@@ -45,6 +45,8 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
     [Header("Players")]
     public int _playersReady;
+    [SerializeField] private List<Button> _rollChoiceButtons;
+    [SerializeField] private GameObject _waitingText;
 
     private void Start()
     {
@@ -71,6 +73,24 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         _playerCount = PhotonNetwork.PlayerList.Length;
         _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
         _roomCountDisplay.text = _playerCount + ":" + _roomsize;
+
+        if (_playerCount >= _roomsize)
+        {
+            Debug.Log("All Players in Lobby");
+            _waitingText.SetActive(false);
+            for (int i = 0; i < _rollChoiceButtons.Count; i++)
+            {
+                _rollChoiceButtons[i].interactable = true;
+            }
+        }
+        else
+        {
+            _waitingText.SetActive(true);
+            for (int i = 0; i < _rollChoiceButtons.Count; i++)
+            {
+                _rollChoiceButtons[i].interactable = false;
+            }
+        }
 
         if (_playersReady == _roomsize)
         {

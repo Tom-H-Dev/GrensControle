@@ -27,7 +27,13 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     {
         if (_isChosen)
             return;
+
         photonView.RPC("SetRollChoice", RpcTarget.All, PhotonNetwork.NickName, true, true, 1);
+
+        for (int i = 0; i < _choiceButtons.Count; i++)
+        {
+            _choiceButtons[i].interactable = false;
+        }
 
         //Check if the player already has a CustonProperty with the key 'Team'.
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
@@ -51,6 +57,11 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         if (!_isChosen)
             return;
         photonView.RPC("SetRollChoice", RpcTarget.All, string.Empty, false, false, -1);
+
+        for (int i = 0; i < _choiceButtons.Count; i++)
+        {
+            _choiceButtons[i].interactable = true;
+        }
 
         //Removes the CustomProperty from the player.
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
@@ -79,12 +90,12 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     {
         _playerName.text = l_playerName;
         _isChosen = l_isChosen;
-        for (int i = 0; i < _choiceButtons.Count; i++)
-        {
-            if (!_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
-                _choiceButtons[i].interactable = true;
-            else _choiceButtons[i].interactable = false;
-        }
+        //for (int i = 0; i < _choiceButtons.Count; i++)
+        //{
+        //    if (!_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
+        //        _choiceButtons[i].interactable = true;
+        //    else _choiceButtons[i].interactable = false;
+        //}
 
         DelayWatingRoomController.instance._playersReady += l_removeOrAdd;
         DelayWatingRoomController.instance.PlayerCountUpdate();
