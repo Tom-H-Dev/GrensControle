@@ -32,9 +32,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         {
             // Get the value of the "Team" property
             int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
-
-            // Print the value using Debug.Log
-            Debug.Log("My Team: " + team);
         }
     }
 
@@ -97,8 +94,6 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     public void CanMoveChange(bool l_value)
     {
-        Debug.Log("Function");
         _canMove = l_value;
-        Debug.Log("_canMove is: " + _canMove);
     }
 }
