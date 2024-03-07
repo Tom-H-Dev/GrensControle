@@ -1112,14 +1112,13 @@ MonoBehaviour:
   - {fileID: 4611859783932865322}
   - {fileID: 5196455496393545615}
   - {fileID: 4453266859119264870}
-  _stopLocations: []
   _currentTarget: {fileID: 0}
   _normalSpeed: 8
   _honkSound: {fileID: 8794645228931633511}
   _brakeSound: {fileID: 5446317798237938213}
   _CollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 520
   _slowingRadius: 15
   _brakingRadius: 7
   _stoppingRadius: 3

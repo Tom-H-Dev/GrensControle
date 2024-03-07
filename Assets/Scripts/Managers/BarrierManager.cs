@@ -22,8 +22,10 @@ public class BarrierManager : MonoBehaviour
             _vehicle = collider.GetComponent<CarBehaviour>();
         }
 
-        if (_colliders.Length <= 0)
-        _vehicle = null;
+        if (_colliders == null)
+        {
+            _vehicle = null;
+        }
 
         if (Input.GetKeyDown("o"))
         {
