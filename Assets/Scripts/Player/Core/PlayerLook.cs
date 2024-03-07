@@ -14,8 +14,8 @@ public class PlayerLook : MonoBehaviour
     private Animator _canvasAnimator;
 
     [SerializeField] private float Reach;
-    
 
+    public int team;
     private void Start()
     {
         _canvasAnimator = GameManager.instance._canvasAnimator;
@@ -58,10 +58,11 @@ public class PlayerLook : MonoBehaviour
         {
             if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
             {
-                int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+                team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
 
                 if (team == 1)
                 {
+                    
                     if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
                     {
                         if (once)
@@ -77,21 +78,30 @@ public class PlayerLook : MonoBehaviour
                         }
                     }
                 }
-                else
+                else if(team == 2)
                 {
-                    Debug.Log("hell");
                     if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
                     {
                         if (Input.GetMouseButtonDown(0))
                         {
                             l_Text.startText();
-                            print("jackjack");   
                         }
                     }
                 }
-                
+                else
+                {
+                    Debug.Log("Local Player is not in Team: " + 1);
+                }
             }
             
+            
+            if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    L_Text.startText();
+                }
+            }
         }
     }
     private void OnDrawGizmosSelected()
