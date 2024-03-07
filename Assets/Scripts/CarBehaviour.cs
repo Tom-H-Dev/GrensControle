@@ -9,36 +9,37 @@ using Unity.VisualScripting;
 public class CarBehaviour : MonoBehaviour
 {
     [Header("Voertuig Data")]
-    public bool _isMillitairyVehicle;
-    public bool _hasDutchLicensePlate;
-    public string _duplicateCode = null;
-    public string[] _landCodes;
+    public bool _isMillitairyVehicle; // Will add DM in the license palte
+    public bool _hasDutchLicensePlate; //WIll make the license plate color yellow
+    public string _duplicateCode = null; // The little number on how often the driver has lost their vehicle, purely aesthetical and has no fucntion
+    public string[] _landCodes; // Such as NL (netherlands), PL (poland), DE (Germany) etc...
     public string _landCode;
     public string _licensePlate;
     [SerializeField] LicensePlateManager[] _licensePlates;
     [Header("Vehicle dynamics")]
     NavMeshAgent _agent;
     [SerializeField] GameObject[] _wheels; //LF, RF, LB, RB
-    [SerializeField] Transform[] _stopLocations;
-    [SerializeField] GameObject _currentTarget;
-    [SerializeField] float _normalSpeed;
-    [SerializeField] AudioSource _honkSound;
-    [SerializeField] AudioSource _brakeSound;
-    [SerializeField] LayerMask _CollisionLayerMask;
-    bool _emergencyBrake;
+    [SerializeField] GameObject _currentTarget; // The car will target this object
+    [SerializeField] float _normalSpeed; // The default speed of the car
+    [SerializeField] AudioSource _honkSound; //Honk sound effect
+    [SerializeField] AudioSource _brakeSound; //Brake screetch sound effect
+    [SerializeField] LayerMask _CollisionLayerMask; //COllision layermask for the emergency brake
+    bool _emergencyBrake; // Bool that keeps track of braking
     [Header("Radius")]
-    [SerializeField] float _slowingRadius;
-    [SerializeField] float _brakingRadius;
-    [SerializeField] float _stoppingRadius;
+    [SerializeField] float _slowingRadius; // In this radius the car will half it's normal speed (_normalSpeed)
+    [SerializeField] float _brakingRadius; // in this radius the car will drive 1/3rd of it's normal speed (_normalSpeed)
+    [SerializeField] float _stoppingRadius; // In this radius the car will stop the vehicle
+    [SerializeField] Vector3 emergencyBreakRadius; // this radius is the dimensions of the braking speed
+    [SerializeField] GameObject emergencyBreakPos; // a gameobject child that is the location of the emergency brake radius
     void Start()
     {
         _emergencyBrake = false;
-        string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;
         _agent = GetComponent<NavMeshAgent>();
         if (_isMillitairyVehicle )
         { 
-        _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Voeg DM toe omdat het een militair voertuig is
+        _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
         }
         else
         {
@@ -123,6 +124,27 @@ public class CarBehaviour : MonoBehaviour
                 _agent.speed = _normalSpeed;
             }
         }
+
+        Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
+        {
+            if (colliders.Length > 0)
+            {
+                if (!_emergencyBrake)
+                {
+                    print("Braking!");
+                    _emergencyBrake = true;
+                    _agent.speed = 0;
+                    _brakeSound.Play();
+                    _honkSound.Play();
+                }
+            }
+            else
+            {
+                _emergencyBrake = false;
+            }
+           
+        }
+
     }
 
     private void OnDrawGizmos()
@@ -133,28 +155,11 @@ public class CarBehaviour : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _brakingRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _stoppingRadius);
+        Gizmos.DrawWireCube(emergencyBreakPos.transform.position, emergencyBreakRadius);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void NextStopPoint(GameObject nextStop)
     {
-        print("Hit something!");
-        //if (collision.gameObject.layer == _CollisionLayerMask)
-        //{
-            print("Hit something!");
-            _emergencyBrake = true;
-            _agent.speed = 0;
-        _brakeSound.Play();
-        _honkSound.Play();
-        //}
-    }
-
-    public void VehicleDenied()
-    {
-
-    }
-
-    public void VehicleAccepted()
-    {
-
+        _currentTarget = nextStop;
     }
 }

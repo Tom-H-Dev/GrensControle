@@ -11,15 +11,23 @@ public class Computer : MonoBehaviour
 
     [SerializeField] private GameObject _computerScreen;
     [SerializeField] private RectTransform _windows;
+    private Camera mainCamera;
+
+    private string _timeStamp = System.DateTime.Now.ToString();
+    private int _realWorldDay = System.DateTime.Now.Day;
+    private int _realWorldMonth = System.DateTime.Now.Month;
+    private int _realWorldYear = System.DateTime.Now.Year;
+
+
     void Update()
     {
-
         if (_isOnPC)
         {
             if (Input.GetKeyDown(KeyCode.E))
                 ClosePC();
         }
     }
+
 
     public void OpenPc(PlayerMovement l_player, PlayerLook l_look, Animator l_canvas)
     {
@@ -33,6 +41,7 @@ public class Computer : MonoBehaviour
         l_look._canInteract = false;
 
         //Player lerps toward the pc
+        mainCamera = _playerLook.GetComponentInChildren<Camera>();
         //Player sits down animation
 
         //Screen in Big

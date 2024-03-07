@@ -28,11 +28,17 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         if (_isChosen)
             return;
 
-        photonView.RPC("SetRollChoice", RpcTarget.All, PhotonNetwork.NickName, true, true, 1);
+        photonView.RPC("SetRollChoice", RpcTarget.All, PhotonNetwork.NickName, true, 1);
+        photonView.RPC("DisableButton", RpcTarget.All);
 
-        for (int i = 0; i < _choiceButtons.Count; i++)
+        // Disable other buttons locally
+        foreach (Button button in _choiceButtons)
         {
-            _choiceButtons[i].interactable = false;
+            ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
+            if (choiceButtonScript != this && !choiceButtonScript._isChosen)
+            {
+                button.interactable = false;
+            }
         }
 
         //Check if the player already has a CustonProperty with the key 'Team'.
@@ -56,11 +62,17 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     {
         if (!_isChosen)
             return;
-        photonView.RPC("SetRollChoice", RpcTarget.All, string.Empty, false, false, -1);
+        photonView.RPC("SetRollChoice", RpcTarget.All, string.Empty, false, -1);
+        photonView.RPC("EnableButton", RpcTarget.All);
 
-        for (int i = 0; i < _choiceButtons.Count; i++)
+        // Disable other buttons locally
+        foreach (Button button in _choiceButtons)
         {
-            _choiceButtons[i].interactable = true;
+            ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
+            if (choiceButtonScript != this && choiceButtonScript._isChosen)
+            {
+                button.interactable = false;
+            }
         }
 
         //Removes the CustomProperty from the player.
@@ -79,25 +91,52 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     }
 
     /// <summary>
-    /// 
+    /// Sets the text under the roll button so that the other players can see that this roll is already chosen.
     /// </summary>
-    /// <param name="l_playerName"></param>
-    /// <param name="l_isinteractacble"></param>
-    /// <param name="l_isChosen"></param>
-    /// <param name="l_removeOrAdd"></param>
+    /// <param name="l_playerName"></ The name of the player that needs to be entered in the ui element.>
+    /// <param name="l_isChosen"></ Is the roll already chosen or not so can the other players choose this roll asswell>
+    /// <param name="l_removeOrAdd"></ Adds or removes a player from the list of ready players in the DelayWaitingRoom>
     [PunRPC]
-    private void SetRollChoice(string l_playerName, bool l_isinteractacble, bool l_isChosen, int l_removeOrAdd)
+    private void SetRollChoice(string l_playerName, bool l_isChosen, int l_removeOrAdd)
     {
         _playerName.text = l_playerName;
         _isChosen = l_isChosen;
-        //for (int i = 0; i < _choiceButtons.Count; i++)
-        //{
-        //    if (!_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
-        //        _choiceButtons[i].interactable = true;
-        //    else _choiceButtons[i].interactable = false;
-        //}
+
+        // Disable the button if the roll is chosen
+        _choiceButton.interactable = !_isChosen;
 
         DelayWatingRoomController.instance._playersReady += l_removeOrAdd;
         DelayWatingRoomController.instance.PlayerCountUpdate();
+    }
+
+    [PunRPC]
+    private void DisableButton()
+    {
+        _choiceButton.interactable = false;
+    }
+
+    [PunRPC]
+    private void EnableButton()
+    {
+        _choiceButton.interactable = true;
+    }
+    private void Update()
+    {
+        for (int i = 0; i < _choiceButtons.Count; i++)
+        {
+            if (_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
+            {
+                _choiceButtons[i].interactable = false;
+            }
+            else if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+            {
+                if ((int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 1 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 2 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 3)
+                {
+                    _choiceButtons[i].interactable = false;
+                }
+                else _choiceButtons[i].interactable = true;
+            }
+            else _choiceButtons[i].interactable = true;
+        }
     }
 }
