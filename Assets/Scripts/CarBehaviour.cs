@@ -101,6 +101,8 @@ public class CarBehaviour : MonoBehaviour
 
         float agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.transform.position);
 
+        //print(agentToFinishDistance);
+
         if (!_emergencyBrake)
         {
             if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
