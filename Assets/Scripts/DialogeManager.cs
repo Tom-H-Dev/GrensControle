@@ -26,9 +26,7 @@ public class DialogeManager : MonoBehaviour
 
     public bool textStart = false;
     private DialogeManager STD;
-
-    private string[] words;
-    private string wordToType;
+    
 
     public string changeWord;
     public string TheWord;
@@ -90,25 +88,27 @@ public class DialogeManager : MonoBehaviour
 
     IEnumerator TypeLine(string line)
     {
-        words = line.Split(' ');
+        string[] words = line.Split(' ');
         
         
-        foreach (char c in line)
+        foreach (string word in words)
         {
-            foreach (string word in words)
-            {
-                wordToType = word;
+            string wordToType = word;
 
-                if (word == changeWord)
-                {
-                    wordToType = TheWord;
-                }
+            if (word == changeWord)
+            {
+                wordToType = TheWord;
             }
-            mylist[index].TextComponent.text += c;
-            textStart = true;
-            yield return new WaitForSeconds(textspeed);
+            foreach (char c in wordToType)
+            {
+                mylist[index].TextComponent.text += c;
+                textStart = true;
+                yield return new WaitForSeconds(textspeed);
+            }
+           
+            
+            mylist[index].TextComponent.text += ' ';
         }
-        mylist[index].TextComponent.text += ' ';
         yield return new WaitForSeconds(textspeed);
     }
     void NextLine()
@@ -126,9 +126,19 @@ public class DialogeManager : MonoBehaviour
             Lineindex = 0;
             foreach (GameObject Custom in MyGam)
             {
-                
                 Custom.SetActive(true);
             }
+        }
+    }
+    public void endDialogue()
+    {
+        PlayerLK.enabled = true;
+        PlayerMV.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        foreach (GameObject custom in MyGam)
+        {
+            custom.SetActive(false);
         }
     }
 }
