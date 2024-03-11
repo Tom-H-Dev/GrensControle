@@ -119,35 +119,7 @@ public class CarBehaviour : MonoBehaviour
         }
         else
         {
-            //_agent.speed = _normalSpeed;
-        }
-
-        for (int i = 0; i < nearbyColliders.Length; i++)
-        {
-            float agentToObjectDistance = Vector3.Distance(transform.position, nearbyColliders[i].transform.position);
-
-            if (nearbyColliders[i].gameObject.layer == 3)
-            {
-
-                if (agentToObjectDistance <= _slowingRadius && agentToObjectDistance > _brakingRadius)
-                {
-                    if (agentToFinishDistance < Vector3.Distance(_currentTarget.transform.position, nearbyColliders[i].transform.position))
-                    {
-                        print("Slowing down " + gameObject.name);
-                        _agent.speed = _normalSpeed * 0.5f;
-                    }
-                }
-                else if (agentToObjectDistance < _brakingRadius)
-                {
-                    print("Test ");
-                    if (agentToFinishDistance < Vector3.Distance(_currentTarget.transform.position, nearbyColliders[i].transform.position))
-                    {
-                        print("Stopping " + gameObject.name);
-                        _agent.speed = 0;
-                    }
-                }
-
-            }     
+            _agent.speed = _normalSpeed;
         }
 
         //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
