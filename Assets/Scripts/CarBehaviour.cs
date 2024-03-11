@@ -5,6 +5,9 @@ using Photon;
 using Photon.Pun;
 using UnityEngine.AI;
 using Unity.VisualScripting;
+using System.ComponentModel;
+using Unity.Collections;
+using System.Net.NetworkInformation;
 
 public class CarBehaviour : MonoBehaviour
 {
@@ -37,6 +40,7 @@ public class CarBehaviour : MonoBehaviour
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;
         _agent = GetComponent<NavMeshAgent>();
+        _agent.speed = _normalSpeed;
         if (_isMillitairyVehicle )
         { 
         _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
@@ -93,57 +97,50 @@ public class CarBehaviour : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, _slowingRadius, _CollisionLayerMask);
         _agent.SetDestination(_currentTarget.transform.position);
         _agent.stoppingDistance = _stoppingRadius;
-
         float agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.transform.position);
 
-        //print(agentToFinishDistance);
-
-        if (!_emergencyBrake)
+        if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
-            if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
-            {
-                _agent.speed = _normalSpeed * 0.5f;
+            _agent.speed = _normalSpeed * 0.5f;
 
-            }
-            else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
-            {
-                _agent.speed = _normalSpeed * 0.3f;
-            }
-            else if (agentToFinishDistance < _stoppingRadius)
-            {
-                _agent.speed = 0;
-
-            }
-            else
-            {
-                _agent.speed = _normalSpeed;
-            }
+        }
+        else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
+        {
+            _agent.speed = _normalSpeed * 0.3f;
+        }
+        else if (agentToFinishDistance < _stoppingRadius)
+        {
+            _agent.speed = 0;
+        }
+        else
+        {
+            _agent.speed = _normalSpeed;
         }
 
-        Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
-        {
-            if (colliders.Length > 0)
-            {
-                if (!_emergencyBrake)
-                {
-                    print("Braking!");
-                    _emergencyBrake = true;
-                    _agent.speed = 0;
-                    _brakeSound.Play();
-                    _honkSound.Play();
-                }
-            }
-            else
-            {
-                _emergencyBrake = false;
-            }
+        //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
+        //{
+        //    if (colliders.Length > 0)
+        //    {
+        //        if (!_emergencyBrake)
+        //        {
+        //            print("Braking!");
+        //            _emergencyBrake = true;
+        //            _agent.speed = 0;
+        //            _brakeSound.Play();
+        //            _honkSound.Play();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        _emergencyBrake = false;
+        //    }
            
-        }
+        //}
 
     }
 
