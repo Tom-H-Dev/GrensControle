@@ -9,6 +9,8 @@ using TMPro;
     public TextMeshProUGUI TextComponent;
     public GameObject Text;
     public string[] lines;
+    
+    public string changeWord;
 }
 
 

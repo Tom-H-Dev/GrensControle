@@ -1649,29 +1649,41 @@ MonoBehaviour:
     lines:
     - Thomas Jack
     - Ruben
+    changeWord: 
+    TheWord: 
   - TextComponent: {fileID: 3421623759085037433}
     Text: {fileID: 1776660251}
     lines:
     - wat is jou naam
     - .
+    changeWord: 
+    TheWord: 
   - TextComponent: {fileID: 3421623759085037433}
     Text: {fileID: 1776660251}
     lines:
     - 432424111
     - 45yreyrrehdfhdhfhd
+    changeWord: 
+    TheWord: 
   - TextComponent: {fileID: 3421623759085037433}
     Text: {fileID: 1776660251}
     lines:
     - thomas
     - jack
+    changeWord: 
+    TheWord: 
   - TextComponent: {fileID: 3421623759085037433}
     Text: {fileID: 1776660251}
     lines:
     - hjhjhjlsdafdafa
     - mgmgawufau
+    changeWord: 
+    TheWord: 
   textStart: 0
   changeWord: .
-  TheWord: ' You''re Mom '
+  TheWord: DHWKUDHi21e
+  words: []
+  updatedLine: 
 --- !u!1 &1102230217
 GameObject:
   m_ObjectHideFlags: 0
