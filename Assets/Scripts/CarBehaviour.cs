@@ -97,7 +97,6 @@ public class CarBehaviour : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, _slowingRadius, _CollisionLayerMask);
@@ -120,7 +119,7 @@ public class CarBehaviour : MonoBehaviour
         }
         else
         {
-            _agent.speed = _normalSpeed;
+            //_agent.speed = _normalSpeed;
         }
 
         for (int i = 0; i < nearbyColliders.Length; i++)
@@ -138,8 +137,9 @@ public class CarBehaviour : MonoBehaviour
                         _agent.speed = _normalSpeed * 0.5f;
                     }
                 }
-                else if (agentToObjectDistance < _brakingRadius * 2)
+                else if (agentToObjectDistance < _brakingRadius)
                 {
+                    print("Test ");
                     if (agentToFinishDistance < Vector3.Distance(_currentTarget.transform.position, nearbyColliders[i].transform.position))
                     {
                         print("Stopping " + gameObject.name);

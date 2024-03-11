@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarrierManager : MonoBehaviour
@@ -12,6 +13,23 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] bool _isExit;
     Collider[] _colliders;
 
+    [SerializeField] Transform _stopSpot;
+    List<Transform> stopLocations = new List<Transform>();
+    [SerializeField] float vehicleWaitDistance;
+    VehicleManager _vehicleManager;
+
+    private void Start()
+    {
+        _vehicleManager = FindObjectOfType<VehicleManager>();
+        for (int i = 0; i < _vehicleManager._maxVehicles; i++)
+        {
+            GameObject stopPoint = new GameObject("StopSpot" + (i + 1));
+            stopPoint.transform.position = new Vector3(_stopSpot.position.x - 10 * i, _stopSpot.position.y, _stopSpot.position.z);
+            stopPoint.transform.parent = transform;
+            stopLocations.Add(stopPoint.transform);
+            
+        }
+    }
     void Update()
     {
         _colliders = Physics.OverlapBox(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z) / 2, Quaternion.identity, _layerMask);
@@ -45,11 +63,20 @@ public class BarrierManager : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z));
         }
+
+        for (int i = 0; i < stopLocations.Count; i++)
+        {
+
+        }
     }
 
     public IEnumerator VehicleDeniedCoroutine()
     {
-        yield return null;
+        if (_vehicle != null)
+        {
+
+        }
+            yield return null;
     }
 
     public IEnumerator VehicleAcceptedCoroutine()
