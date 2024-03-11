@@ -19,16 +19,24 @@ public class DocVerifyPro : MonoBehaviour
         int l_pared = int.Parse(_bsnInputField.text);
         if (l_pared == _driverManager._driverBSN)
         {
-            Debug.Log("BSN Klopt");
+            if (_driverManager._isFalsified)
+            {
+                Debug.Log("BSN is vals. persoon is illegaal.");
+                //Give false information on drivers lisence and defensiepas
+            }
+            else
+            {
+                Debug.Log("BSN Klopt. Persoon Klops ook.");
 
-            _naamText.text =           _naamString           + " " + _driverManager._driverFirstName;
-            _achternaamText.text =     _achternaamString     + " " + _driverManager._driverLastName;
-            _leeftijfText.text =       _leeftijfString       + " " + _driverManager._driverAge;
-            _geslachtText.text =       _geslachtString       + " " + _driverManager._driverSex;
-            _geboorteDatumText.text =  _geboorteDatumString  + " " + _driverManager._driverBirthDate;
-            _nationaliteitText.text =  _nationaliteitString  + " " + _driverManager._driverNationality;
-            _defensiePersNoText.text = _defensiePersNoString + " " + _driverManager._driverDefensiePersNo;
-            _errorText.text = string.Empty;
+                _naamText.text = _naamString + " " + _driverManager._driverFirstName;
+                _achternaamText.text = _achternaamString + " " + _driverManager._driverLastName;
+                _leeftijfText.text = _leeftijfString + " " + _driverManager._driverAge;
+                _geslachtText.text = _geslachtString + " " + _driverManager._driverSex;
+                _geboorteDatumText.text = _geboorteDatumString + " " + _driverManager._driverBirthDate;
+                _nationaliteitText.text = _nationaliteitString + " " + _driverManager._driverNationality;
+                _defensiePersNoText.text = _defensiePersNoString + " " + _driverManager._driverDefensiePersNo;
+                _errorText.text = string.Empty;
+            }
         }
         else
         {

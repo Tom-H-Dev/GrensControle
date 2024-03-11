@@ -756,6 +756,8 @@ MonoBehaviour:
   _driverDateOfIssue: 
   _driverDateOfExpiry: 
   _driverBSN: 0
+  _isFalsified: 0
+  _falsifiedPercentage: 20
 --- !u!1001 &231557196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4322,6 +4324,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3820822491708856173, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 49243105}
     - target: {fileID: 3991523036106054968, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
