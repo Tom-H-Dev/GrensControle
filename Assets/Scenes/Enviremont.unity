@@ -3033,6 +3033,7 @@ MonoBehaviour:
   _barrierAnimator: {fileID: 1377870482}
   _isExit: 1
   _stopSpot: {fileID: 1962753771}
+  stopLocations: []
   vehicleWaitDistance: 0
 --- !u!1001 &1057756688
 PrefabInstance:
@@ -4244,7 +4245,8 @@ MonoBehaviour:
   _barrierAnimator: {fileID: 523413819}
   _isExit: 0
   _stopSpot: {fileID: 925685508}
-  vehicleWaitDistance: 0
+  stopLocations: []
+  vehicleWaitDistance: 10
 --- !u!1001 &1343230451
 PrefabInstance:
   m_ObjectHideFlags: 0

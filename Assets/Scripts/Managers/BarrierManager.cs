@@ -14,7 +14,7 @@ public class BarrierManager : MonoBehaviour
     Collider[] _colliders;
 
     [SerializeField] Transform _stopSpot;
-    List<Transform> stopLocations = new List<Transform>();
+    [SerializeField] List<Transform> stopLocations = new List<Transform>();
     [SerializeField] float vehicleWaitDistance;
     VehicleManager _vehicleManager;
 
@@ -24,7 +24,7 @@ public class BarrierManager : MonoBehaviour
         for (int i = 0; i < _vehicleManager._maxVehicles; i++)
         {
             GameObject stopPoint = new GameObject("StopSpot" + (i + 1));
-            stopPoint.transform.position = new Vector3(_stopSpot.position.x - 10 * i, _stopSpot.position.y, _stopSpot.position.z);
+            stopPoint.transform.position = new Vector3(_stopSpot.position.x - vehicleWaitDistance * i, _stopSpot.position.y, _stopSpot.position.z);
             stopPoint.transform.parent = transform;
             stopLocations.Add(stopPoint.transform);
             
