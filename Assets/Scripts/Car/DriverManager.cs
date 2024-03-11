@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -30,12 +31,16 @@ public class DriverManager : MonoBehaviour
     //public string _driverCity;
     public int _driverBSN;
 
+    [Header("Falsified")]
+    public bool _isFalsified = false;
+    public float _falsifiedPercentage = 20;
+
     #region radomize info lists
     [Header("Random Information")]
     private static List<int> _driverAges = new List<int>() { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 50 };
-    private static List<string> _driverFirstNameMale = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir" };
+    private static List<string> _driverFirstNameMale = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins" };
     private static List<string> _driverFirstNameFemale = new List<string>() { "Anna", "Marie", "Petra", "Ingrid", "Yvonne", "Bianca", "Saskia", "Linda", "Miranda", "Deborah", "Sharon", "Vanessa", "Jessica", "Samantha", "Irene", "Esther", "Nicole", "Kimberley", "Amanda", "Nathalie", "Luca", "Kim" };
-    private static List<string> _driverLastNames = new List<string>() { "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf" };
+    private static List<string> _driverLastNames = new List<string>() { "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol" };
     private static List<string> _driverSexes = new List<string>() { "Male", "Female" };
     private static List<string> _driverNationalities = new List<string>() { "Nederland" };
     private static List<string> _months = new List<string> { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
@@ -116,6 +121,18 @@ public class DriverManager : MonoBehaviour
 
             _driverDefensiePersNo = (int)Random.Range(111, 999) + " " + (int)Random.Range(111, 999);
             _driverDefensieDocumentNumber = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
+        }
+
+        //random cahnce to be false
+        float l_r = Random.Range(0, 100);
+        if ( l_r < _falsifiedPercentage)
+        {
+            Debug.Log("False Inforamtion");
+            _isFalsified = true;
+        }
+        else
+        {
+            _isFalsified = false;
         }
     }
 
