@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
                 _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, MoveVector * CurrentSpeed, ref _moveDampVelocity, _moveSmoothTime);
 
                 _controller.Move(_currentMoveVelocity * Time.deltaTime);
-                if (_currentMoveVelocity == Vector3.zero)
+                if (PlayerInput == Vector3.zero)
                     Idle();
             }
         }

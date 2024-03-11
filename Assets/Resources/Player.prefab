@@ -182,6 +182,8 @@ MonoBehaviour:
   Senstivity: {x: 2, y: 2}
   _canLook: 1
   _canInteract: 1
+  Reach: 4
+  team: 0
 --- !u!143 &878450100313127682
 CharacterController:
   m_ObjectHideFlags: 0
