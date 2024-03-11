@@ -34,13 +34,13 @@ public class DocVerifyPro : MonoBehaviour
                 Debug.Log("BSN Klopt. Persoon Klops ook.");
             }
 
-            _naamText.text = _naamString + " " + _driverManager._givenFitstName;
-            _achternaamText.text = _achternaamString + " " + _driverManager._givenLastName;
+            _naamText.text = _naamString + " " + _driverManager._driverFirstName;
+            _achternaamText.text = _achternaamString + " " + _driverManager._driverLastName;
             _leeftijfText.text = _leeftijfString + " " + _driverManager._driverAge;
             _geslachtText.text = _geslachtString + " " + _driverManager._driverSex;
-            _geboorteDatumText.text = _geboorteDatumString + " " + _driverManager._givenBirthDate;
-            _nationaliteitText.text = _nationaliteitString + " " + _driverManager._givenNationality;
-            _defensiePersNoText.text = _defensiePersNoString + " " + _driverManager._givenPersNo;
+            _geboorteDatumText.text = _geboorteDatumString + " " + _driverManager._driverBirthDate;
+            _nationaliteitText.text = _nationaliteitString + " " + _driverManager._driverNationality;
+            _defensiePersNoText.text = _defensiePersNoString + " " + _driverManager._driverDefensiePersNo;
             _errorText.text = string.Empty;
         }
         else
@@ -62,7 +62,7 @@ public class DocVerifyPro : MonoBehaviour
         _driverManager = _entranceBarrierManager._vehicle.GetComponent<DriverManager>();
     }
 
-    public void OnGetDriverPapaers()
+    public void OnGetDriverPapers()
     {
         if (_driverManager._isFalsified)
         {
@@ -93,5 +93,14 @@ public class DocVerifyPro : MonoBehaviour
         _nationaliteitString =  _nationaliteitText.text;
         _defensiePersNoString = _defensiePersNoText.text;
         _errorText.text =       string.Empty;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            OnNewCarEnterArea();
+            OnGetDriverPapers();
+        }
     }
 }
