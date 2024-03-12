@@ -22,7 +22,7 @@ public class CarBehaviour : MonoBehaviour
     [Header("Vehicle dynamics")]
     NavMeshAgent _agent;
     [SerializeField] GameObject[] _wheels; //LF, RF, LB, RB
-    [SerializeField] GameObject _currentTarget; // The car will target this object
+    public Transform _currentTarget; // The car will target this object
     [SerializeField] float _normalSpeed; // The default speed of the car
     [SerializeField] AudioSource _honkSound; //Honk sound effect
     [SerializeField] AudioSource _brakeSound; //Brake screetch sound effect
@@ -157,6 +157,6 @@ public class CarBehaviour : MonoBehaviour
 
     public void NextStopPoint(GameObject nextStop)
     {
-        _currentTarget = nextStop;
+        _currentTarget = nextStop.transform;
     }
 }

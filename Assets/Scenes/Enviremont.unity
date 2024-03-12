@@ -1469,6 +1469,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxVehicles: 5
+  _carPrefab: {fileID: 361740576752401196, guid: dc72effb59b6d114b805ac861f2c94ef,
+    type: 3}
+  _carSpawnLocation: {fileID: 690059265}
 --- !u!1 &358645656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
