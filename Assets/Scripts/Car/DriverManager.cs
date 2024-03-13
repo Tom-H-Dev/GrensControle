@@ -2,8 +2,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class DriverManager : MonoBehaviour
@@ -15,7 +13,7 @@ public class DriverManager : MonoBehaviour
     public string _driverLastName;
     public string _driverSex;
     public string _driverBirthDate;
-    //public Sprite _driverDocumentImage;
+    public Sprite _driverDocumentImage;
     public string _driverNationality;
 
     [Header("Defensiepas")]
@@ -28,14 +26,14 @@ public class DriverManager : MonoBehaviour
     [Header("Drivers lisence")]
     public string _driverDateOfIssue;
     public string _driverDateOfExpiry;
-    //public string _driverCity;
     public int _driverBSN;
 
     [Header("Falsified")]
     public bool _isFalsified = false;
+    [Range(0,100)]
     public float _falsifiedPercentage = 20;
 
-    [Header("Given Information")]
+    [Header("Given Information")] //This is the inforamtion given by the driver if they have falsified information
     public string _givenFitstName;
     public string _givenLastName;
     public string _givenBirthDate;

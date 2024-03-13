@@ -1,91 +1,107 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using TMPro;
+using UnityEngine.Serialization;
 
 public class DialogeManager : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> MyGam = new List<GameObject>();
+    [SerializeField] public List<GameObject> buttonList = new List<GameObject>();
     
+    public PlayerMovement _playerMovement;
+    public PlayerLook _playerLook;
     
-    public PlayerMovement PlayerMV;
-    public PlayerLook PlayerLK;
+    [SerializeField] private float textspeed = 0.5f; //speed of the return of courotine so closer to 0 the faster it is.
     
-    [SerializeField] private float textspeed = 0.5f;
-    
-    [SerializeField] private GameObject ButtonContainer;
-
-
-    private bool resetDialoge = true;
-    private int index;
-    private int Lineindex;
+    private int _index, _lineIndex;
 
     [SerializeField] public List<customlist> mylist = new List<customlist>();
 
-    public bool textStart = false;
-    private DialogeManager STD;
-
-    private string[] words;
-    private string wordToType;
-
+    private bool _textStart = false;
+    private bool _check;
+    
     public string changeWord;
     public string TheWord;
+    private string[] words;
+    public string updatedLine;
     void Start()
     {
-        foreach (GameObject Custom in MyGam)
+        foreach (GameObject Custom in buttonList)
         {
             Custom.SetActive(false);
         }
     }
-    public void startText()
+    public void startText(PlayerMovement l_player, PlayerLook l_look)
     {
-        mylist[index].TextComponent.text = string.Empty;
-        foreach (GameObject custom in MyGam)
+        mylist[_index].TextComponent.text = string.Empty;
+        foreach (GameObject custom in buttonList)
         {
             custom.SetActive(true);
         }
 
-        PlayerLK.enabled = false;
-        PlayerMV.enabled = false;
+        _playerMovement = l_player;
+        l_player.enabled = false;
+
+        _playerLook = l_look;
+        l_look.enabled = false;
+        
         Cursor.lockState = CursorLockMode.None;
     }
     public void talk(int buttonIndex)
     {
-        mylist[index].TextComponent.text = string.Empty;
-        index = buttonIndex;
-        Lineindex = 0;
+        mylist[_index].TextComponent.text = string.Empty;
+        _index = buttonIndex;
+        _lineIndex = 0;
         startDailogo();
-        
-        foreach (GameObject Custom in MyGam)
+        _check = false;
+        foreach (GameObject Custom in buttonList)
         {
             Custom.SetActive(false);
         }
     }
     void Update()
     {
-        if (textStart == true)
+        if (_textStart == true)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (mylist[index].TextComponent.text == mylist[index].lines[Lineindex].ToString())
+                if (mylist[_index].TextComponent.text == mylist[_index].lines[_lineIndex].ToString())
+                {
+                    NextLine();
+                }
+                else if (_check == true)
                 {
                     NextLine();
                 }
                 else
                 {
+                    words = mylist[_index].lines[_lineIndex].ToString().Split(' ');
+                    updatedLine = " ";
+
+                    foreach (string word in words)
+                    {
+                        if (word == changeWord)
+                        {
+                            updatedLine += TheWord + " ";
+                        }
+                        else
+                        {
+                            updatedLine += word + " ";
+                        }
+                    }
+
+                    _check = true;
+                    mylist[_index].TextComponent.text = updatedLine.Trim();
                     StopAllCoroutines();
-                    mylist[index].TextComponent.text = mylist[index].lines[Lineindex].ToString();
                 }
+                
             }    
         }
     }
 
     public void startDailogo()
     {
-        mylist[index].Text.SetActive(true);
-        StartCoroutine(TypeLine(mylist[index].lines[Lineindex]));     
+        mylist[_index].Text.SetActive(true);
+        StartCoroutine(TypeLine(mylist[_index].lines[_lineIndex]));     
     }
 
     IEnumerator TypeLine(string line)
@@ -93,42 +109,53 @@ public class DialogeManager : MonoBehaviour
         words = line.Split(' ');
         
         
-        foreach (char c in line)
+        foreach (string word in words)
         {
-            foreach (string word in words)
-            {
-                wordToType = word;
+            string wordToType = word;
 
-                if (word == changeWord)
-                {
-                    wordToType = TheWord;
-                }
+            if (word == changeWord)
+            {
+                wordToType = TheWord;
             }
-            mylist[index].TextComponent.text += c;
-            textStart = true;
-            yield return new WaitForSeconds(textspeed);
+            foreach (char c in wordToType)
+            {
+                mylist[_index].TextComponent.text += c;
+                _textStart = true;
+                yield return new WaitForSeconds(textspeed);
+            }
+            //mylist[index].TextComponent.text += ' ';
         }
-        mylist[index].TextComponent.text += ' ';
         yield return new WaitForSeconds(textspeed);
     }
     void NextLine()
     {
-        Lineindex++;
-        if (Lineindex < mylist[index].lines.Length)
+        _lineIndex++;
+        if (_lineIndex < mylist[_index].lines.Length)
         {
-            mylist[index].TextComponent.text = string.Empty;
-            StartCoroutine(TypeLine(mylist[index].lines[Lineindex]));
+            mylist[_index].TextComponent.text = string.Empty;
+            StartCoroutine(TypeLine(mylist[_index].lines[_lineIndex]));
+            _check = false;
         }
         else
         { 
-            mylist[index].Text.SetActive(false);
-            index = 0;
-            Lineindex = 0;
-            foreach (GameObject Custom in MyGam)
+            mylist[_index].Text.SetActive(false);
+            _index = 0;
+            _lineIndex = 0;
+            foreach (GameObject Custom in buttonList)
             {
-                
                 Custom.SetActive(true);
             }
+        }
+    }
+    public void endDialogue()
+    {
+        _playerLook.enabled = true;
+        _playerMovement.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        foreach (GameObject custom in buttonList)
+        {
+            custom.SetActive(false);
         }
     }
 }

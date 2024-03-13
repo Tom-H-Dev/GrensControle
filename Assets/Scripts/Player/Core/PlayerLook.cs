@@ -54,62 +54,49 @@ public class PlayerLook : MonoBehaviour
     bool once = true;
     private void PlayerLookRaycast()
     {
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
             {
                 team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
 
                 if (team == 1)
                 {
-                    
                     if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
-                    {
-                        if (once)
-                        {
-                            _canvasAnimator.SetTrigger("InteractOpen");
-                            once = false;
-                        }
-
-                        if (Input.GetKeyDown(KeyCode.E))
-                        {
-                            l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
-                            once = true;
-                        }
-                    }
+                        l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
                 }
-                else if(team == 2)
+                else if (team == 2)
                 {
                     if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
                     {
                         if (Input.GetMouseButtonDown(0))
-                        {
-                            l_Text.startText();
-                        }
+                            l_Text.startText(GetComponent<PlayerMovement>(), this);
                     }
                 }
-                else
+                else if (team == 3)
                 {
-                    Debug.Log("Local Player is not in Team: " + 1);
+
                 }
+                else Debug.LogError("No Team was found");
             }
-            
-            
+
+
             if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    L_Text.startText();
+                    L_Text.startText(GetComponent<PlayerMovement>(), this);
                 }
             }
+
         }
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
-        
+
         Gizmos.DrawRay(transform.position, transform.forward * Reach);
-        
+
         Gizmos.DrawWireSphere(transform.position + transform.forward * Reach, 0.2f);
     }
 }
