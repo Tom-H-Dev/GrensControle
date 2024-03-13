@@ -18,7 +18,6 @@ public class Computer : MonoBehaviour
     private int _realWorldMonth = System.DateTime.Now.Month;
     private int _realWorldYear = System.DateTime.Now.Year;
 
-
     void Update()
     {
         if (_isOnPC)
