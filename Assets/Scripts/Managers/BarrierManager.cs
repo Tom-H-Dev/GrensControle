@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BarrierManager : MonoBehaviour
@@ -13,23 +12,28 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] bool _isExit;
     Collider[] _colliders;
 
-    [SerializeField] Transform _stopSpot;
-    [SerializeField] List<Transform> stopLocations = new List<Transform>();
-    [SerializeField] float vehicleWaitDistance;
-    VehicleManager _vehicleManager;
+    [SerializeField] Transform _stopSpot; // Spot from which the stoplocations will be calculated
+    [SerializeField] List<Transform> _stopLocations = new List<Transform>(); // List of possible locations for vehicles to stop behind eachother
+    [SerializeField] List<bool> _stopLocationOccupied = new List<bool>(); // Bools telling if a spot in the queue is taken or not
+    [SerializeField] float _vehicleWaitDistance; // Distance between the parked vehicles
+    [SerializeField] VehicleManager _vehicleManager;
+    public CarBehaviour[] _queue; // current vehicles in the queue
 
-    private void Start()
+    private void Awake()
     {
         _vehicleManager = FindObjectOfType<VehicleManager>();
         for (int i = 0; i < _vehicleManager._maxVehicles; i++)
         {
+            _stopLocationOccupied.Add(false);
             GameObject stopPoint = new GameObject("StopSpot" + (i + 1));
-            stopPoint.transform.position = new Vector3(_stopSpot.position.x - vehicleWaitDistance * i, _stopSpot.position.y, _stopSpot.position.z);
+            stopPoint.transform.position = new Vector3(_stopSpot.position.x - _vehicleWaitDistance * i, _stopSpot.position.y, _stopSpot.position.z);
             stopPoint.transform.parent = transform;
-            stopLocations.Add(stopPoint.transform);
+            _stopLocations.Add(stopPoint.transform);
             
         }
+        _queue = new CarBehaviour[_vehicleManager._maxVehicles];
     }
+
     void Update()
     {
         _colliders = Physics.OverlapBox(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z) / 2, Quaternion.identity, _layerMask);
@@ -64,7 +68,7 @@ public class BarrierManager : MonoBehaviour
             Gizmos.DrawWireCube(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z));
         }
 
-        for (int i = 0; i < stopLocations.Count; i++)
+        for (int i = 0; i < _stopLocations.Count; i++)
         {
 
         }
@@ -86,7 +90,35 @@ public class BarrierManager : MonoBehaviour
             _barrierAnimator.ResetTrigger("Close");
             _barrierAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1);
-            _vehicle.NextStopPoint(_insideLocation);
+            _vehicle._currentTarget = _vehicleManager.insideBaseLocation;
+            print(_vehicle._currentTarget);
+            _vehicleManager._currentVehiclesInt--;
+
+            for (int i = 0; i < _queue.Length; i++)
+            {
+                if (_queue[i] != null)
+                {
+
+                    if (i == 0)
+                    {
+                        _queue[0] = null;
+                    }
+                    else if (i > _vehicleManager._currentVehiclesInt-1)
+                    {
+                        _queue[i] = null;
+                    }
+                    else
+                    {
+                        _queue[i - 1] = _queue[i];
+                        GetStoppingSpot(_queue[i]);
+                    }
+                    _stopLocationOccupied[i] = false;
+                }
+                else
+                {
+                    _stopLocationOccupied[i] = false;
+                }
+            }
 
             while (_vehicle != null)
             {
@@ -96,6 +128,19 @@ public class BarrierManager : MonoBehaviour
             _barrierAnimator.ResetTrigger("Open");
             _barrierAnimator.SetTrigger("Close");
             yield return null;
+        }
+    }
+
+    public void GetStoppingSpot(CarBehaviour car)
+    {
+        for (int i = 0; i < _vehicleManager._maxVehicles; i++)
+        {
+            if (_stopLocationOccupied[i] == false)
+            {
+                car._currentTarget = _stopLocations[i];
+                _stopLocationOccupied[i] = true;
+                break;
+            }
         }
     }
 }

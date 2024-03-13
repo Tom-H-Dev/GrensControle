@@ -61,7 +61,6 @@ public class CarBehaviour : MonoBehaviour
         float b = Random.value; 
         if (b < 0.50f)
         {
-            print(b);
             _hasDutchLicensePlate = false;
             _landCode = _landCodes[Random.Range(1, _landCodes.Length)];
         }
@@ -79,7 +78,6 @@ public class CarBehaviour : MonoBehaviour
 
             if (_hasDutchLicensePlate)
             {
-                print("yellow plate");
                 Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
                 materials[3] = _licensePlates[i]._yellowPlate;
                 materials[4] = _licensePlates[i]._yellowPlate;
@@ -87,7 +85,6 @@ public class CarBehaviour : MonoBehaviour
             }
             else if (!_hasDutchLicensePlate)
             {
-                print("White plate");
                 Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
                 materials[3] = _licensePlates[i]._whitePlate;
                 materials[4] = _licensePlates[i]._whitePlate;
@@ -100,9 +97,9 @@ public class CarBehaviour : MonoBehaviour
     void Update()
     {
         Collider[] nearbyColliders = Physics.OverlapSphere(transform.position, _slowingRadius, _CollisionLayerMask);
-        _agent.SetDestination(_currentTarget.transform.position);
+        _agent.SetDestination(_currentTarget.position);
         _agent.stoppingDistance = _stoppingRadius;
-        float agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.transform.position);
+        float agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.position);
 
         if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
@@ -153,10 +150,5 @@ public class CarBehaviour : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _stoppingRadius);
         Gizmos.DrawWireCube(emergencyBreakPos.transform.position, emergencyBreakRadius);
-    }
-
-    public void NextStopPoint(GameObject nextStop)
-    {
-        _currentTarget = nextStop.transform;
     }
 }
