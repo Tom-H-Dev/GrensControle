@@ -1646,7 +1646,7 @@ PrefabInstance:
     - target: {fileID: 1031035760655704470, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.06
+      value: -22.72
       objectReference: {fileID: 0}
     - target: {fileID: 1031035760655704470, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
@@ -1987,7 +1987,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _currentTarget
       value: 
-      objectReference: {fileID: 1812940878}
+      objectReference: {fileID: 1812940879}
     - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
       propertyPath: _hasDutcLicensePlate
@@ -4929,6 +4929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1644541018}
   - component: {fileID: 1644541017}
+  - component: {fileID: 1644541019}
   m_Layer: 0
   m_Name: VehicleManager
   m_TagString: Untagged
@@ -4963,6 +4964,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1644541019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644541016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1c9a8de9cc18a41b8384f16bd2dba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxVehicles: 5
+  _currentVehiclesInt: 0
+  _carPrefab: {fileID: 0}
+  _carSpawnLocation: {fileID: 0}
+  _entranceBarrier: {fileID: 282292231}
+  _currentVehicles: []
+  insideBaseLocation: {fileID: 918268998}
 --- !u!1001 &1647037113
 PrefabInstance:
   m_ObjectHideFlags: 0
