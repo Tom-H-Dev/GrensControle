@@ -43,6 +43,8 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
     public int syncVariable;
 
+
+    public bool _playerNeedOverride = false;
     [Header("Players")]
     public int _playersReady;
     [SerializeField] private List<Button> _rollChoiceButtons;
@@ -72,7 +74,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         //Triggers countdown timer.
         _playerCount = PhotonNetwork.PlayerList.Length;
         _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
-        _roomCountDisplay.text = _playerCount + ":" + _roomsize;
+        _roomCountDisplay.text = _playerCount + "/" + _roomsize + " Spelers";
 
         if (_playerCount >= _roomsize)
         {
@@ -80,6 +82,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
             _waitingText.SetActive(false);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
+                print("interact");
                 _rollChoiceButtons[i].interactable = true;
             }
         }
@@ -88,6 +91,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
             _waitingText.SetActive(true);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
+                print("no no");
                 _rollChoiceButtons[i].interactable = false;
             }
         }
@@ -139,6 +143,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     private void Update()
     {
         WaitingForMorePlayers();
+        PlayerCountUpdate();
 
         if (PhotonNetwork.IsMasterClient)
         {
