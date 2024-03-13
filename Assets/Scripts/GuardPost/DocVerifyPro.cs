@@ -180,4 +180,15 @@ public class DocVerifyPro : MonoBehaviour
             _defensiePersNoText.text = _defensiePersNoString;
         }
     }
+
+    public void ResetText()
+    {
+        _naamText.text = _naamString;
+        _achternaamText.text = _achternaamString;
+        _leeftijfText.text = _leeftijfString;
+        _geslachtText.text = _geslachtString;
+        _geboorteDatumText.text = _geboorteDatumString;
+        _nationaliteitText.text = _nationaliteitString;
+        _defensiePersNoText.text = _defensiePersNoString;
+    }
 }
