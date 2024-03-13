@@ -75,8 +75,11 @@ public class PlayerLook : MonoBehaviour
                 }
                 else if (team == 3)
                 {
-
-                }
+                    if (l_hit.transform.gameObject.TryGetComponent(out Interactable l_interactable))
+                    {
+                        l_interactable.InteractWithObject();
+                    }
+                    }
                 else Debug.LogError("No Team was found");
 
                 if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))

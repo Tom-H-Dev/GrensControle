@@ -1,13 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Photon;
-using Photon.Pun;
 using UnityEngine.AI;
-using Unity.VisualScripting;
-using System.ComponentModel;
-using Unity.Collections;
-using System.Net.NetworkInformation;
 
 public class CarBehaviour : MonoBehaviour
 {
