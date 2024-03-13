@@ -58,35 +58,38 @@ public class PlayerLook : MonoBehaviour
         {
             if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
             {
-                team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+                if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+                {
+                    team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
 
-                if (team == 1)
-                {
-                    if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
-                        l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
-                }
-                else if (team == 2)
-                {
-                    if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
+                    if (team == 1)
+                    {
+                        if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
+                            l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
+                    }
+                    else if (team == 2)
+                    {
+                        if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
+                        {
+                            if (Input.GetMouseButtonDown(0))
+                                l_Text.startText(GetComponent<PlayerMovement>(), this);
+                        }
+                    }
+                    else if (team == 3)
+                    {
+                        if (l_hit.transform.gameObject.TryGetComponent(out Interactable l_interactable))
+                        {
+                            l_interactable.InteractWithObject();
+                        }
+                    }
+                    else Debug.LogError("No Team was found");
+
+                    if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
                     {
                         if (Input.GetMouseButtonDown(0))
-                            l_Text.startText(GetComponent<PlayerMovement>(), this);
-                    }
-                }
-                else if (team == 3)
-                {
-                    if (l_hit.transform.gameObject.TryGetComponent(out Interactable l_interactable))
-                    {
-                        l_interactable.InteractWithObject();
-                    }
-                    }
-                else Debug.LogError("No Team was found");
-
-                if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
-                {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        L_Text.startText(GetComponent<PlayerMovement>(), this);
+                        {
+                            L_Text.startText(GetComponent<PlayerMovement>(), this);
+                        }
                     }
                 }
             }
