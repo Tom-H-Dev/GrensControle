@@ -28,6 +28,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         if (_isChosen)
             return;
 
+
         photonView.RPC("SetRollChoice", RpcTarget.All, PhotonNetwork.NickName, true, 1);
         photonView.RPC("DisableButton", RpcTarget.All);
 
@@ -122,21 +123,27 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        for (int i = 0; i < _choiceButtons.Count; i++)
+        int _playerCount = PhotonNetwork.PlayerList.Length;
+        int _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
+
+        if (_playerCount >= _roomsize || DelayWatingRoomController.instance._playerNeedOverride)
         {
-            if (_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
+            for (int i = 0; i < _choiceButtons.Count; i++)
             {
-                _choiceButtons[i].interactable = false;
-            }
-            else if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
-            {
-                if ((int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 1 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 2 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 3)
+                if (_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
                 {
                     _choiceButtons[i].interactable = false;
                 }
+                else if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+                {
+                    if ((int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 1 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 2 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 3)
+                    {
+                        _choiceButtons[i].interactable = false;
+                    }
+                    else _choiceButtons[i].interactable = true;
+                }
                 else _choiceButtons[i].interactable = true;
             }
-            else _choiceButtons[i].interactable = true;
         }
     }
 }

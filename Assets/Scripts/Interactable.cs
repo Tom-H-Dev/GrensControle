@@ -9,11 +9,6 @@ public class Interactable : MonoBehaviour
     private List<Material> _oldMaterials = new List<Material>(); // Initialize the list
     private List<Material> _newMaterials = new List<Material>(); // Initialize the list
 
-    public void InteractWithObject()
-    {
-        // Your interaction logic here
-    }
-
     private void Start()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
@@ -22,6 +17,7 @@ public class Interactable : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        print("hover highlight");
         _newMaterials.Clear();
         _newMaterials.AddRange(_oldMaterials);
         _newMaterials.Add(_highlightMaterial);

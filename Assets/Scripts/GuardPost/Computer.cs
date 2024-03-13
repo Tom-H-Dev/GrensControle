@@ -28,7 +28,12 @@ public class Computer : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// If player 1 interacts using the 'E' key in the PlayerLook script the player calls this function to activate the computer.
+    /// </summary>
+    /// <param name="l_player"></ This referances to the PlayerMovement script from player 1 so he/she cannot move anymore while on the computer>
+    /// <param name="l_look"></ This references to the PlayerLook script from player 1 so he/she cannot look around anymore while on the computer>
+    /// <param name="l_canvas"></ The animator from the canvas with the interaction text>
     public void OpenPc(PlayerMovement l_player, PlayerLook l_look, Animator l_canvas)
     {
         Debug.Log("Open Computer");
@@ -56,7 +61,7 @@ public class Computer : MonoBehaviour
         Cursor.visible = true;
     }
 
-    private void ClosePC()
+    public void ClosePC()
     {
         Debug.Log("Close Computer");
         _isOnPC = false;

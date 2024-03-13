@@ -1112,14 +1112,13 @@ MonoBehaviour:
   - {fileID: 4611859783932865322}
   - {fileID: 5196455496393545615}
   - {fileID: 4453266859119264870}
-  _stopLocations: []
   _currentTarget: {fileID: 0}
   _normalSpeed: 8
   _honkSound: {fileID: 8794645228931633511}
   _brakeSound: {fileID: 5446317798237938213}
   _CollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 520
   _slowingRadius: 15
   _brakingRadius: 7
   _stoppingRadius: 3
@@ -2541,6 +2540,7 @@ GameObject:
   - component: {fileID: 5641712994569486506}
   - component: {fileID: 1587171504320810232}
   - component: {fileID: 3252682756516331536}
+  - component: {fileID: 1838699470562905958}
   m_Layer: 3
   m_Name: Trunk
   m_TagString: Untagged
@@ -2634,9 +2634,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209059887680877092}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c027325bc0b538445834139b5dca5e6f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 67ecf35fe213f184d8afd3db4ea9e2e3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2647,6 +2647,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!64 &1838699470562905958
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209059887680877092}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5668788170693331272, guid: da90ad2a63655874f9c56cf5e2f37933, type: 3}
 --- !u!1 &1231454553747686149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,6 +2682,7 @@ GameObject:
   - component: {fileID: 3729001330890266498}
   - component: {fileID: 8692464459689177277}
   - component: {fileID: 5150104290250149037}
+  - component: {fileID: 6062162845119542703}
   m_Layer: 3
   m_Name: Hood
   m_TagString: Untagged
@@ -2753,7 +2776,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231454553747686149}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 67ecf35fe213f184d8afd3db4ea9e2e3, type: 2}
   m_CullingMode: 0
@@ -2766,6 +2789,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!64 &6062162845119542703
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231454553747686149}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3137129725661375301, guid: da90ad2a63655874f9c56cf5e2f37933, type: 3}
 --- !u!1 &1264881196362314725
 GameObject:
   m_ObjectHideFlags: 0
