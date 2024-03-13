@@ -11,6 +11,8 @@ using TMPro;
     public string[] lines;
     
     public string changeWord;
+
+    public List<listinlist> opt = new List<listinlist>();
 }
 
 

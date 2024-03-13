@@ -24,6 +24,9 @@ public class DialogeManager : MonoBehaviour
     private string[] words;
     private string updatedLine;
 
+    [SerializeField] private string[] ChangeWordList;
+    
+
     //public string wordToType;
     void Start()
     {
@@ -125,7 +128,7 @@ public class DialogeManager : MonoBehaviour
                 _textStart = true;
                 yield return new WaitForSeconds(textspeed);
             }
-            //mylist[index].TextComponent.text += ' ';
+            mylist[_index].TextComponent.text += ' ';
         }
         yield return new WaitForSeconds(textspeed);
     }
