@@ -43,6 +43,8 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
     public int syncVariable;
 
+
+    public bool _playerNeedOverride = false;
     [Header("Players")]
     public int _playersReady;
     [SerializeField] private List<Button> _rollChoiceButtons;
@@ -72,11 +74,10 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         //Triggers countdown timer.
         _playerCount = PhotonNetwork.PlayerList.Length;
         _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
-        _roomCountDisplay.text = _playerCount + ":" + _roomsize;
+        _roomCountDisplay.text = _playerCount + "/" + _roomsize + " Spelers";
 
         if (_playerCount >= _roomsize)
         {
-            Debug.Log("All Players in Lobby");
             _waitingText.SetActive(false);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
@@ -94,7 +95,6 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
         if (_playersReady == _roomsize)
         {
-            Debug.Log("Enough players");
             _readyToStart = true;
         }
         else
@@ -139,6 +139,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     private void Update()
     {
         WaitingForMorePlayers();
+        PlayerCountUpdate();
 
         if (PhotonNetwork.IsMasterClient)
         {

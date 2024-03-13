@@ -1713,6 +1713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _delayStartButton: {fileID: 270563622}
   _delayCancelButton: {fileID: 427505101}
+  _loading: {fileID: 519890597}
   _roomSize: 3
   _nameInputField: {fileID: 1964702636}
 --- !u!1 &1583969784
@@ -2386,7 +2387,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 14
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []

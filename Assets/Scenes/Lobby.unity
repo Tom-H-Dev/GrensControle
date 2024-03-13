@@ -180,7 +180,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cancel
+  m_text: 'Verlaat kamer
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -452,7 +454,6 @@ MonoBehaviour:
   - {fileID: 1066114446}
   _playerName: {fileID: 566084576}
   _isChosen: 0
-  _index: 0
 --- !u!114 &84301969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &311710405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1123,7 +1124,6 @@ MonoBehaviour:
   - {fileID: 1066114446}
   _playerName: {fileID: 969338370}
   _isChosen: 0
-  _index: 2
 --- !u!114 &402052830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4135,7 +4135,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\rDe speler controleert voertuigen op verboden middelen, zoals drugs,
-    wapens en geclassificeerde doucumnenten. Dit doet de speler door visueel de compartementen
+    wapens en geclassificeerde doucumenten. Dit doet de speler door visueel de compartementen
     van de voertuigen te inspecteren."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4811,7 +4811,6 @@ MonoBehaviour:
   - {fileID: 1066114446}
   _playerName: {fileID: 947794407}
   _isChosen: 0
-  _index: 1
 --- !u!114 &2050511248
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class DelayStartController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _delayStartButton; //Button used for creating and joining a game.
     [SerializeField] private GameObject _delayCancelButton; //Button used to stop searching for a game to join.
+    [SerializeField] private GameObject _loading;
     [SerializeField] private int _roomSize; //Manual set number of players in the room at one time.
     [SerializeField] private TMP_InputField _nameInputField;
 
@@ -22,12 +23,14 @@ public class DelayStartController : MonoBehaviourPunCallbacks
         base.OnConnected();
         PhotonNetwork.AutomaticallySyncScene = true; //Makes it so whatever scene the mas client has a connection to.
         _delayStartButton.SetActive(true);
+        _loading.SetActive(false);
     }
 
     public void DelayStart() //Paired to the Delay start button.
     {
         _delayStartButton.SetActive(false);
-        _delayCancelButton.SetActive(true);
+        _loading.SetActive(false);
+        //_delayCancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom(); //First tries to join an existing room.
         Debug.Log("Delay Start");
     }
@@ -56,8 +59,9 @@ public class DelayStartController : MonoBehaviourPunCallbacks
 
     public void DelayCancel() //Paired to the cancel button. Used to stop looking for a room to join.
     {
-        _delayCancelButton.SetActive(false);
+        //_delayCancelButton.SetActive(false);
         _delayStartButton.SetActive(true);
+        _loading.SetActive(true);
         PhotonNetwork.LeaveRoom();
     }
 
