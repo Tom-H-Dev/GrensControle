@@ -84,7 +84,7 @@ public class PlayerLook : MonoBehaviour
                     {
                         if (Input.GetMouseButtonDown(0))
                         {
-                            l_Text.startText();
+                            //l_Text.startText();
                         }
                     }
                 }
@@ -99,7 +99,7 @@ public class PlayerLook : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    L_Text.startText();
+                    L_Text.startText(GetComponent<PlayerMovement>(), this);
                 }
             }
         }

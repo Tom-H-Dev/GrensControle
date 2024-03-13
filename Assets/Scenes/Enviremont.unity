@@ -290,6 +290,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Volvo S90 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 361740576752401196, guid: dc72effb59b6d114b805ac861f2c94ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 392195580928501555, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
       propertyPath: m_Layer
@@ -704,7 +709,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _currentTarget
       value: 
-      objectReference: {fileID: 641440182}
+      objectReference: {fileID: 0}
     - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
       propertyPath: _hasDutcLicensePlate
@@ -1093,31 +1098,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 895313765158978594, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4926609809192544234, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 651340514895598174, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2846272414241700251, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8020316147430677075, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2457048060264656871, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc72effb59b6d114b805ac861f2c94ef, type: 3}
 --- !u!1 &258459966
 GameObject:
@@ -1469,6 +1450,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxVehicles: 5
+  _currentVehiclesInt: 0
+  _carPrefab: {fileID: 361740576752401196, guid: dc72effb59b6d114b805ac861f2c94ef,
+    type: 3}
+  _carSpawnLocation: {fileID: 690059265}
+  _entranceBarrier: {fileID: 1313486442}
+  _currentVehicles: []
+  insideBaseLocation: {fileID: 1077787503}
 --- !u!1 &358645656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
@@ -1937,37 +1925,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0012996756, y: 0.04129967, z: 0.034}
   m_Center: {x: -1.1102273e-16, y: 0.0000000018626451, z: 0.017}
---- !u!1 &641440182
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 641440183}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &641440183
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641440182}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &647480503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2087,7 +2044,7 @@ Transform:
   m_GameObject: {fileID: 690059264}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.5, y: 0, z: 0}
+  m_LocalPosition: {x: -29.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3033,7 +2990,16 @@ MonoBehaviour:
   _barrierAnimator: {fileID: 1377870482}
   _isExit: 1
   _stopSpot: {fileID: 1962753771}
-  vehicleWaitDistance: 0
+  _stopLocations: []
+  _stopLocationOccupied: 
+  _vehicleWaitDistance: 0
+  _vehicleManager: {fileID: 0}
+  _queue:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1057756688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4244,7 +4210,16 @@ MonoBehaviour:
   _barrierAnimator: {fileID: 523413819}
   _isExit: 0
   _stopSpot: {fileID: 925685508}
-  vehicleWaitDistance: 0
+  _stopLocations: []
+  _stopLocationOccupied: 
+  _vehicleWaitDistance: 6
+  _vehicleManager: {fileID: 352733228}
+  _queue:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1343230451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6685,6 +6660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Volvo S90
       objectReference: {fileID: 0}
+    - target: {fileID: 361740576752401196, guid: dc72effb59b6d114b805ac861f2c94ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 392195580928501555, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
       propertyPath: m_Layer
@@ -7099,7 +7079,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _currentTarget
       value: 
-      objectReference: {fileID: 641440182}
+      objectReference: {fileID: 0}
     - target: {fileID: 4806831567149177503, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
       propertyPath: _hasDutcLicensePlate
@@ -7488,31 +7468,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 895313765158978594, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4926609809192544234, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 651340514895598174, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2846272414241700251, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8020316147430677075, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2457048060264656871, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc72effb59b6d114b805ac861f2c94ef, type: 3}
 --- !u!1001 &1959377625
 PrefabInstance:
@@ -8353,6 +8309,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1871800104}
   - {fileID: 352733227}
+  - {fileID: 690059265}
   - {fileID: 1735696961}
   - {fileID: 463199667}
   - {fileID: 1570724409}
@@ -8368,9 +8325,7 @@ SceneRoots:
   - {fileID: 1077787503}
   - {fileID: 1947338367}
   - {fileID: 229107895}
-  - {fileID: 641440183}
   - {fileID: 927801083}
   - {fileID: 515562118}
   - {fileID: 996981773}
-  - {fileID: 690059265}
   - {fileID: 543450651923904066}

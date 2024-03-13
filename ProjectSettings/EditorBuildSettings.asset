@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 04bc317abbad2f646a38b571435dcd2f
   - enabled: 1
-    path: Assets/_multiplayerSceneIndex.unity
-    guid: f72cde8d5b089954e83132aa57875549
-  - enabled: 0
-    path: Assets/Test_Scenes/SelectionScreen.unity
-    guid: 876a6d6703382e145951405b478abc88
+    path: Assets/Ruben multiplayerScene.unity
+    guid: da1a26b9e93b7e841981a25b1eb622eb
   m_configObjects: {}
