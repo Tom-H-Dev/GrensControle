@@ -766,6 +766,7 @@ MonoBehaviour:
   _driverLastName: 
   _driverSex: 
   _driverBirthDate: 
+  _driverDocumentImage: {fileID: 0}
   _driverNationality: 
   _driverDefensieDateOfIssue: 
   _driverDefensieDateOfExpiry: 
@@ -5057,6 +5058,7 @@ MonoBehaviour:
   _driverLastName: 
   _driverSex: 
   _driverBirthDate: 
+  _driverDocumentImage: {fileID: 0}
   _driverNationality: 
   _driverDefensieDateOfIssue: 
   _driverDefensieDateOfExpiry: 

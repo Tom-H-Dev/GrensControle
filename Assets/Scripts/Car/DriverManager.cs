@@ -15,7 +15,7 @@ public class DriverManager : MonoBehaviour
     public string _driverLastName;
     public string _driverSex;
     public string _driverBirthDate;
-    //public Sprite _driverDocumentImage;
+    public Sprite _driverDocumentImage;
     public string _driverNationality;
 
     [Header("Defensiepas")]
@@ -33,6 +33,7 @@ public class DriverManager : MonoBehaviour
 
     [Header("Falsified")]
     public bool _isFalsified = false;
+    [Range(0,100)]
     public float _falsifiedPercentage = 20;
 
     [Header("Given Information")]
