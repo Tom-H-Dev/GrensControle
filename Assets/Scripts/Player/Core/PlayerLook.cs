@@ -58,6 +58,8 @@ public class PlayerLook : MonoBehaviour
         {
             if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
             {
+                print(l_hit.collider.gameObject.name);
+
                 if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
                 {
                     team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
@@ -77,7 +79,7 @@ public class PlayerLook : MonoBehaviour
                     }
                     else if (team == 3)
                     {
-                        if (l_hit.transform.gameObject.TryGetComponent(out Interactable l_interactable))
+                        if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable))
                         {
                             l_interactable.InteractWithObject();
                         }

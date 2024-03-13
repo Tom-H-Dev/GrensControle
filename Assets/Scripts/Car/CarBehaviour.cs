@@ -96,7 +96,6 @@ public class CarBehaviour : MonoBehaviour
         if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
             _agent.speed = _normalSpeed * 0.5f;
-
         }
         else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
         {
