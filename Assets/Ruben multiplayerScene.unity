@@ -1632,23 +1632,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2821f1342e84a043a97527cd261166d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyGam:
+  buttonList:
   - {fileID: 4596451013913692429}
   - {fileID: 8955578308501502748}
   - {fileID: 6353387043148974250}
   - {fileID: 2320433339646193001}
   - {fileID: 108629032124468313}
   - {fileID: 6622695774024011266}
-  PlayerMV: {fileID: 2072471852}
-  PlayerLK: {fileID: 2072471851}
+  _playerMovement: {fileID: 2072471852}
+  _playerLook: {fileID: 2072471851}
   textspeed: 0.2
-  ButtonContainer: {fileID: 2299153182251515083}
   mylist:
   - TextComponent: {fileID: 3421623759085037433}
     Text: {fileID: 1776660251}
     lines:
     - Thomas Jack
     - Ruben
+    - t4et4e
+    - e4te4t
+    - w3rwrw3rwyret ret
     changeWord: 
   - TextComponent: {fileID: 3421623759085037433}
     Text: {fileID: 1776660251}
@@ -1674,9 +1676,9 @@ MonoBehaviour:
     - hjhjhjlsdafdafa
     - mgmgawufau
     changeWord: 
-  textStart: 0
   changeWord: .
   TheWord: DHWKUDHi21e
+  updatedLine: 
 --- !u!1 &1102230217
 GameObject:
   m_ObjectHideFlags: 0
@@ -5163,6 +5165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 257259669503536227, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 521345501342856807, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5261,6 +5268,11 @@ PrefabInstance:
     - target: {fileID: 521345501342856807, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 582158742758934581, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2208946811424668882, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
