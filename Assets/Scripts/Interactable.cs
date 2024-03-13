@@ -29,6 +29,11 @@ public class Interactable : MonoBehaviour
         ApplyMaterials(_oldMaterials);
     }
 
+    private void OnMouseDown()
+    {
+        print("Interacted with object");
+    }
+
     private void ApplyMaterials(List<Material> materials)
     {
         _meshRenderer.materials = materials.ToArray();
