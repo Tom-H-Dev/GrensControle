@@ -1,13 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Photon;
-using Photon.Pun;
 using UnityEngine.AI;
-using Unity.VisualScripting;
-using System.ComponentModel;
-using Unity.Collections;
-using System.Net.NetworkInformation;
 
 public class CarBehaviour : MonoBehaviour
 {
@@ -104,7 +96,6 @@ public class CarBehaviour : MonoBehaviour
         if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
             _agent.speed = _normalSpeed * 0.5f;
-
         }
         else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
         {

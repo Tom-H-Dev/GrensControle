@@ -130,7 +130,7 @@ public class DriverManager : MonoBehaviour
             _driverDefensieDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo);
             _driverDefensieDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (3 - l_yearsAgo));
 
-            _driverDefensiePersNo = (int)Random.Range(111, 999) + " " + (int)Random.Range(111, 999);
+            _driverDefensiePersNo = (int)Random.Range(111111, 999999) + "";
             _driverDefensieDocumentNumber = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
         }
 
