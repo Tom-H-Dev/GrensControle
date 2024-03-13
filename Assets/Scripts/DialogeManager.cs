@@ -27,8 +27,8 @@ public class DialogeManager : MonoBehaviour
     
     public string changeWord;
     public string TheWord;
-    public string[] words;
-    public string updatedLine;
+    private string[] words;
+    private string updatedLine;
     void Start()
     {
         foreach (GameObject Custom in MyGam)
@@ -58,7 +58,7 @@ public class DialogeManager : MonoBehaviour
         _Index = buttonIndex;
         _LineIndex = 0;
         startDailogo();
-        
+        check = false;
         foreach (GameObject Custom in MyGam)
         {
             Custom.SetActive(false);
