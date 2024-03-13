@@ -22,7 +22,9 @@ public class DialogeManager : MonoBehaviour
     public string changeWord;
     public string TheWord;
     private string[] words;
-    public string updatedLine;
+    private string updatedLine;
+
+    //public string wordToType;
     void Start()
     {
         foreach (GameObject Custom in buttonList)
