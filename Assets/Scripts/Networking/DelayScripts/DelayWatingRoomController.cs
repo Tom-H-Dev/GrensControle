@@ -78,11 +78,9 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
         if (_playerCount >= _roomsize)
         {
-            Debug.Log("All Players in Lobby");
             _waitingText.SetActive(false);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
-                print("interact");
                 _rollChoiceButtons[i].interactable = true;
             }
         }
@@ -91,14 +89,12 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
             _waitingText.SetActive(true);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
-                print("no no");
                 _rollChoiceButtons[i].interactable = false;
             }
         }
 
         if (_playersReady == _roomsize)
         {
-            Debug.Log("Enough players");
             _readyToStart = true;
         }
         else
