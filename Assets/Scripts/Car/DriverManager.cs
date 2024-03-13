@@ -28,7 +28,6 @@ public class DriverManager : MonoBehaviour
     [Header("Drivers lisence")]
     public string _driverDateOfIssue;
     public string _driverDateOfExpiry;
-    //public string _driverCity;
     public int _driverBSN;
 
     [Header("Falsified")]
@@ -36,7 +35,7 @@ public class DriverManager : MonoBehaviour
     [Range(0,100)]
     public float _falsifiedPercentage = 20;
 
-    [Header("Given Information")]
+    [Header("Given Information")] //This is the inforamtion given by the driver if they have falsified information
     public string _givenFitstName;
     public string _givenLastName;
     public string _givenBirthDate;
