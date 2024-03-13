@@ -58,6 +58,8 @@ public class PlayerLook : MonoBehaviour
         {
             if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
             {
+                print(l_hit.transform.name);
+
                 if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
                 {
                     team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];

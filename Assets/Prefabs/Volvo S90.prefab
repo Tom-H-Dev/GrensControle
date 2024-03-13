@@ -926,7 +926,6 @@ GameObject:
   - component: {fileID: 4806831567149177503}
   - component: {fileID: 2327961585805885832}
   - component: {fileID: 4054955752653285049}
-  - component: {fileID: 409682431767781475}
   m_Layer: 3
   m_Name: Volvo S90
   m_TagString: Untagged
@@ -996,7 +995,6 @@ Transform:
   - {fileID: 2780887561541438961}
   - {fileID: 7687797724827872474}
   - {fileID: 8239525081822999728}
-  - {fileID: 2592598701881440660}
   - {fileID: 2613991832916919270}
   - {fileID: 2089901800309662142}
   - {fileID: 4945568971566715171}
@@ -1056,7 +1054,6 @@ Transform:
   - {fileID: 5652476847908411581}
   - {fileID: 6936199167835456230}
   - {fileID: 1656438228487256438}
-  - {fileID: 5642732566639192495}
   - {fileID: 9211679299175261585}
   - {fileID: 7368402390690829981}
   - {fileID: 8058479453742123458}
@@ -1071,6 +1068,8 @@ Transform:
   - {fileID: 2381786777524996599}
   - {fileID: 2992838812773407469}
   - {fileID: 5061440762266308780}
+  - {fileID: 5642732566639192495}
+  - {fileID: 2592598701881440660}
   - {fileID: 4392311091988057019}
   - {fileID: 1722531357310842370}
   - {fileID: 3891047733923239595}
@@ -1173,27 +1172,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &409682431767781475
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361740576752401196}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2, y: 1.3067954, z: 5.0478687}
-  m_Center: {x: 0, y: 0.80637336, z: 0.090630054}
 --- !u!1 &392195580928501555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,7 +2518,6 @@ GameObject:
   - component: {fileID: 5641712994569486506}
   - component: {fileID: 1587171504320810232}
   - component: {fileID: 3252682756516331536}
-  - component: {fileID: 1838699470562905958}
   - component: {fileID: 1560970703140147445}
   m_Layer: 0
   m_Name: Trunk
@@ -2558,7 +2535,7 @@ Transform:
   m_GameObject: {fileID: 1209059887680877092}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2626,7 +2603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlightMaterial: {fileID: 2100000, guid: deb0a8baa43d33947bb8415b230fd2dc, type: 2}
 --- !u!95 &3252682756516331536
 Animator:
   serializedVersion: 5
@@ -2648,28 +2624,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!64 &1838699470562905958
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209059887680877092}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5668788170693331272, guid: da90ad2a63655874f9c56cf5e2f37933, type: 3}
 --- !u!65 &1560970703140147445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2721,7 +2675,7 @@ Transform:
   m_GameObject: {fileID: 1231454553747686149}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2789,7 +2743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlightMaterial: {fileID: 2100000, guid: deb0a8baa43d33947bb8415b230fd2dc, type: 2}
 --- !u!95 &5150104290250149037
 Animator:
   serializedVersion: 5
