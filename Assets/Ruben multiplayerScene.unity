@@ -774,14 +774,100 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: _playerLook
+      value: 
+      objectReference: {fileID: 2072471851}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: _playerMovement
+      value: 
+      objectReference: {fileID: 2072471852}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: buttonList.Array.data[0]
+      value: 
+      objectReference: {fileID: 4596451013913692429}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: buttonList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8955578308501502748}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: buttonList.Array.data[2]
+      value: 
+      objectReference: {fileID: 6353387043148974250}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: buttonList.Array.data[3]
+      value: 
+      objectReference: {fileID: 2320433339646193001}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: buttonList.Array.data[4]
+      value: 
+      objectReference: {fileID: 108629032124468313}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: buttonList.Array.data[5]
+      value: 
+      objectReference: {fileID: 6622695774024011266}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[0].Text
+      value: 
+      objectReference: {fileID: 1776660251}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[1].Text
+      value: 
+      objectReference: {fileID: 1776660251}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[2].Text
+      value: 
+      objectReference: {fileID: 1776660251}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[3].Text
+      value: 
+      objectReference: {fileID: 1776660251}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[4].Text
+      value: 
+      objectReference: {fileID: 1776660251}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[0].TextComponent
+      value: 
+      objectReference: {fileID: 3421623759085037433}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[1].TextComponent
+      value: 
+      objectReference: {fileID: 3421623759085037433}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[2].TextComponent
+      value: 
+      objectReference: {fileID: 3421623759085037433}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[3].TextComponent
+      value: 
+      objectReference: {fileID: 3421623759085037433}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: mylist.Array.data[4].TextComponent
+      value: 
+      objectReference: {fileID: 3421623759085037433}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1942883468138412058, guid: 63b1d5c7aab11364d83b1901c595a197,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1017493997}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63b1d5c7aab11364d83b1901c595a197, type: 3}
 --- !u!1 &686553612
 GameObject:
@@ -1614,71 +1700,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1950663689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1017493996 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1942883468138412058, guid: 63b1d5c7aab11364d83b1901c595a197,
+--- !u!114 &1017493997 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
     type: 3}
   m_PrefabInstance: {fileID: 624457447}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1017493997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017493996}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2821f1342e84a043a97527cd261166d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonList:
-  - {fileID: 4596451013913692429}
-  - {fileID: 8955578308501502748}
-  - {fileID: 6353387043148974250}
-  - {fileID: 2320433339646193001}
-  - {fileID: 108629032124468313}
-  - {fileID: 6622695774024011266}
-  _playerMovement: {fileID: 2072471852}
-  _playerLook: {fileID: 2072471851}
-  textspeed: 0.2
-  mylist:
-  - TextComponent: {fileID: 3421623759085037433}
-    Text: {fileID: 1776660251}
-    lines:
-    - Thomas Jack
-    - Ruben
-    - t4et4e
-    - e4te4t
-    - w3rwrw3rwyret ret
-    changeWord: 
-  - TextComponent: {fileID: 3421623759085037433}
-    Text: {fileID: 1776660251}
-    lines:
-    - wat is jou naam
-    - .
-    changeWord: 
-  - TextComponent: {fileID: 3421623759085037433}
-    Text: {fileID: 1776660251}
-    lines:
-    - 432424111
-    - 45yreyrrehdfhdhfhd
-    changeWord: 
-  - TextComponent: {fileID: 3421623759085037433}
-    Text: {fileID: 1776660251}
-    lines:
-    - thomas
-    - jack
-    changeWord: 
-  - TextComponent: {fileID: 3421623759085037433}
-    Text: {fileID: 1776660251}
-    lines:
-    - hjhjhjlsdafdafa
-    - mgmgawufau
-    changeWord: 
-  changeWord: .
-  TheWord: DHWKUDHi21e
-  updatedLine: 
 --- !u!1 &1102230217
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &317143820851514318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4427,7 +4460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &2581495757612121635
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4978,7 +5011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4662228302202251032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5448,7 +5481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &6572147045181335789
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5495,7 +5528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &6885914200492793915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5996,7 +6029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &9042575769949192797
 MonoBehaviour:
   m_ObjectHideFlags: 0

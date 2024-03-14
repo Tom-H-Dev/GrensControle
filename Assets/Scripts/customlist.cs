@@ -10,7 +10,7 @@ using TMPro;
     public GameObject Text;
     public string[] lines;
     
-    public string changeWord;
+    public GameObject[] Buttons;
 }
 
 
