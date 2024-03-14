@@ -5,29 +5,31 @@ using UnityEngine.Serialization;
 
 public class DialogeManager : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> buttonList = new List<GameObject>();
+    [Header("List")]
+    [SerializeField] private List<GameObject> buttonList = new List<GameObject>();
+    [SerializeField] private List<customlist> textList = new List<customlist>();
     
     public PlayerMovement _playerMovement;
     public PlayerLook _playerLook;
     
     [SerializeField] private float textspeed = 0.5f; //speed of the return of courotine so closer to 0 the faster it is.
     
-    private int _index, _lineIndex, indexbuttons;
-
-    [SerializeField] public List<customlist> mylist = new List<customlist>();
-
-    private bool _textStart = false;
-    private bool _check;
-    
+    [Header("words")]
     public string[] changeWord;
     public string DriverName;
+    
+    [Header("cameraPos")]
+    [SerializeField] private GameObject MainPlayerCamera;
+    [SerializeField] private GameObject CameraWhenTalking;
+    
+    
+    private bool _textStart = false;
+    private bool _check;
     private string[] words;
     private string updatedLine;
     private string wordToType;
-
+    private int _index, _lineIndex, indexbuttons;
     private DriverManager InfoDriver;
-
-    
     void Start()
     {
         DriverManager InfoDriver = GetComponent<DriverManager>();
@@ -36,10 +38,11 @@ public class DialogeManager : MonoBehaviour
             Custom.SetActive(false);
         }
         InfoDriver._driverFirstName = DriverName;
+        CameraWhenTalking.SetActive(false);
     }
     public void startText(PlayerMovement l_player, PlayerLook l_look)
     {
-        mylist[_index].TextComponent.text = string.Empty;
+        textList[_index].TextComponent.text = string.Empty;
         /*foreach (GameObject custom in buttonList)
         {
             custom.SetActive(true);
@@ -56,10 +59,13 @@ public class DialogeManager : MonoBehaviour
         l_look.enabled = false;
         
         Cursor.lockState = CursorLockMode.None;
+        
+        MainPlayerCamera.SetActive(false);
+        CameraWhenTalking.SetActive(true);
     }
     public void talk(int buttonIndex)
     {
-        mylist[_index].TextComponent.text = string.Empty;
+        textList[_index].TextComponent.text = string.Empty;
         _index = buttonIndex;
         _lineIndex = 0;
         startDailogo();
@@ -79,7 +85,7 @@ public class DialogeManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (mylist[_index].TextComponent.text == mylist[_index].lines[_lineIndex].ToString())
+                if (textList[_index].TextComponent.text == textList[_index].lines[_lineIndex].ToString())
                 {
                     NextLine();
                 }
@@ -89,7 +95,7 @@ public class DialogeManager : MonoBehaviour
                 }
                 else
                 {
-                    words = mylist[_index].lines[_lineIndex].ToString().Split(' ');
+                    words = textList[_index].lines[_lineIndex].ToString().Split(' ');
                     updatedLine = " ";
 
                     foreach (string word in words)
@@ -112,7 +118,7 @@ public class DialogeManager : MonoBehaviour
                     }
 
                     _check = true;
-                    mylist[_index].TextComponent.text = updatedLine.Trim();
+                    textList[_index].TextComponent.text = updatedLine.Trim();
                     StopAllCoroutines();
                 }
                 
@@ -122,8 +128,8 @@ public class DialogeManager : MonoBehaviour
 
     public void startDailogo()
     {
-        mylist[_index].Text.SetActive(true);
-        StartCoroutine(TypeLine(mylist[_index].lines[_lineIndex]));     
+        textList[_index].Text.SetActive(true);
+        StartCoroutine(TypeLine(textList[_index].lines[_lineIndex]));     
     }
 
     IEnumerator TypeLine(string line)
@@ -145,26 +151,26 @@ public class DialogeManager : MonoBehaviour
             }
             foreach (char c in wordToType)
             {
-                mylist[_index].TextComponent.text += c;
+                textList[_index].TextComponent.text += c;
                 _textStart = true;
                 yield return new WaitForSeconds(textspeed);
             }
-            mylist[_index].TextComponent.text += ' ';
+            textList[_index].TextComponent.text += ' ';
         }
         yield return new WaitForSeconds(textspeed);
     }
     void NextLine()
     {
         _lineIndex++;
-        if (_lineIndex < mylist[_index].lines.Length)
+        if (_lineIndex < textList[_index].lines.Length)
         {
-            mylist[_index].TextComponent.text = string.Empty;
-            StartCoroutine(TypeLine(mylist[_index].lines[_lineIndex]));
+            textList[_index].TextComponent.text = string.Empty;
+            StartCoroutine(TypeLine(textList[_index].lines[_lineIndex]));
             _check = false;
         }
         else
         { 
-            mylist[_index].Text.SetActive(false);
+            textList[_index].Text.SetActive(false);
             _index = 0;
             _lineIndex = 0;
             /*foreach (GameObject button in mylist[indexbuttons].Buttons)
@@ -188,5 +194,7 @@ public class DialogeManager : MonoBehaviour
         {
             custom.SetActive(false);
         }
+        CameraWhenTalking.SetActive(false);
+        MainPlayerCamera.SetActive(true);
     }
 }
