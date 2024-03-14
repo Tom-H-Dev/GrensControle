@@ -12,32 +12,38 @@ public class DialogeManager : MonoBehaviour
     
     [SerializeField] private float textspeed = 0.5f; //speed of the return of courotine so closer to 0 the faster it is.
     
-    private int _index, _lineIndex;
+    private int _index, _lineIndex, indexbuttons;
 
     [SerializeField] public List<customlist> mylist = new List<customlist>();
 
     private bool _textStart = false;
     private bool _check;
     
-    public string changeWord;
-    public string TheWord;
+    public string[] changeWord;
+    public string DriverName;
     private string[] words;
     private string updatedLine;
+    private string wordToType;
 
-    [SerializeField] private string[] ChangeWordList;
+    private DriverManager InfoDriver;
+
     
-
-    //public string wordToType;
     void Start()
     {
+        DriverManager InfoDriver = GetComponent<DriverManager>();
         foreach (GameObject Custom in buttonList)
         {
             Custom.SetActive(false);
         }
+        InfoDriver._driverFirstName = DriverName;
     }
     public void startText(PlayerMovement l_player, PlayerLook l_look)
     {
         mylist[_index].TextComponent.text = string.Empty;
+        /*foreach (GameObject custom in buttonList)
+        {
+            custom.SetActive(true);
+        }*/
         foreach (GameObject custom in buttonList)
         {
             custom.SetActive(true);
@@ -58,9 +64,13 @@ public class DialogeManager : MonoBehaviour
         _lineIndex = 0;
         startDailogo();
         _check = false;
-        foreach (GameObject Custom in buttonList)
+        /*foreach (GameObject Custom in mylist[_index].Buttons)
         {
             Custom.SetActive(false);
+        }*/
+        foreach (GameObject custom in buttonList)
+        {
+            custom.SetActive(false);
         }
     }
     void Update()
@@ -84,11 +94,18 @@ public class DialogeManager : MonoBehaviour
 
                     foreach (string word in words)
                     {
-                        if (word == changeWord)
+                        bool ischecked = false;
+                        foreach (string WordToChange in changeWord)
                         {
-                            updatedLine += TheWord + " ";
+                            if (word == WordToChange)
+                            {
+                                updatedLine += DriverName + " ";
+                                ischecked = true;
+                                break;
+                            }    
                         }
-                        else
+
+                        if (!ischecked)
                         {
                             updatedLine += word + " ";
                         }
@@ -116,11 +133,15 @@ public class DialogeManager : MonoBehaviour
         
         foreach (string word in words)
         {
-            string wordToType = word;
-
-            if (word == changeWord)
+            wordToType = word;
+            
+            foreach (string WordToChange in changeWord)
             {
-                wordToType = TheWord;
+                if (word == WordToChange)
+                {
+                    wordToType = DriverName;
+                    break;
+                }
             }
             foreach (char c in wordToType)
             {
@@ -146,9 +167,14 @@ public class DialogeManager : MonoBehaviour
             mylist[_index].Text.SetActive(false);
             _index = 0;
             _lineIndex = 0;
-            foreach (GameObject Custom in buttonList)
+            /*foreach (GameObject button in mylist[indexbuttons].Buttons)
             {
-                Custom.SetActive(true);
+                button.SetActive(true);
+                indexbuttons += 1;
+            }*/
+            foreach (GameObject custom in buttonList)
+            {
+                custom.SetActive(true);
             }
         }
     }

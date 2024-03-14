@@ -4,5 +4,5 @@ using UnityEngine;
 
 [Serializable] public class listinlist
 {
-    public GameObject[] listsw;
+    public GameObject[] lists;
 }

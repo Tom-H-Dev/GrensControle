@@ -10,9 +10,7 @@ using TMPro;
     public GameObject Text;
     public string[] lines;
     
-    public string changeWord;
-
-    public List<listinlist> opt = new List<listinlist>();
+    public GameObject[] Buttons;
 }
 
 
