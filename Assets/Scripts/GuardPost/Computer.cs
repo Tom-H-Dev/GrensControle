@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Computer : MonoBehaviour
@@ -11,12 +12,15 @@ public class Computer : MonoBehaviour
 
     [SerializeField] private GameObject _computerScreen;
     [SerializeField] private RectTransform _windows;
+    [SerializeField] private TMP_Text _clock;
     private Camera mainCamera;
 
     private string _timeStamp = System.DateTime.Now.ToString();
     private int _realWorldDay = System.DateTime.Now.Day;
     private int _realWorldMonth = System.DateTime.Now.Month;
     private int _realWorldYear = System.DateTime.Now.Year;
+    private int _realWorldHour = System.DateTime.Now.Hour;
+    private int _realWorldMinute = System.DateTime.Now.Minute;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip _startPCAudio;
@@ -25,6 +29,11 @@ public class Computer : MonoBehaviour
     private void Start()
     {
         _computerAudio = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        _clock.text = _realWorldHour + ":" + _realWorldMinute + "\n" + _realWorldDay + "-" + _realWorldMonth + "-" + _realWorldYear;
     }
 
     /// <summary>
