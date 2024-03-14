@@ -33,16 +33,6 @@ public class CarBehaviour : MonoBehaviour
         string _middleText = null;
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _normalSpeed;
-        if (_isMillitairyVehicle )
-        { 
-        _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
-        }
-        else
-        {
-            _middleText = _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString();
-        }
-
-        _licensePlate = Random.Range(0, 9).ToString() + Random.Range(0, 9).ToString() + "-" + _middleText + "-" + Random.Range(0, 9).ToString();
 
         float a = Random.value;
         if (a < 0.05f)
@@ -50,7 +40,7 @@ public class CarBehaviour : MonoBehaviour
             _duplicateCode = "1";
         }
 
-        float b = Random.value; 
+        float b = Random.value;
         if (b < 0.50f)
         {
             _hasDutchLicensePlate = false;
@@ -60,7 +50,26 @@ public class CarBehaviour : MonoBehaviour
         {
             _hasDutchLicensePlate = true;
             _landCode = _landCodes[0];
+
+            float c = Random.value;
+            if (c < 0.30f)
+            {
+                _isMillitairyVehicle = true;
+            }
         }
+
+        if (_isMillitairyVehicle )
+        { 
+        _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
+        }
+        else
+        {
+            _middleText = _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString();
+        }
+
+        _licensePlate = Random.Range(0, 9).ToString() + Random.Range(0, 9).ToString() + "-" + _middleText + "-" + Random.Range(0, 9).ToString(); // set the license plate
+
+        
 
         for (int i = 0; i < _licensePlates.Length; i++)
         {
