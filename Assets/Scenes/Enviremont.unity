@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 352733226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e5bc410db27b6642a29bfcd63ec50ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d1c9a8de9cc18a41b8384f16bd2dba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxVehicles: 5
@@ -3448,7 +3448,7 @@ MonoBehaviour:
   _stopLocations: []
   _stopLocationOccupied: 
   _vehicleWaitDistance: 6
-  _vehicleManager: {fileID: 352733228}
+  _vehicleManager: {fileID: 0}
   _queue:
   - {fileID: 0}
   - {fileID: 0}
