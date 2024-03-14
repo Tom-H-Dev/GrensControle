@@ -49,7 +49,7 @@ public class BarrierManager : MonoBehaviour
             _vehicle = null;
         }
 
-        if (Input.GetKeyDown("o"))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             StartCoroutine(VehicleAcceptedCoroutine());
         }

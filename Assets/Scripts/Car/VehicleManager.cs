@@ -19,7 +19,7 @@ public class VehicleManager : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown("v"))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             SpawnVehicle();
         }

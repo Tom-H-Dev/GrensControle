@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     private Animator _animator;
-
+    bool opened;
     public void InteractWithObject()
     {
         _animator = GetComponent<Animator>();
