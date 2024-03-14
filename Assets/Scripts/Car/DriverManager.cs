@@ -199,6 +199,17 @@ public class DriverManager : MonoBehaviour
         }
         else
         {
+            _givenFitstName = string.Empty;
+            _givenLastName = string.Empty;
+            _givenBirthDate = string.Empty;
+            _givenNationality = string.Empty;
+            _givenPersNo = string.Empty;
+            _givenDocumentNo = string.Empty;
+            _givenIssueDateDefensie = string.Empty;
+            _givenExpiryDateDefensie = string.Empty;
+            _givenIssueDate = string.Empty;
+            _givenExpiryDate = string.Empty;
+            _givenBSN = 0;
             _isFalsified = false;
         }
     }

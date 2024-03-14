@@ -18,6 +18,15 @@ public class Computer : MonoBehaviour
     private int _realWorldMonth = System.DateTime.Now.Month;
     private int _realWorldYear = System.DateTime.Now.Year;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _startPCAudio;
+    [SerializeField] private AudioClip _closePCAudio;
+    private AudioSource _computerAudio;
+    private void Start()
+    {
+        _computerAudio = GetComponent<AudioSource>();
+    }
+
     /// <summary>
     /// If player 1 interacts using the 'E' key in the PlayerLook script the player calls this function to activate the computer.
     /// </summary>
@@ -34,6 +43,10 @@ public class Computer : MonoBehaviour
         _playerLook = l_look;
         l_look._canLook = false;
         l_look._canInteract = false;
+
+        //Sounds Effects
+        _computerAudio.clip = _startPCAudio;
+        _computerAudio.Play();
 
         //Player lerps toward the pc
         mainCamera = _playerLook.GetComponentInChildren<Camera>();
