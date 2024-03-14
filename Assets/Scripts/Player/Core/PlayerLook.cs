@@ -14,11 +14,13 @@ public class PlayerLook : MonoBehaviour
     private Animator _canvasAnimator;
 
     [SerializeField] private float Reach;
+    public Vector3 _originalLocation;
 
     public int team;
     private void Start()
     {
         _canvasAnimator = GameManager.instance._canvasAnimator;
+        _originalLocation = transform.position;
     }
     private void Update()
     {

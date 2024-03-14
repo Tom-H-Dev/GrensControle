@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Computer : MonoBehaviour
@@ -14,8 +15,8 @@ public class Computer : MonoBehaviour
     [SerializeField] private RectTransform _windows;
     [SerializeField] private TMP_Text _clock;
     private Camera mainCamera;
+    [SerializeField] private Transform _playerComputerPosition, _cameraComputerPos, _originalCameraPos; 
 
-    private string _timeStamp = System.DateTime.Now.ToString();
     private int _realWorldDay = System.DateTime.Now.Day;
     private int _realWorldMonth = System.DateTime.Now.Month;
     private int _realWorldYear = System.DateTime.Now.Year;
@@ -59,6 +60,9 @@ public class Computer : MonoBehaviour
 
         //Player lerps toward the pc
         mainCamera = _playerLook.GetComponentInChildren<Camera>();
+        l_player.gameObject.transform.position = Vector3.Lerp(l_player.gameObject.transform.position, _playerComputerPosition.position, 1);
+        l_look.gameObject.transform.position = Vector3.Lerp(l_look.gameObject.transform.position, _playerComputerPosition.position, 1);
+        l_look.transform.LookAt(transform);
         //Player sits down animation
 
         //Screen in Big
@@ -79,6 +83,8 @@ public class Computer : MonoBehaviour
         _isOnPC = false;
         _computerScreen.SetActive(false);
         _playerMovement.CanMoveChange(true);
+        _playerLook.gameObject.transform.position = Vector3.Lerp(_playerLook.gameObject.transform.position, _playerLook._originalLocation, 1);
+
         _playerLook._canLook = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

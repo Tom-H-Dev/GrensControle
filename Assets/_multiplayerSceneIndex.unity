@@ -197,6 +197,9 @@ MonoBehaviour:
   _computerScreen: {fileID: 1276617086}
   _windows: {fileID: 5883714513178579177}
   _clock: {fileID: 928410313}
+  _playerComputerPosition: {fileID: 2009216223}
+  _cameraComputerPos: {fileID: 0}
+  _originalCameraPos: {fileID: 0}
   _startPCAudio: {fileID: 8300000, guid: 4fb8bbaa293da5e4587273b04572d878, type: 3}
   _closePCAudio: {fileID: 0}
 --- !u!114 &49243106
@@ -4130,7 +4133,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2fb23db51a3b09046bc4c990266e6768,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.914
+      value: -4.154
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2fb23db51a3b09046bc4c990266e6768,
         type: 3}
@@ -4202,8 +4205,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1332624140}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1332624142
-CapsuleCollider:
+--- !u!65 &1332624142
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4220,10 +4223,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5828508
-  m_Height: 0.7499838
-  m_Direction: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7880565, y: 0.7499838, z: 1.63}
   m_Center: {x: 0.000000014901161, y: -0.000000014901161, z: 0}
 --- !u!114 &1362627741 stripped
 MonoBehaviour:
@@ -5197,7 +5198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxVehicles: 5
   _currentVehiclesInt: 0
-  _carPrefab: {fileID: 0}
+  _carPrefab: {fileID: 361740576752401196, guid: dc72effb59b6d114b805ac861f2c94ef,
+    type: 3}
   _carSpawnLocation: {fileID: 336038160}
   _entranceBarrier: {fileID: 282292231}
   _currentVehicles: []
@@ -6310,6 +6312,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 582158742758934581, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1111535140596232268, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6341,7 +6348,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 49243106}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7986500104212180286, guid: 1d4763a6fff72d9409cfe2e7a6524df9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d4763a6fff72d9409cfe2e7a6524df9, type: 3}
