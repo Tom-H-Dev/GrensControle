@@ -1175,7 +1175,8 @@ MonoBehaviour:
   - {fileID: 8576130765397889227}
   - {fileID: 2919280606155403299}
   _currentContrabandInsideVehicle: []
-  contrabandChance: 100
+  contrabandChance: 50
+  multipleContrabandChance: 50
 --- !u!54 &2327961585805885832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6742,7 +6743,7 @@ Transform:
   m_GameObject: {fileID: 4333186085524984465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.501, z: 1.4524}
+  m_LocalPosition: {x: 0, y: 0.501, z: 1.9524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8095,7 +8096,7 @@ Transform:
   m_GameObject: {fileID: 5641461682570208857}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.623, z: -1.731}
+  m_LocalPosition: {x: 0, y: 0.6356, z: -2.078}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
