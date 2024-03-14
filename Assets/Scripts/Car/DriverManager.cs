@@ -164,7 +164,7 @@ public class DriverManager : MonoBehaviour
 
             //Defensie document no
             _givenNationality = _driverNationalities[Random.Range(0, _driverNationalities.Count)];
-            _givenPersNo = (int)Random.Range(111, 999) + " " + (int)Random.Range(111, 999);
+            _givenPersNo = (int)Random.Range(111111, 999999)+"";
             _givenDocumentNo = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
             
             //Defensie document dates
@@ -199,6 +199,17 @@ public class DriverManager : MonoBehaviour
         }
         else
         {
+            _givenFitstName = string.Empty;
+            _givenLastName = string.Empty;
+            _givenBirthDate = string.Empty;
+            _givenNationality = string.Empty;
+            _givenPersNo = string.Empty;
+            _givenDocumentNo = string.Empty;
+            _givenIssueDateDefensie = string.Empty;
+            _givenExpiryDateDefensie = string.Empty;
+            _givenIssueDate = string.Empty;
+            _givenExpiryDate = string.Empty;
+            _givenBSN = 0;
             _isFalsified = false;
         }
     }

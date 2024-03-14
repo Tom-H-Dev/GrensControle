@@ -8,6 +8,7 @@ public class DocVerifyPro : MonoBehaviour
     [Header("User Interface")]
     [SerializeField] private TMP_InputField _nameInputField;
     [SerializeField] private TMP_InputField _persNrField;
+    [SerializeField] private GameObject _noPersonFound;
     [SerializeField] private TMP_Text _naamText, _achternaamText, _leeftijfText, _geslachtText, _geboorteDatumText, _nationaliteitText, _defensiePersNoText, _errorText;
     private string _naamString, _achternaamString, _leeftijfString, _geslachtString, _geboorteDatumString, _nationaliteitString, _defensiePersNoString;
     [SerializeField] private TMP_Text _driversLisenceFirstName, _driversLisenceLastName, _driversLisenceBirthDate, _driversLisenceIssue, _driversLisenceExpiry, _driverBSN;
@@ -132,6 +133,7 @@ public class DocVerifyPro : MonoBehaviour
         }
         else
         {
+            _noPersonFound.SetActive(true);
             _errorText.text = "Geen informatie gevonden/Niemand gevonden";
             _naamText.text = _naamString;
             _achternaamText.text = _achternaamString;
@@ -170,6 +172,7 @@ public class DocVerifyPro : MonoBehaviour
         }
         else
         {
+            _noPersonFound.SetActive(true);
             _errorText.text = "Geen informatie gevonden/Niemand gevonden";
             _naamText.text = _naamString;
             _achternaamText.text = _achternaamString;

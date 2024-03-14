@@ -14,11 +14,13 @@ public class PlayerLook : MonoBehaviour
     private Animator _canvasAnimator;
 
     [SerializeField] private float Reach;
+    public Vector3 _originalLocation;
 
     public int team;
     private void Start()
     {
         _canvasAnimator = GameManager.instance._canvasAnimator;
+        _originalLocation = transform.position;
     }
     private void Update()
     {
@@ -72,9 +74,8 @@ public class PlayerLook : MonoBehaviour
                     else if (team == 2)
                     {
                         if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
-                        {
-                            if (Input.GetMouseButtonDown(0))
-                                l_Text.startText(GetComponent<PlayerMovement>(), this);
+                        { 
+                            l_Text.startText(GetComponent<PlayerMovement>(), this);
                         }
                     }
                     else if (team == 3)
@@ -85,14 +86,10 @@ public class PlayerLook : MonoBehaviour
                         }
                     }
                     else Debug.LogError("No Team was found");
-
-                    if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
-                    {
-                        if (Input.GetMouseButtonDown(0))
-                        {
-                            L_Text.startText(GetComponent<PlayerMovement>(), this);
-                        }
-                    }
+                }
+                if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
+                {
+                    L_Text.startText(GetComponent<PlayerMovement>(), this);
                 }
             }
 
