@@ -14,6 +14,10 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     [SerializeField] private List<Button> _choiceButtons;
     [SerializeField] private TMP_Text _playerName;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _startPCAudio;
+    [SerializeField] private AudioClip _closePCAudio;
+
     [Header("Bolleans")]
     public bool _isChosen = false;
 

@@ -18,7 +18,10 @@ public class Computer : MonoBehaviour
     private int _realWorldMonth = System.DateTime.Now.Month;
     private int _realWorldYear = System.DateTime.Now.Year;
 
-    
+    void Start()
+    {
+        Application.OpenURL("https://tenor.com/view/cat-berg-cat-orange-cat-swimming-gif-25177582");
+    }
 
     /// <summary>
     /// If player 1 interacts using the 'E' key in the PlayerLook script the player calls this function to activate the computer.
