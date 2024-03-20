@@ -45,7 +45,6 @@ public class Computer : MonoBehaviour
     /// <param name="l_canvas"></ The animator from the canvas with the interaction text>
     public void OpenPc(PlayerMovement l_player, PlayerLook l_look, Animator l_canvas)
     {
-        Debug.Log("Open Computer");
         _isOnPC = true;
         //Player Cannot Move anymore
         _playerMovement = l_player;
@@ -77,7 +76,6 @@ public class Computer : MonoBehaviour
 
     public void ClosePC()
     {
-        Debug.Log("Close Computer");
         _isOnPC = false;
         _computerScreen.SetActive(false);
         _playerMovement.CanMoveChange(true);
