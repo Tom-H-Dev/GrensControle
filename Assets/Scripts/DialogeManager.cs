@@ -18,17 +18,20 @@ public class DialogeManager : MonoBehaviour
     public string[] changeWord;
     public string DriverName;
     
+    /*
     [Header("cameraPos")]
     [SerializeField] private GameObject MainPlayerCamera;
     [SerializeField] private GameObject CameraWhenTalking;
-    
+    */
     
     private bool _textStart = false;
     private bool _check;
     private string[] words;
     private string updatedLine;
     private string wordToType;
+    
     private int _index, _lineIndex, indexbuttons;
+    
     private DriverManager InfoDriver;
     void Start()
     {
@@ -38,7 +41,7 @@ public class DialogeManager : MonoBehaviour
             Custom.SetActive(false);
         }
         InfoDriver._driverFirstName = DriverName;
-        CameraWhenTalking.SetActive(false);
+        //CameraWhenTalking.SetActive(false);
     }
     public void startText(PlayerMovement l_player, PlayerLook l_look)
     {
@@ -60,8 +63,8 @@ public class DialogeManager : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.None;
         
-        MainPlayerCamera.SetActive(false);
-        CameraWhenTalking.SetActive(true);
+        //MainPlayerCamera.SetActive(false);
+        //CameraWhenTalking.SetActive(true);
     }
     public void talk(int buttonIndex)
     {
@@ -194,7 +197,7 @@ public class DialogeManager : MonoBehaviour
         {
             custom.SetActive(false);
         }
-        CameraWhenTalking.SetActive(false);
-        MainPlayerCamera.SetActive(true);
+        //CameraWhenTalking.SetActive(false);
+        //MainPlayerCamera.SetActive(true);
     }
 }
