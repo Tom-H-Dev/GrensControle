@@ -185,13 +185,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49243100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c6264ceca90ab4ca2d2b60442252d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _computerScreen: {fileID: 1276617086}
   _windows: {fileID: 0}
+  _clock: {fileID: 0}
+  _playerComputerPosition: {fileID: 0}
+  _cameraComputerPos: {fileID: 0}
+  _originalCameraPos: {fileID: 0}
   _startPCAudio: {fileID: 0}
   _closePCAudio: {fileID: 0}
 --- !u!1001 &99329779
@@ -813,6 +817,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: changeWord.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: buttonList.Array.data[0]
       value: 
       objectReference: {fileID: 4596451013913692429}
@@ -844,7 +853,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: changeWord.Array.data[0]
-      value: 
+      value: wat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: changeWord.Array.data[1]
+      value: Thomas
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -919,7 +933,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].lines.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -934,7 +948,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].lines.Array.data[1]
-      value: yugu
+      value: fuck shit
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -944,7 +958,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[1].lines.Array.data[1]
-      value: .
+      value: wat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4550,14 +4564,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 0e3eb29020d82d74bb13db55d1a8aec3,
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
         type: 2}
     - target: {fileID: 7495835035755592702, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -1548339006595523500, guid: 0e3eb29020d82d74bb13db55d1a8aec3,
-        type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 7495835035755592702, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_hasFontAssetChanged

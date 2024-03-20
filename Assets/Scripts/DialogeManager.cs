@@ -18,12 +18,6 @@ public class DialogeManager : MonoBehaviour
     public string[] changeWord;
     public string DriverName;
     
-    /*
-    [Header("cameraPos")]
-    [SerializeField] private GameObject MainPlayerCamera;
-    [SerializeField] private GameObject CameraWhenTalking;
-    */
-    
     private bool _textStart = false;
     private bool _check;
     private string[] words;
@@ -41,15 +35,12 @@ public class DialogeManager : MonoBehaviour
             Custom.SetActive(false);
         }
         InfoDriver._driverFirstName = DriverName;
-        //CameraWhenTalking.SetActive(false);
+        
     }
     public void startText(PlayerMovement l_player, PlayerLook l_look)
     {
         textList[_index].TextComponent.text = string.Empty;
-        /*foreach (GameObject custom in buttonList)
-        {
-            custom.SetActive(true);
-        }*/
+        
         foreach (GameObject custom in buttonList)
         {
             custom.SetActive(true);
@@ -62,9 +53,6 @@ public class DialogeManager : MonoBehaviour
         l_look.enabled = false;
         
         Cursor.lockState = CursorLockMode.None;
-        
-        //MainPlayerCamera.SetActive(false);
-        //CameraWhenTalking.SetActive(true);
     }
     public void talk(int buttonIndex)
     {
@@ -73,10 +61,6 @@ public class DialogeManager : MonoBehaviour
         _lineIndex = 0;
         startDailogo();
         _check = false;
-        /*foreach (GameObject Custom in mylist[_index].Buttons)
-        {
-            Custom.SetActive(false);
-        }*/
         foreach (GameObject custom in buttonList)
         {
             custom.SetActive(false);
@@ -88,18 +72,14 @@ public class DialogeManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (textList[_index].TextComponent.text == textList[_index].lines[_lineIndex].ToString())
-                {
-                    NextLine();
-                }
-                else if (_check == true)
+                if (_check == true)
                 {
                     NextLine();
                 }
                 else
                 {
                     words = textList[_index].lines[_lineIndex].ToString().Split(' ');
-                    updatedLine = " ";
+                    updatedLine = string.Empty;
 
                     foreach (string word in words)
                     {
@@ -108,27 +88,23 @@ public class DialogeManager : MonoBehaviour
                         {
                             if (word == WordToChange)
                             {
-                                updatedLine += DriverName + " ";
+                                updatedLine += DriverName;
                                 ischecked = true;
                                 break;
                             }    
-                        }
-
+                        } 
                         if (!ischecked)
                         {
                             updatedLine += word + " ";
                         }
                     }
-
                     _check = true;
                     textList[_index].TextComponent.text = updatedLine.Trim();
                     StopAllCoroutines();
                 }
-                
             }    
         }
     }
-
     public void startDailogo()
     {
         textList[_index].Text.SetActive(true);
@@ -138,7 +114,6 @@ public class DialogeManager : MonoBehaviour
     IEnumerator TypeLine(string line)
     {
         words = line.Split(' ');
-        
         
         foreach (string word in words)
         {
@@ -176,11 +151,6 @@ public class DialogeManager : MonoBehaviour
             textList[_index].Text.SetActive(false);
             _index = 0;
             _lineIndex = 0;
-            /*foreach (GameObject button in mylist[indexbuttons].Buttons)
-            {
-                button.SetActive(true);
-                indexbuttons += 1;
-            }*/
             foreach (GameObject custom in buttonList)
             {
                 custom.SetActive(true);
@@ -197,7 +167,5 @@ public class DialogeManager : MonoBehaviour
         {
             custom.SetActive(false);
         }
-        //CameraWhenTalking.SetActive(false);
-        //MainPlayerCamera.SetActive(true);
     }
 }
