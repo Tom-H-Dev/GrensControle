@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 04bc317abbad2f646a38b571435dcd2f
   - enabled: 1
+    path: Assets/Scenes/Grens.unity
+    guid: dbf2441d213ee194ca1e382ffa7d4ba0
+  - enabled: 1
     path: Assets/_multiplayerSceneIndex.unity
     guid: f72cde8d5b089954e83132aa57875549
   m_configObjects: {}

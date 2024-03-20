@@ -116,6 +116,12 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
+    private void UpdateDebugReadyBoolOverNetwork(bool l_value)
+    {
+        _playerNeedOverride = l_value;
+    }
+
+    [PunRPC]
     private void RPC_SendTimer(float timeIn)
     {
         
@@ -146,6 +152,14 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
             if (Input.GetKeyDown(KeyCode.P))
             {
                 StartGame();
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                if (_playerNeedOverride)
+                    _photonView.RPC("UpdateDebugReadyBoolOverNetwork", RpcTarget.AllBufferedViaServer, false);
+                else
+                    _photonView.RPC("UpdateDebugReadyBoolOverNetwork", RpcTarget.AllBufferedViaServer, true);
             }
         }
     }

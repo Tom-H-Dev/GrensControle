@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1409,6 +1409,7 @@ MonoBehaviour:
   _maxWaitTime: 10
   _maxFullGameTime: 10
   syncVariable: 0
+  _playerNeedOverride: 0
   _playersReady: 0
   _rollChoiceButtons:
   - {fileID: 600878085}
@@ -1961,6 +1962,7 @@ MonoBehaviour:
   _maxWaitTime: 10
   _maxFullGameTime: 10
   syncVariable: 0
+  _playerNeedOverride: 0
   _playersReady: 0
   _rollChoiceButtons: []
   _waitingText: {fileID: 0}
