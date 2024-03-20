@@ -60,9 +60,9 @@ public class Computer : MonoBehaviour
 
         //Player lerps toward the pc
         mainCamera = _playerLook.GetComponentInChildren<Camera>();
-        l_player.gameObject.transform.position = Vector3.Lerp(l_player.gameObject.transform.position, _playerComputerPosition.position, 1);
-        l_look.gameObject.transform.position = Vector3.Lerp(l_look.gameObject.transform.position, _playerComputerPosition.position, 1);
-        l_look.transform.LookAt(transform);
+        //l_player.gameObject.transform.position = Vector3.Lerp(l_player.gameObject.transform.position, _playerComputerPosition.position, 1);
+        //l_look.gameObject.transform.position = Vector3.Lerp(l_look.gameObject.transform.position, _playerComputerPosition.position, 1);
+        //l_look.transform.LookAt(transform);
         //Player sits down animation
 
         //Screen in Big
