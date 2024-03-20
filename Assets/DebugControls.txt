@@ -1,0 +1,13 @@
+Lobby
+In de lobby kan je op 'O' klikken om een debug modes aan te zetten om een rol te kiezen, doe dit als je met 2 mensen speelt inplaats van 3 wel als alle spelers in de lobby zitten.
+Als je(jullie) een rol gekozen hebt kan je op 'P' klikken om naar de game te starten.
+
+Speler 1
+Als je op 'L' klikt als speler 1 dan kan je de persoons gegevens ophalen van de bestuurder.
+Als je naar de computer in het wachthokje loopt kan je door op 'E' te klikken de computer openen en de gegevens controleren.
+
+Speler 2
+
+
+Speler 3
+Als je naar de auto loopt en dan op 'E' klikt bij de motor kap of kofferbak dan open je deze om te controleren of hier iets verboden inzit.

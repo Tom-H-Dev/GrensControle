@@ -742,7 +742,7 @@ MonoBehaviour:
   _stopSpot: {fileID: 2054364854}
   _stopLocations: []
   _stopLocationOccupied: 
-  _vehicleWaitDistance: 0
+  _vehicleWaitDistance: 6
   _vehicleManager: {fileID: 32332873}
   _queue: []
 --- !u!4 &33708080
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   _stopSpot: {fileID: 2054364854}
   _stopLocations: []
   _stopLocationOccupied: 
-  _vehicleWaitDistance: 0
+  _vehicleWaitDistance: 6
   _vehicleManager: {fileID: 32332873}
   _queue: []
 --- !u!1 &589811372

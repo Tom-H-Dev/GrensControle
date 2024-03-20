@@ -70,8 +70,6 @@ public class Computer : MonoBehaviour
 
         //Animations
         _canvasAnimator = l_canvas;
-        l_canvas.SetTrigger("FadeOutInteractOpen");
-        l_canvas.SetTrigger("InteractClose");
         //Mouse gets enabled
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -89,7 +87,6 @@ public class Computer : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         StartCoroutine(ResetComputer());
-        _canvasAnimator.SetTrigger("FadeOutInteractClose");
     }
 
     private IEnumerator ResetComputer()
