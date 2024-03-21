@@ -125,7 +125,7 @@ public class CarBehaviour : MonoBehaviour
 
         if (isReverse)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - 2, transform.position.y, transform.position.z), 5 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - 2, transform.position.y, transform.position.z), 3 * Time.deltaTime);
         }
 
     }

@@ -79,6 +79,8 @@ public class BarrierManager : MonoBehaviour
         if (_vehicle != null)
         {
             _vehicle.isReverse = true;
+            yield return new WaitForSeconds(2f); 
+            _vehicle.isReverse = false;
         }
         yield return null;
     }
