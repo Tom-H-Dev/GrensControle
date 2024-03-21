@@ -50,6 +50,7 @@ MonoBehaviour:
   - SetRollChoice
   - DisableButton
   - EnableButton
+  - UpdateDebugReadyBoolOverNetwork
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -45,7 +45,6 @@ public class Computer : MonoBehaviour
     /// <param name="l_canvas"></ The animator from the canvas with the interaction text>
     public void OpenPc(PlayerMovement l_player, PlayerLook l_look, Animator l_canvas)
     {
-        Debug.Log("Open Computer");
         _isOnPC = true;
         //Player Cannot Move anymore
         _playerMovement = l_player;
@@ -60,9 +59,9 @@ public class Computer : MonoBehaviour
 
         //Player lerps toward the pc
         mainCamera = _playerLook.GetComponentInChildren<Camera>();
-        l_player.gameObject.transform.position = Vector3.Lerp(l_player.gameObject.transform.position, _playerComputerPosition.position, 1);
-        l_look.gameObject.transform.position = Vector3.Lerp(l_look.gameObject.transform.position, _playerComputerPosition.position, 1);
-        l_look.transform.LookAt(transform);
+        //l_player.gameObject.transform.position = Vector3.Lerp(l_player.gameObject.transform.position, _playerComputerPosition.position, 1);
+        //l_look.gameObject.transform.position = Vector3.Lerp(l_look.gameObject.transform.position, _playerComputerPosition.position, 1);
+        //l_look.transform.LookAt(transform);
         //Player sits down animation
 
         //Screen in Big
@@ -70,8 +69,6 @@ public class Computer : MonoBehaviour
 
         //Animations
         _canvasAnimator = l_canvas;
-        l_canvas.SetTrigger("FadeOutInteractOpen");
-        l_canvas.SetTrigger("InteractClose");
         //Mouse gets enabled
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -79,7 +76,6 @@ public class Computer : MonoBehaviour
 
     public void ClosePC()
     {
-        Debug.Log("Close Computer");
         _isOnPC = false;
         _computerScreen.SetActive(false);
         _playerMovement.CanMoveChange(true);
@@ -89,7 +85,6 @@ public class Computer : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         StartCoroutine(ResetComputer());
-        _canvasAnimator.SetTrigger("FadeOutInteractClose");
     }
 
     private IEnumerator ResetComputer()
