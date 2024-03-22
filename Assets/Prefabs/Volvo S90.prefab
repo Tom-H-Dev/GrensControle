@@ -963,6 +963,7 @@ GameObject:
   - component: {fileID: 3741706304615168112}
   - component: {fileID: 620075498082350680}
   - component: {fileID: 8326749134109363027}
+  - component: {fileID: 743926950553919528}
   m_Layer: 3
   m_Name: Volvo S90
   m_TagString: Untagged
@@ -1291,6 +1292,47 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &743926950553919528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361740576752401196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd5ac29199bb374ebbd4b2d75e35c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _driverAge: 0
+  _driverLength: 0
+  _driverFirstName: 
+  _driverLastName: 
+  _driverSex: 
+  _driverBirthDate: 
+  _driverDocumentImage: {fileID: 0}
+  _driverNationality: 
+  _driverDefensieDateOfIssue: 
+  _driverDefensieDateOfExpiry: 
+  _driverDefensieDocumentNumber: 
+  _driverDefensiePersNo: 
+  _driverIsGeust: 0
+  _driverDateOfIssue: 
+  _driverDateOfExpiry: 
+  _driverBSN: 0
+  _isFalsified: 0
+  _falsifiedPercentage: 20
+  _givenFitstName: 
+  _givenLastName: 
+  _givenBirthDate: 
+  _givenNationality: 
+  _givenPersNo: 
+  _givenDocumentNo: 
+  _givenIssueDateDefensie: 
+  _givenExpiryDateDefensie: 
+  _givenIssueDate: 
+  _givenExpiryDate: 
+  _givenBSN: 0
 --- !u!1 &392195580928501555
 GameObject:
   m_ObjectHideFlags: 0
