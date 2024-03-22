@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class VehicleManager : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class VehicleManager : MonoBehaviour
         SpawnVehicle();
     }
 
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -27,11 +29,14 @@ public class VehicleManager : MonoBehaviour
 
     private void SpawnVehicle()
     {
-        GameObject _currentVehicle = Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
-        _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
-        //_currentVehicle.name = (_currentVehicleNumber = +1).ToString();
-        //_currentVehicles.Add(_currentVehicle);
-        _currentVehiclesInt++;
-        _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
+            _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
+            //_currentVehicle.name = (_currentVehicleNumber = +1).ToString();
+            //_currentVehicles.Add(_currentVehicle);
+            _currentVehiclesInt++;
+            _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+        }
     }
 }
