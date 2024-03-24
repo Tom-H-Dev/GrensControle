@@ -1116,6 +1116,7 @@ Transform:
   - {fileID: 5527413160721613700}
   - {fileID: 6211851524521333780}
   - {fileID: 7074269926505049463}
+  - {fileID: 1796710789457553957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4806831567149177503
@@ -1321,7 +1322,7 @@ MonoBehaviour:
   _driverDateOfExpiry: 
   _driverBSN: 0
   _isFalsified: 0
-  _falsifiedPercentage: 20
+  _falsifiedPercentage: 10
   _givenFitstName: 
   _givenLastName: 
   _givenBirthDate: 
@@ -13641,6 +13642,80 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &2262367825245490638
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1031035760655704470}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.352
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.101
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+        type: 3}
+      propertyPath: m_Name
+      value: Megan_Driving
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb411d9ce489d8841ba18a2e8b11acf5, type: 3}
+--- !u!4 &1796710789457553957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb411d9ce489d8841ba18a2e8b11acf5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2262367825245490638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4990099096340321499
 PrefabInstance:
   m_ObjectHideFlags: 0
