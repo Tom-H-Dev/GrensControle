@@ -15,13 +15,15 @@ public class PlayerUI : MonoBehaviourPun
             {
                 if (_pauseMenu.active)
                 {
-                    GetComponent<PlayerMovement>()._canMove = false;
-                    GetComponent<PlayerLook>()._canLook = false;
+                    GetComponent<PlayerMovement>()._canMove = true;
+                    GetComponent<PlayerLook>()._canLook = true;
 
                     Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
+                    Cursor.visible = false;
 
                     _pauseMenu.SetActive(false);
+
+                    print("esxc");
                 }
                 else 
                 {
@@ -29,9 +31,11 @@ public class PlayerUI : MonoBehaviourPun
                     GetComponent<PlayerLook>()._canLook = false;
 
                     Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
+                    Cursor.visible = true;
 
                     _pauseMenu.SetActive(true); 
+                    
+                    print("test");
                 }
             }
         }
