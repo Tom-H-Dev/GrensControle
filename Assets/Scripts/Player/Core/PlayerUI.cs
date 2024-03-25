@@ -18,7 +18,7 @@ public class PlayerUI : MonoBehaviourPun
                     GetComponent<PlayerMovement>()._canMove = true;
                     GetComponent<PlayerLook>()._canLook = true;
 
-                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.lockState = CursorLockMode.Locked;
                     Cursor.visible = false;
 
                     _pauseMenu.SetActive(false);
@@ -30,7 +30,7 @@ public class PlayerUI : MonoBehaviourPun
                     GetComponent<PlayerMovement>()._canMove = false;
                     GetComponent<PlayerLook>()._canLook = false;
 
-                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
 
                     _pauseMenu.SetActive(true); 
