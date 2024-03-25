@@ -287,8 +287,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16
+      propertyPath: m_LocalPosition.StartDialogueButton    value: -16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
         type: 3}
@@ -712,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1942883468138412058, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
-      propertyPath: m_StaticEditorFlags
+      propertyPath: m_StaticEdStartDialogueButtonFlags
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2954926281282767861, guid: 63b1d5c7aab11364d83b1901c595a197,
@@ -820,7 +819,7 @@ PrefabInstance:
       propertyPath: changeWord.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+    - target: {fileIDendDialogueButton0910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: buttonList.Array.data[0]
       value: 
@@ -917,7 +916,7 @@ PrefabInstance:
       objectReference: {fileID: 3421623759085037433}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
-      propertyPath: mylist.Array.data[4].TextComponent
+      propertyPath: mylist.ArraStartDialogueButtonta[4].TextComponent
       value: 
       objectReference: {fileID: 3421623759085037433}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
@@ -1041,7 +1040,7 @@ MonoBehaviour:
   screenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   screenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   allowDeepLearningSuperSampling: 1
-  deepLearningSuperSamplingUseCustomQualitySettings: 0
+  deepLearningSuperSamplingUseCustomStartDialogueButtonitySettings: 0
   deepLearningSuperSamplingQuality: 0
   deepLearningSuperSamplingUseCustomAttributes: 0
   deepLearningSuperSamplingUseOptimalSettings: 1
@@ -1317,7 +1316,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
-      objectReference: {fileID: 0}
+      objectReference: {filStartDialogueButton 0}
     - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

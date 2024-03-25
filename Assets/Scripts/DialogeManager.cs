@@ -54,7 +54,7 @@ public class DialogeManager : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.None;
     }
-    public void talk(int buttonIndex)
+    public void StartDialogueButton(int buttonIndex)
     {
         textList[_index].TextComponent.text = string.Empty;
         _index = buttonIndex;
@@ -78,6 +78,7 @@ public class DialogeManager : MonoBehaviour
                 }
                 else
                 {
+                    Cursor.lockState = CursorLockMode.None;
                     words = textList[_index].lines[_lineIndex].ToString().Split(' ');
                     updatedLine = string.Empty;
 
@@ -139,6 +140,7 @@ public class DialogeManager : MonoBehaviour
     }
     void NextLine()
     {
+        Cursor.lockState = CursorLockMode.None;
         _lineIndex++;
         if (_lineIndex < textList[_index].lines.Length)
         {
@@ -157,7 +159,7 @@ public class DialogeManager : MonoBehaviour
             }
         }
     }
-    public void endDialogue()
+    public void endDialogueButton()
     {
         _playerLook.enabled = true;
         _playerMovement.enabled = true;

@@ -22,8 +22,6 @@ public class PlayerUI : MonoBehaviourPun
                     Cursor.visible = false;
 
                     _pauseMenu.SetActive(false);
-
-                    print("esxc");
                 }
                 else 
                 {
@@ -34,8 +32,6 @@ public class PlayerUI : MonoBehaviourPun
                     Cursor.visible = true;
 
                     _pauseMenu.SetActive(true); 
-                    
-                    print("test");
                 }
             }
         }
@@ -48,5 +44,17 @@ public class PlayerUI : MonoBehaviourPun
 #else
         Application.Quit();
 #endif
+    }
+
+    public void returnToGame()
+    {
+        GetComponent<PlayerMovement>()._canMove = true;
+        GetComponent<PlayerLook>()._canLook = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        _pauseMenu.SetActive(false);
+        print("test");
     }
 }
