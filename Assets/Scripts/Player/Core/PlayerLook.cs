@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
@@ -17,6 +18,9 @@ public class PlayerLook : MonoBehaviour
     public Vector3 _originalLocation;
 
     public int team;
+
+    [SerializeField] private TMP_Text _interactionText;
+
     private void Start()
     {
         _canvasAnimator = GameManager.instance._canvasAnimator;
@@ -25,7 +29,10 @@ public class PlayerLook : MonoBehaviour
     private void Update()
     {
         if (_canLook)
+        {
             PlayerLookAround();
+            InteractionText();
+        }
 
         PlayerLookRaycast();
     }
@@ -60,8 +67,6 @@ public class PlayerLook : MonoBehaviour
         {
             if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
             {
-                print(l_hit.collider.gameObject.name);
-
                 if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
                 {
                     team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
@@ -69,12 +74,15 @@ public class PlayerLook : MonoBehaviour
                     if (team == 1)
                     {
                         if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
+                        {
                             l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
+                            _interactionText.text = "";
+                        }
                     }
                     else if (team == 2)
                     {
                         if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
-                        { 
+                        {
                             l_Text.startText(GetComponent<PlayerMovement>(), this);
                         }
                     }
@@ -92,11 +100,43 @@ public class PlayerLook : MonoBehaviour
                     L_Text.startText(GetComponent<PlayerMovement>(), this);
                 }
             }
-
-
-
         }
     }
+
+    private void InteractionText()
+    {
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
+        {
+            if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+            {
+                team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+
+                if (team == 1)
+                {
+                    if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
+                        _interactionText.text = "Druk op 'E' om de computer te openen.";
+                    else if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_papaers))
+                        _interactionText.text = "Druk op 'L' om de papaieren op te vragen.";
+                    else _interactionText.text = "";
+                }
+                else if (team == 2)
+                {
+                    if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
+                        _interactionText.text = "Druk op 'E' om met de bestuurder te praten.";
+                    else _interactionText.text = "";
+                }
+                else if (team == 3)
+                {
+                    if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable))
+                        _interactionText.text = "Druk op 'E' om het open te maken.";
+                    else _interactionText.text = "";
+                }
+                else Debug.LogError("No Team was found");
+            }
+        }
+        else _interactionText.text = "";
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;

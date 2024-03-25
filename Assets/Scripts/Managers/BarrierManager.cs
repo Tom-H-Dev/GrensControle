@@ -15,7 +15,7 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] Transform _stopSpot; // Spot from which the stoplocations will be calculated
     [SerializeField] List<Transform> _stopLocations = new List<Transform>(); // List of possible locations for vehicles to stop behind eachother
     [SerializeField] List<bool> _stopLocationOccupied = new List<bool>(); // Bools telling if a spot in the queue is taken or not
-    [SerializeField] float _vehicleWaitDistance; // Distance between the parked vehicles
+    [SerializeField] float _vehicleWaitDistance; // Distance between the parked vehicles\
     [SerializeField] VehicleManager _vehicleManager;
     public CarBehaviour[] _queue; // current vehicles in the queue
 
@@ -41,6 +41,7 @@ public class BarrierManager : MonoBehaviour
 
         foreach (Collider collider in _colliders)
         {
+            print(collider);
             _vehicle = collider.GetComponent<CarBehaviour>();
         }
 
@@ -49,9 +50,13 @@ public class BarrierManager : MonoBehaviour
             _vehicle = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             StartCoroutine(VehicleAcceptedCoroutine());
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            StartCoroutine(VehicleDeniedCoroutine());
         }
     }
 
@@ -67,20 +72,17 @@ public class BarrierManager : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z));
         }
-
-        for (int i = 0; i < _stopLocations.Count; i++)
-        {
-
-        }
     }
 
     public IEnumerator VehicleDeniedCoroutine()
-    {
+    {     
         if (_vehicle != null)
         {
-
+            _vehicle.isReverse = true;
+            yield return new WaitForSeconds(2f); 
+            _vehicle.isReverse = false;
         }
-            yield return null;
+        yield return null;
     }
 
     public IEnumerator VehicleAcceptedCoroutine()

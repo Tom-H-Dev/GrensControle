@@ -45,7 +45,7 @@ public class DocVerifyPro : MonoBehaviour
             _driversLisenceIssue.text = _driverManager._givenIssueDate;
             _driversLisenceExpiry.text = _driverManager._givenExpiryDate;
 
-            _defensiePersNoText.text = _driverManager._givenPersNo;
+            _defesiePersNr.text = _driverManager._givenPersNo;
             _defesieLisenceFirstName.text = _driverManager._givenFitstName;
             _defesieLisenceLastName.text = _driverManager._givenLastName;
             _defesieLisenceBirthDate.text = _driverManager._givenBirthDate;
@@ -60,7 +60,7 @@ public class DocVerifyPro : MonoBehaviour
             _driversLisenceIssue.text = _driverManager._driverDateOfIssue;
             _driversLisenceExpiry.text = _driverManager._driverDateOfExpiry;
 
-            _defensiePersNoText.text = _driverManager._driverDefensiePersNo;
+            _defesiePersNr.text = _driverManager._driverDefensiePersNo;
             _defesieLisenceFirstName.text = _driverManager._driverFirstName;
             _defesieLisenceLastName.text = _driverManager._driverLastName;
             _defesieLisenceBirthDate.text = _driverManager._driverBirthDate;

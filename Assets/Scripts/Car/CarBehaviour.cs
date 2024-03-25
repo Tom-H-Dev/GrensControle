@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class CarBehaviour : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class CarBehaviour : MonoBehaviour
     [SerializeField] AudioSource _honkSound; //Honk sound effect
     [SerializeField] AudioSource _brakeSound; //Brake screetch sound effect
     [SerializeField] LayerMask _CollisionLayerMask; //COllision layermask for the emergency brake
+    public bool isReverse = false;
     bool _emergencyBrake; // Bool that keeps track of braking
     [Header("Radius")]
     [SerializeField] float _slowingRadius; // In this radius the car will half it's normal speed (_normalSpeed)
@@ -33,6 +36,7 @@ public class CarBehaviour : MonoBehaviour
         string _middleText = null;
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _normalSpeed;
+
 
         float a = Random.value;
         if (a < 0.05f)
@@ -102,22 +106,29 @@ public class CarBehaviour : MonoBehaviour
         _agent.stoppingDistance = _stoppingRadius;
         float agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.position);
 
-        if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
+        if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius && !isReverse)
         {
             _agent.speed = _normalSpeed * 0.5f;
         }
-        else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
+        else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius && !isReverse)
         {
             _agent.speed = _normalSpeed * 0.3f;
         }
-        else if (agentToFinishDistance < _stoppingRadius)
+        else if (agentToFinishDistance < _stoppingRadius && isReverse)
         {
             _agent.speed = 0;
         }
-        else
+        else if (!isReverse)
         {
             _agent.speed = _normalSpeed;
         }
+
+        if (isReverse)
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - 2, transform.position.y, transform.position.z), 3 * Time.deltaTime);
+        }
+
+    }
 
         //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
         //{
@@ -138,8 +149,6 @@ public class CarBehaviour : MonoBehaviour
         //    }
            
         //}
-
-    }
 
     private void OnDrawGizmos()
     {
