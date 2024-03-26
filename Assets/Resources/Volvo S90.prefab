@@ -1322,7 +1322,7 @@ MonoBehaviour:
   _driverDateOfExpiry: 
   _driverBSN: 0
   _isFalsified: 0
-  _falsifiedPercentage: 10
+  _falsifiedPercentage: 50
   _givenFitstName: 
   _givenLastName: 
   _givenBirthDate: 
