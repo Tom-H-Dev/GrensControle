@@ -23,6 +23,7 @@ public class VehicleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            print("spawning vehicle...");
             SpawnVehicle();
         }
     }
