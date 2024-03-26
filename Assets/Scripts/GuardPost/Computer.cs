@@ -6,17 +6,26 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour
 {
-    private bool _isOnPC = false;
-    private PlayerMovement _playerMovement;
-    private PlayerLook _playerLook;
     private Animator _canvasAnimator;
 
+    [Header("User Interface")]
+    [Tooltip("The UI GameObject for the computer screen.")]
     [SerializeField] private GameObject _computerScreen;
+    [Tooltip("The windows background.")]
     [SerializeField] private RectTransform _windows;
+    [Tooltip("The TMPro text component on where to go.")]
     [SerializeField] private TMP_Text _clock;
-    private Camera mainCamera;
-    [SerializeField] private Transform _playerComputerPosition, _cameraComputerPos, _originalCameraPos; 
 
+    [Header("Player Information")]
+    private bool _isOnPC = false;
+    [Tooltip("Player camera position.")]
+    private Camera mainCamera;
+    [Tooltip("The positions for the player to be at  when on computer.")]
+    [SerializeField] private Transform _playerComputerPosition, _cameraComputerPos, _originalCameraPos;
+    private PlayerLook _playerLook;
+    private PlayerMovement _playerMovement;
+
+    [Header("Real world time info")]
     private int _realWorldDay = System.DateTime.Now.Day;
     private int _realWorldMonth = System.DateTime.Now.Month;
     private int _realWorldYear = System.DateTime.Now.Year;
@@ -27,6 +36,8 @@ public class Computer : MonoBehaviour
     [SerializeField] private AudioClip _startPCAudio;
     [SerializeField] private AudioClip _closePCAudio;
     private AudioSource _computerAudio;
+
+
     private void Start()
     {
         _computerAudio = GetComponent<AudioSource>();
@@ -34,7 +45,8 @@ public class Computer : MonoBehaviour
 
     private void Update()
     {
-        _clock.text = _realWorldHour + ":" + _realWorldMinute + "\n" + _realWorldDay + "-" + _realWorldMonth + "-" + _realWorldYear;
+        //Updates the clock on the computer at all times.
+        _clock.text = System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + "\n" + System.DateTime.Now.Day + "-" + System.DateTime.Now.Month + "-" + System.DateTime.Now.Year;
     }
 
     /// <summary>
@@ -74,12 +86,12 @@ public class Computer : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void ClosePC()
+    public void ClosePC()//Closes the computer
     {
         _isOnPC = false;
         _computerScreen.SetActive(false);
         _playerMovement.CanMoveChange(true);
-        _playerLook.gameObject.transform.position = Vector3.Lerp(_playerLook.gameObject.transform.position, _playerLook._originalLocation, 1);
+        //_playerLook.gameObject.transform.position = Vector3.Lerp(_playerLook.gameObject.transform.position, _playerLook._originalLocation, 1);
 
         _playerLook._canLook = true;
         Cursor.lockState = CursorLockMode.Locked;
