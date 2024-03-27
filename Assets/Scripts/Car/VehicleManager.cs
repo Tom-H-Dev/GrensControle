@@ -13,6 +13,7 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] BarrierManager _entranceBarrier;
     [SerializeField] List<GameObject> _currentVehicles;
     public Transform insideBaseLocation;
+    public bool photonServer;
     void Start()
     {
         SpawnVehicle();
@@ -23,7 +24,7 @@ public class VehicleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            print("spawning vehicle...");
+           
             SpawnVehicle();
         }
     }
@@ -36,6 +37,15 @@ public class VehicleManager : MonoBehaviour
             _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
             //_currentVehicle.name = (_currentVehicleNumber = +1).ToString();
             //_currentVehicles.Add(_currentVehicle);
+            _currentVehiclesInt++;
+            _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+        }
+        else if (photonServer)
+        {
+            print("spawning vehicle...");
+            GameObject _currentVehicle = Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
+            _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
+            _currentVehicles.Add(_currentVehicle);
             _currentVehiclesInt++;
             _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
         }
