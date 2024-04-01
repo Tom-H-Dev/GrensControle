@@ -84,7 +84,7 @@ public class PlayerLook : MonoBehaviour
                     {
                         if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
                         {
-                            l_Text.startText(GetComponent<PlayerMovement>(), this);
+                            l_Text.StartText(GetComponent<PlayerMovement>(), this);
                         }
                     }
                     else if (team == 3)
@@ -98,7 +98,7 @@ public class PlayerLook : MonoBehaviour
                 }
                 if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager L_Text))
                 {
-                    L_Text.startText(GetComponent<PlayerMovement>(), this);
+                    L_Text.StartText(GetComponent<PlayerMovement>(), this);
                 }
             }
         }
