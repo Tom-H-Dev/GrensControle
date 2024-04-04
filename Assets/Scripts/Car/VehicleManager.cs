@@ -24,7 +24,6 @@ public class VehicleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-           
             SpawnVehicle();
         }
     }

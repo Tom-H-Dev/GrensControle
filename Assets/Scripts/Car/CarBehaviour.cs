@@ -123,11 +123,6 @@ public class CarBehaviour : MonoBehaviour
             _agent.speed = _normalSpeed;
         }
 
-        //if (isReverse)
-        //{
-        //    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - 2, transform.position.y, transform.position.z), 3 * Time.deltaTime);
-        //}
-
     }
 
         //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);

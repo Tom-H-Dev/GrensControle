@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BarrierManager : MonoBehaviour
 {
@@ -78,9 +79,14 @@ public class BarrierManager : MonoBehaviour
     {     
         if (_vehicle != null)
         {
-            _vehicle.isReverse = true;
-            yield return new WaitForSeconds(2f); 
-            _vehicle.isReverse = false;
+            print("Vehicle denied");
+            _vehicle.GetComponent<NavMeshAgent>().angularSpeed = 0;
+            for (int i = 0; i < _stopLocations.Count; i++)
+            {
+                _queue[i].gameObject.GetComponent<NavMeshAgent>().angularSpeed = 0;
+                print("e");
+                _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x - _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
+            }
         }
         yield return null;
     }
