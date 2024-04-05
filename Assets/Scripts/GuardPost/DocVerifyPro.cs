@@ -51,6 +51,8 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceBirthDate.text = _driverManager._givenBirthDate;
             _defesieLisenceIssue.text = _driverManager._givenIssueDate;
             _defesieLisenceExpiry.text = _driverManager._givenExpiryDate;
+
+            GetComponent<Hefboom>()._isCorrect = false;
         }
         else
         {
@@ -67,6 +69,7 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceIssue.text = _driverManager._driverDefensieDateOfIssue;
             _defesieLisenceExpiry.text = _driverManager._driverDefensieDateOfExpiry;
 
+            GetComponent<Hefboom>()._isCorrect = true;
         }
         _defesieSex.text = _driverManager._driverSex;
         _driverBSN.text = _driverManager._driverBSN.ToString();

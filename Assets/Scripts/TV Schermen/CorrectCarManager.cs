@@ -16,39 +16,25 @@ public class CorrectCarManager : MonoBehaviour
 
     public List<LastFiveList> _lastFive = new List<LastFiveList>();
     public int _totalVehicles;
-    public int _correctVehicles;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Quote))
-        {
-            ChangeList(false, false);
-        }
-    }
+    public int _playerCorrectVehicles;
+    public bool demo;
+    public bool demo2;
+    [Header("Last Car")]
+    [SerializeField] private TMP_Text _lisence;
+    [SerializeField] private TMP_Text _allowedText, _playerChoiceText;
+
+    [Header("Total Correct")]
+    [SerializeField] private TMP_Text _totalVehicleCorrectText;
+
 
     public void ChangeList(bool l_wasCorrect, bool l_playerChoice)
     {
         _totalVehicles++;
-        if (l_wasCorrect)
-            _correctVehicles++;
+        if (l_wasCorrect == l_playerChoice)
+            _playerCorrectVehicles++;
+        
 
-        for (int i = 0; i < 5; i++)
-        {
-            if (i != 4)
-            {
-                _lastFive[i + 1]._playerChoice = _lastFive[i]._playerChoice;
-                _lastFive[i + 1]._isCorrect = _lastFive[i]._isCorrect;
-
-                _lastFive[i + 1]._licensePlateText.text = _lastFive[i]._licensePlateText.text;
-
-                _lastFive[i + 1]._correctText.text = _lastFive[i]._correctText.text;
-                _lastFive[i + 1]._correctText.color = _lastFive[i]._correctText.color;
-
-                _lastFive[i + 1]._playerChoiceText.text = _lastFive[i]._playerChoiceText.text;
-                _lastFive[i + 1]._playerChoiceText.color = _lastFive[i]._playerChoiceText.color;
-            }
-        }
-
-        for (int i = 4; i > -1; i--)
+        for (int i = 4; i >= 0; i--)
         {
             if (i != 0)
             {
@@ -63,9 +49,14 @@ public class CorrectCarManager : MonoBehaviour
                 _lastFive[i]._playerChoiceText.text = _lastFive[i - 1]._playerChoiceText.text;
                 _lastFive[i]._playerChoiceText.color = _lastFive[i - 1]._playerChoiceText.color;
             }
-
         }
 
+        LastCar(l_wasCorrect, l_playerChoice);
+        TotalCorrect();
+    }
+
+    private void LastCar(bool l_wasCorrect, bool l_playerChoice)
+    {
         _lastFive[0]._playerChoice = l_playerChoice;
         _lastFive[0]._isCorrect = l_wasCorrect;
 
@@ -91,5 +82,39 @@ public class CorrectCarManager : MonoBehaviour
             _lastFive[0]._playerChoiceText.text = "Nee";
             _lastFive[0]._playerChoiceText.color = Color.red;
         }
+
+        _lisence.text = "Kenteken:\n" + _lastFive[0]._licensePlateText.text;
+        if (l_wasCorrect)
+        {
+            _allowedText.text = "\nJa";
+            _allowedText.color = Color.green;
+        }
+        else
+        {
+            _allowedText.text = "\nNee";
+            _allowedText.color = Color.red;
+        }
+
+        if (l_playerChoice)
+        {
+            _playerChoiceText.text = "\nJa";
+            _playerChoiceText.color = Color.green;
+        }
+        else
+        {
+            _playerChoiceText.text = "\nNee";
+            _playerChoiceText.color = Color.red;
+        }
+    }
+
+    private void TotalCorrect()
+    {
+        int _totalVehicle = _totalVehicles; // For example
+        int _correctVehicles = _playerCorrectVehicles; // For example
+
+        float l_percentageCorrect = (_correctVehicles / (float)_totalVehicle) * 100f;
+
+        _totalVehicleCorrectText.text = _playerCorrectVehicles + " / " + _totalVehicles + " voertuigen correct" + "\n\n" + (int)l_percentageCorrect + "% / 100%\ncorrect";
+
     }
 }
