@@ -108,8 +108,9 @@ public class DriverManager : MonoBehaviour
         l_month = _months[Random.Range(0, _months.Count)];
         int l_day = 0;
         int l_yearsAgo = Random.Range(1, 6);
-        if (l_r < _falsifiedPercentage) //false
+        if (l_r < _falsifiedPercentage) //fasle info  
         {
+            _isFalsified = true;
             //issue date
 
             if (l_month == "FEB") // 28 days
@@ -257,7 +258,7 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
-        SetDriverModels();
+        //SetDriverModels();
     }
 
     private void SetDriverModels()
