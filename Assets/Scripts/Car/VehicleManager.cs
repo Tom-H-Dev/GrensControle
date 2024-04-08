@@ -30,23 +30,26 @@ public class VehicleManager : MonoBehaviour
 
     private void SpawnVehicle()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (_currentVehicles.Count < _maxVehicles)
         {
-            GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
-            _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
-            //_currentVehicle.name = (_currentVehicleNumber = +1).ToString();
-            //_currentVehicles.Add(_currentVehicle);
-            _currentVehiclesInt++;
-            _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
-        }
-        else if (photonServer)
-        {
-            print("spawning vehicle...");
-            GameObject _currentVehicle = Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
-            _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
-            _currentVehicles.Add(_currentVehicle);
-            _currentVehiclesInt++;
-            _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
+                _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
+                _currentVehicles.Add(_currentVehicle);
+                _currentVehiclesInt++;
+                _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+            }
+            else if (photonServer)
+            {
+                print("spawning vehicle...");
+                GameObject _currentVehicle = Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
+                _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
+                _currentVehicles.Add(_currentVehicle);
+                _currentVehiclesInt++;
+                _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+                _entranceBarrier._queue.Add(_currentVehicle.GetComponent<CarBehaviour>());
+            }
         }
     }
 }

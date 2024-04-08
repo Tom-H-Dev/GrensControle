@@ -15,10 +15,11 @@ public class BarrierManager : MonoBehaviour
 
     [SerializeField] Transform _stopSpot; // Spot from which the stoplocations will be calculated
     [SerializeField] List<Transform> _stopLocations = new List<Transform>(); // List of possible locations for vehicles to stop behind eachother
+    [SerializeField] List<Transform> _driveAwayLocations = new List<Transform>(); //List of places the car will go trough when denied
     [SerializeField] List<bool> _stopLocationOccupied = new List<bool>(); // Bools telling if a spot in the queue is taken or not
     [SerializeField] float _vehicleWaitDistance; // Distance between the parked vehicles\
     [SerializeField] VehicleManager _vehicleManager;
-    public CarBehaviour[] _queue; // current vehicles in the queue
+    public List<CarBehaviour> _queue; // current vehicles in the queue
 
     private void Awake()
     {
@@ -32,7 +33,6 @@ public class BarrierManager : MonoBehaviour
             _stopLocations.Add(stopPoint.transform);
             
         }
-        _queue = new CarBehaviour[_vehicleManager._maxVehicles];
     }
 
     void Update()
@@ -59,6 +59,8 @@ public class BarrierManager : MonoBehaviour
         {
             StartCoroutine(VehicleDeniedCoroutine());
         }
+
+
     }
 
     private void OnDrawGizmos()
@@ -80,15 +82,44 @@ public class BarrierManager : MonoBehaviour
         if (_vehicle != null)
         {
             print("Vehicle denied");
-            _vehicle.GetComponent<NavMeshAgent>().angularSpeed = 0;
+            foreach (CarBehaviour car in _queue)
+            {
+                if (car != null)
+                    car.GetComponent<NavMeshAgent>().angularSpeed = 0;
+            }
+
             for (int i = 0; i < _stopLocations.Count; i++)
             {
-                _queue[i].gameObject.GetComponent<NavMeshAgent>().angularSpeed = 0;
-                print("e");
                 _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x - _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
             }
+
+            for (int i = 0; i < _driveAwayLocations.Count; i++)
+            {
+                print("next stop");
+                if (i > 0)
+                {
+                    foreach (CarBehaviour car in _queue)
+                    {
+                        if (car != null)
+                            car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
+                    }
+                    _vehicle._currentTarget = _driveAwayLocations[i - 1];          
+                }
+                yield return StartCoroutine(WaitForVehicleToReachTarget());
+            }
+
+            UpdateQueue();
         }
         yield return null;
+    }
+
+    private IEnumerator WaitForVehicleToReachTarget()
+    {
+        // Wait until the vehicle is within stopping distance of the target
+        while (Vector3.Distance(_vehicle.transform.position, _vehicle._currentTarget.position) > _vehicle._stoppingRadius)
+        {
+            yield return null;
+        }
     }
 
     public IEnumerator VehicleAcceptedCoroutine()
@@ -102,31 +133,7 @@ public class BarrierManager : MonoBehaviour
             print(_vehicle._currentTarget);
             _vehicleManager._currentVehiclesInt--;
 
-            for (int i = 0; i < _queue.Length; i++)
-            {
-                if (_queue[i] != null)
-                {
-
-                    if (i == 0)
-                    {
-                        _queue[0] = null;
-                    }
-                    else if (i > _vehicleManager._currentVehiclesInt-1)
-                    {
-                        _queue[i] = null;
-                    }
-                    else
-                    {
-                        _queue[i - 1] = _queue[i];
-                        GetStoppingSpot(_queue[i]);
-                    }
-                    _stopLocationOccupied[i] = false;
-                }
-                else
-                {
-                    _stopLocationOccupied[i] = false;
-                }
-            }
+            UpdateQueue();
 
             while (_vehicle != null)
             {
@@ -151,4 +158,35 @@ public class BarrierManager : MonoBehaviour
             }
         }
     }
+
+    public void UpdateQueue()
+    {
+        for (int i = 0; i < _queue.Count; i++)
+        {
+            if (_queue[i] != null)
+            {
+                if (i == 0)
+                {
+                    _queue[i] = null; // Remove the first item
+                    _stopLocationOccupied[i] = false; // Update occupancy status
+                }
+                else if (i > _vehicleManager._currentVehiclesInt - 1)
+                {
+                    _queue[i] = null; // Remove excess items beyond current vehicle count
+                    _stopLocationOccupied[i] = false; // Update occupancy status
+                }
+                else
+                {
+                    _queue[i - 1] = _queue[i]; // Shift the queue
+                    GetStoppingSpot(_queue[i]); // Update stopping spot
+                    _stopLocationOccupied[i] = false; // Update occupancy status
+                }
+            }
+            else
+            {
+                _stopLocationOccupied[i] = false; // Update occupancy status
+            }
+        }
+    }
+
 }
