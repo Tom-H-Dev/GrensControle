@@ -319,7 +319,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -389,7 +389,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 15
   field of view: 43
   orthographic: 0
   orthographic size: 0.24
@@ -568,12 +568,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fd831ddbb4ad8514090d65991789d0e8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.978
+      value: -0.863
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd831ddbb4ad8514090d65991789d0e8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.85990137
+      value: 0.953
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd831ddbb4ad8514090d65991789d0e8,
         type: 3}

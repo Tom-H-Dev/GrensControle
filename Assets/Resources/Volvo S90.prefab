@@ -1334,6 +1334,8 @@ MonoBehaviour:
   _givenIssueDate: 
   _givenExpiryDate: 
   _givenBSN: 0
+  _driverMale: {fileID: 0}
+  _driverFemale: {fileID: 0}
 --- !u!1 &392195580928501555
 GameObject:
   m_ObjectHideFlags: 0
