@@ -30,7 +30,7 @@ public class DriverManager : MonoBehaviour
 
     [Header("Falsified")]
     public bool _isFalsified = false;
-    [Range(0,100)]
+    [Range(0, 100)]
     public float _falsifiedPercentage = 20;
 
     [Header("Given Information")] //This is the inforamtion given by the driver if they have falsified information
@@ -45,6 +45,10 @@ public class DriverManager : MonoBehaviour
     public string _givenIssueDate;
     public string _givenExpiryDate;
     public int _givenBSN;
+
+    [Header("Driver Models")]
+    [SerializeField] private GameObject _driverMale;
+    [SerializeField] private GameObject _driverFemale;
 
     #region radomize info lists
     [Header("Random Information")]
@@ -65,6 +69,7 @@ public class DriverManager : MonoBehaviour
             RandomizeInfo();
         }
     }
+
 
     public void RandomizeInfo()
     {
@@ -98,45 +103,85 @@ public class DriverManager : MonoBehaviour
 
         //Drivers Lisence
         _driverBSN = Random.Range(111111111, 999999999);
-        //issue date
+
+        float l_r = Random.Range(0, 100);
         l_month = _months[Random.Range(0, _months.Count)];
         int l_day = 0;
         int l_yearsAgo = Random.Range(1, 6);
-
-        if (l_month == "FEB") // 28 days
-            l_day = Random.Range(1, 28);
-        else if (l_month == "APR" || l_month == "JUN" || l_month == "SEP" || l_month == "NOV")  // 30 days
-            l_day = Random.Range(1, 30);
-        else if (l_month == "JAN" || l_month == "MAA" || l_month == "MEI" || l_month == "JUL" || l_month == "AUG" || l_month == "OCT" || l_month == "DEC") // 31 days
-            l_day = Random.Range(1, 31);
-
-        _driverDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo);
-        _driverDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (10 - l_yearsAgo));
-
-        //Defensiepas
-        //issue date
-        if (!_driverIsGeust)
+        if (l_r < _falsifiedPercentage) //false
         {
-            l_month = _months[Random.Range(0, _months.Count)];
-            l_yearsAgo = Random.Range(1, 2);
+            //issue date
 
             if (l_month == "FEB") // 28 days
                 l_day = Random.Range(1, 28);
             else if (l_month == "APR" || l_month == "JUN" || l_month == "SEP" || l_month == "NOV")  // 30 days
                 l_day = Random.Range(1, 30);
-            else if (l_month == "JAN" || l_month == "MAR" || l_month == "MEI" || l_month == "JUL" || l_month == "AUG" || l_month == "OCT" || l_month == "DEC") // 31 days
+            else if (l_month == "JAN" || l_month == "MAA" || l_month == "MEI" || l_month == "JUL" || l_month == "AUG" || l_month == "OCT" || l_month == "DEC") // 31 days
                 l_day = Random.Range(1, 31);
 
-            _driverDefensieDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo);
-            _driverDefensieDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (3 - l_yearsAgo));
+            _driverDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo - 10);
+            _driverDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (10 - l_yearsAgo - 10));
 
-            _driverDefensiePersNo = (int)Random.Range(111111, 999999) + "";
-            _driverDefensieDocumentNumber = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
+            //Defensiepas
+            //issue date
+            if (!_driverIsGeust)
+            {
+                l_month = _months[Random.Range(0, _months.Count)];
+                l_yearsAgo = Random.Range(1, 2);
+
+                if (l_month == "FEB") // 28 days
+                    l_day = Random.Range(1, 28);
+                else if (l_month == "APR" || l_month == "JUN" || l_month == "SEP" || l_month == "NOV")  // 30 days
+                    l_day = Random.Range(1, 30);
+                else if (l_month == "JAN" || l_month == "MAR" || l_month == "MEI" || l_month == "JUL" || l_month == "AUG" || l_month == "OCT" || l_month == "DEC") // 31 days
+                    l_day = Random.Range(1, 31);
+
+                _driverDefensieDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo - 10);
+                _driverDefensieDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (3 - l_yearsAgo - 10));
+
+                _driverDefensiePersNo = (int)Random.Range(111111, 999999) + "";
+                _driverDefensieDocumentNumber = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
+            }
+        }
+        else //not false
+        {
+            //issue date
+
+            if (l_month == "FEB") // 28 days
+                l_day = Random.Range(1, 28);
+            else if (l_month == "APR" || l_month == "JUN" || l_month == "SEP" || l_month == "NOV")  // 30 days
+                l_day = Random.Range(1, 30);
+            else if (l_month == "JAN" || l_month == "MAA" || l_month == "MEI" || l_month == "JUL" || l_month == "AUG" || l_month == "OCT" || l_month == "DEC") // 31 days
+                l_day = Random.Range(1, 31);
+
+            _driverDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo);
+            _driverDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (10 - l_yearsAgo));
+
+            //Defensiepas
+            //issue date
+            if (!_driverIsGeust)
+            {
+                l_month = _months[Random.Range(0, _months.Count)];
+                l_yearsAgo = Random.Range(1, 2);
+
+                if (l_month == "FEB") // 28 days
+                    l_day = Random.Range(1, 28);
+                else if (l_month == "APR" || l_month == "JUN" || l_month == "SEP" || l_month == "NOV")  // 30 days
+                    l_day = Random.Range(1, 30);
+                else if (l_month == "JAN" || l_month == "MAR" || l_month == "MEI" || l_month == "JUL" || l_month == "AUG" || l_month == "OCT" || l_month == "DEC") // 31 days
+                    l_day = Random.Range(1, 31);
+
+                _driverDefensieDateOfIssue = l_day + " " + l_month + " " + (_thisYear - l_yearsAgo);
+                _driverDefensieDateOfExpiry = l_day + " " + l_month + " " + (_thisYear + (3 - l_yearsAgo));
+
+                _driverDefensiePersNo = (int)Random.Range(111111, 999999) + "";
+                _driverDefensieDocumentNumber = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
+            }
         }
 
         //random cahnce to be false
-        float l_r = Random.Range(0, 100);
-        if ( l_r < _falsifiedPercentage)
+        l_r = Random.Range(0, 100);
+        if (l_r < _falsifiedPercentage)
         {
             Debug.Log("False Inforamtion");
             _isFalsified = true;
@@ -164,9 +209,9 @@ public class DriverManager : MonoBehaviour
 
             //Defensie document no
             _givenNationality = _driverNationalities[Random.Range(0, _driverNationalities.Count)];
-            _givenPersNo = (int)Random.Range(111111, 999999)+"";
+            _givenPersNo = (int)Random.Range(111111, 999999) + "";
             _givenDocumentNo = (int)Random.Range(1, 9) + " " + (int)Random.Range(111, 999) + " " + (int)Random.Range(1111, 9999) + "-" + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999) + " " + (int)Random.Range(1111, 9999);
-            
+
             //Defensie document dates
             l_month = _months[Random.Range(0, _months.Count)];
             l_yearsAgo = Random.Range(1, 2);
@@ -212,16 +257,20 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
+        SetDriverModels();
     }
 
-    private void Update()
+    private void SetDriverModels()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (_driverSex == "Male")
         {
-            if (Input.GetKeyDown(KeyCode.Minus))
-            {
-                RandomizeInfo();
-            }
+            _driverMale.SetActive(true);
+            _driverFemale.SetActive(false);
+        }
+        else
+        {
+            _driverMale.SetActive(false);
+            _driverFemale.SetActive(true);
         }
     }
 }
