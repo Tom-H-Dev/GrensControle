@@ -11,7 +11,7 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] GameObject _carPrefab;
     [SerializeField] Transform _carSpawnLocation;
     [SerializeField] BarrierManager _entranceBarrier;
-    [SerializeField] List<GameObject> _currentVehicles;
+    public List<GameObject> _currentVehicles;
     public Transform insideBaseLocation;
     public bool photonServer;
     void Start()
@@ -34,21 +34,19 @@ public class VehicleManager : MonoBehaviour
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                print("spawning vehicle in server...");
                 GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
-                _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
+                _entranceBarrier.AddToQueue(_currentVehicle.GetComponent<CarBehaviour>());
                 _currentVehicles.Add(_currentVehicle);
                 _currentVehiclesInt++;
-                _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
             }
             else if (photonServer)
             {
-                print("spawning vehicle...");
+                print("spawning vehicle locally...");
                 GameObject _currentVehicle = Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
-                _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
+                _entranceBarrier.AddToQueue(_currentVehicle.GetComponent<CarBehaviour>());
                 _currentVehicles.Add(_currentVehicle);
                 _currentVehiclesInt++;
-                _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
-                _entranceBarrier._queue.Add(_currentVehicle.GetComponent<CarBehaviour>());
             }
         }
     }

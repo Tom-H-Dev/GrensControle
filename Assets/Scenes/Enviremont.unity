@@ -2110,7 +2110,6 @@ MonoBehaviour:
   _stopSpot: {fileID: 1962753771}
   _stopLocations: []
   _driveAwayLocations: []
-  _stopLocationOccupied: 
   _vehicleWaitDistance: 0
   _vehicleManager: {fileID: 0}
   _queue:
@@ -3365,15 +3364,9 @@ MonoBehaviour:
   - {fileID: 2139911802}
   - {fileID: 1594773571}
   - {fileID: 1686365369}
-  _stopLocationOccupied: 
   _vehicleWaitDistance: 6
   _vehicleManager: {fileID: 0}
-  _queue:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _queue: []
 --- !u!1001 &1343230451
 PrefabInstance:
   m_ObjectHideFlags: 0

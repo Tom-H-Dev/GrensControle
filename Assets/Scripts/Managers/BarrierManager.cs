@@ -86,6 +86,7 @@ public class BarrierManager : MonoBehaviour
                     car.GetComponent<NavMeshAgent>().angularSpeed = 0;
             }
 
+
             for (int i = 0; i < _stopLocations.Count; i++)
             {
                 _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x - _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
@@ -102,12 +103,17 @@ public class BarrierManager : MonoBehaviour
                             car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
                     }
                     _vehicle._currentTarget = _driveAwayLocations[i - 1];
-                }
+                }                    
                 yield return StartCoroutine(WaitForVehicleToReachTarget());
-            }
-
-            UpdateQueue();
+            }         
         }
+
+        for (int i = 0; i < _stopLocations.Count; i++)
+        {
+            _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x + _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
+        }
+
+        RemoveFirstVehicleFromQueue();
         yield return null;
     }
 
@@ -131,12 +137,12 @@ public class BarrierManager : MonoBehaviour
             print(_vehicle._currentTarget);
             _vehicleManager._currentVehiclesInt--;
 
-            UpdateQueue();
+            RemoveFirstVehicleFromQueue();
 
-            while (_vehicle != null)
-            {
-                yield return null;
-            }
+            //while (_vehicle != null)
+            //{
+            //    yield return null;
+            //}
             yield return new WaitForSeconds(1);
             _barrierAnimator.ResetTrigger("Open");
             _barrierAnimator.SetTrigger("Close");
@@ -144,27 +150,25 @@ public class BarrierManager : MonoBehaviour
         }
     }
 
-    public void GetStoppingSpot(CarBehaviour car)
+    public void AddToQueue(CarBehaviour car)
     {
-        for (int i = 0; i < _vehicleManager._maxVehicles; i++)
-        {
-            if (_queue[i] == null)
-            {
-                car._currentTarget = _stopLocations[i];
-                break;
-            }
-        }
+        _queue.Add(car);
+        UpdateStopLocation();
     }
 
-    public void UpdateQueue()
+    public void RemoveFirstVehicleFromQueue()
     {
         _queue.RemoveAt(0);
+        _vehicleManager._currentVehicles.RemoveAt(0);
+        _vehicleManager._currentVehiclesInt--;
+        UpdateStopLocation();
+    }
 
+    public void UpdateStopLocation()
+    {
         for (int i = 0; i < _queue.Count; i++)
         {
-            _queue[i] = _queue[i + 1];
             _queue[i]._currentTarget = _stopLocations[i];
-
         }
     }
 }

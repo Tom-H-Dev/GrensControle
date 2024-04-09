@@ -24,7 +24,6 @@ public class CarBehaviour : MonoBehaviour
     [SerializeField] AudioSource _honkSound; //Honk sound effect
     [SerializeField] AudioSource _brakeSound; //Brake screetch sound effect
     [SerializeField] LayerMask _CollisionLayerMask; //COllision layermask for the emergency brake
-    public bool isDrivingBack = false;
     bool _emergencyBrake; // Bool that keeps track of braking
     //----------------------------------------------------------------------------------------------------
     [Header("Radius")]
@@ -112,47 +111,48 @@ public class CarBehaviour : MonoBehaviour
         _agent.stoppingDistance = _stoppingRadius;
         agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.position);
 
-        if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius && !isDrivingBack)
+        if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
             _agent.speed = _defaultSpeed * 0.5f;
         }
-        else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius && !isDrivingBack)
+        else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
         {
             _agent.speed = _defaultSpeed * 0.3f;
         }
-        else if (agentToFinishDistance < _stoppingRadius && isDrivingBack)
+        else if (agentToFinishDistance < _stoppingRadius)
         {
             _agent.speed = 0;
         }
-        else if (!isDrivingBack)
+        else
         {
             _agent.speed = _defaultSpeed;
         }
 
         foreach (GameObject wheel in _wheels)
         {
-            wheel.transform.Rotate(Vector3.forward, Mathf.Clamp(_agent.speed, 0f, 10) * Time.deltaTime);
+            wheel.transform.Rotate(Vector3.left, _agent.speed * Time.deltaTime);
+            print(_agent.speed);
         }
 
-        //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
-        //{
-        //    if (colliders.Length > 0)
-        //    {
-        //        if (!_emergencyBrake)
-        //        {
-        //            print("Braking!");
-        //            _emergencyBrake = true;
-        //            _agent.speed = 0;
-        //            _brakeSound.Play();
-        //            _honkSound.Play();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _emergencyBrake = false;
-        //    }
+        Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
+        {
+            if (colliders.Length > 0)
+            {
+                if (!_emergencyBrake)
+                {
+                    print("Braking!");
+                    _emergencyBrake = true;
+                    _agent.speed = 0;
+                    _brakeSound.Play();
+                    _honkSound.Play();
+                }
+            }
+            else
+            {
+                _emergencyBrake = false;
+            }
 
-        //}
+        }
     }
     private void OnDrawGizmos()
     {
