@@ -1144,7 +1144,7 @@ MonoBehaviour:
   _licensePlates:
   - {fileID: 6232096403173675809}
   - {fileID: 9038702628651347608}
-  _wheelAnimator: {fileID: 0}
+  _wheels: []
   _currentTarget: {fileID: 0}
   _defaultSpeed: 8
   _defaultAngularSpeed: 90
