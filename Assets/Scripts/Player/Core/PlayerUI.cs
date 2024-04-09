@@ -6,12 +6,13 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviourPun
 {
     [SerializeField] private GameObject _pauseMenu;
+    public bool _isDoingSomething= false;
     
     void Update()
     {
         if (GetComponent<PhotonView>().IsMine)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !_isDoingSomething)
             {
                 if (_pauseMenu.active)
                 {
@@ -46,5 +47,11 @@ public class PlayerUI : MonoBehaviourPun
 #else
         Application.Quit();
 #endif
+    }
+
+    public void LeaveRoom()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        PhotonNetwork.LeaveRoom();
     }
 }

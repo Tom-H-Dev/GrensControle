@@ -71,6 +71,7 @@ public class Computer : MonoBehaviour
 
         //Player lerps toward the pc
         mainCamera = _playerLook.GetComponentInChildren<Camera>();
+        l_player.GetComponent<PlayerUI>()._isDoingSomething = true;
         //l_player.gameObject.transform.position = Vector3.Lerp(l_player.gameObject.transform.position, _playerComputerPosition.position, 1);
         //l_look.gameObject.transform.position = Vector3.Lerp(l_look.gameObject.transform.position, _playerComputerPosition.position, 1);
         //l_look.transform.LookAt(transform);
@@ -92,7 +93,7 @@ public class Computer : MonoBehaviour
         _computerScreen.SetActive(false);
         _playerMovement.CanMoveChange(true);
         //_playerLook.gameObject.transform.position = Vector3.Lerp(_playerLook.gameObject.transform.position, _playerLook._originalLocation, 1);
-
+        _playerMovement.GetComponent<PlayerUI>()._isDoingSomething = false;
         _playerLook._canLook = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

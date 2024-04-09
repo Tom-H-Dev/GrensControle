@@ -15,7 +15,6 @@ public class MainMenuWallpapers : MonoBehaviour
 
     private IEnumerator RandomizeWallpapaers()
     {
-        Debug.Log("New wallpaper");
         _background.sprite = _images[Random.Range(0, _images.Count)];
         yield return new WaitForSeconds(30f);
         StartCoroutine(RandomizeWallpapaers());

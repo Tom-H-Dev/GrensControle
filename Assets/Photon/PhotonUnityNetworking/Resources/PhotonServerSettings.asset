@@ -55,6 +55,8 @@ MonoBehaviour:
   - LastCar
   - TotalCorrect
   - UpdateList
+  - ChangeReadyPlayer
+  - Countdown
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

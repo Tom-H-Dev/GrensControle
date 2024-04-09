@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 04bc317abbad2f646a38b571435dcd2f
   - enabled: 1
+    path: Assets/Scenes/RollExplain.unity
+    guid: d554e39f0d51c2441baec9d6432c634b
+  - enabled: 1
     path: Assets/Scenes/Grens.unity
     guid: dbf2441d213ee194ca1e382ffa7d4ba0
   - enabled: 1
