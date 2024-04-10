@@ -128,31 +128,33 @@ public class CarBehaviour : MonoBehaviour
             _agent.speed = _defaultSpeed;
         }
 
+        Vector3 vehicleVelocity = gameObject.GetComponent<Rigidbody>().velocity;
+
         foreach (GameObject wheel in _wheels)
         {
-            wheel.transform.Rotate(Vector3.left, _agent.speed * Time.deltaTime);
-            print(_agent.speed);
+            Vector3 velocity = gameObject.GetComponent<Rigidbody>().velocity;
+            float rotationAmount = velocity.magnitude * Time.deltaTime * Mathf.Rad2Deg;
         }
 
-        Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
-        {
-            if (colliders.Length > 0)
-            {
-                if (!_emergencyBrake)
-                {
-                    print("Braking!");
-                    _emergencyBrake = true;
-                    _agent.speed = 0;
-                    _brakeSound.Play();
-                    _honkSound.Play();
-                }
-            }
-            else
-            {
-                _emergencyBrake = false;
-            }
+        //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
+        //{
+        //    if (colliders.Length > 0)
+        //    {
+        //        if (!_emergencyBrake)
+        //        {
+        //            print("Braking!");
+        //            _emergencyBrake = true;
+        //            _agent.speed = 0;
+        //            _brakeSound.Play();
+        //            _honkSound.Play();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        _emergencyBrake = false;
+        //    }
 
-        }
+        //}
     }
     private void OnDrawGizmos()
     {

@@ -44,6 +44,7 @@ public class BarrierManager : MonoBehaviour
             _vehicle = collider.GetComponent<CarBehaviour>();
         }
 
+        print(_colliders);
         if (_colliders == null)
         {
             _vehicle = null;
