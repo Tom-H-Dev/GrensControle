@@ -36,6 +36,8 @@ public class CarBehaviour : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     void Start()
     {
+        
+        Physics.IgnoreLayerCollision(14, 16);
         _emergencyBrake = false;
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;

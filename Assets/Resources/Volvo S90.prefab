@@ -1157,7 +1157,6 @@ MonoBehaviour:
   _CollisionLayerMask:
     serializedVersion: 2
     m_Bits: 520
-  isDrivingBack: 0
   _slowingRadius: 15
   _brakingRadius: 7
   _stoppingRadius: 1
