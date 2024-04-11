@@ -1456,7 +1456,7 @@ MonoBehaviour:
   _isExit: 0
   _stopSpot: {fileID: 918268998}
   _stopLocations: []
-  _stopLocationOccupied: 
+  _driveAwayLocations: []
   _vehicleWaitDistance: 0
   _vehicleManager: {fileID: 0}
   _queue: []
@@ -4361,7 +4361,7 @@ MonoBehaviour:
   _isExit: 1
   _stopSpot: {fileID: 1812940879}
   _stopLocations: []
-  _stopLocationOccupied: 
+  _driveAwayLocations: []
   _vehicleWaitDistance: 0
   _vehicleManager: {fileID: 0}
   _queue: []
@@ -6713,7 +6713,7 @@ Terrain:
   m_GameObject: {fileID: 1480359925}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 3382e5710a9c0f24cb3e57253ee1999f, type: 2}
+  m_TerrainData: {fileID: 0}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 500
   m_TreeCrossFadeLength: 5
@@ -7500,6 +7500,7 @@ MonoBehaviour:
   _entranceBarrier: {fileID: 282292231}
   _currentVehicles: []
   insideBaseLocation: {fileID: 918268998}
+  photonServer: 0
 --- !u!1001 &1647037113
 PrefabInstance:
   m_ObjectHideFlags: 0
