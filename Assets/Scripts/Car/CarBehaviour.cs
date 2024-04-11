@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -14,6 +15,7 @@ public class CarBehaviour : MonoBehaviour
     public string _landCode;
     public string _licensePlate;
     [SerializeField] LicensePlateManager[] _licensePlates;
+    public bool _override =false;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
     NavMeshAgent _agent; //NavMesh agent
@@ -36,7 +38,7 @@ public class CarBehaviour : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     void Start()
     {
-        
+
         Physics.IgnoreLayerCollision(3, 15);
         _emergencyBrake = false;
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
@@ -44,65 +46,67 @@ public class CarBehaviour : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _agent.speed = _defaultSpeed;
 
-
-        float a = Random.value;
-        if (a < 0.05f)
+        if (PhotonNetwork.IsMasterClient || _override)
         {
-            _duplicateCode = "1";
-        }
-
-        float b = Random.value;
-        if (b < 0.50f)
-        {
-            _hasDutchLicensePlate = false;
-            _landCode = _landCodes[Random.Range(1, _landCodes.Length)];
-        }
-        else
-        {
-            _hasDutchLicensePlate = true;
-            _landCode = _landCodes[0];
-
-            float c = Random.value;
-            if (c < 0.30f)
+            float a = Random.value;
+            if (a < 0.05f)
             {
-                _isMillitairyVehicle = true;
-            }
-        }
-
-        if (_isMillitairyVehicle )
-        { 
-        _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
-        }
-        else
-        {
-            _middleText = _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString();
-        }
-
-        _licensePlate = Random.Range(0, 9).ToString() + Random.Range(0, 9).ToString() + "-" + _middleText + "-" + Random.Range(0, 9).ToString(); // set the license plate
-
-        
-
-        for (int i = 0; i < _licensePlates.Length; i++)
-        {
-            _licensePlates[i]._licenseText.text = _licensePlate;
-            _licensePlates[i]._landCodeText.text = _landCode;
-            _licensePlates[i]._duplicateText.text = _duplicateCode;
-
-            if (_hasDutchLicensePlate)
-            {
-                Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
-                materials[3] = _licensePlates[i]._yellowPlate;
-                materials[4] = _licensePlates[i]._yellowPlate;
-                _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
-            }
-            else if (!_hasDutchLicensePlate)
-            {
-                Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
-                materials[3] = _licensePlates[i]._whitePlate;
-                materials[4] = _licensePlates[i]._whitePlate;
-                _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+                _duplicateCode = "1";
             }
 
+            float b = Random.value;
+            if (b < 0.50f)
+            {
+                _hasDutchLicensePlate = false;
+                _landCode = _landCodes[Random.Range(1, _landCodes.Length)];
+            }
+            else
+            {
+                _hasDutchLicensePlate = true;
+                _landCode = _landCodes[0];
+
+                float c = Random.value;
+                if (c < 0.30f)
+                {
+                    _isMillitairyVehicle = true;
+                }
+            }
+
+            if (_isMillitairyVehicle)
+            {
+                _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
+            }
+            else
+            {
+                _middleText = _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString();
+            }
+
+            _licensePlate = Random.Range(0, 9).ToString() + Random.Range(0, 9).ToString() + "-" + _middleText + "-" + Random.Range(0, 9).ToString(); // set the license plate
+
+
+
+            for (int i = 0; i < _licensePlates.Length; i++)
+            {
+                _licensePlates[i]._licenseText.text = _licensePlate;
+                _licensePlates[i]._landCodeText.text = _landCode;
+                _licensePlates[i]._duplicateText.text = _duplicateCode;
+
+                if (_hasDutchLicensePlate)
+                {
+                    Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
+                    materials[3] = _licensePlates[i]._yellowPlate;
+                    materials[4] = _licensePlates[i]._yellowPlate;
+                    _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+                }
+                else if (!_hasDutchLicensePlate)
+                {
+                    Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
+                    materials[3] = _licensePlates[i]._whitePlate;
+                    materials[4] = _licensePlates[i]._whitePlate;
+                    _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+                }
+
+            }
         }
     }
 

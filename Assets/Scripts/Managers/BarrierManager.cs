@@ -81,6 +81,7 @@ public class BarrierManager : MonoBehaviour
         if (_vehicle != null)
         {
             print("Vehicle denied");
+            StartCoroutine(Timer(4));
             foreach (CarBehaviour car in _queue)
             {
                 if (car != null)
@@ -104,7 +105,7 @@ public class BarrierManager : MonoBehaviour
                             car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
                     }
                     _vehicle._currentTarget = _driveAwayLocations[i - 1];
-                }                    
+                }
                 yield return StartCoroutine(WaitForVehicleToReachTarget());
             }         
         }
@@ -114,8 +115,13 @@ public class BarrierManager : MonoBehaviour
             _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x + _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
         }
 
-        RemoveFirstVehicleFromQueue();
         yield return null;
+    }
+
+    private IEnumerator Timer(int l_time) 
+    {
+        yield return new WaitForSeconds(l_time);
+        RemoveFirstVehicleFromQueue();
     }
 
     private IEnumerator WaitForVehicleToReachTarget()

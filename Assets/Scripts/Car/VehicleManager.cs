@@ -16,7 +16,7 @@ public class VehicleManager : MonoBehaviour
     public bool photonServer;
     void Start()
     {
-        SpawnVehicle();
+        StartCoroutine(SpawnTimer());
     }
 
 
@@ -49,5 +49,13 @@ public class VehicleManager : MonoBehaviour
                 _currentVehiclesInt++;
             }
         }
+    }
+
+    private IEnumerator SpawnTimer()
+    {
+        SpawnVehicle();
+        int l_t = Random.Range(20,40);
+        yield return new WaitForSeconds(l_t);
+        StartCoroutine(SpawnTimer());
     }
 }
