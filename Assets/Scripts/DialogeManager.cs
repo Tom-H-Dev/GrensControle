@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class DialogeManager : MonoBehaviour
 {
     [Header("List")]
@@ -16,8 +16,7 @@ public class DialogeManager : MonoBehaviour
     public string[] changeWord;
 
     public string driverName;
-
-
+    
     public string DriverName;
     
     /*
@@ -36,6 +35,9 @@ public class DialogeManager : MonoBehaviour
     public int _index, _lineIndex, indexSes, currentLineIndex;
 
     private DriverManager infoDriver;
+    
+    public TextMeshProUGUI TextComponent;
+    public GameObject Text;
 
     void Start()
     {
@@ -83,7 +85,7 @@ public class DialogeManager : MonoBehaviour
                                 updatedLine += word + " ";
                             }
                         }
-                        textList[_index].TextComponent.text = updatedLine.Trim();
+                        TextComponent.text = updatedLine.Trim();
                         StopAllCoroutines();
                     }
                     else
@@ -106,7 +108,7 @@ public class DialogeManager : MonoBehaviour
                                 updatedLine += word + " ";
                             }
                         }
-                        textList[_index].TextComponent.text = updatedLine.Trim();
+                        TextComponent.text = updatedLine.Trim();
                         StopAllCoroutines();
                     }
                 }
@@ -116,7 +118,7 @@ public class DialogeManager : MonoBehaviour
 
     public void StartText(PlayerMovement playerMovement, PlayerLook playerLook)
     {
-        textList[_index].TextComponent.text = string.Empty;
+        TextComponent.text = string.Empty;
         
         foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
         {
@@ -134,7 +136,7 @@ public class DialogeManager : MonoBehaviour
 
     public void StartDialogueButton(int buttonIndex)
     {
-        textList[_index].TextComponent.text = string.Empty;
+        TextComponent.text = string.Empty;
         _index = buttonIndex;
         _lineIndex = 0;
         currentLineIndex = 0;
@@ -172,7 +174,7 @@ public class DialogeManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        textList[_index].Text.SetActive(true);
+        Text.SetActive(true);
         StartCoroutine(TypeLine(textList[_index].myList[indexSes].lines[0]));
     }
 
@@ -194,11 +196,11 @@ public class DialogeManager : MonoBehaviour
             }
             foreach (char c in wordToType)
             {
-                textList[_index].TextComponent.text += c;
+                TextComponent.text += c;
                 _textStart = true;
                 yield return new WaitForSeconds(textSpeed);
             }
-            textList[_index].TextComponent.text += ' ';
+            TextComponent.text += ' ';
         }
         yield return new WaitForSeconds(textSpeed);
     }
@@ -211,13 +213,13 @@ public class DialogeManager : MonoBehaviour
         {
             currentLineIndex++;
 
-            textList[_index].TextComponent.text = string.Empty;
+            TextComponent.text = string.Empty;
             StartCoroutine(TypeLine(textList[_index].myList[_lineIndex].lines[currentLineIndex]));
             _check = false;
         }
         else
         {
-            textList[_index].Text.SetActive(false);
+            Text.SetActive(false);
             _index = 0;
             _lineIndex = 0;
             currentLineIndex = 0;
