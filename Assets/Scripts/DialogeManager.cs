@@ -14,8 +14,24 @@ public class DialogeManager : MonoBehaviour
 
     [Header("Words")]
     public string[] changeWord;
+<<<<<<< HEAD
     public string driverName;
 
+=======
+
+    public string driverName;
+
+
+    public string DriverName;
+    
+    /*
+    [Header("cameraPos")]
+    [SerializeField] private GameObject MainPlayerCamera;
+    [SerializeField] private GameObject CameraWhenTalking;
+    //werk
+    */
+    
+>>>>>>> plzwerk
     private bool _textStart = false;
     public bool _check;
     private string[] _words;
@@ -231,3 +247,4 @@ public class DialogeManager : MonoBehaviour
         }
     }
 }
+
