@@ -11,11 +11,12 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] GameObject _carPrefab;
     [SerializeField] Transform _carSpawnLocation;
     [SerializeField] BarrierManager _entranceBarrier;
-    [SerializeField] List<GameObject> _currentVehicles;
+    public List<GameObject> _currentVehicles;
     public Transform insideBaseLocation;
+    public bool photonServer;
     void Start()
     {
-        SpawnVehicle();
+        StartCoroutine(SpawnTimer());
     }
 
 
@@ -29,14 +30,32 @@ public class VehicleManager : MonoBehaviour
 
     private void SpawnVehicle()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (_currentVehicles.Count < _maxVehicles)
         {
-            GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
-            _entranceBarrier.GetStoppingSpot(_currentVehicle.GetComponent<CarBehaviour>());
-            //_currentVehicle.name = (_currentVehicleNumber = +1).ToString();
-            //_currentVehicles.Add(_currentVehicle);
-            _currentVehiclesInt++;
-            _entranceBarrier._queue[_currentVehiclesInt - 1] = _currentVehicle.GetComponent<CarBehaviour>();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                print("spawning vehicle in server...");
+                GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
+                _entranceBarrier.AddToQueue(_currentVehicle.GetComponent<CarBehaviour>());
+                _currentVehicles.Add(_currentVehicle);
+                _currentVehiclesInt++;
+            }
+            else if (photonServer)
+            {
+                print("spawning vehicle locally...");
+                GameObject _currentVehicle = Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
+                _entranceBarrier.AddToQueue(_currentVehicle.GetComponent<CarBehaviour>());
+                _currentVehicles.Add(_currentVehicle);
+                _currentVehiclesInt++;
+            }
         }
+    }
+
+    private IEnumerator SpawnTimer()
+    {
+        SpawnVehicle();
+        int l_t = Random.Range(20,40);
+        yield return new WaitForSeconds(l_t);
+        StartCoroutine(SpawnTimer());
     }
 }

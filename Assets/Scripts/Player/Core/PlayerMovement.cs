@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         {
             if (_canMove)
             {
+
+
                 Vector3 PlayerInput = new Vector3
                 {
                     x = Input.GetAxisRaw("Horizontal") * _walkSpeed,
@@ -66,6 +68,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
                 //smoothing of CurrentMoveVelocity
                 _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, MoveVector * CurrentSpeed, ref _moveDampVelocity, _moveSmoothTime);
 
+                //Check if character is grounded
+                if (_controller.isGrounded == false)
+                {
+                    //Add our gravity Vector
+                    _currentMoveVelocity += Physics.gravity;
+                }
+                
                 _controller.Move(_currentMoveVelocity * Time.deltaTime);
                 if (PlayerInput == Vector3.zero)
                     Idle();

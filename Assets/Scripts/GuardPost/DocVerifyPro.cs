@@ -10,10 +10,13 @@ public class DocVerifyPro : MonoBehaviour
     [SerializeField] private TMP_InputField _persNrField;
     [SerializeField] private GameObject _noPersonFound;
     //insert new header for person informaion
+
     [SerializeField] private TMP_Text _naamText, _achternaamText, _leeftijfText, _geslachtText, _geboorteDatumText, _nationaliteitText, _defensiePersNoText, _errorText;
     //Insert for base string text
+    [Tooltip("Base strings of the information screen")]
     private string _naamString, _achternaamString, _leeftijfString, _geslachtString, _geboorteDatumString, _nationaliteitString, _defensiePersNoString;
     //Insert new header for driverslisance
+    [Tooltip("The drivers lisence informtaion UI")]
     [SerializeField] private TMP_Text _driversLisenceFirstName, _driversLisenceLastName, _driversLisenceBirthDate, _driversLisenceIssue, _driversLisenceExpiry, _driverBSN;
 
     [Header("Defensiepas User Interface")]
@@ -35,6 +38,9 @@ public class DocVerifyPro : MonoBehaviour
         _driverManager = _entranceBarrierManager._vehicle.GetComponent<DriverManager>();
     }
 
+    /// <summary>
+    /// When the player gets the drivers papaers the information is set to the computer UI.
+    /// </summary>
     public void OnGetDriverPapers()
     {
         if (_driverManager._isFalsified)
@@ -51,6 +57,8 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceBirthDate.text = _driverManager._givenBirthDate;
             _defesieLisenceIssue.text = _driverManager._givenIssueDate;
             _defesieLisenceExpiry.text = _driverManager._givenExpiryDate;
+
+            GetComponent<Hefboom>()._isCorrect = false;
         }
         else
         {
@@ -67,7 +75,9 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceIssue.text = _driverManager._driverDefensieDateOfIssue;
             _defesieLisenceExpiry.text = _driverManager._driverDefensieDateOfExpiry;
 
+            GetComponent<Hefboom>()._isCorrect = true;
         }
+        GetComponent<Hefboom>()._correctCarManager._lis = _entranceBarrierManager._vehicle.GetComponent<CarBehaviour>()._licensePlate;
         _defesieSex.text = _driverManager._driverSex;
         _driverBSN.text = _driverManager._driverBSN.ToString();
     }

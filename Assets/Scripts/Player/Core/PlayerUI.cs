@@ -6,15 +6,17 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviourPun
 {
     [SerializeField] private GameObject _pauseMenu;
+    public bool _isDoingSomething= false;
     
     void Update()
     {
         if (GetComponent<PhotonView>().IsMine)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !_isDoingSomething)
             {
                 if (_pauseMenu.active)
                 {
+                    //Turn escape menu off.
                     GetComponent<PlayerMovement>()._canMove = true;
                     GetComponent<PlayerLook>()._canLook = true;
 
@@ -25,6 +27,7 @@ public class PlayerUI : MonoBehaviourPun
                 }
                 else 
                 {
+                    //Turn escape menu on.
                     GetComponent<PlayerMovement>()._canMove = false;
                     GetComponent<PlayerLook>()._canLook = false;
 
@@ -46,6 +49,7 @@ public class PlayerUI : MonoBehaviourPun
 #endif
     }
 
+<<<<<<< HEAD
     public void returnToGame()
     {
         GetComponent<PlayerMovement>()._canMove = true;
@@ -56,5 +60,11 @@ public class PlayerUI : MonoBehaviourPun
 
         _pauseMenu.SetActive(false);
         print("test");
+=======
+    public void LeaveRoom()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        PhotonNetwork.LeaveRoom();
+>>>>>>> main
     }
 }
