@@ -8,9 +8,7 @@ using TMPro;
 {
     public TextMeshProUGUI TextComponent;
     public GameObject Text;
-    public string[] lines;
-    
-    public GameObject[] Buttons;
+    public List<CustomPro> myList = new List<CustomPro>();
 }
 
 

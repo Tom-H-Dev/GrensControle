@@ -6,5 +6,7 @@ using TMPro;
 
 [Serializable] public class CustomPro
 {
-    public GameObject Buttons;
+    public string[] lines;
+    public int TeamDialogue;
+    public GameObject[] Buttons;
 }
