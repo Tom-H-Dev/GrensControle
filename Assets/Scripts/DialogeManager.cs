@@ -22,6 +22,7 @@ public class DialogeManager : MonoBehaviour
     [Header("cameraPos")]
     [SerializeField] private GameObject MainPlayerCamera;
     [SerializeField] private GameObject CameraWhenTalking;
+    //werk
     */
     
     private bool _textStart = false;
