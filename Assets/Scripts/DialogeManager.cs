@@ -18,22 +18,17 @@ public class DialogeManager : MonoBehaviour
     public string driverName;
     
     public string DriverName;
-    
-    /*
-    [Header("cameraPos")]
-    [SerializeField] private GameObject MainPlayerCamera;
-    [SerializeField] private GameObject CameraWhenTalking;
-    //werk
-    */
+
+    [SerializeField] private float Madness;
     
     private bool _textStart = false;
-    public bool _check;
+    private bool _check;
     private string[] _words;
     private string updatedLine;
     private string wordToType;
 
-    public int _index, _lineIndex, indexSes, currentLineIndex;
-
+    private int _index, _lineIndex, indexSes, currentLineIndex;
+    public int randomIndex;
     private DriverManager infoDriver;
     
     public TextMeshProUGUI TextComponent;
@@ -65,7 +60,7 @@ public class DialogeManager : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                     if (_lineIndex < textList[_index].myList.Count && indexSes < textList[_index].myList[_lineIndex].lines.Length)
                     {
-                        _words = textList[_index].myList[_lineIndex].lines[indexSes].ToString().Split(' ');
+                        _words = textList[_index].myList[_lineIndex].lines[randomIndex].ToString().Split(' ');
                         updatedLine = string.Empty;
                         foreach (string word in _words)
                         {
@@ -96,7 +91,7 @@ public class DialogeManager : MonoBehaviour
                             foreach (string wordToChange in changeWord)
                             {
                                 if (word == wordToChange)
-                                { ;
+                                { 
                                     updatedLine += driverName;
                                     isChecked = true;
                                     break;
@@ -175,7 +170,10 @@ public class DialogeManager : MonoBehaviour
     public void StartDialogue()
     {
         Text.SetActive(true);
-        StartCoroutine(TypeLine(textList[_index].myList[indexSes].lines[0]));
+
+        randomIndex = Random.Range(0, textList[_index].myList[indexSes].lines.Length);
+        string randomLine = textList[_index].myList[indexSes].lines[randomIndex];
+        StartCoroutine(TypeLine(randomLine));
     }
 
     IEnumerator TypeLine(string line)
@@ -207,28 +205,17 @@ public class DialogeManager : MonoBehaviour
 
     void NextLine()
     {
+        Debug.Log(currentLineIndex);
         Cursor.lockState = CursorLockMode.None;
-
-        if (currentLineIndex < textList[_index].myList[_lineIndex].lines.Length - 1)
-        {
-            currentLineIndex++;
-
-            TextComponent.text = string.Empty;
-            StartCoroutine(TypeLine(textList[_index].myList[_lineIndex].lines[currentLineIndex]));
-            _check = false;
-        }
-        else
-        {
-            Text.SetActive(false);
-            _index = 0;
-            _lineIndex = 0;
-            currentLineIndex = 0;
-            indexSes = 0;
-            _check = false;
-            foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
-            {
-                button.SetActive(true);
-            }
+        Text.SetActive(false); 
+        _index = 0;
+        _lineIndex = 0; 
+        currentLineIndex = 0;
+        indexSes = 0;
+        _check = false;
+        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
+        { 
+            button.SetActive(true);
         }
     }
 

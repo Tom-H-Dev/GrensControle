@@ -96,6 +96,10 @@ public class PlayerLook : MonoBehaviour
                     else Debug.LogError("No Team was found");
                 }
             }
+            if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager b_Text))
+            {
+                b_Text.StartText(GetComponent<PlayerMovement>(), this);
+            }
         }
     }
 
