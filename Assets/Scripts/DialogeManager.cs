@@ -1,123 +1,128 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
+
 public class DialogeManager : MonoBehaviour
 {
     [Header("List")]
     [SerializeField] private List<customlist> textList = new List<customlist>();
+    [SerializeField] private float textSpeed = 0.5f;
+    [SerializeField] private string[] changeWord;
+    [SerializeField] private string driverName;
+    
+    private bool _textStart = false, _check;
+    private int _index, _lineIndex,indexssss, indexSes, currentLineIndex, randomIndex, dialogueIndex;
+    private string[] _words;
+    private string updatedLine, wordToType;
 
     public PlayerMovement _playerMovement;
     public PlayerLook _playerLook;
-
-    [SerializeField] private float textSpeed = 0.5f;
-
-    [Header("Words")]
-    public string[] changeWord;
-
-    public string driverName;
-    
-    public string DriverName;
-
-    [SerializeField] private float Madness;
-    
-    private bool _textStart = false;
-    private bool _check;
-    private string[] _words;
-    private string updatedLine;
-    private string wordToType;
-
-    private int _index, _lineIndex, indexSes, currentLineIndex;
-    public int randomIndex;
-    private DriverManager infoDriver;
-    
     public TextMeshProUGUI TextComponent;
     public GameObject Text;
 
-    void Start()
+    public List<GameObject> cars = new List<GameObject>();
+    
+    public string driverTag = "Driver";
+    public float Range;
+
+    public float timer;
+    
+    public float madnessTimer;
+    private void Start()
     {
-        infoDriver = GetComponent<DriverManager>();
-        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
-        {
-            button.SetActive(false);
-        }
-        infoDriver._driverFirstName = driverName;
+        InitializeVariables();
     }
 
-    void Update()
+    private void InitializeVariables()
     {
-        if (_textStart)
+        _index = _lineIndex = currentLineIndex = indexSes = 0;
+        _textStart = false;
+    }
+
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+        
+        if (timer <= 0)
         {
-            if (Input.GetMouseButtonDown(0))
+            cars.Clear();
+            inCollider();    
+        }
+
+        if (cars.Count > 0)
+        {
+            madnessTimer -= Time.deltaTime;
+        }
+       
+        
+        if (_textStart && Input.GetMouseButtonDown(0))
+        {
+            if (_check)
             {
-                if (_check)
-                {
-                    _check = false;
-                    NextLine();
-                }
-                else
-                {
-                    Cursor.lockState = CursorLockMode.None;
-                    if (_lineIndex < textList[_index].myList.Count && indexSes < textList[_index].myList[_lineIndex].lines.Length)
-                    {
-                        _words = textList[_index].myList[_lineIndex].lines[randomIndex].ToString().Split(' ');
-                        updatedLine = string.Empty;
-                        foreach (string word in _words)
-                        {
-                            bool isChecked = false;
-                            foreach (string wordToChange in changeWord)
-                            {
-                                if (word == wordToChange)
-                                {
-                                    updatedLine += driverName;
-                                    isChecked = true;
-                                    break;
-                                }
-                            }
-                            if (!isChecked)
-                            {
-                                _check = true;
-                                updatedLine += word + " ";
-                            }
-                        }
-                        TextComponent.text = updatedLine.Trim();
-                        StopAllCoroutines();
-                    }
-                    else
-                    {
-                        foreach (string word in _words)
-                        {
-                            bool isChecked = false;
-                            foreach (string wordToChange in changeWord)
-                            {
-                                if (word == wordToChange)
-                                { 
-                                    updatedLine += driverName;
-                                    isChecked = true;
-                                    break;
-                                }
-                            }
-                            if (!isChecked)
-                            {
-                                _check = true;
-                                updatedLine += word + " ";
-                            }
-                        }
-                        TextComponent.text = updatedLine.Trim();
-                        StopAllCoroutines();
-                    }
-                }
+                _check = false;
+                NextLine();
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                ProcessDialogueLine();
             }
         }
+    }
+
+    private void inCollider()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, Range);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag(driverTag))
+            {
+                cars.Add(collider.gameObject);
+                timer = 2;
+            }
+        }
+        
+    }
+    private void ProcessDialogueLine()
+    {
+        string line = textList[_index].myList[_lineIndex].list[indexssss].lines[randomIndex];
+        _words = line.Split(' ');
+        updatedLine = string.Empty;
+
+        foreach (string word in _words)
+        {
+            bool isChecked = false;
+            foreach (string wordToChange in changeWord)
+            {
+                if (word == wordToChange)
+                {
+                    updatedLine += driverName;
+                    isChecked = true;
+                    break;
+                }
+            }
+            if (!isChecked)
+            {
+                _check = true;
+                updatedLine += word + " ";
+            }
+        }
+
+        TextComponent.text = updatedLine.Trim();
+        StopAllCoroutines();
     }
 
     public void StartText(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         TextComponent.text = string.Empty;
-        
         foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
         {
-            button.SetActive(true);   
+            button.SetActive(true);
         }
 
         _playerMovement = playerMovement;
@@ -136,14 +141,13 @@ public class DialogeManager : MonoBehaviour
         _lineIndex = 0;
         currentLineIndex = 0;
         _check = false;
-        
-        int dialogueIndex = FindDialogueForTeam(_playerLook.team);
+
+        dialogueIndex = FindDialogueForTeam(_playerLook.team);
 
         if (dialogueIndex != -1)
         {
             indexSes = dialogueIndex;
             StartDialogue();
-            
             foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
             {
                 button.SetActive(false);
@@ -155,13 +159,16 @@ public class DialogeManager : MonoBehaviour
         }
     }
 
-    int FindDialogueForTeam(int team)
+    private int FindDialogueForTeam(int team)
     {
-        for (int i = 0; i < textList[_index].myList.Count; i++)
+        foreach (var list in textList)
         {
-            if (textList[_index].myList[i].TeamDialogue == team)
+            for (int i = 0; i < list.myList.Count; i++)
             {
-                return i;
+                if (list.myList[i].TeamDialogue == team)
+                {
+                    return i;
+                }
             }
         }
         return -1;
@@ -169,14 +176,16 @@ public class DialogeManager : MonoBehaviour
 
     public void StartDialogue()
     {
+        if (madnessTimer <= textList[_index].myList[indexSes].list[indexssss].madness)
+        {
+            print("chec");
+        }
         Text.SetActive(true);
-
-        randomIndex = Random.Range(0, textList[_index].myList[indexSes].lines.Length);
-        string randomLine = textList[_index].myList[indexSes].lines[randomIndex];
-        StartCoroutine(TypeLine(randomLine));
+        randomIndex = Random.Range(0, textList[_index].myList[indexSes].list[indexssss].lines.Length);
+        StartCoroutine(TypeLine(textList[_index].myList[indexSes].list[indexssss].lines[randomIndex]));
     }
 
-    IEnumerator TypeLine(string line)
+    private IEnumerator TypeLine(string line)
     {
         _words = line.Split(' ');
 
@@ -192,6 +201,7 @@ public class DialogeManager : MonoBehaviour
                     break;
                 }
             }
+
             foreach (char c in wordToType)
             {
                 TextComponent.text += c;
@@ -203,20 +213,34 @@ public class DialogeManager : MonoBehaviour
         yield return new WaitForSeconds(textSpeed);
     }
 
-    void NextLine()
+    private void NextLine()
     {
-        Debug.Log(currentLineIndex);
         Cursor.lockState = CursorLockMode.None;
-        Text.SetActive(false); 
-        _index = 0;
-        _lineIndex = 0; 
-        currentLineIndex = 0;
-        indexSes = 0;
-        _check = false;
+        
+        Text.SetActive(false);
+        
+        InitializeVariables();
+
+
+        switch (textList[_index].myList[indexSes].keys)
+        {
+            case key.objective:
+                booleanOn();
+                break;
+            case key.noObjective:
+                
+                break;
+        }
+        
         foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
-        { 
+        {
             button.SetActive(true);
         }
+    }
+
+    public void booleanOn()
+    {
+        
     }
 
     public void EndDialogueButton()
@@ -229,6 +253,11 @@ public class DialogeManager : MonoBehaviour
         {
             button.SetActive(false);
         }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        
+        Gizmos.DrawWireCube(transform.position, new Vector3(Range,Range,Range));
     }
 }
 
