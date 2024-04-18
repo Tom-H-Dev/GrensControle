@@ -813,6 +813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: doc
+      value: 
+      objectReference: {fileID: 134037437}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: Text
       value: 
       objectReference: {fileID: 1981201860}
@@ -985,6 +990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: textList.Array.data[0].myList.Array.data[1].keys
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].TeamDialogue
       value: 1
       objectReference: {fileID: 0}
@@ -996,7 +1006,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1016,12 +1026,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].Buttons.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[1].Buttons.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1090,6 +1100,11 @@ PrefabInstance:
       objectReference: {fileID: 799265040}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: textList.Array.data[0].myList.Array.data[0].Buttons.Array.data[5]
+      value: 
+      objectReference: {fileID: 1981201856}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[1].Buttons.Array.data[0]
       value: 
       objectReference: {fileID: 1981201858}
@@ -1115,13 +1130,23 @@ PrefabInstance:
       objectReference: {fileID: 799265040}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: textList.Array.data[0].myList.Array.data[1].Buttons.Array.data[5]
+      value: 
+      objectReference: {fileID: 1981201856}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[0].lines.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: textList.Array.data[0].myList.Array.data[1].list.Array.data[0].lines.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[0].lines.Array.data[0]
-      value: htgjyhu
+      value: luca is een snop
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1132,6 +1157,11 @@ PrefabInstance:
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[0].lines.Array.data[2]
       value: nm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: textList.Array.data[0].myList.Array.data[1].list.Array.data[0].lines.Array.data[0]
+      value: luca is een grote jongen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2407,6 +2437,7 @@ MonoBehaviour:
   _defesiePersNr: {fileID: 1034923412}
   _driverManager: {fileID: 0}
   _entranceBarrierManager: {fileID: 33708079}
+  papers: 0
 --- !u!114 &134037438
 MonoBehaviour:
   m_ObjectHideFlags: 0

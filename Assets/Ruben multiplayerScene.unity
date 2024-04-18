@@ -977,7 +977,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: madnessTimer
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1011,8 +1011,13 @@ PrefabInstance:
       objectReference: {fileID: 1053425087}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: selectedLineIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: textList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1132,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1158,6 +1163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: textList.Array.data[1].lines.Array.data[1]
       value: .
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: textList.Array.data[0].myList.Array.data[0].keys
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1347,12 +1357,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[0].madness
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[1].madness
-      value: 30
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -1382,22 +1392,22 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[0].lines.Array.data[0]
-      value: re
+      value: thmhgkm
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[0].lines.Array.data[1]
-      value: re
+      value: dat was hem luicacaca
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[1].lines.Array.data[0]
-      value: re
+      value: fuck this shit
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textList.Array.data[0].myList.Array.data[0].list.Array.data[1].lines.Array.data[1]
-      value: re
+      value: testtsatastawafda
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}

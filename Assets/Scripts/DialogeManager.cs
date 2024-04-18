@@ -17,8 +17,8 @@ public class DialogeManager : MonoBehaviour
     
     private bool _textStart = false, _check;
     private int _index, _lineIndex,indexssss, indexSes, currentLineIndex, randomIndex, dialogueIndex;
-    private string[] _words;
-    private string updatedLine, wordToType;
+    public string[] _words;
+    public string updatedLine, wordToType;
 
     public PlayerMovement _playerMovement;
     public PlayerLook _playerLook;
@@ -33,6 +33,13 @@ public class DialogeManager : MonoBehaviour
     public float timer;
     
     public float madnessTimer;
+    
+    public int selectedLineIndex = -1;
+
+
+    public DocVerifyPro doc;
+
+    private int selectedDialogueIndex;
     private void Start()
     {
         InitializeVariables();
@@ -90,31 +97,48 @@ public class DialogeManager : MonoBehaviour
     }
     private void ProcessDialogueLine()
     {
-        string line = textList[_index].myList[_lineIndex].list[indexssss].lines[randomIndex];
-        _words = line.Split(' ');
-        updatedLine = string.Empty;
-
-        foreach (string word in _words)
+        float minMadnessDifference = float.MaxValue;
+        
+        for (int i = 0; i < textList[_index].myList[_lineIndex].list.Count; i++)
         {
-            bool isChecked = false;
-            foreach (string wordToChange in changeWord)
+            float madnessDifference = Mathf.Abs(textList[_index].myList[_lineIndex].list[indexssss].madness - madnessTimer);
+            
+            if (madnessDifference < minMadnessDifference)
             {
-                if (word == wordToChange)
-                {
-                    updatedLine += driverName;
-                    isChecked = true;
-                    break;
-                }
-            }
-            if (!isChecked)
-            {
-                _check = true;
-                updatedLine += word + " ";
+                minMadnessDifference = madnessDifference;
+                selectedLineIndex = i;
             }
         }
 
-        TextComponent.text = updatedLine.Trim();
-        StopAllCoroutines();
+        if (selectedLineIndex != -1)
+        {
+            string selectedline = textList[_index].myList[_lineIndex].list[indexssss].lines[selectedLineIndex];
+            _words = selectedline.Split(' ');
+            updatedLine = string.Empty;
+
+            foreach (string word in _words)
+            {
+                bool isChecked = false;
+                foreach (string wordToChange in changeWord)
+                {
+                    if (word == wordToChange)
+                    {
+                        updatedLine += driverName;
+                        isChecked = true;
+                        break;
+                    }
+                }
+                if (!isChecked)
+                {
+                    _check = true;
+                    updatedLine += word + " ";
+                }
+            }
+
+            TextComponent.text = updatedLine.Trim();
+            StopAllCoroutines();
+        }
+       
     }
 
     public void StartText(PlayerMovement playerMovement, PlayerLook playerLook)
@@ -176,13 +200,25 @@ public class DialogeManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        if (madnessTimer <= textList[_index].myList[indexSes].list[indexssss].madness)
+        float minMadness = float.MaxValue;
+        selectedDialogueIndex = -1;
+
+        for (int i = 0; i < textList[_index].myList[indexSes].list.Count; i++)
         {
-            print("chec");
+            if (textList[_index].myList[indexSes].list[i].madness > 0 && textList[_index].myList[indexSes].list[i].madness < minMadness && textList[_index].myList[indexSes].list[i].madness >= madnessTimer)
+            {
+                minMadness = textList[_index].myList[indexSes].list[i].madness;
+                selectedDialogueIndex = i;
+                
+            }
         }
-        Text.SetActive(true);
-        randomIndex = Random.Range(0, textList[_index].myList[indexSes].list[indexssss].lines.Length);
-        StartCoroutine(TypeLine(textList[_index].myList[indexSes].list[indexssss].lines[randomIndex]));
+
+        if (selectedDialogueIndex != -1)
+        {
+            Text.SetActive(true);
+            randomIndex = Random.Range(0, textList[_index].myList[indexSes].list[selectedDialogueIndex].lines.Length);
+            StartCoroutine(TypeLine(textList[_index].myList[indexSes].list[selectedDialogueIndex].lines[randomIndex]));
+        }
     }
 
     private IEnumerator TypeLine(string line)
@@ -240,7 +276,7 @@ public class DialogeManager : MonoBehaviour
 
     public void booleanOn()
     {
-        
+        doc.papers = true;
     }
 
     public void EndDialogueButton()
