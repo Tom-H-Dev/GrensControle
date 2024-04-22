@@ -81,9 +81,9 @@ public class PlayerLook : MonoBehaviour
                     }
                     else if (team == 2)
                     {
-                        if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
+                        if (l_hit.transform.gameObject.TryGetComponent(out StartText l_Text))
                         {
-                            l_Text.StartText(GetComponent<PlayerMovement>(), this);
+                            l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                         }
                     }
                     else if (team == 3)
@@ -96,9 +96,9 @@ public class PlayerLook : MonoBehaviour
                     else Debug.LogError("No Team was found");
                 }
             }
-            if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager b_Text))
+            if (l_hit.transform.gameObject.TryGetComponent(out StartText b_Text))
             {
-                b_Text.StartText(GetComponent<PlayerMovement>(), this);
+                b_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
             }
         }
     }

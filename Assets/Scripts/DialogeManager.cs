@@ -93,7 +93,22 @@ public class DialogeManager : MonoBehaviour
                 timer = 2;
             }
         }
+    }
+
+    public void TextStart()
+    {
+        TextComponent.text = string.Empty;
+        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
+        {
+            button.SetActive(true);
+        }
+
         
+        _playerMovement.enabled = false;
+        
+        _playerLook.enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
     }
     private void ProcessDialogueLine()
     {
@@ -140,24 +155,6 @@ public class DialogeManager : MonoBehaviour
         }
        
     }
-
-    public void StartText(PlayerMovement playerMovement, PlayerLook playerLook)
-    {
-        TextComponent.text = string.Empty;
-        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
-        {
-            button.SetActive(true);
-        }
-
-        _playerMovement = playerMovement;
-        playerMovement.enabled = false;
-
-        _playerLook = playerLook;
-        playerLook.enabled = false;
-
-        Cursor.lockState = CursorLockMode.None;
-    }
-
     public void StartDialogueButton(int buttonIndex)
     {
         TextComponent.text = string.Empty;
