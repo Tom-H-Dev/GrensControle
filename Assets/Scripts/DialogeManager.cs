@@ -16,7 +16,7 @@ public class DialogeManager : MonoBehaviour
     [SerializeField] private string driverName;
     
     private bool _textStart = false, _check;
-    private int _index, _lineIndex,indexssss, indexSes, currentLineIndex, randomIndex, dialogueIndex;
+    private int _index, _lineIndex,indexssss, indexSes, currentLineIndex, dialogueIndex;
     public string[] _words;
     public string updatedLine, wordToType;
 
@@ -34,12 +34,14 @@ public class DialogeManager : MonoBehaviour
     
     public float madnessTimer;
     
-    public int selectedLineIndex = -1;
+    public int selectedLineIndex = -1, randomIndex;
+    public int CDI = -1;
+    private int CLI = -1;
 
 
     public DocVerifyPro doc;
 
-    private int selectedDialogueIndex;
+    public int selectedDialogueIndex;
     private void Start()
     {
         InitializeVariables();
@@ -53,6 +55,7 @@ public class DialogeManager : MonoBehaviour
 
     private void Update()
     {
+        
         timer -= Time.deltaTime;
         
         if (timer <= 0)
@@ -63,7 +66,10 @@ public class DialogeManager : MonoBehaviour
 
         if (cars.Count > 0)
         {
-            madnessTimer -= Time.deltaTime;
+            if (madnessTimer <= 0)
+            {
+                madnessTimer -= Time.deltaTime;
+            }
         }
        
         
@@ -121,7 +127,8 @@ public class DialogeManager : MonoBehaviour
             if (madnessDifference < minMadnessDifference)
             {
                 minMadnessDifference = madnessDifference;
-                selectedLineIndex = i;
+                selectedLineIndex = randomIndex;
+                indexssss = selectedDialogueIndex;
             }
         }
 
@@ -174,10 +181,6 @@ public class DialogeManager : MonoBehaviour
                 button.SetActive(false);
             }
         }
-        else
-        {
-            Debug.LogError("No dialogue found for the player's team.");
-        }
     }
 
     private int FindDialogueForTeam(int team)
@@ -198,7 +201,6 @@ public class DialogeManager : MonoBehaviour
     public void StartDialogue()
     {
         float minMadness = float.MaxValue;
-        selectedDialogueIndex = -1;
 
         for (int i = 0; i < textList[_index].myList[indexSes].list.Count; i++)
         {
@@ -206,7 +208,6 @@ public class DialogeManager : MonoBehaviour
             {
                 minMadness = textList[_index].myList[indexSes].list[i].madness;
                 selectedDialogueIndex = i;
-                
             }
         }
 
@@ -253,7 +254,6 @@ public class DialogeManager : MonoBehaviour
         Text.SetActive(false);
         
         InitializeVariables();
-
 
         switch (textList[_index].myList[indexSes].keys)
         {
