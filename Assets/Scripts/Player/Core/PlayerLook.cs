@@ -82,9 +82,9 @@ public class PlayerLook : MonoBehaviour
                     }
                     else if (team == 2)
                     {
-                        if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_Text))
+                        if (l_hit.transform.gameObject.TryGetComponent(out StartText l_Text))
                         {
-                            l_Text.StartText(GetComponent<PlayerMovement>(), this);
+                            l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                         }
                     }
                     else if (team == 3)
@@ -104,6 +104,10 @@ public class PlayerLook : MonoBehaviour
 =======
 >>>>>>> main
             }
+            if (l_hit.transform.gameObject.TryGetComponent(out StartText b_Text))
+            {
+                b_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
+            }
         }
     }
 
@@ -120,7 +124,7 @@ public class PlayerLook : MonoBehaviour
                     if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
                         _interactionText.text = "Druk op 'E' om de computer te openen.";
                     else if (l_hit.transform.gameObject.TryGetComponent(out DialogeManager l_papaers))
-                        _interactionText.text = "Druk op 'L' om de papieren op te vragen.";
+                        _interactionText.text = "Druk op 'E' om de papieren op te vragen.";
                     else _interactionText.text = "";
                 }
                 else if (team == 2)

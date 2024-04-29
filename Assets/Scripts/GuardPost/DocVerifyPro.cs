@@ -27,6 +27,8 @@ public class DocVerifyPro : MonoBehaviour
     [SerializeField] private DriverManager _driverManager;
     [SerializeField] private BarrierManager _entranceBarrierManager;
 
+    public bool papers;
+
     private void Start()
     {
         OpenComputerApp();
@@ -96,7 +98,7 @@ public class DocVerifyPro : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (papers == true)
         {
             OnNewCarEnterArea();
             OnGetDriverPapers();
