@@ -25,41 +25,18 @@ public class DialogeManager : MonoBehaviour
     public TextMeshProUGUI TextComponent;
     public GameObject Text;
 
-<<<<<<< HEAD
-    [SerializeField] private float textSpeed = 0.5f;
-
-    [Header("Words")]
-    public string[] changeWord;
-    public string driverName;
-
-
-    public string DriverName;
-=======
     public List<GameObject> cars = new List<GameObject>();
->>>>>>> Dev-Ruben
     
     public string driverTag = "Driver";
     public float Range;
 
     public float timer;
     
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> plzwerk
-=======
->>>>>>> e89ffbac113d6cfb0e9339946da885cb76987b76
-    private bool _textStart = false;
-    public bool _check;
-    private string[] _words;
-    private string updatedLine;
-    private string wordToType;
-=======
     public float madnessTimer;
     
     public int selectedLineIndex = -1, randomIndex;
     public int CDI = -1;
     private int CLI = -1;
->>>>>>> Dev-Ruben
 
 
     public DocVerifyPro doc;
