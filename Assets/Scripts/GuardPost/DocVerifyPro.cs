@@ -61,6 +61,7 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceExpiry.text = _driverManager._givenExpiryDate;
 
             GetComponent<Hefboom>()._isCorrect = false;
+            GetComponent<Hefboom>()._idCorect = false;
         }
         else
         {
@@ -76,8 +77,9 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceBirthDate.text = _driverManager._driverBirthDate;
             _defesieLisenceIssue.text = _driverManager._driverDefensieDateOfIssue;
             _defesieLisenceExpiry.text = _driverManager._driverDefensieDateOfExpiry;
-
+            
             GetComponent<Hefboom>()._isCorrect = true;
+            GetComponent<Hefboom>()._idCorect = true;
         }
         GetComponent<Hefboom>()._correctCarManager._lis = _entranceBarrierManager._vehicle.GetComponent<CarBehaviour>()._licensePlate;
         _defesieSex.text = _driverManager._driverSex;

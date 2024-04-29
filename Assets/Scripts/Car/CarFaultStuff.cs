@@ -11,4 +11,7 @@ public class CarFaultStuff : ScriptableObject
     public bool _wasDriverSus;
     public bool _wasIlligalItemsInCar;
     public int _voertuigNummer;
+
+    public bool _wasCarAllowed;
+    public bool _playerChoice;
 }
