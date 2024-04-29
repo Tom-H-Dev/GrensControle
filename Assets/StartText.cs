@@ -14,6 +14,8 @@ public class StartText : MonoBehaviour
 
     public void DialogeStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
+        Cursor.lockState = CursorLockMode.None;
+        
         dialoge.TextStart();
     }
 }
