@@ -49,7 +49,6 @@ public class PlayerUI : MonoBehaviourPun
 #endif
     }
 
-<<<<<<< HEAD
     public void returnToGame()
     {
         GetComponent<PlayerMovement>()._canMove = true;
@@ -60,11 +59,10 @@ public class PlayerUI : MonoBehaviourPun
 
         _pauseMenu.SetActive(false);
         print("test");
-=======
+    }
     public void LeaveRoom()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
         PhotonNetwork.LeaveRoom();
->>>>>>> main
     }
 }

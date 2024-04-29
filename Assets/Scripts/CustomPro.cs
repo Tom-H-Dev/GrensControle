@@ -9,8 +9,5 @@ using TMPro;
     public string[] lines;
     public int TeamDialogue;
     public GameObject[] Buttons;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> plzwerk
+

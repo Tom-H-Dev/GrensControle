@@ -14,11 +14,6 @@ public class DialogeManager : MonoBehaviour
 
     [Header("Words")]
     public string[] changeWord;
-<<<<<<< HEAD
-    public string driverName;
-
-=======
-
     public string driverName;
 
 
@@ -31,7 +26,6 @@ public class DialogeManager : MonoBehaviour
     //werk
     */
     
->>>>>>> plzwerk
     private bool _textStart = false;
     public bool _check;
     private string[] _words;
