@@ -30,11 +30,6 @@ public class DialogeManager : MonoBehaviour
 
     [Header("Words")]
     public string[] changeWord;
-<<<<<<< HEAD
-    public string driverName;
-
-=======
-
     public string driverName;
 
 
@@ -49,7 +44,10 @@ public class DialogeManager : MonoBehaviour
     public float timer;
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> plzwerk
+=======
+>>>>>>> e89ffbac113d6cfb0e9339946da885cb76987b76
     private bool _textStart = false;
     public bool _check;
     private string[] _words;

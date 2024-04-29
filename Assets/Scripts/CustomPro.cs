@@ -10,10 +10,13 @@ using TMPro;
     public string[] lines;
     public int TeamDialogue;
     public GameObject[] Buttons;
-<<<<<<< HEAD
 }
+<<<<<<< HEAD
 =======
 }
 >>>>>>> plzwerk
 =======
 >>>>>>> Dev-Ruben
+=======
+
+>>>>>>> e89ffbac113d6cfb0e9339946da885cb76987b76
