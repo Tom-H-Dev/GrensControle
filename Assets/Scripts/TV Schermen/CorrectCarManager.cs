@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CorrectCarManager : MonoBehaviour
 {
@@ -67,6 +68,7 @@ public class CorrectCarManager : MonoBehaviour
             _wrongCarsList[_wrongCarCount - 1]._voertuigNummer = _totalVehicles;
             _wrongCarsList[_wrongCarCount - 1]._wasCarAllowed = l_wasAllowed;
             _wrongCarsList[_wrongCarCount - 1]._playerChoice = l_playerChoice;
+            _wrongCarsList[_wrongCarCount - 1]._wasLetThrough = l_playerChoice;
         }
 
         if (_playerWrongVehicles >= 3)
@@ -74,6 +76,7 @@ public class CorrectCarManager : MonoBehaviour
             print("Game over");
             //TODO:
             //Scene switch
+            SceneManager.LoadScene("AAR");
             //Leave Room
         }
     }

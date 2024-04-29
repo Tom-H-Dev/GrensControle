@@ -16621,6 +16621,29 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.08699999
       objectReference: {fileID: 0}
+    - target: {fileID: 3182824700142374775, guid: e373e7aa38d52914c83b0ede341de5dd,
+        type: 3}
+      propertyPath: _wrongCarsList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3182824700142374775, guid: e373e7aa38d52914c83b0ede341de5dd,
+        type: 3}
+      propertyPath: _wrongCarsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c298324f1932a7e4e8cc12c644b41df6,
+        type: 2}
+    - target: {fileID: 3182824700142374775, guid: e373e7aa38d52914c83b0ede341de5dd,
+        type: 3}
+      propertyPath: _wrongCarsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 399250ae0c333bc4a866f2674fcaba93,
+        type: 2}
+    - target: {fileID: 3182824700142374775, guid: e373e7aa38d52914c83b0ede341de5dd,
+        type: 3}
+      propertyPath: _wrongCarsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3df7184876f54e546987b3847e446132,
+        type: 2}
     - target: {fileID: 3790432510015483882, guid: e373e7aa38d52914c83b0ede341de5dd,
         type: 3}
       propertyPath: m_AnchorMax.y
