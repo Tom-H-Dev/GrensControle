@@ -102,18 +102,22 @@ public class BarrierManager : MonoBehaviour
                     foreach (CarBehaviour car in _queue)
                     {
                         if (car != null)
+                        {
                             car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
+                        }
                     }
                     _vehicle._currentTarget = _driveAwayLocations[i - 1];
                 }
                 yield return StartCoroutine(WaitForVehicleToReachTarget());
-            }         
+            }
+
+            for (int j = 0; j < _stopLocations.Count; j++)
+            {
+                _stopLocations[j].transform.position = new Vector3(_stopLocations[j].position.x + _vehicleWaitDistance * 2, _stopLocations[j].position.y, _stopLocations[j].position.z);
+            }
         }
 
-        for (int i = 0; i < _stopLocations.Count; i++)
-        {
-            _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x + _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
-        }
+        
 
         yield return null;
     }
