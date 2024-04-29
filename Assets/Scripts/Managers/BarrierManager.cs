@@ -143,6 +143,7 @@ public class BarrierManager : MonoBehaviour
         {
             _barrierAnimator.ResetTrigger("Close");
             _barrierAnimator.SetTrigger("Open");
+            _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
             yield return new WaitForSeconds(1);
             _vehicle._currentTarget = _vehicleManager.insideBaseLocation;
             print(_vehicle._currentTarget);
@@ -157,6 +158,8 @@ public class BarrierManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             _barrierAnimator.ResetTrigger("Open");
             _barrierAnimator.SetTrigger("Close");
+            yield return new WaitForSeconds(0.4f);
+            _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
             yield return null;
         }
     }
