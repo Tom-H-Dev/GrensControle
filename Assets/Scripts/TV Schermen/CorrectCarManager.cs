@@ -57,9 +57,10 @@ public class CorrectCarManager : MonoBehaviour
     public void UpdateWrongCars(bool l_wasAllowed, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus)
     {
         _totalVehicles++;
-
+        print("Update cars");
         if (l_wasAllowed != l_playerChoice)
         {
+            print("Set wrong updates");
             _playerWrongVehicles++;
             _wrongCarsList[_wrongCarCount - 1]._driversLisance = _lis;
             _wrongCarsList[_wrongCarCount - 1]._wasIDWrong = l_idWrong;

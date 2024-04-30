@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 public class CarBehaviour : MonoBehaviour
 {

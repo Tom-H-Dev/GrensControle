@@ -42,6 +42,10 @@ public class BarrierManager : MonoBehaviour
         {
             print(collider);
             _vehicle = collider.GetComponent<CarBehaviour>();
+            if (collider == null)
+            {
+                _vehicle = null;
+            }
         }
 
         print(_colliders);
@@ -106,14 +110,17 @@ public class BarrierManager : MonoBehaviour
                             car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
                         }
                     }
-                    _vehicle._currentTarget = _driveAwayLocations[i - 1];
+                    _vehicle._currentTarget = _driveAwayLocations[i - 1]; 
+
+                    if (i == _driveAwayLocations.Count - 1)
+                    {
+                        for (int j = 0; j < _stopLocations.Count; j++)
+                        {
+                            _stopLocations[j].transform.position = new Vector3(_stopLocations[j].position.x + _vehicleWaitDistance * 2, _stopLocations[j].position.y, _stopLocations[j].position.z);
+                        }
+                    }
                 }
                 yield return StartCoroutine(WaitForVehicleToReachTarget());
-            }
-
-            for (int j = 0; j < _stopLocations.Count; j++)
-            {
-                _stopLocations[j].transform.position = new Vector3(_stopLocations[j].position.x + _vehicleWaitDistance * 2, _stopLocations[j].position.y, _stopLocations[j].position.z);
             }
         }
 
@@ -121,6 +128,7 @@ public class BarrierManager : MonoBehaviour
 
         yield return null;
     }
+
 
     private IEnumerator Timer(int l_time) 
     {
