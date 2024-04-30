@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class ContrabandManager : MonoBehaviour
     [SerializeField] GameObject[] _currentContrabandInsideVehicle;
     [SerializeField] [Range(0, 100)] float contrabandChance;
     [SerializeField][Range(0, 100)] float multipleContrabandChance;
+    public bool _hasContraband;
 
     private void Start()
     {
@@ -26,7 +28,9 @@ public class ContrabandManager : MonoBehaviour
                     Instantiate(randomContrabandObject, _contrabandLocations[i].position, randomContrabandObject.transform.rotation, _contrabandLocations[i]);
                 }
             }
+            _hasContraband = true;
         }
+        else _hasContraband = false;
     }
 
 }

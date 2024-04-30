@@ -258,7 +258,7 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
-        //SetDriverModels();
+        SetDriverModels();
     }
 
     private void SetDriverModels()

@@ -2,7 +2,7 @@ using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Audio;
 
 public class CarBehaviour : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class CarBehaviour : MonoBehaviour
     public string _licensePlate;
     [SerializeField] LicensePlateManager[] _licensePlates;
     public bool _override =false;
+    [SerializeField] private AudioMixer _carMixer;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
     NavMeshAgent _agent; //NavMesh agent
@@ -120,18 +121,26 @@ public class CarBehaviour : MonoBehaviour
         if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
         {
             _agent.speed = _defaultSpeed * 0.5f;
+            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 165);
+            _carMixer.SetFloat("MyExposedParam", 1.65f);
         }
         else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
         {
             _agent.speed = _defaultSpeed * 0.3f;
+            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 135);
+            _carMixer.SetFloat("MyExposedParam", 1.3f);
         }
         else if (agentToFinishDistance < _stoppingRadius)
         {
             _agent.speed = 0;
+            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 100);
+            _carMixer.SetFloat("MyExposedParam", 1);
         }
         else
         {
             _agent.speed = _defaultSpeed;
+            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 200);
+            _carMixer.SetFloat("MyExposedParam", 2);
         }
 
         Vector3 vehicleVelocity = gameObject.GetComponent<Rigidbody>().velocity;

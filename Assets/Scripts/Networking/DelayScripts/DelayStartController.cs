@@ -73,4 +73,13 @@ public class DelayStartController : MonoBehaviourPunCallbacks
 
         if (_nameInputField.text == string.Empty) _delayStartButton.GetComponent<Button>().interactable = false;
     }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
+    }
 }

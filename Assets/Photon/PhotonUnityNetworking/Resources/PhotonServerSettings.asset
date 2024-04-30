@@ -57,6 +57,8 @@ MonoBehaviour:
   - UpdateList
   - ChangeReadyPlayer
   - Countdown
+  - UpdateWrongCars
+  - SetData
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

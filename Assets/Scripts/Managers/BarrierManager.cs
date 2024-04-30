@@ -42,6 +42,10 @@ public class BarrierManager : MonoBehaviour
         {
             print(collider);
             _vehicle = collider.GetComponent<CarBehaviour>();
+            if (collider == null)
+            {
+                _vehicle = null;
+            }
         }
 
         print(_colliders);
@@ -102,21 +106,29 @@ public class BarrierManager : MonoBehaviour
                     foreach (CarBehaviour car in _queue)
                     {
                         if (car != null)
+                        {
                             car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
+                        }
                     }
-                    _vehicle._currentTarget = _driveAwayLocations[i - 1];
+                    _vehicle._currentTarget = _driveAwayLocations[i - 1]; 
+
+                    if (i == _driveAwayLocations.Count - 1)
+                    {
+                        for (int j = 0; j < _stopLocations.Count; j++)
+                        {
+                            _stopLocations[j].transform.position = new Vector3(_stopLocations[j].position.x + _vehicleWaitDistance * 2, _stopLocations[j].position.y, _stopLocations[j].position.z);
+                        }
+                    }
                 }
                 yield return StartCoroutine(WaitForVehicleToReachTarget());
-            }         
+            }
         }
 
-        for (int i = 0; i < _stopLocations.Count; i++)
-        {
-            _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x + _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
-        }
+        
 
         yield return null;
     }
+
 
     private IEnumerator Timer(int l_time) 
     {
@@ -139,6 +151,7 @@ public class BarrierManager : MonoBehaviour
         {
             _barrierAnimator.ResetTrigger("Close");
             _barrierAnimator.SetTrigger("Open");
+            _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
             yield return new WaitForSeconds(1);
             _vehicle._currentTarget = _vehicleManager.insideBaseLocation;
             print(_vehicle._currentTarget);
@@ -153,6 +166,8 @@ public class BarrierManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             _barrierAnimator.ResetTrigger("Open");
             _barrierAnimator.SetTrigger("Close");
+            yield return new WaitForSeconds(0.4f);
+            _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
             yield return null;
         }
     }

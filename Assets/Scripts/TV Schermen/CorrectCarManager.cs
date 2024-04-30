@@ -2,7 +2,9 @@ using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CorrectCarManager : MonoBehaviour
 {
@@ -16,8 +18,6 @@ public class CorrectCarManager : MonoBehaviour
     }
 
     public List<LastFiveList> _lastFive = new List<LastFiveList>();
-    public int _totalVehicles;
-    public int _playerCorrectVehicles;
     public bool demo;
     public bool demo2;
     public string _lis;
@@ -32,6 +32,12 @@ public class CorrectCarManager : MonoBehaviour
     [Header("Photon")]
     private PhotonView _photonView;
 
+    [Header("New stuff")]
+    public List<CarFaultStuff> _wrongCarsList;
+    public int _wrongCarCount = 0;
+    public int _totalVehicles;
+    public int _playerWrongVehicles;
+
     private void Start()
     {
         _photonView = GetComponent<PhotonView>();
@@ -43,107 +49,44 @@ public class CorrectCarManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Quote))
             {
-                ChangeList(demo, demo2);
+                SceneManager.LoadScene("AAR");
             }
         }
     }
 
-    
-    public void ChangeList(bool l_wasCorrect, bool l_playerChoice)
-    {
-        _photonView.RPC("UpdateList", RpcTarget.AllBufferedViaServer, l_wasCorrect, l_playerChoice);
-    }
-
     [PunRPC]
-    private void UpdateList(bool l_wasCorrect, bool l_playerChoice)
+    public void UpdateWrongCars(bool l_wasAllowed, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus)
     {
         _totalVehicles++;
-        if (l_wasCorrect == l_playerChoice)
-            _playerCorrectVehicles++;
-
-
-        for (int i = 4; i >= 0; i--)
+        print("Update cars");
+        if (l_wasAllowed != l_playerChoice)
         {
-            if (i != 0)
+            print("Set wrong updates");
+            _playerWrongVehicles++;
+            _wrongCarsList[_playerWrongVehicles - 1]._driversLisance = _lis;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasIDWrong = l_idWrong;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasDriverSus = l_driverSus;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasIlligalItemsInCar = l_illigalItemInCar;
+            _wrongCarsList[_playerWrongVehicles - 1]._voertuigNummer = _totalVehicles;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasCarAllowed = l_wasAllowed;
+            _wrongCarsList[_playerWrongVehicles - 1]._playerChoice = l_playerChoice;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasLetThrough = l_playerChoice;
+
+            if (_playerWrongVehicles >= 3)
             {
-                _lastFive[i]._playerChoice = _lastFive[i - 1]._playerChoice;
-                _lastFive[i]._isCorrect = _lastFive[i - 1]._isCorrect;
-
-                _lastFive[i]._licensePlateText.text = _lastFive[i - 1]._licensePlateText.text;
-
-                _lastFive[i]._correctText.text = _lastFive[i - 1]._correctText.text;
-                _lastFive[i]._correctText.color = _lastFive[i - 1]._correctText.color;
-
-                _lastFive[i]._playerChoiceText.text = _lastFive[i - 1]._playerChoiceText.text;
-                _lastFive[i]._playerChoiceText.color = _lastFive[i - 1]._playerChoiceText.color;
+                print("Game over");
+                SceneManager.LoadScene("AAR");
             }
         }
-        _photonView.RPC("LastCar", RpcTarget.AllBufferedViaServer, l_wasCorrect, l_playerChoice);
-        _photonView.RPC("TotalCorrect", RpcTarget.AllBufferedViaServer);
+
+
     }
 
-    [PunRPC]
-    private void LastCar(bool l_wasCorrect, bool l_playerChoice)
+    public void ChangeList(bool l_wasCorrect, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus)
     {
-        _lastFive[0]._playerChoice = l_playerChoice;
-        _lastFive[0]._isCorrect = l_wasCorrect;
-
-        _lastFive[0]._licensePlateText.text = _lis;
-        if (l_wasCorrect)
-        {
-            _lastFive[0]._correctText.text = "Ja";
-            _lastFive[0]._correctText.color = Color.green;
-        }
-        else
-        {
-            _lastFive[0]._correctText.text = "Nee";
-            _lastFive[0]._correctText.color = Color.red;
-        }
-
-        if (l_playerChoice)
-        {
-            _lastFive[0]._playerChoiceText.text = "Ja";
-            _lastFive[0]._playerChoiceText.color = Color.green;
-        }
-        else
-        {
-            _lastFive[0]._playerChoiceText.text = "Nee";
-            _lastFive[0]._playerChoiceText.color = Color.red;
-        }
-
-        _lisence.text = "Kenteken:\n" + _lastFive[0]._licensePlateText.text;
-        if (l_wasCorrect)
-        {
-            _allowedText.text = "\nJa";
-            _allowedText.color = Color.green;
-        }
-        else
-        {
-            _allowedText.text = "\nNee";
-            _allowedText.color = Color.red;
-        }
-
-        if (l_playerChoice)
-        {
-            _playerChoiceText.text = "\nJa";
-            _playerChoiceText.color = Color.green;
-        }
-        else
-        {
-            _playerChoiceText.text = "\nNee";
-            _playerChoiceText.color = Color.red;
-        }
+        //_photonView.RPC("UpdateList", RpcTarget.AllBufferedViaServer, l_wasCorrect, l_playerChoice);
+        _photonView.RPC("UpdateWrongCars", RpcTarget.AllBufferedViaServer, l_wasCorrect, l_playerChoice, l_idWrong, l_illigalItemInCar, l_driverSus);
     }
+
     
-    [PunRPC]
-    private void TotalCorrect()
-    {
-        int _totalVehicle = _totalVehicles; // For example
-        int _correctVehicles = _playerCorrectVehicles; // For example
-
-        float l_percentageCorrect = (_correctVehicles / (float)_totalVehicle) * 100f;
-
-        _totalVehicleCorrectText.text = _playerCorrectVehicles + " / " + _totalVehicles + " voertuigen correct" + "\n\n" + (int)l_percentageCorrect + "% / 100%\ncorrect";
-
-    }
 }
