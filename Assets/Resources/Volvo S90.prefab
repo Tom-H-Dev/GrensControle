@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 9068848124823552387}
   m_Layer: 3
   m_Name: Volvo S90
-  m_TagString: Untagged
+  m_TagString: Driver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1352,6 +1352,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoge: {fileID: 0}
+  madnessTimer: 100
+  Range: 10
+  driverTag: Driver
+  cars: []
+  timer: 2
 --- !u!1 &392195580928501555
 GameObject:
   m_ObjectHideFlags: 0

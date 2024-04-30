@@ -82,7 +82,7 @@ public class PlayerLook : MonoBehaviour
                     }
                     else if (team == 2)
                     {
-                        if (l_hit.transform.gameObject.TryGetComponent(out StartText l_Text))
+                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text))
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                         }
@@ -97,7 +97,7 @@ public class PlayerLook : MonoBehaviour
                     else Debug.LogError("No Team was found");
                 }
             }
-            if (l_hit.transform.gameObject.TryGetComponent(out StartText b_Text))
+            if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue b_Text))
             {
                 b_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
             }

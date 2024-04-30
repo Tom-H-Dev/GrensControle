@@ -2,18 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using UnityEditor;
 
 public class DialogeManager : MonoBehaviour
 {
     [Header("List")]
-    [SerializeField] private List<customlist> textList = new List<customlist>();
+    [SerializeField] private List<Item> textList = new List<Item>();
     [SerializeField] private float textSpeed = 0.5f;
     [SerializeField] private string[] changeWord;
     [SerializeField] private string driverName;
+    [SerializeField] private List<GameObject> buttons;
+    
     
     private bool _textStart = false, _check;
     private int _index, _lineIndex,indexssss, indexSes, currentLineIndex, dialogueIndex;
@@ -24,27 +28,29 @@ public class DialogeManager : MonoBehaviour
     public PlayerLook _playerLook;
     public TextMeshProUGUI TextComponent;
     public GameObject Text;
-
-    public List<GameObject> cars = new List<GameObject>();
-    
-    public string driverTag = "Driver";
-    public float Range;
-
-    public float timer;
-    
-    public float madnessTimer;
     
     public int selectedLineIndex = -1, randomIndex;
-    public int CDI = -1;
     private int CLI = -1;
-
-
+    
     public DocVerifyPro doc;
 
     public int selectedDialogueIndex;
+    
+    private carBehaviorDialogue CarBehavior;
+    
+    public Item BlankItem;
+    public List<Item> ItemDatabase = new List<Item>();
+
+    public TextAsset text;
+
+    public string textName, teamName, questionName, MadnessName;
+    
+    public List<Item> matchingItems = new List<Item>();
     private void Start()
     {
+        CarBehavior = FindObjectOfType<carBehaviorDialogue>();
         InitializeVariables();
+        loadItemData();
     }
 
     private void InitializeVariables()
@@ -55,63 +61,36 @@ public class DialogeManager : MonoBehaviour
 
     private void Update()
     {
-        
-        timer -= Time.deltaTime;
-        
-        if (timer <= 0)
-        {
-            cars.Clear();
-            inCollider();    
-        }
-
-        if (cars.Count > 0)
-        {
-            if (madnessTimer <= 0)
-            {
-                madnessTimer -= Time.deltaTime;
-            }
-        }
-       
-        
         if (_textStart && Input.GetMouseButtonDown(0))
         {
             if (_check)
             {
+                print(_check + "is chack");
                 _check = false;
                 NextLine();
             }
             else
             {
+                print("denk denks");
                 Cursor.lockState = CursorLockMode.None;
                 ProcessDialogueLine();
             }
         }
     }
+    
 
-    private void inCollider()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, Range);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.CompareTag(driverTag))
-            {
-                cars.Add(collider.gameObject);
-                timer = 2;
-            }
-        }
-    }
-
-    public void TextStart()
+    public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         TextComponent.text = string.Empty;
-        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
+        foreach (var button in buttons)
         {
             button.SetActive(true);
         }
 
-        
+        _playerMovement = playerMovement;
         _playerMovement.enabled = false;
         
+        _playerLook = playerLook;
         _playerLook.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
@@ -120,24 +99,24 @@ public class DialogeManager : MonoBehaviour
     {
         float minMadnessDifference = float.MaxValue;
         
-        for (int i = 0; i < textList[_index].myList[_lineIndex].list.Count; i++)
+        for (int i = 0; i < textList[_index].lines.Length; i++)
         {
-            float madnessDifference = Mathf.Abs(textList[_index].myList[_lineIndex].list[indexssss].madness - madnessTimer);
+            float madnessDifference = Mathf.Abs(textList[_index].madness - CarBehavior.madnessTimer);
             
             if (madnessDifference < minMadnessDifference)
             {
                 minMadnessDifference = madnessDifference;
                 selectedLineIndex = randomIndex;
                 indexssss = selectedDialogueIndex;
+                //indexssss = textList[_index].myList[_lineIndex].TeamDialogue;
             }
         }
-
+        
         if (selectedLineIndex != -1)
         {
-            string selectedline = textList[_index].myList[_lineIndex].list[indexssss].lines[selectedLineIndex];
+            string selectedline = textList[_index].lines;
             _words = selectedline.Split(' ');
             updatedLine = string.Empty;
-
             foreach (string word in _words)
             {
                 bool isChecked = false;
@@ -164,65 +143,42 @@ public class DialogeManager : MonoBehaviour
     }
     public void StartDialogueButton(int buttonIndex)
     {
-        TextComponent.text = string.Empty;
-        _index = buttonIndex;
-        _lineIndex = 0;
-        currentLineIndex = 0;
-        _check = false;
-
-        dialogueIndex = FindDialogueForTeam(_playerLook.team);
-
-        if (dialogueIndex != -1)
-        {
-            indexSes = dialogueIndex;
-            StartDialogue();
-            foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
+        matchingItems.Clear();
+        foreach (var item in ItemDatabase)
+        { 
+            if (item.team == _playerLook.team && item.question == buttonIndex)
             {
-                button.SetActive(false);
-            }
-        }
-    }
-
-    private int FindDialogueForTeam(int team)
-    {
-        foreach (var list in textList)
-        {
-            for (int i = 0; i < list.myList.Count; i++)
-            {
-                if (list.myList[i].TeamDialogue == team)
-                {
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
-
-    public void StartDialogue()
-    {
-        float minMadness = float.MaxValue;
-
-        for (int i = 0; i < textList[_index].myList[indexSes].list.Count; i++)
-        {
-            if (textList[_index].myList[indexSes].list[i].madness > 0 && textList[_index].myList[indexSes].list[i].madness < minMadness && textList[_index].myList[indexSes].list[i].madness >= madnessTimer)
-            {
-                minMadness = textList[_index].myList[indexSes].list[i].madness;
-                selectedDialogueIndex = i;
+                matchingItems.Add(item);
             }
         }
 
-        if (selectedDialogueIndex != -1)
+        if (matchingItems.Count > 0)
         {
-            Text.SetActive(true);
-            randomIndex = Random.Range(0, textList[_index].myList[indexSes].list[selectedDialogueIndex].lines.Length);
-            StartCoroutine(TypeLine(textList[_index].myList[indexSes].list[selectedDialogueIndex].lines[randomIndex]));
+            randomIndex = Random.Range(0, matchingItems.Count);
+            StartDialogue(matchingItems[randomIndex]);
+            
         }
     }
+    
 
-    private IEnumerator TypeLine(string line)
+    public void StartDialogue(Item selectedItem)
     {
-        _words = line.Split(' ');
+        _words = selectedItem.lines.Split(' ');
 
+        selectedLineIndex = selectedItem.question;
+        selectedDialogueIndex = selectedItem.team;
+        
+        Text.SetActive(true);
+        foreach (var butt in buttons)
+        {
+            butt.SetActive(false);
+        }
+
+        StartCoroutine(TypeLine());
+    }
+
+    private IEnumerator TypeLine()
+    {
         foreach (string word in _words)
         {
             wordToType = word;
@@ -255,7 +211,7 @@ public class DialogeManager : MonoBehaviour
         
         InitializeVariables();
 
-        switch (textList[_index].myList[indexSes].keys)
+        switch (textList[_index].keys)
         {
             case key.objective:
                 booleanOn();
@@ -265,7 +221,7 @@ public class DialogeManager : MonoBehaviour
                 break;
         }
         
-        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
+        foreach (var button in buttons)
         {
             button.SetActive(true);
         }
@@ -282,15 +238,62 @@ public class DialogeManager : MonoBehaviour
         _playerMovement.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
 
-        foreach (var button in textList[_index].myList[currentLineIndex].Buttons)
+        foreach (var button in buttons)
         {
             button.SetActive(false);
         }
     }
-    private void OnDrawGizmosSelected()
+    public void loadItemData()
     {
+        ItemDatabase.Clear();
         
-        Gizmos.DrawWireCube(transform.position, new Vector3(Range,Range,Range));
+        List<Dictionary<string, object>> data = CSVReader.Read(text.ToString());
+        
+        for (var i = 0; i < data.Count; i++) 
+        {
+            if (data[i].ContainsKey(textName))
+            {
+                string text = data[i][textName].ToString();
+                int team = int.Parse(data[i][teamName].ToString(), System.Globalization.NumberStyles.Integer);
+                int question = int.Parse(data[i][questionName].ToString(), System.Globalization.NumberStyles.Integer);
+                int madness = int.Parse(data[i][MadnessName].ToString(), System.Globalization.NumberStyles.Integer);
+                
+                AddItem(text ,team ,question, madness);       
+            }
+            else
+            {
+                Debug.Log(" help");
+            }
+        }
+    }
+
+    void AddItem(string text, int team , int question, int madness)
+    {
+        Item tempItem = new Item(BlankItem);
+        
+        tempItem.lines = text;
+        tempItem.team = team;
+        tempItem.question = question;
+        tempItem.madness = madness;
+        
+        ItemDatabase.Add(tempItem);
+    }
+}
+
+[CustomEditor(typeof(DialogeManager))]
+public class dialogeManagerButton : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        DialogeManager loadExcel = (DialogeManager)target;
+
+        GUILayout.Label(" Reload Item DataBase", EditorStyles.boldLabel);
+        if (GUILayout.Button("reload Items"))
+        {
+            loadExcel.loadItemData();
+        }
     }
 }
 
