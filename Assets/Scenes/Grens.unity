@@ -14733,7 +14733,7 @@ MonoBehaviour:
   _isCorrect: 1
   _idCorect: 0
   _driverSus: 0
-  _illigalItems: 0
+  _illigalItems: 1
   _lis: 
 --- !u!114 &1164772996
 MonoBehaviour:
@@ -14837,7 +14837,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 1.01
+  MaxDistance: 2
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -14872,7 +14872,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

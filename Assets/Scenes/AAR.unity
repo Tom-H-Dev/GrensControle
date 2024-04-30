@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 133276707}
-  - component: {fileID: 133276705}
   - component: {fileID: 133276706}
   - component: {fileID: 133276708}
   m_Layer: 5
@@ -142,25 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &133276705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133276704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff19fb3bfded2a4dae517cae2b3ec89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _choiceButton: {fileID: 0}
-  _choiceButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _playerName: {fileID: 0}
-  _isChosen: 0
 --- !u!114 &133276706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1633,7 +1613,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 942047645}
-  - component: {fileID: 942047648}
   - component: {fileID: 942047647}
   - component: {fileID: 942047646}
   m_Layer: 5
@@ -1717,25 +1696,6 @@ MonoBehaviour:
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &942047648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942047644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff19fb3bfded2a4dae517cae2b3ec89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _choiceButton: {fileID: 0}
-  _choiceButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _playerName: {fileID: 0}
-  _isChosen: 0
 --- !u!1 &972427012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,11 +2341,11 @@ RectTransform:
   - {fileID: 259775463}
   m_Father: {fileID: 1925343216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -838}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 212}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1237512153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3035,7 +2995,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1668063907}
-  - component: {fileID: 1668063910}
   - component: {fileID: 1668063909}
   - component: {fileID: 1668063908}
   m_Layer: 5
@@ -3119,25 +3078,6 @@ MonoBehaviour:
   sceneViewId: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1668063910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668063906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff19fb3bfded2a4dae517cae2b3ec89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _choiceButton: {fileID: 0}
-  _choiceButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _playerName: {fileID: 0}
-  _isChosen: 0
 --- !u!1 &1688589146
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,24 +3903,24 @@ MonoBehaviour:
     _driverText: {fileID: 2125564742}
     _illigalItemsText: {fileID: 152001559}
     _carNumberText: {fileID: 562203909}
-    _wasLetThrough: {fileID: 0}
+    _wasLetThrough: {fileID: 359635366}
   - _driversLisanceText: {fileID: 604055262}
     _idCorrectText: {fileID: 1853101901}
     _driverText: {fileID: 1745604956}
     _illigalItemsText: {fileID: 1245450451}
     _carNumberText: {fileID: 1688589148}
-    _wasLetThrough: {fileID: 0}
+    _wasLetThrough: {fileID: 1141931925}
   - _driversLisanceText: {fileID: 674283753}
     _idCorrectText: {fileID: 1003979560}
     _driverText: {fileID: 2055091202}
     _illigalItemsText: {fileID: 1086325035}
     _carNumberText: {fileID: 347142301}
-    _wasLetThrough: {fileID: 0}
+    _wasLetThrough: {fileID: 1517994658}
   _wrongCarData:
   - {fileID: 11400000, guid: c298324f1932a7e4e8cc12c644b41df6, type: 2}
   - {fileID: 11400000, guid: 399250ae0c333bc4a866f2674fcaba93, type: 2}
   - {fileID: 11400000, guid: 3df7184876f54e546987b3847e446132, type: 2}
-  _totalVehiclesText: {fileID: 0}
+  _totalVehiclesText: {fileID: 1698842653}
 --- !u!1 &2030433689
 GameObject:
   m_ObjectHideFlags: 0

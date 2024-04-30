@@ -1188,6 +1188,7 @@ MonoBehaviour:
   _currentContrabandInsideVehicle: []
   contrabandChance: 50
   multipleContrabandChance: 50
+  _hasContraband: 0
 --- !u!54 &2327961585805885832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3211,6 +3212,7 @@ GameObject:
   - component: {fileID: 6731272089135346457}
   - component: {fileID: 5818595198531797555}
   - component: {fileID: 5399882380903838654}
+  - component: {fileID: 8482820110340463325}
   m_Layer: 3
   m_Name: Rim FR
   m_TagString: Untagged
@@ -3283,6 +3285,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8482820110340463325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274926756893447450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d9a03a98e70cb4b8abdaf8cf681fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLeftWheel: 0
+  _sped: 0
 --- !u!1 &1402297729097799978
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,6 +5150,7 @@ GameObject:
   - component: {fileID: 6337589384310899115}
   - component: {fileID: 4578918273377904132}
   - component: {fileID: 252403219631035626}
+  - component: {fileID: 7924324536644509695}
   m_Layer: 3
   m_Name: Rim FL
   m_TagString: Untagged
@@ -5206,6 +5223,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7924324536644509695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2883945870160309954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d9a03a98e70cb4b8abdaf8cf681fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLeftWheel: 1
+  _sped: 0
 --- !u!1 &2999611628919096934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5802,6 +5833,7 @@ GameObject:
   - component: {fileID: 7821882393093856861}
   - component: {fileID: 5534972180708257102}
   - component: {fileID: 9191234232261637532}
+  - component: {fileID: 7246699598435292833}
   m_Layer: 3
   m_Name: Rim RL
   m_TagString: Untagged
@@ -5874,6 +5906,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7246699598435292833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602323823208310132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d9a03a98e70cb4b8abdaf8cf681fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLeftWheel: 1
+  _sped: 0
 --- !u!1 &3626553065811210630
 GameObject:
   m_ObjectHideFlags: 0
@@ -10642,6 +10688,7 @@ GameObject:
   - component: {fileID: 2872393237174562787}
   - component: {fileID: 4307371114596597604}
   - component: {fileID: 8334310825912340515}
+  - component: {fileID: 2669366946936382342}
   m_Layer: 3
   m_Name: Rim RR
   m_TagString: Untagged
@@ -10714,6 +10761,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2669366946936382342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6574112571958686574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d9a03a98e70cb4b8abdaf8cf681fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLeftWheel: 0
+  _sped: 0
 --- !u!1 &6614017050467997261
 GameObject:
   m_ObjectHideFlags: 0

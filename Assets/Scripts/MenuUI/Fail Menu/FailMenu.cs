@@ -1,21 +1,28 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FailMenu : MonoBehaviour
+public class FailMenu : MonoBehaviourPunCallbacks
 {
     public List<FailList> _uiItems;
     public List<CarFaultStuff> _wrongCarData;
     [SerializeField] private TMP_Text _totalVehiclesText;
+    public PhotonView _photonView;
 
     void Start()
     {
-        SetData();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        _photonView = GetComponent<PhotonView>();
+        if (PhotonNetwork.IsMasterClient)
+            _photonView.RPC("SetData", RpcTarget.AllBufferedViaServer);
     }
 
+    [PunRPC]
     private void SetData()
     {
         _totalVehiclesText.text = _totalVehiclesText.text + " " + _wrongCarData[2]._voertuigNummer;
