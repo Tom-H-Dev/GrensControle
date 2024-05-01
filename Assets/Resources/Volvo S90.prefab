@@ -1356,6 +1356,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialoge: {fileID: 0}
+  madnessTimer: 100
+  Range: 0
+  driverTag: Driver
+  cars: []
+  timer: 0
 --- !u!82 &8721698657644174194
 AudioSource:
   m_ObjectHideFlags: 0
