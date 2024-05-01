@@ -15,11 +15,11 @@ public class CarBehaviour : MonoBehaviour
     public string _landCode;
     public string _licensePlate;
     [SerializeField] LicensePlateManager[] _licensePlates;
-    public bool _override =false;
+    public bool _override = false;
     [SerializeField] private AudioMixer _carMixer;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
-    NavMeshAgent _agent; //NavMesh agent
+    public NavMeshAgent _agent; //NavMesh agent
     [SerializeField] GameObject[] _wheels; //LF, RF, LB, RB
     public Transform _currentTarget; // The car will target this object
     [SerializeField] float _defaultSpeed; // The default speed of the car
@@ -27,7 +27,7 @@ public class CarBehaviour : MonoBehaviour
     [SerializeField] AudioSource _honkSound; //Honk sound effect
     [SerializeField] AudioSource _brakeSound; //Brake screetch sound effect
     [SerializeField] LayerMask _CollisionLayerMask; //COllision layermask for the emergency brake
-    bool _emergencyBrake; // Bool that keeps track of braking
+    public bool _emergencyBrake; // Bool that keeps track of braking
     //----------------------------------------------------------------------------------------------------
     [Header("Radius")]
     [SerializeField] float _slowingRadius; // In this radius the car will half it's normal speed (_normalSpeed)
@@ -117,59 +117,33 @@ public class CarBehaviour : MonoBehaviour
         _agent.SetDestination(_currentTarget.position);
         _agent.stoppingDistance = _stoppingRadius;
         agentToFinishDistance = Vector3.Distance(transform.position, _currentTarget.position);
-
-        if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
+        if (!_emergencyBrake)
         {
-            _agent.speed = _defaultSpeed * 0.5f;
-            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 165);
-            _carMixer.SetFloat("MyExposedParam", 1.65f);
+            if (agentToFinishDistance <= _slowingRadius && agentToFinishDistance > _brakingRadius)
+            {
+                _agent.speed = _defaultSpeed * 0.5f;
+                //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 165);
+                _carMixer.SetFloat("MyExposedParam", 1.65f);
+            }
+            else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
+            {
+                _agent.speed = _defaultSpeed * 0.3f;
+                //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 135);
+                _carMixer.SetFloat("MyExposedParam", 1.3f);
+            }
+            else if (agentToFinishDistance < _stoppingRadius)
+            {
+                _agent.speed = 0;
+                //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 100);
+                _carMixer.SetFloat("MyExposedParam", 1);
+            }
+            else
+            {
+                _agent.speed = _defaultSpeed;
+                //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 200);
+                _carMixer.SetFloat("MyExposedParam", 2);
+            }
         }
-        else if (agentToFinishDistance <= _brakingRadius && agentToFinishDistance > _stoppingRadius)
-        {
-            _agent.speed = _defaultSpeed * 0.3f;
-            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 135);
-            _carMixer.SetFloat("MyExposedParam", 1.3f);
-        }
-        else if (agentToFinishDistance < _stoppingRadius)
-        {
-            _agent.speed = 0;
-            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 100);
-            _carMixer.SetFloat("MyExposedParam", 1);
-        }
-        else
-        {
-            _agent.speed = _defaultSpeed;
-            //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 200);
-            _carMixer.SetFloat("MyExposedParam", 2);
-        }
-
-        Vector3 vehicleVelocity = gameObject.GetComponent<Rigidbody>().velocity;
-
-        foreach (GameObject wheel in _wheels)
-        {
-            Vector3 velocity = gameObject.GetComponent<Rigidbody>().velocity;
-            float rotationAmount = velocity.magnitude * Time.deltaTime * Mathf.Rad2Deg;
-        }
-
-        //Collider[] colliders = Physics.OverlapBox(emergencyBreakPos.transform.position, emergencyBreakRadius / 2, Quaternion.identity, _CollisionLayerMask);
-        //{
-        //    if (colliders.Length > 0)
-        //    {
-        //        if (!_emergencyBrake)
-        //        {
-        //            print("Braking!");
-        //            _emergencyBrake = true;
-        //            _agent.speed = 0;
-        //            _brakeSound.Play();
-        //            _honkSound.Play();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _emergencyBrake = false;
-        //    }
-
-        //}
     }
     private void OnDrawGizmos()
     {
