@@ -11,7 +11,7 @@ public class BarrierManager : MonoBehaviour
     public CarBehaviour _vehicle;
     [SerializeField] Animator _barrierAnimator;
     [SerializeField] bool _isExit;
-    Collider[] _colliders;
+    public Collider[] _colliders;
 
     [SerializeField] Transform _stopSpot; // Spot from which the stoplocations will be calculated
     [SerializeField] List<Transform> _stopLocations = new List<Transform>(); // List of possible locations for vehicles to stop behind eachother

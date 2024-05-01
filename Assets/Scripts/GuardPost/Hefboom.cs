@@ -19,27 +19,33 @@ public class Hefboom : MonoBehaviour
     //TODO: _illigalItems bool set in car contraband behavior and driver sus asswell
     public void OpenGate()
     {
-        Debug.Log("Opening Gate");
-        //Check if car is in ther area infront of gate
-        _entranceBarrierManager.StartCoroutine(_entranceBarrierManager.VehicleAcceptedCoroutine());
-        _correctCarManager._lis = _lis;
-        if (!_idCorect || _driverSus || _illigalItems)
-            _isCorrect = false;
-        else _isCorrect = true;
-        _correctCarManager.ChangeList(_isCorrect, true, _idCorect, _illigalItems, _driverSus);
+        //if (_entranceBarrierManager._colliders.Length > 0)
+        //{
+            Debug.Log("Opening Gate");
+            //Check if car is in ther area infront of gate
+            _entranceBarrierManager.StartCoroutine(_entranceBarrierManager.VehicleAcceptedCoroutine());
+            _correctCarManager._lis = _lis;
+            if (!_idCorect || _driverSus || _illigalItems)
+                _isCorrect = false;
+            else _isCorrect = true;
+            _correctCarManager.ChangeList(_isCorrect, true, _idCorect, _illigalItems, _driverSus);
 
-        //TODO: if player tries to press button play error sfx from windows
+            //TODO: if player tries to press button play error sfx from windows
+        //}
     }
 
     public void RefuseVehicle()
     {
-        Debug.Log("Denied Vehicle");
-        //Check if car is in ther area infront of gate
-        _entranceBarrierManager.StartCoroutine(_entranceBarrierManager.VehicleDeniedCoroutine());
-        _correctCarManager._lis = _lis;
-        if (!_idCorect || _driverSus || _illigalItems)
-            _isCorrect = false;
-        else _isCorrect = true;
-        _correctCarManager.ChangeList(_isCorrect, false, _idCorect, _illigalItems, _driverSus);
+        //if (_entranceBarrierManager._colliders.Length > 0)
+        //{
+            Debug.Log("Denied Vehicle");
+            //Check if car is in ther area infront of gate
+            _entranceBarrierManager.StartCoroutine(_entranceBarrierManager.VehicleDeniedCoroutine());
+            _correctCarManager._lis = _lis;
+            if (!_idCorect || _driverSus || _illigalItems)
+                _isCorrect = false;
+            else _isCorrect = true;
+            _correctCarManager.ChangeList(_isCorrect, false, _idCorect, _illigalItems, _driverSus);
+        //}
     }
 }
