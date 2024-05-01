@@ -47,8 +47,11 @@ public class DialogeManager : MonoBehaviour
     public string textName, teamName, questionName, MadnessName;
     
     public List<Item> matchingItems = new List<Item>();
+    
+    private PlayerUI Doingsometing;
     private void Start()
     {
+        Doingsometing = FindObjectOfType<PlayerUI>();
         CarBehavior = FindObjectOfType<carBehaviorDialogue>();
         InitializeVariables();
         loadItemData();
@@ -79,6 +82,11 @@ public class DialogeManager : MonoBehaviour
                 ProcessDialogueLine();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDialogueButton();
+        }
     }
     
 
@@ -93,6 +101,9 @@ public class DialogeManager : MonoBehaviour
         _playerLook.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+            
+        Doingsometing._isDoingSomething = true;
         
         if (_playerLook.team == 1)
         {
@@ -255,8 +266,13 @@ public class DialogeManager : MonoBehaviour
     {
         _playerLook.enabled = true;
         _playerMovement.enabled = true;
+        
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
+        Doingsometing._isDoingSomething = false;
 
+        
         foreach (var button in Player2Buttons)
         {
             button.SetActive(false);

@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ public class PlayerUI : MonoBehaviourPun
 {
     [SerializeField] private GameObject _pauseMenu;
     public bool _isDoingSomething= false;
-    
+
     void Update()
     {
         if (GetComponent<PhotonView>().IsMine)
