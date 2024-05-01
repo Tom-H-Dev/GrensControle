@@ -16,11 +16,12 @@ public class DialogeManager : MonoBehaviour
     [SerializeField] private float textSpeed = 0.5f;
     [SerializeField] private string[] changeWord;
     [SerializeField] private string driverName;
-    [SerializeField] private List<GameObject> buttons;
+    [SerializeField] private List<GameObject> Player2Buttons;
+    [SerializeField] private List<GameObject> Player1Buttons;
     
     
     private bool _textStart = false, _check;
-    private int _index, _lineIndex,indexssss, indexSes, currentLineIndex, dialogueIndex;
+    public int _index;
     public string[] _words;
     public string updatedLine, wordToType;
 
@@ -55,7 +56,7 @@ public class DialogeManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-        _index = _lineIndex = currentLineIndex = indexSes = 0;
+        _index = 0;
         _textStart = false;
     }
 
@@ -67,6 +68,8 @@ public class DialogeManager : MonoBehaviour
             {
                 print(_check + "is chack");
                 _check = false;
+                string selectedline = textList[_index].lines;
+                _words = selectedline.Split(' ');
                 NextLine();
             }
             else
@@ -82,11 +85,7 @@ public class DialogeManager : MonoBehaviour
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         TextComponent.text = string.Empty;
-        foreach (var button in buttons)
-        {
-            button.SetActive(true);
-        }
-
+        
         _playerMovement = playerMovement;
         _playerMovement.enabled = false;
         
@@ -94,6 +93,21 @@ public class DialogeManager : MonoBehaviour
         _playerLook.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
+        
+        if (_playerLook.team == 1)
+        {
+            foreach (var button1 in Player1Buttons)
+            {
+                button1.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (var button2 in Player2Buttons)
+            {
+                button2.SetActive(true);
+            }     
+        }
     }
     private void ProcessDialogueLine()
     {
@@ -106,16 +120,11 @@ public class DialogeManager : MonoBehaviour
             if (madnessDifference < minMadnessDifference)
             {
                 minMadnessDifference = madnessDifference;
-                selectedLineIndex = randomIndex;
-                indexssss = selectedDialogueIndex;
-                //indexssss = textList[_index].myList[_lineIndex].TeamDialogue;
             }
         }
         
         if (selectedLineIndex != -1)
         {
-            string selectedline = textList[_index].lines;
-            _words = selectedline.Split(' ');
             updatedLine = string.Empty;
             foreach (string word in _words)
             {
@@ -143,6 +152,7 @@ public class DialogeManager : MonoBehaviour
     }
     public void StartDialogueButton(int buttonIndex)
     {
+        TextComponent.text = string.Empty; 
         matchingItems.Clear();
         foreach (var item in ItemDatabase)
         { 
@@ -169,9 +179,13 @@ public class DialogeManager : MonoBehaviour
         selectedDialogueIndex = selectedItem.team;
         
         Text.SetActive(true);
-        foreach (var butt in buttons)
+        foreach (var butt in Player2Buttons)
         {
             butt.SetActive(false);
+            foreach (var button1 in Player1Buttons)
+            {
+                button1.SetActive(false);
+            }
         }
 
         StartCoroutine(TypeLine());
@@ -210,20 +224,25 @@ public class DialogeManager : MonoBehaviour
         Text.SetActive(false);
         
         InitializeVariables();
-
-        switch (textList[_index].keys)
+        
+        if (_playerLook.team == 1)
         {
-            case key.objective:
-                booleanOn();
-                break;
-            case key.noObjective:
-                
-                break;
+            booleanOn();
         }
         
-        foreach (var button in buttons)
+        if (_playerLook.team == 1)
         {
-            button.SetActive(true);
+            foreach (var button1 in Player1Buttons)
+            {
+                button1.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (var button2 in Player2Buttons)
+            {
+                button2.SetActive(true);
+            }     
         }
     }
 
@@ -238,9 +257,13 @@ public class DialogeManager : MonoBehaviour
         _playerMovement.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
 
-        foreach (var button in buttons)
+        foreach (var button in Player2Buttons)
         {
             button.SetActive(false);
+            foreach (var button1 in Player1Buttons)
+            {
+                button1.SetActive(false);
+            }
         }
     }
     public void loadItemData()
@@ -280,20 +303,4 @@ public class DialogeManager : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(DialogeManager))]
-public class dialogeManagerButton : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        DialogeManager loadExcel = (DialogeManager)target;
-
-        GUILayout.Label(" Reload Item DataBase", EditorStyles.boldLabel);
-        if (GUILayout.Button("reload Items"))
-        {
-            loadExcel.loadItemData();
-        }
-    }
-}
 

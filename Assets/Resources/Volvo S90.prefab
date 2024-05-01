@@ -964,8 +964,8 @@ GameObject:
   - component: {fileID: 620075498082350680}
   - component: {fileID: 8326749134109363027}
   - component: {fileID: 743926950553919528}
-  - component: {fileID: 9068848124823552387}
   - component: {fileID: 8721698657644174194}
+  - component: {fileID: 8163352118944884392}
   m_Layer: 3
   m_Name: Volvo S90
   m_TagString: Untagged
@@ -1346,24 +1346,6 @@ MonoBehaviour:
   _givenBSN: 0
   _driverMale: {fileID: 6713079560347753447}
   _driverFemale: {fileID: 1415505072146280607}
---- !u!114 &9068848124823552387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361740576752401196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fb8cc38266a54e44bd7541d5b15a61a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialoge: {fileID: 0}
-  madnessTimer: 100
-  Range: 0
-  driverTag: Driver
-  cars: []
-  timer: 0
 --- !u!82 &8721698657644174194
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1461,6 +1443,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8163352118944884392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361740576752401196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb8cc38266a54e44bd7541d5b15a61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoge: {fileID: 0}
+  madnessTimer: 100
+  Range: 8
+  driverTag: Driver
+  cars: []
+  timer: 0
 --- !u!1 &392195580928501555
 GameObject:
   m_ObjectHideFlags: 0

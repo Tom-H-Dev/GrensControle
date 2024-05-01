@@ -1,32 +1,11 @@
 text ,team ,question ,madness 
-lerum opsit,0,0,1000
-text ,0,0,1000
-mag ik u papieren zien,0,0,1000
-nee,0,0,1000
-jep,0,0,1000
-bubub,0,0,1000
-nooit,0,0,1000
-bubub2,0,1,1000
-bubub3,0,1,1000
-bubub4,0,1,1000
-bubub5,0,1,1000
-bubub,0,1,1000
-bubub,0,2,1000
-bubub,0,2,1000
-bubub,0,2,1000
-bubub,0,2,1000
-bubub,0,2,1000
-bubub,0,2,1000
-bubub,0,3,1000
-bubub,0,3,1000
-bubub,0,3,1000
-bubub,0,3,1000
-bubub,0,3,1000
-bubub,0,3,1000
-bubub,0,4,1000
-bubub,0,4,1000
-bubub,0,4,1000
-bubub,0,4,1000
-bubub,0,4,1000
-bubub,0,4,1000
-jkhkuhkjh,0,4,1000
+"Altijd, alstublieft.",1,0,100
+Hier.,1,0,50
+"Hier, gaat dit nog lang duren.",1,0,25
+,,,
+Ik kom even bezienswaardigheden bekijken.,2,1,100
+,,,
+,,,
+"Ik kom dingen stellen, wat denkt u wat ik kom doen.",2,1,25
+,,,
+heel erg kort maar een dag of 2.,2,2,100
