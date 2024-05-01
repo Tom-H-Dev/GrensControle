@@ -106,14 +106,12 @@ public class DialogeManager : MonoBehaviour
             if (madnessDifference < minMadnessDifference)
             {
                 minMadnessDifference = madnessDifference;
-                selectedLineIndex = randomIndex;
-                indexssss = selectedDialogueIndex;
-                //indexssss = textList[_index].myList[_lineIndex].TeamDialogue;
             }
         }
         
         if (selectedLineIndex != -1)
         {
+            print("dang");
             string selectedline = textList[_index].lines;
             _words = selectedline.Split(' ');
             updatedLine = string.Empty;
@@ -210,15 +208,10 @@ public class DialogeManager : MonoBehaviour
         Text.SetActive(false);
         
         InitializeVariables();
-
-        switch (textList[_index].keys)
+        
+        if (_playerLook.team == 1)
         {
-            case key.objective:
-                booleanOn();
-                break;
-            case key.noObjective:
-                
-                break;
+            booleanOn();
         }
         
         foreach (var button in buttons)

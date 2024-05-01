@@ -12,8 +12,6 @@ using UnityEngine.Serialization;
     public int question;
     public int madness;
     
-    public key keys;
-    
     public Item(Item d)
     {
         lines = d.lines;
