@@ -66,11 +66,11 @@ public class DriverManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            RandomizeInfo();
+            GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
         }
     }
 
-
+    [PunRPC]
     public void RandomizeInfo()
     {
         //Personal information
