@@ -17,6 +17,7 @@ public class CarBehaviour : MonoBehaviour
     public bool _override = false;
     [SerializeField] private AudioMixer _carMixer;
     public bool _hasBeenChecked = false;
+    public bool _isControlable = false;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
     public NavMeshAgent _agent; //NavMesh agent
