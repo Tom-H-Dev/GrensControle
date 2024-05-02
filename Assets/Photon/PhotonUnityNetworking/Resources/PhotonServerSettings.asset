@@ -60,6 +60,7 @@ MonoBehaviour:
   - UpdateWrongCars
   - SetData
   - RandomizeInfo
+  - SetDriverModels
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
