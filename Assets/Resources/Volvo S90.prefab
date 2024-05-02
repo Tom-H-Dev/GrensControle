@@ -1151,6 +1151,7 @@ MonoBehaviour:
   _override: 0
   _carMixer: {fileID: 24100000, guid: 12e2f2d150c1560478d9ec89438a6b4f, type: 2}
   _hasBeenChecked: 0
+  _isControlable: 0
   _agent: {fileID: 0}
   _wheels:
   - {fileID: 2496747850101449735}
