@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,6 +16,7 @@ public class CarBehaviour : MonoBehaviour
     [SerializeField] LicensePlateManager[] _licensePlates;
     public bool _override = false;
     [SerializeField] private AudioMixer _carMixer;
+    public bool _hasBeenChecked = false;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
     public NavMeshAgent _agent; //NavMesh agent

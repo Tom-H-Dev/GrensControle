@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
                 //Moving playerObject in direction relative to Player lookat
                 Vector3 MoveVector = transform.TransformDirection(PlayerInput);
                 //LeftShift key sprint
-                float CurrentSpeed = Input.GetKey(KeyCode.LeftShift) ? IsRunning() : IsWalking();
+                float CurrentSpeed = IsWalking();
 
                 //smoothing of CurrentMoveVelocity
                 _currentMoveVelocity = Vector3.SmoothDamp(_currentMoveVelocity, MoveVector * CurrentSpeed, ref _moveDampVelocity, _moveSmoothTime);

@@ -66,11 +66,11 @@ public class DriverManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            RandomizeInfo();
+            GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
         }
     }
 
-
+    [PunRPC]
     public void RandomizeInfo()
     {
         //Personal information
@@ -258,9 +258,10 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
-        SetDriverModels();
+        GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
+    [PunRPC]
     private void SetDriverModels()
     {
         if (_driverSex == "Male")
