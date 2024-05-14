@@ -17,6 +17,7 @@ public class CarBehaviour : MonoBehaviour
     public bool _override = false;
     [SerializeField] private AudioMixer _carMixer;
     public bool _hasBeenChecked = false;
+    public bool _isControlable = false;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
     public NavMeshAgent _agent; //NavMesh agent
@@ -144,6 +145,13 @@ public class CarBehaviour : MonoBehaviour
                 _carMixer.SetFloat("MyExposedParam", 2);
             }
         }
+        //else
+        //{
+        //    print("Emergency Breaking");
+        //    _agent.speed = 0;
+        //    //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 100);
+        //    _carMixer.SetFloat("MyExposedParam", 1);
+        //}
     }
     private void OnDrawGizmos()
     {

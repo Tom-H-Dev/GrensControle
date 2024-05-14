@@ -1,32 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EmergencyBreak : MonoBehaviour
 {
-    private CarBehaviour carBehaviour;
-    private void Start()
-    {
-        carBehaviour = GetComponentInParent<CarBehaviour>();
-    }
+    [SerializeField] private CarBehaviour carBehaviour;
+    [SerializeField] private Transform _EmergencyBreakPos;
+    [SerializeField] LayerMask _playerLayer;
 
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] private List<Transform> _startTransforms;
+    [SerializeField] private List<Transform> _endTransforms;
+    [SerializeField] private List<bool> _hitSomething;
+
+
+    private void Update()
     {
-        if (other.gameObject.TryGetComponent(out PlayerMovement l_player) || other.gameObject.TryGetComponent(out CarBehaviour l_otherCar))
+        for (int i = 0; i < _startTransforms.Count; i++)
         {
-            if (!carBehaviour._emergencyBrake)
+            Vector3 direction = _endTransforms[i].position - _startTransforms[i].position;
+            if (Physics.Raycast(_startTransforms[i].position, direction, out RaycastHit hit, direction.magnitude, _playerLayer))
             {
-                print("Braking!");
-                carBehaviour._emergencyBrake = true;
-                carBehaviour._agent.speed = 0;
+                Debug.Log("Hit Something: " + hit.transform.name);
+                if (hit.transform.gameObject.TryGetComponent(out PlayerMovement player))
+                {
+                    Debug.Log("Is Player");
+                    if (!carBehaviour._emergencyBrake)
+                    {
+                        _hitSomething[i] = true;
+                        Debug.Log("Braking!");
+                        carBehaviour._emergencyBrake = true;
+                        carBehaviour._agent.speed = 0;
+                        carBehaviour._agent.isStopped = true;
+                    }
+                }
+                
+            } 
+            else
+            {
+                Debug.Log("Nothing detected");
+                _hitSomething[i] = false;
+                if (IsAllMissionComplete())
+                {
+                    carBehaviour._emergencyBrake = false;
+                    carBehaviour._agent.isStopped = false;
+                }
             }
+
+            Debug.DrawLine(_startTransforms[i].position, _endTransforms[i].position, Color.cyan);
         }
     }
-    private void OnTriggerExit(Collider other)
+    private bool IsAllMissionComplete()
     {
-        if (other.gameObject.TryGetComponent(out PlayerMovement l_player) || other.gameObject.TryGetComponent(out CarBehaviour l_otherCar))
-        {
-            carBehaviour._emergencyBrake = false;
-        }
+        // Check if all bool variables in the list are false
+        return _hitSomething.All(b => b == false); ;
     }
 }

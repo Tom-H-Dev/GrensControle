@@ -66,7 +66,7 @@ public class DriverManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
+            //GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
         }
     }
 
@@ -184,7 +184,7 @@ public class DriverManager : MonoBehaviour
         l_r = Random.Range(0, 100);
         if (l_r < _falsifiedPercentage)
         {
-            Debug.Log("False Inforamtion");
+            //Debug.Log("False Inforamtion");
             _isFalsified = true;
 
             //First and last name

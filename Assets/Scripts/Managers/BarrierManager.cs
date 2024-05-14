@@ -40,15 +40,19 @@ public class BarrierManager : MonoBehaviour
 
         foreach (Collider collider in _colliders)
         {
-            print(collider);
-            _vehicle = collider.GetComponent<CarBehaviour>();
+            //print(collider);
+            if (collider.gameObject.TryGetComponent(out CarBehaviour l_car))
+            {
+                _vehicle = l_car;
+                _vehicle._isControlable = true;
+            }
             if (collider == null)
             {
                 _vehicle = null;
             }
         }
 
-        print(_colliders);
+        //print(_colliders);
         if (_colliders == null)
         {
             _vehicle = null;
@@ -85,6 +89,7 @@ public class BarrierManager : MonoBehaviour
         if (_vehicle != null)
         {
             print("Vehicle denied");
+            _vehicle._isControlable = false;
             StartCoroutine(Timer(4));
             foreach (CarBehaviour car in _queue)
             {
@@ -110,7 +115,7 @@ public class BarrierManager : MonoBehaviour
                             car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
                         }
                     }
-                    _vehicle._currentTarget = _driveAwayLocations[i - 1]; 
+                    _vehicle._currentTarget = _driveAwayLocations[i - 1];
 
                     if (i == _driveAwayLocations.Count - 1)
                     {
@@ -124,13 +129,13 @@ public class BarrierManager : MonoBehaviour
             }
         }
 
-        
+
 
         yield return null;
     }
 
 
-    private IEnumerator Timer(int l_time) 
+    private IEnumerator Timer(int l_time)
     {
         yield return new WaitForSeconds(l_time);
         RemoveFirstVehicleFromQueue();
@@ -149,6 +154,7 @@ public class BarrierManager : MonoBehaviour
     {
         if (_vehicle != null)
         {
+            _vehicle._isControlable = false;
             _barrierAnimator.ResetTrigger("Close");
             _barrierAnimator.SetTrigger("Open");
             _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();

@@ -22,6 +22,5 @@ public class Interactable : MonoBehaviour
             _animator.ResetTrigger("Open");
             _animator.SetTrigger("Close");
         }
-
     }
 }

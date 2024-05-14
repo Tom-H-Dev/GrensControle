@@ -80,21 +80,21 @@ public class PlayerLook : MonoBehaviour
                             l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
                             _interactionText.text = "";
                         }
-                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text))
+                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                         }
                     }
                     else if (team == 2)
                     {
-                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text))
+                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                         }
                     }
                     else if (team == 3)
                     {
-                        if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable))
+                        if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         {
                             l_interactable.InteractWithObject();
                         }
@@ -117,19 +117,19 @@ public class PlayerLook : MonoBehaviour
                 {
                     if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
                         _interactionText.text = "Druk op 'E' om de computer te openen.";
-                    else if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_papaers) && !_isTalkikng)
+                    else if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_papaers) && !_isTalkikng && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         _interactionText.text = "Druk op 'E' om de papieren op te vragen.";
                     else _interactionText.text = "";
                 }
                 else if (team == 2)
                 {
-                    if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && !_isTalkikng)
+                    if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && !_isTalkikng && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         _interactionText.text = "Druk op 'E' om met de bestuurder te praten.";
                     else _interactionText.text = "";
                 }
                 else if (team == 3)
                 {
-                    if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable))
+                    if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         _interactionText.text = "Druk op 'E' om het open te maken.";
                     else _interactionText.text = "";
                 }
