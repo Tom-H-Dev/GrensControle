@@ -40,8 +40,8 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2761088122331970390}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0.15}
-  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0.03}
+  m_Radius: 0.2
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -244,8 +244,8 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3324763859549251654}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0.15}
-  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0.03}
+  m_Radius: 0.2
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -315,8 +315,8 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5907812269151607882}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0.15}
-  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0.03}
+  m_Radius: 0.2
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -519,8 +519,8 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7445300489228291530}
   serializedVersion: 2
-  m_Center: {x: 0, y: 0, z: 0.15}
-  m_Radius: 0.3
+  m_Center: {x: 0, y: 0, z: 0.03}
+  m_Radius: 0.2
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -882,7 +882,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276248932820250979}
   serializedVersion: 4
-  m_Mass: 1200
+  m_Mass: 1500
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -926,6 +926,8 @@ MonoBehaviour:
   _isBraking: 0
   _maxBrakeTorque: 500
   _emergencyBrake: 0
+  _isMovingBackwards: 0
+  _movingToQuePoint: 0
   _sensorLength: 10
   _fronstSensorPosition: {x: 0, y: 0.5, z: 2}
   _frontSideSensorPos: 0.6

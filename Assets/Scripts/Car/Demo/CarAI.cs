@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public enum CarStates
 {
     arriving,
     accepted,
-    declined
+    declined,
+    queuing
 };
 
 public class CarAI : MonoBehaviour
@@ -32,6 +32,8 @@ public class CarAI : MonoBehaviour
     public bool _isBraking = false;
     public float _maxBrakeTorque = 150f;
     public bool _emergencyBrake;
+    public bool _isMovingBackwards = false;
+    public bool _movingToQuePoint = false;
 
 
     [Header("Sensors")]
@@ -43,7 +45,8 @@ public class CarAI : MonoBehaviour
     private void Start()
     {
         _nodes = new List<Transform>();
-        RouteManager.instance.CarQueUpdate();
+        RouteManager.instance.CarQueUpdate(1);
+        RouteManager.instance._activeCars.Add(this);
         UpdateRoute();
 
     }
@@ -55,6 +58,9 @@ public class CarAI : MonoBehaviour
         DriveCar();
         CheckWaypointDistance();
         CarBreaking();
+
+        if(_isMovingBackwards)
+            MovingBackwards();
     }
 
 
@@ -70,10 +76,15 @@ public class CarAI : MonoBehaviour
     private void DriveCar()
     {
         _curSpeed = 2 * Mathf.PI * _wheelFL.radius * _wheelFL.rpm * 60 / 1000;
-        if (_curSpeed < _maxSpeed && !_isBraking && !_emergencyBrake)
+        if (_curSpeed < _maxSpeed && !_isBraking && !_emergencyBrake && !_movingToQuePoint)
         {
             _wheelFL.motorTorque = _maxMotorTorque;
             _wheelFR.motorTorque = _maxMotorTorque;
+        }
+        else if (_movingToQuePoint && _curSpeed < _maxSpeed && !_isBraking && !_emergencyBrake)
+        {
+            _wheelFL.motorTorque = _maxMotorTorque / 2;
+            _wheelFR.motorTorque = _maxMotorTorque / 2;
         }
         else
         {
@@ -90,13 +101,14 @@ public class CarAI : MonoBehaviour
             if (_currentNode == _nodes.Count - 1)
             {
                 Debug.Log("Reached the end");
+                _movingToQuePoint = false;
             }
             else
             {
                 _currentNode++;
             }
         }
-        if (_currentNode + 1 >= _nodes.Count - 1)
+        if (_currentNode + 1 >= _nodes.Count - 1 && !_movingToQuePoint)
         {
             float l_finishDist = Vector3.Distance(transform.position, _nodes[_nodes.Count - 1].position);
             if (l_finishDist <= 15)
@@ -141,7 +153,9 @@ public class CarAI : MonoBehaviour
             {
                 _emergencyBrake = true;
             }
+            else _emergencyBrake = false;
         }
+        else _emergencyBrake = false;
 
         //Front right middle sensor
         l_sensorStartPos += transform.right * _frontSideSensorPos / 2;
@@ -152,7 +166,9 @@ public class CarAI : MonoBehaviour
             {
                 _emergencyBrake = true;
             }
+            else _emergencyBrake = false;
         }
+        else _emergencyBrake = false;
 
         //Front right sensor
         l_sensorStartPos += transform.right * _frontSideSensorPos;
@@ -163,16 +179,14 @@ public class CarAI : MonoBehaviour
             {
                 _emergencyBrake = true;
             }
+            else _emergencyBrake = false;
         }
+        else _emergencyBrake = false;
 
         //Right angled sensor
         if (Physics.Raycast(l_sensorStartPos, Quaternion.AngleAxis(_frontSensorAngle, transform.up) * transform.forward, out l_hit, _sensorLength))
         {
-            Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-            if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-            {
-                _emergencyBrake = true;
-            }
+            Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);         
         }
 
         //Front Left middle sensor
@@ -184,7 +198,9 @@ public class CarAI : MonoBehaviour
             {
                 _emergencyBrake = true;
             }
+            else _emergencyBrake = false;
         }
+        else _emergencyBrake = false;
 
         //Front Left sensor
         l_sensorStartPos -= transform.right * 2 * _frontSideSensorPos;
@@ -195,16 +211,14 @@ public class CarAI : MonoBehaviour
             {
                 _emergencyBrake = true;
             }
+            else _emergencyBrake = false;
         }
+        else _emergencyBrake = false;
 
         //left angles sensor
         if (Physics.Raycast(l_sensorStartPos, Quaternion.AngleAxis(-_frontSensorAngle, transform.up) * transform.forward, out l_hit, _sensorLength))
         {
             Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-            if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-            {
-                _emergencyBrake = true;
-            }
         }
 
     }
@@ -215,6 +229,7 @@ public class CarAI : MonoBehaviour
         {
             case CarStates.arriving:
                 _currentNode = 0;
+                _nodes.Clear();
                 Transform[] l_pathTransformsArriving = RouteManager.instance._arriveRoute.ToArray();
                 for (int i = 0; i < l_pathTransformsArriving.Length; i++)
                 {
@@ -234,6 +249,7 @@ public class CarAI : MonoBehaviour
                 break;
             case CarStates.declined:
                 _currentNode = 0;
+                _nodes.Clear();
                 Transform[] l_pathTransformsDeclined = RouteManager.instance._declinedRoute.ToArray();
                 for (int i = 0; i < l_pathTransformsDeclined.Length; i++)
                 {
@@ -245,6 +261,7 @@ public class CarAI : MonoBehaviour
                 break;
             case CarStates.accepted:
                 _currentNode = 0;
+                _nodes.Clear();
                 Transform[] l_pathTransformsAccepted = RouteManager.instance._acceptedRoute.ToArray();
                 for (int i = 0; i < l_pathTransformsAccepted.Length; i++)
                 {
@@ -254,20 +271,63 @@ public class CarAI : MonoBehaviour
                     }
                 }
                 break;
+            case CarStates.queuing:
+                _currentNode = 0;
+                _nodes.Clear();
+                int l_thisCarIndex = 0;
+                for (int i = 0; i < RouteManager.instance._activeCars.Count; i++)
+                {
+                    if (RouteManager.instance._activeCars[i] == this)
+                    {
+                        l_thisCarIndex = i;
+                    }
+                }
+
+                List<Transform> l_pathTransformsQueuing = new List<Transform> ();
+                l_pathTransformsQueuing.Add(RouteManager.instance.QueMoveUp(l_thisCarIndex));
+                for (int i = 0; i < l_pathTransformsQueuing.Count; i++)
+                {
+                    if (l_pathTransformsQueuing[i] != transform)
+                    {
+                        _nodes.Add(l_pathTransformsQueuing[i]);
+                    }
+                }
+                break;
         }
     }
 
     public IEnumerator DeclineRoute()
     {
-        _curSpeed = 2 * Mathf.PI * _wheelFL.radius * _wheelFL.rpm * 60 / 1000;
+        _carState = CarStates.declined;
+        _isMovingBackwards = true;
+        RouteManager.instance._activeCars.Remove(this);
+        yield return new WaitForSeconds(5.5f);
+        _isMovingBackwards = false;
+        _isBraking = false;
+        _emergencyBrake = false;
+        UpdateRoute();
+        yield return new WaitForSeconds(3f);
+        RouteManager.instance.CarQueUpdate(-1);
+        RouteManager.instance.UpdateCarsLocations();
+    }
 
-        _wheelFL.motorTorque = 0;
-        _wheelFR.motorTorque = 0;
-        yield return new WaitForSeconds(1f);
+    private void MovingBackwards()
+    {
+        transform.position = Vector3.Lerp(transform.position, -transform.forward * 9.5f, 0.4f  * Time.deltaTime);
     }
 
     public IEnumerator AcceptRoute()
     {
-        yield return new WaitForSeconds(1f);
+        _carState = CarStates.accepted;
+        //Play Animation
+        RouteManager.instance._activeCars.Remove(this);
+        yield return new WaitForSeconds(4f);
+        Debug.Log("Car accepted");
+        _isBraking = false;
+        _emergencyBrake = false;
+        UpdateRoute();
+        yield return new WaitForSeconds(3f);
+        RouteManager.instance.CarQueUpdate(-1);
+        RouteManager.instance.UpdateCarsLocations();
     }
 }

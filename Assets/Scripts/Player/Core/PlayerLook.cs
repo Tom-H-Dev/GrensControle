@@ -83,6 +83,7 @@ public class PlayerLook : MonoBehaviour
                         if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
+                            _interactionText.text = "";
                         }
                     }
                     else if (team == 2)
@@ -90,6 +91,7 @@ public class PlayerLook : MonoBehaviour
                         if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
+                            _interactionText.text = "";
                         }
                     }
                     else if (team == 3)
@@ -97,6 +99,7 @@ public class PlayerLook : MonoBehaviour
                         if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarBehaviour>()._isControlable)
                         {
                             l_interactable.InteractWithObject();
+                            _interactionText.text = "";
                         }
                     }
                     else Debug.LogError("No Team was found");

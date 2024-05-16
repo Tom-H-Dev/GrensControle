@@ -19,10 +19,11 @@ public class RouteManager : MonoBehaviour
     [Header("Cars info")]
     public int _totalActiveCars = 0;
     public List<Transform> _queingPositions = new List<Transform>();
+    public List<CarAI> _activeCars = new List<CarAI>();
 
-    public void CarQueUpdate()
+    public void CarQueUpdate( int l_index)
     {
-        _totalActiveCars++;
+        _totalActiveCars += l_index;
     }
 
     private void OnDrawGizmos()
@@ -60,5 +61,42 @@ public class RouteManager : MonoBehaviour
             Gizmos.color = Color.cyan;
             Gizmos.DrawSphere(_queingPositions[i].position, 0.3f);
         }
+    }
+
+    public void UpdateCarsLocations()
+    {
+        for (int i = 0; i < _activeCars.Count; i++)
+        {
+            _activeCars[i]._carState = CarStates.queuing;
+            _activeCars[i]._isBraking = false;
+            _activeCars[i]._movingToQuePoint = true;
+            _activeCars[i].UpdateRoute();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Insert))
+        {
+            StartCoroutine(_activeCars[0].AcceptRoute());
+            for (int i = 0; i < _activeCars.Count; i++)
+            {
+                _activeCars[i]._isBraking = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            StartCoroutine(_activeCars[0].DeclineRoute());
+            for (int i = 0; i < _activeCars.Count; i++)
+            {
+                _activeCars[i]._isBraking = false;
+            }
+        }
+    }
+
+    public Transform QueMoveUp(int l_index)
+    {
+        return _queingPositions[l_index];
     }
 }
