@@ -318,10 +318,6 @@ public class DialogeManager : MonoBehaviour
                 
                 AddItem(text ,team ,question, madness);       
             }
-            else
-            {
-                Debug.Log(" help");
-            }
         }
     }
 

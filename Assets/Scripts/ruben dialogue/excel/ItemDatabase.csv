@@ -1,11 +1,11 @@
-text ,team ,question ,madness 
+text,team,question,madness
 "Altijd, alstublieft.",1,0,100
-Hier.,1,0,50
-"Hier, gaat dit nog lang duren?",1,0,25
+,,,
+"Nee, ik heb niets illegaals bij me",2,0,100
 ,,,
 ,,,
-Ik kom even bezienswaardigheden bekijken.,2,1,100
-"Ik kom dingen stellen, wat denkt u wat ik kom doen.",2,1,25
+Ik ben hier voor een afspraak,2,1,100
+Ik moet documenten afleveren,2,1,100
 ,,,
 ,,,
-heel erg kort maar een dag of 2.,2,2,100
+Ik verwacht hier ongeveer een uur te blijven.,2,2,100

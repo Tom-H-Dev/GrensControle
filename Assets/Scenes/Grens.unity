@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11043,6 +11043,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 878399086}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &902038010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2080686173718163837, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+    type: 3}
+  m_PrefabInstance: {fileID: 906154882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &906154882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11055,6 +11061,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InGameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 262116604573413350, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_text
+      value: Wat is uw doel op de kazerne?
+      objectReference: {fileID: 0}
+    - target: {fileID: 262116604573413350, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 262116604573413350, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 521345501342856807, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
@@ -11176,16 +11197,56 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1164772996}
+    - target: {fileID: 1646513951670988914, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1760200559982942448, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 980183261}
+    - target: {fileID: 2080686173718163837, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_Name
+      value: Button player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080686173718163837, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2205444876887323453, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 980183261}
+    - target: {fileID: 2343420035773393033, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738908052096002065, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_text
+      value: "Heeft u eventuele bagage of voertuigen die moeten worden ge\xEFnspecteerd?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738908052096002065, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738908052096002065, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738908052096002065, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2829328636905443742, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11196,6 +11257,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 980183261}
+    - target: {fileID: 3551589511570749831, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_Name
+      value: Button player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3551589511570749831, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3820822491708856173, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11206,6 +11277,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1164772996}
+    - target: {fileID: 4078857307396853229, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834714990282902909, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6004164160561173547, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11221,6 +11302,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1164772995}
+    - target: {fileID: 8852019536033742448, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_text
+      value: Hoe lang blijft u in de kazerne?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852019536033742448, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852019536033742448, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12336,7 +12432,7 @@ PrefabInstance:
         type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 4900000, guid: 42fbbaf52fd7e1942bd71cd6b91f2539, type: 3}
+      objectReference: {fileID: 4900000, guid: 16aaf475302a9f84d8b45ea711a67b16, type: 3}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: Range.x
@@ -12355,12 +12451,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: teamName
-      value: 'team '
+      value: team
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: textName
-      value: 'text '
+      value: text
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12370,7 +12466,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: MadnessName
-      value: 'madness '
+      value: madness
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12381,7 +12477,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: questionName
-      value: 'question '
+      value: question
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12462,7 +12558,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.size
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12512,7 +12608,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: Player2Buttons.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12543,22 +12639,22 @@ PrefabInstance:
         type: 3}
       propertyPath: Player2Buttons.Array.data[0]
       value: 
-      objectReference: {fileID: 906154916}
+      objectReference: {fileID: 902038010}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: Player2Buttons.Array.data[1]
       value: 
-      objectReference: {fileID: 906154886}
+      objectReference: {fileID: 906154916}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: Player2Buttons.Array.data[2]
       value: 
-      objectReference: {fileID: 906154915}
+      objectReference: {fileID: 906154886}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: Player2Buttons.Array.data[3]
       value: 
-      objectReference: {fileID: 906154885}
+      objectReference: {fileID: 906154915}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: Player2Buttons.Array.data[4]
@@ -12577,12 +12673,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[1].team
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[2].team
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12677,7 +12773,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[1].lines
-      value: Hier.
+      value: Nee, ik heb niets illegaals bij me
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12732,7 +12828,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[2].lines
-      value: Hier, gaat dit nog lang duren.
+      value: Ik ben hier voor een afspraak
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12742,12 +12838,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[3].lines
-      value: Ik kom even bezienswaardigheden bekijken.
+      value: Ik moet documenten afleveren
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[4].lines
-      value: Ik kom dingen stellen, wat denkt u wat ik kom doen.
+      value: Ik verwacht hier ongeveer een uur te blijven.
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12887,12 +12983,12 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[1].madness
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[2].madness
-      value: 25
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -12902,7 +12998,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[4].madness
-      value: 25
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -13047,7 +13143,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[2].question
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -13062,7 +13158,7 @@ PrefabInstance:
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[4].question
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
