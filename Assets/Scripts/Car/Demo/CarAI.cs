@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public enum CarStates
 {
@@ -42,13 +44,98 @@ public class CarAI : MonoBehaviour
     public float _frontSideSensorPos = 0.2f;
     public float _frontSensorAngle = 30f;
 
+    [Header("Data")]
+    public bool _isMillitairyVehicle; // Will add DM in the license palte
+    public bool _hasDutchLicensePlate; //WIll make the license plate color yellow
+    public string _duplicateCode = null; // The little number on how often the driver has lost their vehicle, purely aesthetical and has no fucntion
+    [SerializeField] string[] _landCodes; // Such as NL (netherlands), PL (poland), DE (Germany) etc...
+    public string _landCode;
+    public string _licensePlate;
+    [SerializeField] LicensePlateManager[] _licensePlates;
+
+    [Header("Network")]
+    public bool _override = false;
+
     private void Start()
     {
+        Physics.IgnoreLayerCollision(3, 15);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GetComponent<PhotonView>().RPC("GenerateLisencePlate", RpcTarget.AllBufferedViaServer);
+        }
         _nodes = new List<Transform>();
         RouteManager.instance.CarQueUpdate(1);
         RouteManager.instance._activeCars.Add(this);
         UpdateRoute();
 
+    }
+
+    [PunRPC]
+    private void GenerateLisencePlate()
+    {
+        string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
+        string _middleText = null;
+
+
+        float a = Random.value;
+        if (a < 0.05f)
+        {
+            _duplicateCode = "1";
+        }
+
+        float b = Random.value;
+        if (b < 0.50f)
+        {
+            _hasDutchLicensePlate = false;
+            _landCode = _landCodes[Random.Range(1, _landCodes.Length)];
+        }
+        else
+        {
+            _hasDutchLicensePlate = true;
+            _landCode = _landCodes[0];
+
+            float c = Random.value;
+            if (c < 0.30f)
+            {
+                _isMillitairyVehicle = true;
+            }
+        }
+
+        if (_isMillitairyVehicle)
+        {
+            _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
+        }
+        else
+        {
+            _middleText = _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString() + _alphabet[Random.Range(0, _alphabet.Length)].ToString();
+        }
+
+        _licensePlate = Random.Range(0, 9).ToString() + Random.Range(0, 9).ToString() + "-" + _middleText + "-" + Random.Range(0, 9).ToString(); // set the license plate
+
+
+
+        for (int i = 0; i < _licensePlates.Length; i++)
+        {
+            _licensePlates[i]._licenseText.text = _licensePlate;
+            _licensePlates[i]._landCodeText.text = _landCode;
+            _licensePlates[i]._duplicateText.text = _duplicateCode;
+
+            if (_hasDutchLicensePlate)
+            {
+                Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
+                materials[3] = _licensePlates[i]._yellowPlate;
+                materials[4] = _licensePlates[i]._yellowPlate;
+                _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+            }
+            else if (!_hasDutchLicensePlate)
+            {
+                Material[] materials = _licensePlates[i].GetComponent<MeshRenderer>().materials;
+                materials[3] = _licensePlates[i]._whitePlate;
+                materials[4] = _licensePlates[i]._whitePlate;
+                _licensePlates[i].GetComponent<MeshRenderer>().materials = materials;
+            }
+
+        }
     }
 
     private void FixedUpdate()
@@ -59,7 +146,7 @@ public class CarAI : MonoBehaviour
         CheckWaypointDistance();
         CarBreaking();
 
-        if(_isMovingBackwards)
+        if (_isMovingBackwards)
             MovingBackwards();
     }
 
@@ -186,7 +273,7 @@ public class CarAI : MonoBehaviour
         //Right angled sensor
         if (Physics.Raycast(l_sensorStartPos, Quaternion.AngleAxis(_frontSensorAngle, transform.up) * transform.forward, out l_hit, _sensorLength))
         {
-            Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);         
+            Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
         }
 
         //Front Left middle sensor
@@ -283,7 +370,7 @@ public class CarAI : MonoBehaviour
                     }
                 }
 
-                List<Transform> l_pathTransformsQueuing = new List<Transform> ();
+                List<Transform> l_pathTransformsQueuing = new List<Transform>();
                 l_pathTransformsQueuing.Add(RouteManager.instance.QueMoveUp(l_thisCarIndex));
                 for (int i = 0; i < l_pathTransformsQueuing.Count; i++)
                 {
@@ -313,7 +400,7 @@ public class CarAI : MonoBehaviour
 
     private void MovingBackwards()
     {
-        transform.position = Vector3.Lerp(transform.position, -transform.forward * 9.5f, 0.4f  * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, -transform.forward * 9.5f, 0.4f * Time.deltaTime);
     }
 
     public IEnumerator AcceptRoute()
