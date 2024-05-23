@@ -66,8 +66,9 @@ public class DriverManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            //GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
+            GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
         }
+        //RandomizeInfo();
     }
 
     [PunRPC]
@@ -258,7 +259,7 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
-        GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
+        //GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]

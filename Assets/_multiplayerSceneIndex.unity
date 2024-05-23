@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1926.0393, g: 1984.7307, b: 2771.8323, a: 1}
+  m_IndirectSpecularColor: {r: 4253.5034, g: 2817.2034, b: 2351.176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10718,6 +10718,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1129778307}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1140906965
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1324148004}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5df92a80f35c85a4ea51134d2cd2722a, type: 2}
+    - target: {fileID: 919132149155446097, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+        type: 3}
+      propertyPath: m_Name
+      value: FenceHighpoly (18)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 840b0b9b0c71e9b428cfc928e98f2dc4, type: 3}
+--- !u!4 &1140906966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 840b0b9b0c71e9b428cfc928e98f2dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1140906965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1160608130 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3073702832875138900, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
@@ -12234,6 +12313,7 @@ Transform:
   - {fileID: 1246814206}
   - {fileID: 767065391}
   - {fileID: 904450908}
+  - {fileID: 1140906966}
   - {fileID: 1162745819}
   - {fileID: 1065218534}
   - {fileID: 1399087340}
@@ -15721,7 +15801,7 @@ GameObject:
   - component: {fileID: 1592444788}
   - component: {fileID: 1592444787}
   m_Layer: 0
-  m_Name: f
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

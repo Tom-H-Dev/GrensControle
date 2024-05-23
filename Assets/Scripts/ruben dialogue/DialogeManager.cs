@@ -18,7 +18,8 @@ public class DialogeManager : MonoBehaviour
     [SerializeField] private string driverName;
     [SerializeField] private List<GameObject> Player2Buttons;
     [SerializeField] private List<GameObject> Player1Buttons;
-    
+
+    [SerializeField] private List<GameObject> carsInRange;
     
     private bool _textStart = false, _check;
     public int _index;
@@ -49,6 +50,8 @@ public class DialogeManager : MonoBehaviour
     public List<Item> matchingItems = new List<Item>();
     
     private PlayerUI Doingsometing;
+
+    public float range;
     private void Start()
     {
         Doingsometing = FindObjectOfType<PlayerUI>();
@@ -65,6 +68,15 @@ public class DialogeManager : MonoBehaviour
 
     private void Update()
     {
+        //Collider[] colliders = Physics.OverlapSphere(transform.position,range);
+        //foreach (var col in colliders)
+        //{ 
+        //    if (col.CompareTag(CarBehavior.driverTag))
+        //    {
+        //        carsInRange.Add(col.gameObject);
+        //    }
+           
+        //}
         if (_textStart && Input.GetMouseButtonDown(0))
         {
             if (_check)
@@ -82,28 +94,30 @@ public class DialogeManager : MonoBehaviour
                 ProcessDialogueLine();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            EndDialogueButton();
-        }
     }
     
 
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
-        TextComponent.text = string.Empty;
         
-        _playerMovement = playerMovement;
-        _playerMovement.enabled = false;
+        //if (carsInRange.Count > 1 && carsInRange.IndexOf(this.gameObject) == 0)
+        //{
+            TextComponent.text = string.Empty;
         
-        _playerLook = playerLook;
-        _playerLook.enabled = false;
+            _playerMovement = playerMovement;
+            _playerMovement.enabled = false;
+        
+            _playerLook = playerLook;
+            _playerLook.enabled = false;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             
-        Doingsometing._isDoingSomething = true;
+            Doingsometing._isDoingSomething = true;      
+            
+        //    carsInRange.Clear();
+        //}
+        
         
         if (_playerLook.team == 1)
         {
@@ -299,10 +313,6 @@ public class DialogeManager : MonoBehaviour
                 
                 AddItem(text ,team ,question, madness);       
             }
-            else
-            {
-                Debug.Log(" help");
-            }
         }
     }
 
@@ -316,6 +326,11 @@ public class DialogeManager : MonoBehaviour
         tempItem.madness = madness;
         
         ItemDatabase.Add(tempItem);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
 

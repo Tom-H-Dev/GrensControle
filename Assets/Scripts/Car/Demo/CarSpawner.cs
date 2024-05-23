@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CarSpawner : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class CarSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && PhotonNetwork.IsMasterClient)
         {
             print("spawn");
-            Instantiate(_carPrefab, _carSpawnLocation.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
         }
     }
 }
