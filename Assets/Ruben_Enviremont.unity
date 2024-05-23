@@ -979,38 +979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2821f1342e84a043a97527cd261166d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textList: []
-  textSpeed: 0.5
-  changeWord: []
-  driverName: 
-  Player2Buttons: []
-  Player1Buttons: []
-  carsInRange: []
-  _index: 0
-  _words: []
-  updatedLine: 
-  wordToType: 
-  _playerMovement: {fileID: 0}
-  _playerLook: {fileID: 0}
-  TextComponent: {fileID: 0}
-  Text: {fileID: 0}
-  selectedLineIndex: -1
-  randomIndex: 0
-  doc: {fileID: 0}
-  selectedDialogueIndex: 0
-  BlankItem:
-    lines: 
-    team: 0
-    question: 0
-    madness: 0
-  ItemDatabase: []
-  text: {fileID: 0}
-  textName: 
-  teamName: 
-  questionName: 
-  MadnessName: 
-  matchingItems: []
-  range: 0
 --- !u!1 &711976242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3203,21 +3171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17e921543d4bbf4cb11cb4de3714a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _checkCubeSize: {x: 0, y: 0, z: 0}
-  _insideLocation: {fileID: 0}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _vehicle: {fileID: 0}
-  _barrierAnimator: {fileID: 0}
-  _isExit: 0
-  _colliders: []
-  _stopSpot: {fileID: 0}
-  _stopLocations: []
-  _driveAwayLocations: []
-  _vehicleWaitDistance: 0
-  _vehicleManager: {fileID: 0}
-  _queue: []
+  startLocation: {fileID: 0}
 --- !u!4 &1735696961
 Transform:
   m_ObjectHideFlags: 0
@@ -4048,11 +4002,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 620075498082350680, guid: dc72effb59b6d114b805ac861f2c94ef,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 658955073425555049, guid: dc72effb59b6d114b805ac861f2c94ef,
         type: 3}
@@ -5234,7 +5183,7 @@ PrefabInstance:
     - target: {fileID: 2954926281282767861, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.3
+      value: -4.669604
       objectReference: {fileID: 0}
     - target: {fileID: 2954926281282767861, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -5280,11 +5229,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
-        type: 3}
-      propertyPath: range
-      value: 17.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

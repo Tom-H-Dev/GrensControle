@@ -124,6 +124,8 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     [PunRPC]
     private void RPC_SendTimer(float timeIn)
     {
+        
+        Debug.Log(syncVariable);
         //RPC for syncing the countdown timer to those that join after it has started the countdown.
         _timerToStartGame = timeIn;
         _notFullGameTimer = timeIn;

@@ -2,30 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractableItem
-{
-    Hood,
-    FrontLeftDoor,
-    FrontRightDoor,
-    RearLeftDoor,
-    RearRightDoor,
-    GloveBox,
-    Trunk
-};
-
 public class Interactable : MonoBehaviour
 {
     private Animator _animator;
     bool opened = false;
-
-    public InteractableItem _item;
     public void InteractWithObject()
     {
-        _animator = GetComponentInParent<Animator>();
+        _animator = GetComponent<Animator>();
+        print("interacted with " + gameObject.name);
         opened = !opened;
-        _animator.SetBool(_item.ToString(), opened);
+
         if (opened)
-            _animator.SetTrigger(_item.ToString() + "Open");
-        else _animator.SetTrigger(_item.ToString() + "Close");
+        {
+            _animator.ResetTrigger("Close");
+            _animator.SetTrigger("Open");
+        }
+        else
+        {
+            _animator.ResetTrigger("Open");
+            _animator.SetTrigger("Close");
+        }
     }
 }

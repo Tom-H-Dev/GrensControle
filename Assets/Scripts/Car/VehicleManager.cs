@@ -34,7 +34,7 @@ public class VehicleManager : MonoBehaviour
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                //print("spawning vehicle in server...");
+                print("spawning vehicle in server...");
                 GameObject _currentVehicle = PhotonNetwork.Instantiate(_carPrefab.name, _carSpawnLocation.position, Quaternion.identity);
                 _entranceBarrier.AddToQueue(_currentVehicle.GetComponent<CarBehaviour>());
                 _currentVehicles.Add(_currentVehicle);

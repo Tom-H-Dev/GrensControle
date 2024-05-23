@@ -68,7 +68,6 @@ public class DriverManager : MonoBehaviour
         {
             GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
         }
-        //RandomizeInfo();
     }
 
     [PunRPC]
@@ -185,7 +184,7 @@ public class DriverManager : MonoBehaviour
         l_r = Random.Range(0, 100);
         if (l_r < _falsifiedPercentage)
         {
-            //Debug.Log("False Inforamtion");
+            Debug.Log("False Inforamtion");
             _isFalsified = true;
 
             //First and last name
@@ -259,7 +258,7 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
-        //GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
+        GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]

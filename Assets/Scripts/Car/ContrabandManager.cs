@@ -17,7 +17,7 @@ public class ContrabandManager : MonoBehaviour
         int randomContrabandChance = Random.Range(0, 100);
         if (randomContrabandChance < contrabandChance)
         {
-            //print(gameObject.name + " Has contraband");
+            print(gameObject.name + " Has contraband");
             for (int i = 0; i < _contrabandLocations.Count; i++)
             {
                 randomContrabandChance = Random.Range(0, 100);

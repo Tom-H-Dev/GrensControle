@@ -145,13 +145,6 @@ public class CarBehaviour : MonoBehaviour
                 _carMixer.SetFloat("MyExposedParam", 2);
             }
         }
-        //else
-        //{
-        //    print("Emergency Breaking");
-        //    _agent.speed = 0;
-        //    //GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 100);
-        //    _carMixer.SetFloat("MyExposedParam", 1);
-        //}
     }
     private void OnDrawGizmos()
     {

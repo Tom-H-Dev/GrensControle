@@ -40,7 +40,7 @@ public class BarrierManager : MonoBehaviour
 
         foreach (Collider collider in _colliders)
         {
-            //print(collider);
+            print(collider);
             if (collider.gameObject.TryGetComponent(out CarBehaviour l_car))
             {
                 _vehicle = l_car;
@@ -52,7 +52,7 @@ public class BarrierManager : MonoBehaviour
             }
         }
 
-        //print(_colliders);
+        print(_colliders);
         if (_colliders == null)
         {
             _vehicle = null;
