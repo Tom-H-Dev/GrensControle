@@ -1,8 +1,6 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

@@ -61,6 +61,7 @@ MonoBehaviour:
   - SetData
   - RandomizeInfo
   - SetDriverModels
+  - GenerateLisencePlate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

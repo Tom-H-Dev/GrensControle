@@ -70,15 +70,15 @@ public class DialogeManager : MonoBehaviour
 
     private void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position,range);
-        foreach (var col in colliders)
-        { 
-            if (col.CompareTag(CarBehavior.driverTag))
-            {
-                carsInRange.Add(col.gameObject);
-            }
+        //Collider[] colliders = Physics.OverlapSphere(transform.position,range);
+        //foreach (var col in colliders)
+        //{ 
+        //    if (col.CompareTag(CarBehavior.driverTag))
+        //    {
+        //        carsInRange.Add(col.gameObject);
+        //    }
            
-        }
+        //}
         if (_textStart && Input.GetMouseButtonDown(0))
         {
             if (_check)
@@ -96,19 +96,14 @@ public class DialogeManager : MonoBehaviour
                 ProcessDialogueLine();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            EndDialogueButton();
-        }
     }
     
 
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         
-        if (carsInRange.Count > 1 && carsInRange.IndexOf(this.gameObject) == 0)
-        {
+        //if (carsInRange.Count > 1 && carsInRange.IndexOf(this.gameObject) == 0)
+        //{
             TextComponent.text = string.Empty;
         
             _playerMovement = playerMovement;
@@ -122,8 +117,8 @@ public class DialogeManager : MonoBehaviour
             
             Doingsometing._isDoingSomething = true;      
             
-            carsInRange.Clear();
-        }
+        //    carsInRange.Clear();
+        //}
         
         
         if (_playerLook.team == 1)
