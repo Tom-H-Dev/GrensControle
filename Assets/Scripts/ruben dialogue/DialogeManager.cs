@@ -16,6 +16,8 @@ public class DialogeManager : MonoBehaviour
     [SerializeField] private float textSpeed = 0.5f;
     [SerializeField] private string[] changeWord;
     [SerializeField] private string driverName;
+    [SerializeField] private string DriversAchternaam;
+    
     [SerializeField] private List<GameObject> Player2Buttons;
     [SerializeField] private List<GameObject> Player1Buttons;
 
@@ -39,6 +41,7 @@ public class DialogeManager : MonoBehaviour
     public int selectedDialogueIndex;
     
     private carBehaviorDialogue CarBehavior;
+    public DriverManager _driverManager;
     
     public Item BlankItem;
     public List<Item> ItemDatabase = new List<Item>();
@@ -62,6 +65,7 @@ public class DialogeManager : MonoBehaviour
 
     private void InitializeVariables()
     {
+        
         _index = 0;
         _textStart = false;
     }
@@ -99,9 +103,18 @@ public class DialogeManager : MonoBehaviour
 
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
+        _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
+        if (_driverManager._isFalsified == true)
+        {
+            driverName = _driverManager._givenFitstName;
+            DriversAchternaam = _driverManager._givenLastName;
+        }
+        else
+        { 
+            driverName = _driverManager._driverFirstName;
+            DriversAchternaam = _driverManager._driverLastName;
+        }
         
-        //if (carsInRange.Count > 1 && carsInRange.IndexOf(this.gameObject) == 0)
-        //{
             TextComponent.text = string.Empty;
         
             _playerMovement = playerMovement;
@@ -115,8 +128,6 @@ public class DialogeManager : MonoBehaviour
             
             Doingsometing._isDoingSomething = true;      
             
-        //    carsInRange.Clear();
-        //}
         
         
         if (_playerLook.team == 1)
@@ -158,7 +169,8 @@ public class DialogeManager : MonoBehaviour
                 {
                     if (word == wordToChange)
                     {
-                        updatedLine += driverName;
+                        string test = driverName + " " + DriversAchternaam;
+                        updatedLine += test;
                         isChecked = true;
                         break;
                     }
@@ -226,7 +238,9 @@ public class DialogeManager : MonoBehaviour
             {
                 if (word == wordToChange)
                 {
-                    wordToType = driverName;
+                    wordToType = String.Empty;
+                    string test = driverName + " " + DriversAchternaam;
+                    wordToType += test;
                     break;
                 }
             }
