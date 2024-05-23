@@ -66,13 +66,12 @@ public class DriverManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            GetComponent<PhotonView>().RPC("RandomizeInfo", RpcTarget.AllBufferedViaServer);
+            GenerateData();
         }
         //RandomizeInfo();
     }
 
-    [PunRPC]
-    public void RandomizeInfo()
+    private void GenerateData()
     {
         //Personal information
         _driverAge = _driverAges[Random.Range(0, _driverAges.Count)];
@@ -259,6 +258,66 @@ public class DriverManager : MonoBehaviour
             _givenBSN = 0;
             _isFalsified = false;
         }
+
+        GetComponent<PhotonView>().RPC("UpdateDataOverNetwork", RpcTarget.AllBufferedViaServer, _driverAge, _driverLength, _driverFirstName,
+                                                                                                _driverLastName, _driverSex, _driverBirthDate,
+                                                                                                _driverNationality, _driverDefensieDateOfIssue,
+                                                                                                _driverDefensieDateOfExpiry, _driverDefensieDocumentNumber, _driverDefensiePersNo,
+                                                                                                _driverIsGeust, _driverDateOfIssue, _driverDateOfExpiry,
+                                                                                                _driverBSN, _isFalsified, _falsifiedPercentage,
+                                                                                                _givenFitstName, _givenLastName, _givenBirthDate,
+                                                                                                _givenNationality, _givenPersNo, _givenDocumentNo,
+                                                                                                _givenIssueDateDefensie, _givenExpiryDateDefensie, _givenIssueDate,
+                                                                                                _givenExpiryDate, _givenBSN);
+    }
+
+    [PunRPC]
+    public void UpdateDataOverNetwork(int l_driverAge, float l_driverLength, string l_driverFirstName,
+                                      string l_driverLastName, string l_driverSex, string l_driverBirthDate,
+                                      string l_driverNationality, string l_driverDefensieDateOfIssue,
+                                      string l_driverDefensieDateOfExpiry, string l_driverDefensieDocumentNumber, string l_driverDefensiePersNo,
+                                      bool l_driverIsGeust, string l_driverDateOfIssue, string l_driverDateOfExpiry,
+                                      int l_driverBSN, bool l_isFalsified, float l_falsifiedPercentage,
+                                      string l_givenFitstName, string l_givenLastName, string l_givenBirthDate,
+                                      string l_givenNationality, string l_givenPersNo, string l_givenDocumentNo,
+                                      string l_givenIssueDateDefensie, string l_givenExpiryDateDefensie, string l_givenIssueDate,
+                                      string l_givenExpiryDate, int l_givenBSN)
+    {
+        _driverAge =                        l_driverAge;
+        _driverLength =                     l_driverLength;
+        _driverFirstName =                  l_driverFirstName;
+        _driverLastName =                   l_driverLastName;
+        _driverSex =                        l_driverSex;
+        _driverBirthDate =                  l_driverBirthDate;
+        _driverNationality =                l_driverNationality;
+        _driverDefensieDateOfIssue =        l_driverDefensieDateOfIssue;
+        _driverDefensieDateOfExpiry =       l_driverDefensieDateOfExpiry;
+        _driverDefensieDocumentNumber =     l_driverDefensieDocumentNumber;
+        _driverDefensiePersNo =             l_driverDefensiePersNo;
+        _driverIsGeust =                    l_driverIsGeust;
+        _driverDateOfIssue =                l_driverDateOfIssue;
+        _driverDateOfExpiry =               l_driverDateOfExpiry;
+        _driverBSN =                        l_driverBSN;
+        _isFalsified =                      l_isFalsified;
+        _falsifiedPercentage =              l_falsifiedPercentage;
+        _givenFitstName =                   l_givenFitstName;
+        _givenLastName =                    l_givenLastName;
+        _givenBirthDate =                   l_givenBirthDate;
+        _givenNationality =                 l_givenNationality;
+        _givenPersNo =                      l_givenPersNo;
+        _givenDocumentNo =                  l_givenDocumentNo;
+        _givenIssueDateDefensie =           l_givenIssueDateDefensie;
+        _givenExpiryDateDefensie =          l_givenExpiryDateDefensie;
+        _givenIssueDate =                   l_givenIssueDate;
+        _givenExpiryDate =                  l_givenExpiryDate;
+        _givenBSN =                         l_givenBSN;
+    }
+
+    [PunRPC]
+    public void RandomizeInfo()
+    {
+        
+        
         //GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
