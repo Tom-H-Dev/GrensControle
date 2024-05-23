@@ -63,6 +63,7 @@ public class DialogeManager : MonoBehaviour
 
     private void InitializeVariables()
     {
+        
         _index = 0;
         _textStart = false;
     }
