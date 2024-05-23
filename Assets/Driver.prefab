@@ -126,7 +126,7 @@ MonoBehaviour:
     madness: 0
   textSpeed: 0.1
   changeWord:
-  - naam
+  - '''name'''
   driverName: 
   DriversAchternaam: 
   Player2Buttons:
