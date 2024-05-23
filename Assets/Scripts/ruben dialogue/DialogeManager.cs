@@ -39,6 +39,7 @@ public class DialogeManager : MonoBehaviour
     public int selectedDialogueIndex;
     
     private carBehaviorDialogue CarBehavior;
+    private DriverManager _driverManager;
     
     public Item BlankItem;
     public List<Item> ItemDatabase = new List<Item>();
