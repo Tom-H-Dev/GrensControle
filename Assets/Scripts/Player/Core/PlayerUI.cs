@@ -68,7 +68,7 @@ public class PlayerUI : MonoBehaviourPun
     }
     public void LeaveRoom()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
         PhotonNetwork.LeaveRoom();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
 }
