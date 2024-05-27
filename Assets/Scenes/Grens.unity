@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4608.898, g: 3257.0571, b: 3228.5044, a: 1}
+  m_IndirectSpecularColor: {r: 4610.6255, g: 3258.2173, b: 3229.3638, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3134,12 +3134,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 193891221}
   m_SourcePrefab: {fileID: 100100000, guid: b03410532e648db46b955aaff712831c, type: 3}
---- !u!95 &193891218 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1238392045602800422, guid: b03410532e648db46b955aaff712831c,
-    type: 3}
-  m_PrefabInstance: {fileID: 193891217}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &193891219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7410514353934343927, guid: b03410532e648db46b955aaff712831c,
@@ -15379,7 +15373,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1185804966}
-  - component: {fileID: 1185804967}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -15402,33 +15395,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1821448003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1185804967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185804965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f17e921543d4bbf4cb11cb4de3714a53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _checkCubeSize: {x: 6, y: 2.5, z: 5}
-  _insideLocation: {fileID: 0}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  _vehicle: {fileID: 0}
-  _barrierAnimator: {fileID: 193891218}
-  _isExit: 1
-  _colliders: []
-  _stopSpot: {fileID: 960168924}
-  _stopLocations: []
-  _driveAwayLocations: []
-  _vehicleWaitDistance: 6
-  _vehicleManager: {fileID: 1577641493}
-  _queue: []
 --- !u!1001 &1193215454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22764,7 +22730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1821448003
 Transform:
   m_ObjectHideFlags: 0
@@ -26329,6 +26295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026179344}
   - component: {fileID: 2026179343}
+  - component: {fileID: 2026179345}
   m_Layer: 0
   m_Name: Entrance
   m_TagString: Untagged
@@ -26381,6 +26348,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1821448003}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2026179345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026179342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2027585407
 GameObject:
   m_ObjectHideFlags: 0

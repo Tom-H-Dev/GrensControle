@@ -8,8 +8,8 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] Vector3 _checkCubeSize;
     [SerializeField] GameObject _insideLocation;
     [SerializeField] LayerMask _layerMask;
-    public CarBehaviour _vehicle;
-    [SerializeField] Animator _barrierAnimator;
+    public CarAI _vehicle;
+    public Animator _barrierAnimator;
     [SerializeField] bool _isExit;
     public Collider[] _colliders;
 
@@ -20,54 +20,59 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] VehicleManager _vehicleManager;
     public List<CarBehaviour> _queue; // current vehicles in the queue
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    _vehicleManager = FindObjectOfType<VehicleManager>();
+    //    for (int i = 0; i < _vehicleManager._maxVehicles; i++)
+    //    {
+    //        GameObject stopPoint = new GameObject("StopSpot" + (i + 1));
+    //        stopPoint.transform.position = new Vector3(_stopSpot.position.x - _vehicleWaitDistance * i, _stopSpot.position.y, _stopSpot.position.z);
+    //        stopPoint.transform.parent = transform;
+    //        _stopLocations.Add(stopPoint.transform);
+
+    //    }
+    //}
+
+    //void Update()
+    //{
+    //    _colliders = Physics.OverlapBox(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z) / 2, Quaternion.identity, _layerMask);
+
+
+    //    foreach (Collider collider in _colliders)
+    //    {
+    //        //print(collider);
+    //        if (collider.gameObject.TryGetComponent(out CarBehaviour l_car))
+    //        {
+    //            _vehicle = l_car;
+    //            _vehicle._isControlable = true;
+    //        }
+    //        if (collider == null)
+    //        {
+    //            _vehicle = null;
+    //        }
+    //    }
+
+    //    //print(_colliders);
+    //    if (_colliders == null)
+    //    {
+    //        _vehicle = null;
+    //    }
+
+    //    //if (Input.GetKeyDown(KeyCode.LeftArrow))
+    //    //{
+    //    //    StartCoroutine(VehicleAcceptedCoroutine());
+    //    //}
+    //    //if (Input.GetKeyDown(KeyCode.RightArrow))
+    //    //{
+    //    //    StartCoroutine(VehicleDeniedCoroutine());
+    //    //}
+
+
+    //}
+
+    private void Start()
     {
-        _vehicleManager = FindObjectOfType<VehicleManager>();
-        for (int i = 0; i < _vehicleManager._maxVehicles; i++)
-        {
-            GameObject stopPoint = new GameObject("StopSpot" + (i + 1));
-            stopPoint.transform.position = new Vector3(_stopSpot.position.x - _vehicleWaitDistance * i, _stopSpot.position.y, _stopSpot.position.z);
-            stopPoint.transform.parent = transform;
-            _stopLocations.Add(stopPoint.transform);
-
-        }
-    }
-
-    void Update()
-    {
-        _colliders = Physics.OverlapBox(transform.position, new Vector3(_checkCubeSize.x, _checkCubeSize.y, _checkCubeSize.z) / 2, Quaternion.identity, _layerMask);
-
-
-        foreach (Collider collider in _colliders)
-        {
-            //print(collider);
-            if (collider.gameObject.TryGetComponent(out CarBehaviour l_car))
-            {
-                _vehicle = l_car;
-                _vehicle._isControlable = true;
-            }
-            if (collider == null)
-            {
-                _vehicle = null;
-            }
-        }
-
-        //print(_colliders);
-        if (_colliders == null)
-        {
-            _vehicle = null;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            StartCoroutine(VehicleAcceptedCoroutine());
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            StartCoroutine(VehicleDeniedCoroutine());
-        }
-
-
+        GetComponent<BoxCollider>().size = _checkCubeSize;
     }
 
     private void OnDrawGizmos()
@@ -84,119 +89,137 @@ public class BarrierManager : MonoBehaviour
         }
     }
 
-    public IEnumerator VehicleDeniedCoroutine()
+    private void OnTriggerEnter(Collider other)
     {
-        if (_vehicle != null)
+        if (other.gameObject.GetComponentInParent<CarAI>())
         {
-            print("Vehicle denied");
-            _vehicle._isControlable = false;
-            StartCoroutine(Timer(4));
-            foreach (CarBehaviour car in _queue)
-            {
-                if (car != null)
-                    car.GetComponent<NavMeshAgent>().angularSpeed = 0;
-            }
-
-
-            for (int i = 0; i < _stopLocations.Count; i++)
-            {
-                _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x - _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
-            }
-
-            for (int i = 0; i < _driveAwayLocations.Count; i++)
-            {
-                print("next stop");
-                if (i > 0)
-                {
-                    foreach (CarBehaviour car in _queue)
-                    {
-                        if (car != null)
-                        {
-                            car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
-                        }
-                    }
-                    _vehicle._currentTarget = _driveAwayLocations[i - 1];
-
-                    if (i == _driveAwayLocations.Count - 1)
-                    {
-                        for (int j = 0; j < _stopLocations.Count; j++)
-                        {
-                            _stopLocations[j].transform.position = new Vector3(_stopLocations[j].position.x + _vehicleWaitDistance * 2, _stopLocations[j].position.y, _stopLocations[j].position.z);
-                        }
-                    }
-                }
-                yield return StartCoroutine(WaitForVehicleToReachTarget());
-            }
+            CarAI l_carAI = other.gameObject.GetComponentInParent<CarAI>();
+            _vehicle = l_carAI;
+            _vehicle._isControlable = true;
         }
-
-
-
-        yield return null;
     }
-
-
-    private IEnumerator Timer(int l_time)
+    private void OnTriggerExit(Collider other)
     {
-        yield return new WaitForSeconds(l_time);
-        RemoveFirstVehicleFromQueue();
-    }
-
-    private IEnumerator WaitForVehicleToReachTarget()
-    {
-        // Wait until the vehicle is within stopping distance of the target
-        while (Vector3.Distance(_vehicle.transform.position, _vehicle._currentTarget.position) > _vehicle._stoppingRadius)
+        if (other.gameObject.GetComponentInParent<CarAI>())
         {
-            yield return null;
+            _vehicle = null;
         }
     }
 
-    public IEnumerator VehicleAcceptedCoroutine()
-    {
-        if (_vehicle != null)
-        {
-            _vehicle._isControlable = false;
-            _barrierAnimator.ResetTrigger("Close");
-            _barrierAnimator.SetTrigger("Open");
-            _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
-            yield return new WaitForSeconds(1);
-            _vehicle._currentTarget = _vehicleManager.insideBaseLocation;
-            print(_vehicle._currentTarget);
-            _vehicleManager._currentVehiclesInt--;
 
-            RemoveFirstVehicleFromQueue();
+    //public IEnumerator VehicleDeniedCoroutine()
+    //{
+    //    if (_vehicle != null)
+    //    {
+    //        print("Vehicle denied");
+    //        _vehicle._isControlable = false;
+    //        StartCoroutine(Timer(4));
+    //        foreach (CarBehaviour car in _queue)
+    //        {
+    //            if (car != null)
+    //                car.GetComponent<NavMeshAgent>().angularSpeed = 0;
+    //        }
 
-            //while (_vehicle != null)
-            //{
-            //    yield return null;
-            //}
-            yield return new WaitForSeconds(1);
-            _barrierAnimator.ResetTrigger("Open");
-            _barrierAnimator.SetTrigger("Close");
-            yield return new WaitForSeconds(0.4f);
-            _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
-            yield return null;
-        }
-    }
 
-    public void AddToQueue(CarBehaviour car)
-    {
-        _queue.Add(car);
-        UpdateStopLocation();
-    }
+    //        for (int i = 0; i < _stopLocations.Count; i++)
+    //        {
+    //            _stopLocations[i].transform.position = new Vector3(_stopLocations[i].position.x - _vehicleWaitDistance * 2, _stopLocations[i].position.y, _stopLocations[i].position.z);
+    //        }
 
-    public void RemoveFirstVehicleFromQueue()
-    {
-        _queue.RemoveAt(0);
-        _vehicleManager._currentVehicles.RemoveAt(0);
-        _vehicleManager._currentVehiclesInt--;
-        UpdateStopLocation();
-    }
+    //        for (int i = 0; i < _driveAwayLocations.Count; i++)
+    //        {
+    //            print("next stop");
+    //            if (i > 0)
+    //            {
+    //                foreach (CarBehaviour car in _queue)
+    //                {
+    //                    if (car != null)
+    //                    {
+    //                        car.GetComponent<NavMeshAgent>().angularSpeed = car._defaultAngularSpeed;
+    //                    }
+    //                }
+    //                _vehicle._currentTarget = _driveAwayLocations[i - 1];
 
-    public void UpdateStopLocation()
-    {
-        for (int i = 0; i < _queue.Count; i++)
-        {
-            _queue[i]._currentTarget = _stopLocations[i];
-        }
-    }
+    //                if (i == _driveAwayLocations.Count - 1)
+    //                {
+    //                    for (int j = 0; j < _stopLocations.Count; j++)
+    //                    {
+    //                        _stopLocations[j].transform.position = new Vector3(_stopLocations[j].position.x + _vehicleWaitDistance * 2, _stopLocations[j].position.y, _stopLocations[j].position.z);
+    //                    }
+    //                }
+    //            }
+    //            yield return StartCoroutine(WaitForVehicleToReachTarget());
+    //        }
+    //    }
+
+
+
+    //    yield return null;
+    //}
+
+
+    //private IEnumerator Timer(int l_time)
+    //{
+    //    yield return new WaitForSeconds(l_time);
+    //    RemoveFirstVehicleFromQueue();
+    //}
+
+    //private IEnumerator WaitForVehicleToReachTarget()
+    //{
+    //    // Wait until the vehicle is within stopping distance of the target
+    //    while (Vector3.Distance(_vehicle.transform.position, _vehicle._currentTarget.position) > _vehicle._stoppingRadius)
+    //    {
+    //        yield return null;
+    //    }
+    //}
+
+    //public IEnumerator VehicleAcceptedCoroutine()
+    //{
+    //    if (_vehicle != null)
+    //    {
+    //        _vehicle._isControlable = false;
+    //        _barrierAnimator.ResetTrigger("Close");
+    //        _barrierAnimator.SetTrigger("Open");
+    //        _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
+    //        yield return new WaitForSeconds(1);
+    //        _vehicle._currentTarget = _vehicleManager.insideBaseLocation;
+    //        print(_vehicle._currentTarget);
+    //        _vehicleManager._currentVehiclesInt--;
+
+    //        RemoveFirstVehicleFromQueue();
+
+    //        //while (_vehicle != null)
+    //        //{
+    //        //    yield return null;
+    //        //}
+    //        yield return new WaitForSeconds(1);
+    //        _barrierAnimator.ResetTrigger("Open");
+    //        _barrierAnimator.SetTrigger("Close");
+    //        yield return new WaitForSeconds(0.4f);
+    //        _barrierAnimator.GetComponent<SlagboomSFX>().StartSFX();
+    //        yield return null;
+    //    }
+    //}
+
+    //public void AddToQueue(CarBehaviour car)
+    //{
+    //    _queue.Add(car);
+    //    UpdateStopLocation();
+    //}
+
+    //public void RemoveFirstVehicleFromQueue()
+    //{
+    //    _queue.RemoveAt(0);
+    //    _vehicleManager._currentVehicles.RemoveAt(0);
+    //    _vehicleManager._currentVehiclesInt--;
+    //    UpdateStopLocation();
+    //}
+
+    //public void UpdateStopLocation()
+    //{
+    //    for (int i = 0; i < _queue.Count; i++)
+    //    {
+    //        _queue[i]._currentTarget = _stopLocations[i];
+    //    }
+    //}
 }
