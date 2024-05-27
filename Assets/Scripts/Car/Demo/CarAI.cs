@@ -56,12 +56,15 @@ public class CarAI : MonoBehaviourPun
     [SerializeField] private Material _yellowPlate;
     [SerializeField] private Material _whitePlate;
     public bool _isControlable = false;
+    public bool _hasBeenChecked = false;
+    private BarrierManager _barrierManager;
 
     [Header("Network")]
     public bool _override = false;
 
     private void Start()
     {
+        _barrierManager = FindObjectOfType<BarrierManager>();
         Physics.IgnoreLayerCollision(3, 15);
         _nodes = new List<Transform>();
         RouteManager.instance.CarQueUpdate(1);
@@ -415,14 +418,17 @@ public class CarAI : MonoBehaviourPun
     public IEnumerator AcceptRoute()
     {
         _carState = CarStates.accepted;
-        //Play Animation
+        _barrierManager._barrierAnimator.ResetTrigger("Close");
+        _barrierManager._barrierAnimator.SetTrigger("Open");
         RouteManager.instance._activeCars.Remove(this);
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Debug.Log("Car accepted");
         _isBraking = false;
         _emergencyBrake = false;
         UpdateRoute();
         yield return new WaitForSeconds(3f);
+        _barrierManager._barrierAnimator.ResetTrigger("Open");
+        _barrierManager._barrierAnimator.SetTrigger("Close");
         RouteManager.instance.CarQueUpdate(-1);
         RouteManager.instance.UpdateCarsLocations();
     }

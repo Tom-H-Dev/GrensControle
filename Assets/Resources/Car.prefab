@@ -1472,6 +1472,7 @@ MonoBehaviour:
   _yellowPlate: {fileID: 0}
   _whitePlate: {fileID: 0}
   _isControlable: 1
+  _hasBeenChecked: 0
   _override: 0
 --- !u!114 &7065249420597622908
 MonoBehaviour:
@@ -1629,63 +1630,63 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: TrunkOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: TrunkClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: HoodOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: HoodClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: FrontLeftDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: FrontLeftDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: FrontRightDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: FrontRightDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: RearLeftDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: RearLeftDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: RearRightDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: RearRightDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: GloveBoxOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: GloveBoxClose
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 1
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 2
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 3
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 4
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 5
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 6
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 7
 --- !u!95 &3062332685546937216
 Animator:

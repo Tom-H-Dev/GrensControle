@@ -27,7 +27,7 @@ public class Hefboom : MonoBehaviour
                 Debug.Log("Opening Gate");
                 //Check if car is in ther area infront of gate
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
-                _entranceBarrierManager.StartCoroutine(_entranceBarrierManager.VehicleAcceptedCoroutine());
+                StartCoroutine(_entranceBarrierManager._vehicle.AcceptRoute());
                 _correctCarManager._lis = _lis;
                 if (!_idCorect || _driverSus || _illigalItems)
                     _isCorrect = false;
@@ -52,7 +52,7 @@ public class Hefboom : MonoBehaviour
                 Debug.Log("Denied Vehicle");
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
                 //Check if car is in ther area infront of gate
-                _entranceBarrierManager.StartCoroutine(_entranceBarrierManager.VehicleDeniedCoroutine());
+                StartCoroutine(_entranceBarrierManager._vehicle.DeclineRoute());
                 _correctCarManager._lis = _lis;
                 if (!_idCorect || _driverSus || _illigalItems)
                     _isCorrect = false;
