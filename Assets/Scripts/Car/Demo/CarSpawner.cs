@@ -10,6 +10,13 @@ public class CarSpawner : MonoBehaviour
     [SerializeField] private GameObject _carPrefab;
     public int _currentVehiclesInt;
 
+    private void Start()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(SpawnTimer());
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && PhotonNetwork.IsMasterClient)
