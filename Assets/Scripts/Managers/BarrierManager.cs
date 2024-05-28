@@ -11,13 +11,8 @@ public class BarrierManager : MonoBehaviour
     public CarAI _vehicle;
     public Animator _barrierAnimator;
     [SerializeField] bool _isExit;
-    public Collider[] _colliders;
 
     [SerializeField] Transform _stopSpot; // Spot from which the stoplocations will be calculated
-    [SerializeField] List<Transform> _stopLocations = new List<Transform>(); // List of possible locations for vehicles to stop behind eachother
-    [SerializeField] List<Transform> _driveAwayLocations = new List<Transform>(); //List of places the car will go trough when denied
-    [SerializeField] float _vehicleWaitDistance; // Distance between the parked vehicles\
-    [SerializeField] VehicleManager _vehicleManager;
     public List<CarBehaviour> _queue; // current vehicles in the queue
 
 

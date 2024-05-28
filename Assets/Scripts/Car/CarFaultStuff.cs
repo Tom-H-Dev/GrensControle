@@ -6,11 +6,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CarFaultStuff : ScriptableObject
 {
-    public string _driversLisance;
+    public string _driversLicense;
     public bool _wasIDWrong;
-    public bool _wasDriverSus;
+    public bool _wasDriverSuspicious;
     public bool _wasIlligalItemsInCar;
-    public int _voertuigNummer;
+    public int _vehicleNumber;
 
     public bool _wasCarAllowed;
     public bool _playerChoice;

@@ -25,16 +25,16 @@ public class FailMenu : MonoBehaviourPunCallbacks
     [PunRPC]
     private void SetData()
     {
-        _totalVehiclesText.text = _totalVehiclesText.text + " " + _wrongCarData[2]._voertuigNummer;
+        _totalVehiclesText.text = _totalVehiclesText.text + " " + _wrongCarData[2]._vehicleNumber;
 
         for (int i = 0; i < _uiItems.Count; i++)
         {
-            _uiItems[i]._driversLisanceText.text = "Kenteken:\n" + _wrongCarData[i]._driversLisance;
+            _uiItems[i]._driversLisanceText.text = "Kenteken:\n" + _wrongCarData[i]._driversLicense;
             if (_wrongCarData[i]._wasIDWrong)
                 _uiItems[i]._idCorrectText.text = "Foute identiteit:\nJa";
             else _uiItems[i]._idCorrectText.text = "Foute identiteit:\nNee";
 
-            if (_wrongCarData[i]._wasDriverSus)
+            if (_wrongCarData[i]._wasDriverSuspicious)
                 _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nJa";
             else _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nNee";
 
@@ -42,7 +42,7 @@ public class FailMenu : MonoBehaviourPunCallbacks
                 _uiItems[i]._illigalItemsText.text = "Verboden Spullen:\nJa";
             else _uiItems[i]._illigalItemsText.text = "Verboden Spullen:\nNee";
 
-            _uiItems[i]._carNumberText.text = "Voertuig: " + _wrongCarData[i]._voertuigNummer;
+            _uiItems[i]._carNumberText.text = "Voertuig: " + _wrongCarData[i]._vehicleNumber;
 
             if (_wrongCarData[i]._wasLetThrough)
                 _uiItems[i]._wasLetThrough.text = "Is voertuig doorgelaten:\nDoorgelaten";
