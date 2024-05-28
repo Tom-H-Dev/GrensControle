@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 8069998c-7ca6-4b76-b7c0-2513539ba856
     AppIdVoice: 
-    AppVersion: 0.8
+    AppVersion: 0.9.1
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -65,6 +65,9 @@ MonoBehaviour:
   - UpdateDataOverNetwork
   - SyncBools
   - SyncContraband
+  - TriggerAcceptedRoute
+  - TriggerDeclinedRoute
+  - UpdateRoute
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

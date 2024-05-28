@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
+using Unity.Properties;
 
 public enum CarStates
 {
@@ -28,10 +29,10 @@ public class CarAI : MonoBehaviourPun
     public WheelCollider _wheelRL;
     public WheelCollider _wheelRR;
 
-    [Header("Eninge")]
-    public float _maxMotorTorque = 80f;
+    [Header("Engine")]
+    public float _maxMotorTorque = 70f;
     public float _curSpeed;
-    public float _maxSpeed = 100f;
+    public float _maxSpeed = 80f;
     public bool _isBraking = false;
     public float _maxBrakeTorque = 150f;
     public bool _emergencyBrake;
@@ -109,7 +110,7 @@ public class CarAI : MonoBehaviourPun
             GetComponent<PhotonView>().RPC("GenerateLisencePlate", RpcTarget.AllBufferedViaServer, _middleText, _licensePlate, _landCode, _duplicateCode, _hasDutchLicensePlate);
         }
 
-        UpdateRoute();
+        GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]
@@ -322,6 +323,7 @@ public class CarAI : MonoBehaviourPun
 
     }
 
+    [PunRPC]
     public void UpdateRoute()
     {
         switch (_carState)
@@ -349,6 +351,7 @@ public class CarAI : MonoBehaviourPun
             case CarStates.declined:
                 _currentNode = 0;
                 _nodes.Clear();
+                _isBraking = false;
                 Transform[] l_pathTransformsDeclined = RouteManager.instance._declinedRoute.ToArray();
                 for (int i = 0; i < l_pathTransformsDeclined.Length; i++)
                 {
@@ -361,6 +364,7 @@ public class CarAI : MonoBehaviourPun
             case CarStates.accepted:
                 _currentNode = 0;
                 _nodes.Clear();
+                _isBraking = false;
                 Transform[] l_pathTransformsAccepted = RouteManager.instance._acceptedRoute.ToArray();
                 for (int i = 0; i < l_pathTransformsAccepted.Length; i++)
                 {
@@ -394,17 +398,23 @@ public class CarAI : MonoBehaviourPun
                 break;
         }
     }
+    [PunRPC]
+    public void TriggerDeclinedRoute()
+    {
+        StartCoroutine(DeclineRoute());
+    }
 
     public IEnumerator DeclineRoute()
     {
-        _carState = CarStates.declined;
+        _isControlable = false;
         _isMovingBackwards = true;
         RouteManager.instance._activeCars.Remove(this);
         yield return new WaitForSeconds(5.5f);
         _isMovingBackwards = false;
         _isBraking = false;
         _emergencyBrake = false;
-        UpdateRoute();
+        _carState = CarStates.declined;
+        GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(3f);
         RouteManager.instance.CarQueUpdate(-1);
         RouteManager.instance.UpdateCarsLocations();
@@ -415,9 +425,14 @@ public class CarAI : MonoBehaviourPun
         transform.position = Vector3.Lerp(transform.position, -transform.forward * 9.5f, 0.4f * Time.deltaTime);
     }
 
+    [PunRPC]
+    public void TriggerAcceptedRoute()
+    {
+        StartCoroutine(AcceptRoute());
+    }
     public IEnumerator AcceptRoute()
     {
-        _carState = CarStates.accepted;
+        _isControlable = false;
         _barrierManager._barrierAnimator.ResetTrigger("Close");
         _barrierManager._barrierAnimator.SetTrigger("Open");
         RouteManager.instance._activeCars.Remove(this);
@@ -425,8 +440,9 @@ public class CarAI : MonoBehaviourPun
         Debug.Log("Car accepted");
         _isBraking = false;
         _emergencyBrake = false;
-        UpdateRoute();
-        yield return new WaitForSeconds(3f);
+        _carState = CarStates.accepted;
+        GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
+        yield return new WaitForSeconds(5f);
         _barrierManager._barrierAnimator.ResetTrigger("Open");
         _barrierManager._barrierAnimator.SetTrigger("Close");
         RouteManager.instance.CarQueUpdate(-1);

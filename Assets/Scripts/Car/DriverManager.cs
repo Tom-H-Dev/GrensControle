@@ -68,7 +68,6 @@ public class DriverManager : MonoBehaviour
         {
             GenerateData();
         }
-        //RandomizeInfo();
     }
 
     private void GenerateData()
@@ -311,14 +310,6 @@ public class DriverManager : MonoBehaviour
         _givenIssueDate =                   l_givenIssueDate;
         _givenExpiryDate =                  l_givenExpiryDate;
         _givenBSN =                         l_givenBSN;
-    }
-
-    [PunRPC]
-    public void RandomizeInfo()
-    {
-        
-        
-        //GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]

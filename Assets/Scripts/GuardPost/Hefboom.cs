@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Hefboom : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class Hefboom : MonoBehaviour
                 Debug.Log("Opening Gate");
                 //Check if car is in ther area infront of gate
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
-                StartCoroutine(_entranceBarrierManager._vehicle.AcceptRoute());
+                _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
                 _correctCarManager._lis = _lis;
                 if (!_idCorect || _driverSus || _illigalItems)
                     _isCorrect = false;
@@ -52,7 +54,8 @@ public class Hefboom : MonoBehaviour
                 Debug.Log("Denied Vehicle");
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
                 //Check if car is in ther area infront of gate
-                StartCoroutine(_entranceBarrierManager._vehicle.DeclineRoute());
+                _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
+                ;
                 _correctCarManager._lis = _lis;
                 if (!_idCorect || _driverSus || _illigalItems)
                     _isCorrect = false;

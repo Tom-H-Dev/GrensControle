@@ -7,9 +7,9 @@ public class VehicleDeleter : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out CarBehaviour l_car))
+        if (other.gameObject.GetComponentInParent<CarAI>())
         {
-            PhotonNetwork.Destroy(l_car.gameObject);            
+            PhotonNetwork.Destroy(other.gameObject.GetComponentInParent<CarAI>().gameObject);            
         }
     }
 }
