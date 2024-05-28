@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,7 +71,7 @@ public class RouteManager : MonoBehaviour
             _activeCars[i]._carState = CarStates.queuing;
             _activeCars[i]._isBraking = false;
             _activeCars[i]._movingToQuePoint = true;
-            _activeCars[i].UpdateRoute();
+            _activeCars[i].GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         }
     }
 
@@ -78,7 +79,7 @@ public class RouteManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Insert))
         {
-            StartCoroutine(_activeCars[0].AcceptRoute());
+            _activeCars[0].GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
             for (int i = 0; i < _activeCars.Count; i++)
             {
                 _activeCars[i]._isBraking = false;
@@ -87,7 +88,7 @@ public class RouteManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Delete))
         {
-            StartCoroutine(_activeCars[0].DeclineRoute());
+            _activeCars[0].GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
             for (int i = 0; i < _activeCars.Count; i++)
             {
                 _activeCars[i]._isBraking = false;

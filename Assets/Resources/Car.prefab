@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 2761088122331970390}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.706197, y: 0.323339, z: -1.26037}
+  m_LocalPosition: {x: 0.706197, y: 0.287, z: -1.26037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,7 +295,7 @@ Transform:
   m_GameObject: {fileID: 3324763859549251654}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.706197, y: 0.323339, z: 1.2670647}
+  m_LocalPosition: {x: 0.706197, y: 0.287, z: 1.2670647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -397,7 +397,7 @@ Transform:
   m_GameObject: {fileID: 5907812269151607882}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.706197, y: 0.323339, z: 1.2670647}
+  m_LocalPosition: {x: -0.706197, y: 0.287, z: 1.2670647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -601,7 +601,7 @@ Transform:
   m_GameObject: {fileID: 7445300489228291530}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.70619726, y: 0.323339, z: -1.26037}
+  m_LocalPosition: {x: -0.70619726, y: 0.287, z: -1.26037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1444,11 +1444,11 @@ MonoBehaviour:
   _wheelFR: {fileID: 4254986361254367218}
   _wheelRL: {fileID: 3620162550920097272}
   _wheelRR: {fileID: 125160413353172177}
-  _maxMotorTorque: 100
+  _maxMotorTorque: 80
   _curSpeed: 0
-  _maxSpeed: 100
+  _maxSpeed: 80
   _isBraking: 0
-  _maxBrakeTorque: 500
+  _maxBrakeTorque: 1000
   _emergencyBrake: 0
   _isMovingBackwards: 0
   _movingToQuePoint: 0
