@@ -63,11 +63,11 @@ public class CorrectCarManager : MonoBehaviour
         {
             print("Set wrong updates");
             _playerWrongVehicles++;
-            _wrongCarsList[_playerWrongVehicles - 1]._driversLisance = _lis;
+            _wrongCarsList[_playerWrongVehicles - 1]._driversLicense = _lis;
             _wrongCarsList[_playerWrongVehicles - 1]._wasIDWrong = l_idWrong;
-            _wrongCarsList[_playerWrongVehicles - 1]._wasDriverSus = l_driverSus;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasDriverSuspicious = l_driverSus;
             _wrongCarsList[_playerWrongVehicles - 1]._wasIlligalItemsInCar = l_illigalItemInCar;
-            _wrongCarsList[_playerWrongVehicles - 1]._voertuigNummer = _totalVehicles;
+            _wrongCarsList[_playerWrongVehicles - 1]._vehicleNumber = _totalVehicles;
             _wrongCarsList[_playerWrongVehicles - 1]._wasCarAllowed = l_wasAllowed;
             _wrongCarsList[_playerWrongVehicles - 1]._playerChoice = l_playerChoice;
             _wrongCarsList[_playerWrongVehicles - 1]._wasLetThrough = l_playerChoice;
