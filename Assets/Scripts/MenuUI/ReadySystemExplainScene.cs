@@ -90,6 +90,6 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         _photonView.RPC("ChangeReadyPlayer", RpcTarget.AllBufferedViaServer, -1);
-        //SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main");
     }
 }

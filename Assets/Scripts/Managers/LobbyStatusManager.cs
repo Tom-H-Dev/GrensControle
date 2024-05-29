@@ -20,7 +20,7 @@ public class LobbyStatusManager : MonoBehaviourPunCallbacks
 
     public void LeaveRoom()
     {
-        SceneManager.LoadScene("Main");
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Main");
     }
 }
