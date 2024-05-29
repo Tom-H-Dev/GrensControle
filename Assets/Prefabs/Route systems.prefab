@@ -851,7 +851,7 @@ Transform:
   m_GameObject: {fileID: 6066870568085273520}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.952, y: -1, z: -56.405}
+  m_LocalPosition: {x: -61.952, y: 0, z: -56.405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -902,6 +902,7 @@ MonoBehaviour:
   - {fileID: 2497133620842024602}
   - {fileID: 8341884783868594559}
   _totalActiveCars: 0
+  _maximumVehicles: 5
   _queingPositions:
   - {fileID: 8520158288593576567}
   - {fileID: 252186766281970501}

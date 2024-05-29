@@ -1050,7 +1050,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9a2fa93b55cdcbd478653303d00cba8b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9a2fa93b55cdcbd478653303d00cba8b,
         type: 3}
@@ -1423,7 +1423,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &4895388629344061823
 MonoBehaviour:
@@ -1471,8 +1471,9 @@ MonoBehaviour:
   - {fileID: 7818560006797005400}
   _yellowPlate: {fileID: 0}
   _whitePlate: {fileID: 0}
-  _isControlable: 1
+  _isControlable: 0
   _hasBeenChecked: 0
+  _com: {x: 0, y: -0.1, z: 0}
   _override: 0
 --- !u!114 &7065249420597622908
 MonoBehaviour:

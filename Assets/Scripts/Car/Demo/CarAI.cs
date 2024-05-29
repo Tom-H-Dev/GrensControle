@@ -59,6 +59,7 @@ public class CarAI : MonoBehaviourPun
     public bool _isControlable = false;
     public bool _hasBeenChecked = false;
     private BarrierManager _barrierManager;
+    [SerializeField] private Vector3 _com; 
 
     [Header("Network")]
     public bool _override = false;
@@ -67,6 +68,7 @@ public class CarAI : MonoBehaviourPun
     {
         _barrierManager = FindObjectOfType<BarrierManager>();
         Physics.IgnoreLayerCollision(3, 15);
+        GetComponent<Rigidbody>().centerOfMass = _com;
         _nodes = new List<Transform>();
         RouteManager.instance.CarQueUpdate(1);
         RouteManager.instance._activeCars.Add(this);
