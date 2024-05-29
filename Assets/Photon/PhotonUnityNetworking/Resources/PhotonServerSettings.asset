@@ -15,8 +15,8 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: b901926f-841b-4976-91ec-c3762b7f5d40
     AppIdFusion: 
-    AppIdChat: 8069998c-7ca6-4b76-b7c0-2513539ba856
-    AppIdVoice: 
+    AppIdChat: 
+    AppIdVoice: 34ddd0e5-98b4-4dda-926e-3445dde8b415
     AppVersion: 0.2.0
     UseNameServer: 1
     FixedRegion: 
@@ -34,40 +34,31 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - CantHearYou
+  - ChangeColour
   - ClickRpc
   - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - RPC_SendTimer
-  - Start
-  - CreatePlayer
-  - RPC_AddPlayer
-  - Update
-  - FixedUpdate
-  - ChooseRoll
-  - LeaveRoll
-  - SetRollChoice
-  - DisableButton
-  - EnableButton
-  - UpdateDebugReadyBoolOverNetwork
-  - ChangeList
-  - LastCar
-  - TotalCorrect
-  - UpdateList
+  - HeresWhy
   - ChangeReadyPlayer
   - Countdown
-  - UpdateWrongCars
-  - SetData
-  - RandomizeInfo
-  - SetDriverModels
+  - DestroySpaceship
+  - DisableButton
+  - EnableButton
+  - Fire
   - GenerateLisencePlate
-  - UpdateDataOverNetwork
+  - RespawnSpaceship
+  - RPC_SendTimer
+  - SetData
+  - SetDriverModels
+  - SetRollChoice
   - SyncBools
   - SyncContraband
   - TriggerAcceptedRoute
   - TriggerDeclinedRoute
+  - UpdateDataOverNetwork
+  - UpdateDebugReadyBoolOverNetwork
   - UpdateRoute
+  - UpdateWrongCars
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
