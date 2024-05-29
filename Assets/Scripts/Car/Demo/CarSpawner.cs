@@ -34,9 +34,12 @@ public class CarSpawner : MonoBehaviour
 
     private IEnumerator SpawnTimer()
     {
-        SpawnVehicles();
-        int l_t = Random.Range(15, 30);
-        yield return new WaitForSeconds(l_t);
+        if (RouteManager.instance._activeCars.Count < RouteManager.instance._maximumVehicles)
+        {
+            SpawnVehicles();
+            int l_t = Random.Range(15, 30);
+            yield return new WaitForSeconds(l_t);
+        }
         StartCoroutine(SpawnTimer());
     }
 }

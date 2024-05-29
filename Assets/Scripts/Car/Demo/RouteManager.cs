@@ -19,6 +19,7 @@ public class RouteManager : MonoBehaviour
 
     [Header("Cars info")]
     public int _totalActiveCars = 0;
+    public int _maximumVehicles = 5;
     public List<Transform> _queingPositions = new List<Transform>();
     public List<CarAI> _activeCars = new List<CarAI>();
 
