@@ -1460,7 +1460,7 @@ MonoBehaviour:
   _fronstSensorPosition: {x: 0, y: 0.5, z: 2}
   _frontSideSensorPos: 0.6
   _frontSensorAngle: 30
-  _isMillitairyVehicle: 0
+  _isMilitaryVehicle: 0
   _hasDutchLicensePlate: 0
   _duplicateCode: 
   _landCodes:
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb8cc38266a54e44bd7541d5b15a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoge: {fileID: 0}
+  dialogue: {fileID: 0}
   madnessTimer: 100
   Range: 0
   driverTag: Driver
