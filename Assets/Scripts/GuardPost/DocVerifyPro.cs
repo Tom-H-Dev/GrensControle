@@ -9,14 +9,14 @@ public class DocVerifyPro : MonoBehaviour
     [SerializeField] private TMP_InputField _nameInputField;
     [SerializeField] private TMP_InputField _persNrField;
     [SerializeField] private GameObject _noPersonFound;
-    //insert new header for person informaion
+    //insert new header for person information
 
     [SerializeField] private TMP_Text _naamText, _achternaamText, _leeftijfText, _geslachtText, _geboorteDatumText, _nationaliteitText, _defensiePersNoText, _errorText;
     //Insert for base string text
     [Tooltip("Base strings of the information screen")]
     private string _naamString, _achternaamString, _leeftijfString, _geslachtString, _geboorteDatumString, _nationaliteitString, _defensiePersNoString;
-    //Insert new header for driverslisance
-    [Tooltip("The drivers lisence informtaion UI")]
+    //Insert new header for drivers license
+    [Tooltip("The drivers license information UI")]
     [SerializeField] private TMP_Text _driversLisenceFirstName, _driversLisenceLastName, _driversLisenceBirthDate, _driversLisenceIssue, _driversLisenceExpiry, _driverBSN;
 
     [Header("Defensiepas User Interface")]
@@ -41,7 +41,7 @@ public class DocVerifyPro : MonoBehaviour
     }
 
     /// <summary>
-    /// When the player gets the drivers papaers the information is set to the computer UI.
+    /// When the player gets the drivers papers the information is set to the computer UI.
     /// </summary>
     public void OnGetDriverPapers()
     {
@@ -61,7 +61,7 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceExpiry.text = _driverManager._givenExpiryDate;
 
             GetComponent<Hefboom>()._isCorrect = false;
-            GetComponent<Hefboom>()._idCorect = false;
+            GetComponent<Hefboom>()._idCorrect = false;
         }
         else
         {
@@ -79,9 +79,9 @@ public class DocVerifyPro : MonoBehaviour
             _defesieLisenceExpiry.text = _driverManager._driverDefensieDateOfExpiry;
             
             GetComponent<Hefboom>()._isCorrect = true;
-            GetComponent<Hefboom>()._idCorect = true;
+            GetComponent<Hefboom>()._idCorrect = true;
         }
-        GetComponent<Hefboom>()._illigalItems = _entranceBarrierManager._vehicle.GetComponent<ContrabandManager>()._hasContraband;
+        GetComponent<Hefboom>()._illegalItems = _entranceBarrierManager._vehicle.GetComponent<ContrabandManager>()._hasContraband;
         GetComponent<Hefboom>()._lis = _entranceBarrierManager._vehicle.GetComponent<CarAI>()._licensePlate;
         _defesieSex.text = _driverManager._driverSex;
         _driverBSN.text = _driverManager._driverBSN.ToString();
@@ -113,11 +113,10 @@ public class DocVerifyPro : MonoBehaviour
         string l_name = _driverManager._driverFirstName + " " + _driverManager._driverLastName;
         if (_nameInputField.text == l_name)
         {
-            Debug.Log("Klopt");
             if (_driverManager._isFalsified)
             {
                 Debug.Log("BSN is vals. persoon is illegaal.");
-                //Give false information on drivers lisence and defensiepas
+                //Give false information on drivers license and defensiepas
             }
             else
             {
@@ -152,7 +151,6 @@ public class DocVerifyPro : MonoBehaviour
         string l_name = _driverManager._driverDefensiePersNo;
         if (_persNrField.text == l_name)
         {
-            Debug.Log("Klopt 2");
             if (_driverManager._isFalsified)
             {
                 Debug.Log("BSN is vals. persoon is illegaal.");

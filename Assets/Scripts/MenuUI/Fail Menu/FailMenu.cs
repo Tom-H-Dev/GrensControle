@@ -29,7 +29,7 @@ public class FailMenu : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < _uiItems.Count; i++)
         {
-            _uiItems[i]._driversLisanceText.text = "Kenteken:\n" + _wrongCarData[i]._driversLicense;
+            _uiItems[i]._driversLicenseText.text = "Kenteken:\n" + _wrongCarData[i]._driversLicense;
             if (_wrongCarData[i]._wasIDWrong)
                 _uiItems[i]._idCorrectText.text = "Foute identiteit:\nJa";
             else _uiItems[i]._idCorrectText.text = "Foute identiteit:\nNee";
@@ -38,9 +38,9 @@ public class FailMenu : MonoBehaviourPunCallbacks
                 _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nJa";
             else _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nNee";
 
-            if (_wrongCarData[i]._wasIllegalItemsInCar)
-                _uiItems[i]._illigalItemsText.text = "Verboden Spullen:\nJa";
-            else _uiItems[i]._illigalItemsText.text = "Verboden Spullen:\nNee";
+            if (_wrongCarData[i]._wasIlligalItemsInCar)
+                _uiItems[i]._illegalItemsText.text = "Verboden Spullen:\nJa";
+            else _uiItems[i]._illegalItemsText.text = "Verboden Spullen:\nNee";
 
             _uiItems[i]._carNumberText.text = "Voertuig: " + _wrongCarData[i]._vehicleNumber;
 
