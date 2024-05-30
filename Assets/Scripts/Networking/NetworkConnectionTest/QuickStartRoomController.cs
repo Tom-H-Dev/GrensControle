@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class QuickStartRoomController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private int _multiplayerSceneIndex; //Number for the build index to the multiplay scene
+    [SerializeField] private int _multiplayerSceneIndex; //Number for the build index to the multiplayer scene
 
     public override void OnEnable()
     {
@@ -19,7 +19,7 @@ public class QuickStartRoomController : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
-    public override void OnJoinedRoom() //Callback function for when we succesfully create or join a room.
+    public override void OnJoinedRoom() //Callback function for when we successfully create or join a room.
     {
         Debug.Log("Joined Room");
         base.OnJoinedRoom();

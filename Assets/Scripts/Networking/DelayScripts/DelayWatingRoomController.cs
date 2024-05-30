@@ -169,7 +169,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         {
             ResetTimer();
         }
-        //When there is eneough players in the room the start timer will begin counting down.
+        //When there is enough players in the room the start timer will begin counting down.
         if(_readyToStart)
         {
             _fullGameTimer -= Time.deltaTime;

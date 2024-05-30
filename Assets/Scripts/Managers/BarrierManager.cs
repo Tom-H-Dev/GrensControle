@@ -12,7 +12,7 @@ public class BarrierManager : MonoBehaviour
     public Animator _barrierAnimator;
     [SerializeField] bool _isExit;
 
-    [SerializeField] Transform _stopSpot; // Spot from which the stoplocations will be calculated
+    [SerializeField] Transform _stopSpot; // Spot from which the stop locations will be calculated
     public List<CarBehaviour> _queue; // current vehicles in the queue
 
 
