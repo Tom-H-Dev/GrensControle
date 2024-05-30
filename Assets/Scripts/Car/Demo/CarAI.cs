@@ -450,4 +450,14 @@ public class CarAI : MonoBehaviourPun
         RouteManager.instance.CarQueueUpdate(-1);
         RouteManager.instance.UpdateCarsLocations();
     }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out PlayerMovement l_player))  // or the tag of the object pushing
+        {
+            // Apply counter force to resist pushing
+            Vector3 counterForce = -collision.impulse * 0.5f;  // Adjust multiplier as needed
+            GetComponent<Rigidbody>().AddForce(counterForce, ForceMode.Impulse);
+        }
+    }
 }

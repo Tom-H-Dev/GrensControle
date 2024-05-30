@@ -1375,6 +1375,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8516096232785145397}
+    - targetCorrespondingSourceObject: {fileID: -564421378888180936, guid: 9a2fa93b55cdcbd478653303d00cba8b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6831028631331200570}
     - targetCorrespondingSourceObject: {fileID: 2088696786954339226, guid: 9a2fa93b55cdcbd478653303d00cba8b,
         type: 3}
       insertIndex: -1
@@ -1408,7 +1412,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1500
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1422,7 +1426,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &4895388629344061823
@@ -1904,6 +1908,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4256789094099829062, guid: 9a2fa93b55cdcbd478653303d00cba8b, type: 3}
+--- !u!114 &6831028631331200570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8592519123968333578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d89e6c6b2e65c44bee867948ce4e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9204694626227901858
 PrefabInstance:
   m_ObjectHideFlags: 0

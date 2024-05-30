@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class SceneFade : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class SceneFade : MonoBehaviour
 
     public void OnFadeComplete()
     {
-        SceneManager.LoadScene(_levelToLoad);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (PhotonNetwork.IsMasterClient)
+                SceneManager.LoadScene(_levelToLoad);
+        }
+        else SceneManager.LoadScene(_levelToLoad);
     }
 }
