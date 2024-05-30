@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
+        _controller.detectCollisions = false;
         _animator = GetComponentInChildren<Animator>();
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
         {
