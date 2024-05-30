@@ -12607,6 +12607,56 @@ PrefabInstance:
       propertyPath: Player2Buttons.Array.data[3]
       value: 
       objectReference: {fileID: 906154884}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: doc
+      value: 
+      objectReference: {fileID: 1164772996}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Text
+      value: 
+      objectReference: {fileID: 906154883}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: TextComponent
+      value: 
+      objectReference: {fileID: 906154914}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player2Buttons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player1Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 906154917}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player1Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 906154915}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player2Buttons.Array.data[0]
+      value: 
+      objectReference: {fileID: 906154916}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player2Buttons.Array.data[1]
+      value: 
+      objectReference: {fileID: 906154886}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player2Buttons.Array.data[2]
+      value: 
+      objectReference: {fileID: 906154915}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: Player2Buttons.Array.data[3]
+      value: 
+      objectReference: {fileID: 906154884}
     m_RemovedComponents:
     - {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197, type: 3}
     m_RemovedGameObjects: []
@@ -14603,9 +14653,9 @@ MonoBehaviour:
   _entranceBarrierManager: {fileID: 2026179343}
   _correctCarManager: {fileID: 1314408274}
   _isCorrect: 1
-  _idCorect: 0
+  _idCorrect: 0
   _driverSus: 0
-  _illigalItems: 1
+  _illegalItems: 0
   _lis: 
 --- !u!114 &1164772996
 MonoBehaviour:
