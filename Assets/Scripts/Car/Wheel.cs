@@ -6,18 +6,18 @@ using UnityEngine.AI;
 public class Wheel : MonoBehaviour
 {
     public bool _isLeftWheel;
-    public float _sped;
+    public float _speed;
     void Update()
     {
         Vector3 rotation = transform.localEulerAngles;
-        _sped = GetComponentInParent<NavMeshAgent>().speed;
+        _speed = GetComponentInParent<NavMeshAgent>().speed;
         if (_isLeftWheel)
         {
-            rotation.z += -90 * Time.deltaTime * _sped;
+            rotation.z += -90 * Time.deltaTime * _speed;
         }
         else
         {
-            rotation.z += 90 * Time.deltaTime * _sped;
+            rotation.z += 90 * Time.deltaTime * _speed;
         }
         transform.localEulerAngles = rotation;
     }

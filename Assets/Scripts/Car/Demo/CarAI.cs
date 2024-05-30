@@ -47,7 +47,7 @@ public class CarAI : MonoBehaviourPun
     public float _frontSensorAngle = 30f;
 
     [Header("Data")]
-    public bool _isMillitairyVehicle; // Will add DM in the license palte
+    public bool _isMilitaryVehicle; // Will add DM in the license palte
     public bool _hasDutchLicensePlate; //WIll make the license plate color yellow
     public string _duplicateCode = null; // The little number on how often the driver has lost their vehicle, purely aesthetical and has no fucntion
     [SerializeField] string[] _landCodes; // Such as NL (netherlands), PL (poland), DE (Germany) etc...
@@ -70,7 +70,7 @@ public class CarAI : MonoBehaviourPun
         Physics.IgnoreLayerCollision(3, 15);
         GetComponent<Rigidbody>().centerOfMass = _com;
         _nodes = new List<Transform>();
-        RouteManager.instance.CarQueUpdate(1);
+        RouteManager.instance.CarQueueUpdate(1);
         RouteManager.instance._activeCars.Add(this);
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;
@@ -95,11 +95,11 @@ public class CarAI : MonoBehaviourPun
                 float c = Random.value;
                 if (c < 0.30f)
                 {
-                    _isMillitairyVehicle = true;
+                    _isMilitaryVehicle = true;
                 }
             }
 
-            if (_isMillitairyVehicle)
+            if (_isMilitaryVehicle)
             {
                 _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
             }
@@ -340,7 +340,7 @@ public class CarAI : MonoBehaviourPun
                     {
                         if (i == l_pathTransformsArriving.Length - 1)
                         {
-                            _nodes.Add(RouteManager.instance._queingPositions[RouteManager.instance._totalActiveCars - 1]);
+                            _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
                         }
                         else
                         {
@@ -418,7 +418,7 @@ public class CarAI : MonoBehaviourPun
         _carState = CarStates.declined;
         GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(3f);
-        RouteManager.instance.CarQueUpdate(-1);
+        RouteManager.instance.CarQueueUpdate(-1);
         RouteManager.instance.UpdateCarsLocations();
     }
 
@@ -447,7 +447,7 @@ public class CarAI : MonoBehaviourPun
         yield return new WaitForSeconds(5f);
         _barrierManager._barrierAnimator.ResetTrigger("Open");
         _barrierManager._barrierAnimator.SetTrigger("Close");
-        RouteManager.instance.CarQueUpdate(-1);
+        RouteManager.instance.CarQueueUpdate(-1);
         RouteManager.instance.UpdateCarsLocations();
     }
 

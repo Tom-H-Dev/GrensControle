@@ -22,7 +22,7 @@ public class PlayerUI : MonoBehaviourPun
 
     public void PauseMenu()
     {
-        if (_pauseMenu.active)
+        if (_pauseMenu.activeSelf)
         {
             //Turn escape menu off.
             GetComponent<PlayerMovement>()._canMove = true;

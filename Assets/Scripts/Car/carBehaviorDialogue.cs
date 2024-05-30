@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class carBehaviorDialogue : MonoBehaviour
 {
-    public DialogeManager dialoge;
+    public DialogueManager dialogue;
     
     public float madnessTimer = 100f;
 
@@ -18,7 +18,7 @@ public class carBehaviorDialogue : MonoBehaviour
 
     private void Start()
     {
-        dialoge = FindObjectOfType<DialogeManager>();
+        dialogue = FindObjectOfType<DialogueManager>();
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class carBehaviorDialogue : MonoBehaviour
 
     public void DialogeStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
-        dialoge.TextStart(playerMovement, playerLook);
+        dialogue.TextStart(playerMovement, playerLook);
     }
     public void inCollider()
     {

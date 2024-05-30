@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(DialogeManager))]
+[CustomEditor(typeof(DialogueManager))]
 public class dialogeManagerButton : Editor
 {
         
@@ -11,7 +11,7 @@ public class dialogeManagerButton : Editor
     {
         DrawDefaultInspector();
 
-        DialogeManager loadExcel = (DialogeManager)target;
+        DialogueManager loadExcel = (DialogueManager)target;
 
         GUILayout.Label(" Reload Item DataBase", EditorStyles.boldLabel);
         if (GUILayout.Button("reload Items")) 

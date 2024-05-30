@@ -24,7 +24,7 @@ public class PlayerMirror : MonoBehaviour
     {
         if (_player3 && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (_mirrorCart.active)
+            if (_mirrorCart.activeSelf)
                 _mirrorCart.SetActive(false);
             else _mirrorCart.SetActive(true);
         }

@@ -23,7 +23,7 @@ public class CorrectCarManager : MonoBehaviour
     public string _lis;
 
     [Header("Last Car")]
-    [SerializeField] private TMP_Text _lisence;
+    [SerializeField] private TMP_Text _license;
     [SerializeField] private TMP_Text _allowedText, _playerChoiceText;
 
     [Header("Total Correct")]
@@ -66,7 +66,7 @@ public class CorrectCarManager : MonoBehaviour
             _wrongCarsList[_playerWrongVehicles - 1]._driversLicense = _lis;
             _wrongCarsList[_playerWrongVehicles - 1]._wasIDWrong = l_idWrong;
             _wrongCarsList[_playerWrongVehicles - 1]._wasDriverSuspicious = l_driverSus;
-            _wrongCarsList[_playerWrongVehicles - 1]._wasIlligalItemsInCar = l_illigalItemInCar;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasIllegalItemsInCar = l_illigalItemInCar;
             _wrongCarsList[_playerWrongVehicles - 1]._vehicleNumber = _totalVehicles;
             _wrongCarsList[_playerWrongVehicles - 1]._wasCarAllowed = l_wasAllowed;
             _wrongCarsList[_playerWrongVehicles - 1]._playerChoice = l_playerChoice;
