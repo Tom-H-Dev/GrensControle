@@ -45,8 +45,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 9502.355
-  m_Range: 10
+  m_Intensity: 3388.356
+  m_Range: 4
   m_SpotAngle: 40
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -69,8 +69,8 @@ Light:
       e13: 0
       e20: 0
       e21: 0
-      e22: 1.02
-      e23: -0.202
+      e22: 1.05
+      e23: -0.205
       e30: 0
       e31: 0
       e32: 1
@@ -90,7 +90,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 7220
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 10}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4}
   m_UseBoundingSphereOverride: 1
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 8413.244
+  m_Intensity: 3000
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -390,7 +390,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 15
-  field of view: 43
+  field of view: 110
   orthographic: 0
   orthographic size: 0.24
   m_Depth: 0
