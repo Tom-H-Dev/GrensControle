@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using UnityEditor;
 
-public class DialogeManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     [Header("List")]
     [SerializeField] private List<Item> textList = new List<Item>();

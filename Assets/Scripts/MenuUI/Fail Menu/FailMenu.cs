@@ -38,7 +38,7 @@ public class FailMenu : MonoBehaviourPunCallbacks
                 _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nJa";
             else _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nNee";
 
-            if (_wrongCarData[i]._wasIlligalItemsInCar)
+            if (_wrongCarData[i]._wasIllegalItemsInCar)
                 _uiItems[i]._illigalItemsText.text = "Verboden Spullen:\nJa";
             else _uiItems[i]._illigalItemsText.text = "Verboden Spullen:\nNee";
 

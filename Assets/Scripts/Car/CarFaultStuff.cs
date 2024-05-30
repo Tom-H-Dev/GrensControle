@@ -9,7 +9,7 @@ public class CarFaultStuff : ScriptableObject
     public string _driversLicense;
     public bool _wasIDWrong;
     public bool _wasDriverSuspicious;
-    public bool _wasIlligalItemsInCar;
+    public bool _wasIllegalItemsInCar;
     public int _vehicleNumber;
 
     public bool _wasCarAllowed;
