@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3142085535789080036}
   - component: {fileID: 1093431992327817321}
   - component: {fileID: 7829639468723663121}
-  - component: {fileID: 7930302520910327478}
+  - component: {fileID: 8436793033833802024}
   m_Layer: 0
   m_Name: Driver
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7930302520910327478
+--- !u!114 &8436793033833802024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1942883468138412058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2821f1342e84a043a97527cd261166d, type: 3}
+  m_Script: {fileID: 11500000, guid: ae55fc8ceb0321240a0d5c4eaf34efa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textList:
@@ -140,10 +140,8 @@ MonoBehaviour:
   _words: []
   updatedLine: 
   wordToType: 
-  _playerMovement: {fileID: 5671153366708613330, guid: a466fb60afd4a7345853666c452e22c7,
-    type: 3}
-  _playerLook: {fileID: 8591313288800628124, guid: a466fb60afd4a7345853666c452e22c7,
-    type: 3}
+  _playerMovement: {fileID: 0}
+  _playerLook: {fileID: 0}
   TextComponent: {fileID: 0}
   Text: {fileID: 0}
   selectedLineIndex: -1
@@ -177,7 +175,7 @@ MonoBehaviour:
     team: 2
     question: 2
     madness: 100
-  - lines: mag ik u naam weten
+  - lines: 'mijn naam is ''name'' '
     team: 2
     question: 3
     madness: 100
