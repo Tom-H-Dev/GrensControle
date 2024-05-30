@@ -52,12 +52,12 @@ public class DialogueManager : MonoBehaviour
     
     public List<Item> matchingItems = new List<Item>();
     
-    private PlayerUI Doingsometing;
+    private PlayerUI DoingSomething;
 
     public float range;
     private void Start()
     {
-        Doingsometing = FindObjectOfType<PlayerUI>();
+        DoingSomething = FindObjectOfType<PlayerUI>();
         CarBehavior = FindObjectOfType<carBehaviorDialogue>();
         InitializeVariables();
         loadItemData();
@@ -126,7 +126,7 @@ public class DialogueManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             
-            Doingsometing._isDoingSomething = true;      
+            DoingSomething._isDoingSomething = true;      
             
         
         
@@ -298,7 +298,7 @@ public class DialogueManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        Doingsometing._isDoingSomething = false;
+        DoingSomething._isDoingSomething = false;
 
         
         foreach (var button in Player2Buttons)
