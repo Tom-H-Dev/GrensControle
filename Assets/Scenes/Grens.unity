@@ -12624,6 +12624,11 @@ PrefabInstance:
       objectReference: {fileID: 906154914}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: changeWord.Array.data[0]
+      value: '''name'''
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: Player2Buttons.Array.size
       value: 4
       objectReference: {fileID: 0}

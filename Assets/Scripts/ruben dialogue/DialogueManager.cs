@@ -57,7 +57,6 @@ public class DialogueManager : MonoBehaviour
     public float range;
     private void Start()
     {
-        DoingSomething = FindObjectOfType<PlayerUI>();
         CarBehavior = FindObjectOfType<carBehaviorDialogue>();
         InitializeVariables();
         loadItemData();
@@ -103,6 +102,7 @@ public class DialogueManager : MonoBehaviour
 
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
+        DoingSomething = playerMovement.GetComponent<PlayerUI>();
         _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
         if (_driverManager._isFalsified == true)
         {
@@ -118,10 +118,10 @@ public class DialogueManager : MonoBehaviour
             TextComponent.text = string.Empty;
         
             _playerMovement = playerMovement;
-            _playerMovement.enabled = false;
+            _playerMovement._canMove = false;
         
             _playerLook = playerLook;
-            _playerLook.enabled = false;
+            _playerLook._canLook = false;
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -292,8 +292,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogueButton()
     {
-        _playerLook.enabled = true;
-        _playerMovement.enabled = true;
+        _playerLook._canLook = true;
+        _playerMovement._canMove = true;
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
