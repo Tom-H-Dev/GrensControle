@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1255.3141, g: 1085.0226, b: 923.2711, a: 1}
+  m_IndirectSpecularColor: {r: 1257.5973, g: 1087.2443, b: 925.63245, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12773,6 +12773,11 @@ PrefabInstance:
       objectReference: {fileID: 906154914}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: ItemDatabase.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: changeWord.Array.data[0]
       value: '''name'''
       objectReference: {fileID: 0}
@@ -12811,6 +12816,36 @@ PrefabInstance:
       propertyPath: Player2Buttons.Array.data[3]
       value: 
       objectReference: {fileID: 906154884}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[6].team
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[6].lines
+      value: howada
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[0].answer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[6].madness
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[6].question
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[0].answerbutton.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197, type: 3}
     m_RemovedGameObjects: []

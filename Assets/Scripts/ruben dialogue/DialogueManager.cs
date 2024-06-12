@@ -71,15 +71,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        //Collider[] colliders = Physics.OverlapSphere(transform.position,range);
-        //foreach (var col in colliders)
-        //{ 
-        //    if (col.CompareTag(CarBehavior.driverTag))
-        //    {
-        //        carsInRange.Add(col.gameObject);
-        //    }
-           
-        //}
         if (_textStart && Input.GetMouseButtonDown(0))
         {
             if (_check)
@@ -104,6 +95,7 @@ public class DialogueManager : MonoBehaviour
     {
         DoingSomething = playerMovement.GetComponent<PlayerUI>();
         _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
+        
         if (_driverManager._isFalsified == true)
         {
             driverName = _driverManager._givenFitstName;
@@ -115,34 +107,53 @@ public class DialogueManager : MonoBehaviour
             DriversAchternaam = _driverManager._driverLastName;
         }
         
-            TextComponent.text = string.Empty;
+        TextComponent.text = string.Empty;
         
-            _playerMovement = playerMovement;
-            _playerMovement._canMove = false;
+        _playerMovement = playerMovement;
+        _playerMovement._canMove = false;
         
-            _playerLook = playerLook;
-            _playerLook._canLook = false;
+        _playerLook = playerLook;
+        _playerLook._canLook = false;
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
             
-            DoingSomething._isDoingSomething = true;      
+        DoingSomething._isDoingSomething = true;      
             
-        
         
         if (_playerLook.team == 1)
         {
-            foreach (var button1 in Player1Buttons)
+            if (textList[_index].answer == true)
             {
-                button1.SetActive(true);
+                foreach (var ansButton in textList[_index].answerbutton)
+                {
+                    ansButton.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (var button1 in Player1Buttons)
+                {
+                    button1.SetActive(true);
+                }   
             }
         }
         else
         {
-            foreach (var button2 in Player2Buttons)
+            if (textList[_index].answer == true)
             {
-                button2.SetActive(true);
-            }     
+                foreach (var ansButton in textList[_index].answerbutton)
+                {
+                    ansButton.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (var button2 in Player2Buttons)
+                {
+                    button2.SetActive(true);
+                }   
+            }
         }
     }
     private void ProcessDialogueLine()
@@ -189,6 +200,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogueButton(int buttonIndex)
     {
+        
         TextComponent.text = string.Empty; 
         matchingItems.Clear();
         foreach (var item in ItemDatabase)
@@ -271,17 +283,37 @@ public class DialogueManager : MonoBehaviour
         
         if (_playerLook.team == 1)
         {
-            foreach (var button1 in Player1Buttons)
+            if (textList[_index].answer == true)
             {
-                button1.SetActive(true);
+                foreach (var ansButton in textList[_index].answerbutton)
+                {
+                    ansButton.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (var button1 in Player1Buttons)
+                {
+                    button1.SetActive(true);
+                }   
             }
         }
         else
         {
-            foreach (var button2 in Player2Buttons)
+            if (textList[_index].answer == true)
             {
-                button2.SetActive(true);
-            }     
+                foreach (var ansButton in textList[_index].answerbutton)
+                {
+                    ansButton.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (var button2 in Player2Buttons)
+                {
+                    button2.SetActive(true);
+                }   
+            }
         }
     }
 

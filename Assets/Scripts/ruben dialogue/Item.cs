@@ -11,6 +11,8 @@ using UnityEngine.Serialization;
     public int team;
     public int question;
     public int madness;
+    public bool answer;
+    public List<GameObject> answerbutton;
     
     public Item(Item d)
     {
@@ -19,19 +21,6 @@ using UnityEngine.Serialization;
         question = d.question;
         madness = d.madness;
     }
-}
-
-[Serializable] public class CustomPro
-{
-    public List<custompls> list = new List<custompls>();
-    public int TeamDialogue;
-    public GameObject[] Buttons;
-}
-
-[Serializable] public class custompls
-{
-    public string[] lines;
-    public float madness;
 }
 
 [Serializable] public enum key 
