@@ -207,7 +207,7 @@ public class DialogueManager : MonoBehaviour
         { 
             if (item.team == _playerLook.team && item.question == buttonIndex)
             {
-                matchingItems.Add(item);
+                //matchingItems.Add(item);
             }
         }
 
