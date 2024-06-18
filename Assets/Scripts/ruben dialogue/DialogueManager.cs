@@ -62,6 +62,10 @@ public class DialogueManager : MonoBehaviour
     public List<Item> matchingItems = new List<Item>();
     
     private PlayerUI DoingSomething;
+
+    public bool fuck;
+    
+    public List<GameObject> luva;
     private void Start()
     {
         //TextObject = GameObject.Find("BackGroundText");
@@ -282,8 +286,40 @@ public class DialogueManager : MonoBehaviour
 
     private void ActivateButtons(List<GameObject> playerButtons)
     {
+        //luva = textList[selectedLineIndex].answerbutton;
+        
+        print(textList[selectedLineIndex].answerbutton.Count);
+        
+        foreach (var button in playerButtons)
+        {
+            print(" check");
+            button.SetActive(true);
+        }
+        
+        
+        foreach (GameObject ans in textList[selectedLineIndex].answerbutton)
+        {
+            print(" fuck");
+            ans.SetActive(true);
+        }
+
+        
+        
+        
+        
+        /*
+        if (fuck == true)
+        {
+            print(" liuca");
+            foreach (var ansButton in textList[selectedLineIndex].answerbutton)
+            {
+                print(" answer");
+                ansButton.SetActive(true);
+            }
+        }
+        
         print(" hughdwadwa");
-        if (selectedLineIndex != -1 && textList[selectedLineIndex].answer == true)
+        if (textList[selectedLineIndex].answer == true)
         {
             print( " dwauid");
             foreach (var ansButton in textList[selectedLineIndex].answerbutton)
@@ -292,14 +328,14 @@ public class DialogueManager : MonoBehaviour
                 ansButton.SetActive(true);
             }
         }
-        else
+        else if (textList[selectedLineIndex].answer == false)
         {
             foreach (var button in playerButtons)
             {
                 print(" check");
                 button.SetActive(true);
             }   
-        }
+        }*/
     }
     public void booleanOn()
     {
