@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1010.8463, g: 798.5968, b: 572.1392, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9137,7 +9137,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6066870568085273520, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 721428128}
   m_SourcePrefab: {fileID: 100100000, guid: 9a4bfb60c3964ce46a353008566e35b9, type: 3}
 --- !u!4 &721428126 stripped
 Transform:
@@ -9145,6 +9149,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 721428125}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &721428127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6066870568085273520, guid: 9a4bfb60c3964ce46a353008566e35b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 721428125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &721428128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721428127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &724180602
 GameObject:
   m_ObjectHideFlags: 0
@@ -11369,7 +11401,7 @@ PrefabInstance:
     - target: {fileID: 257259669503536227, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 521345501342856807, guid: 1d4763a6fff72d9409cfe2e7a6524df9,
         type: 3}

@@ -64,6 +64,7 @@ public class CarAI : MonoBehaviourPun
 
     [Header("Network")]
     public bool _override = false;
+    public bool inQue = false;
 
     private void Start()
     {
@@ -205,7 +206,9 @@ public class CarAI : MonoBehaviourPun
             {
                 Debug.Log("Reached the end");
                 _movingToQuePoint = false;
-                //_carState = CarStates.inQueue;
+                if (!inQue)
+                    _carState = CarStates.inQueue;
+                inQue = true;
             }
             else
             {
@@ -218,16 +221,17 @@ public class CarAI : MonoBehaviourPun
             if (l_finishDist <= 1)
             {
                 _isBraking = true;
+                
             }
         }
-        if (_carState == CarStates.queuing)
-        {
-            float l_finishDist = Vector3.Distance(transform.position, _nodes[0].position);
-            if (l_finishDist <= 1)
-            {
-                _isBraking = true;
-            }
-        }
+        //if (_carState == CarStates.queuing)
+        //{
+        //    float l_finishDist = Vector3.Distance(transform.position, _nodes[0].position);
+        //    if (l_finishDist <= 1)
+        //    {
+        //        _isBraking = true;
+        //    }
+        //}
     }
 
     private void CarBreaking()

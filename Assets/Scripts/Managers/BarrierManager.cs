@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class BarrierManager : MonoBehaviour
 {
+    public static BarrierManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    
     [SerializeField] Vector3 _checkCubeSize;
     [SerializeField] GameObject _insideLocation;
     [SerializeField] LayerMask _layerMask;
@@ -14,6 +20,8 @@ public class BarrierManager : MonoBehaviour
 
     [SerializeField] Transform _stopSpot; // Spot from which the stop locations will be calculated
     public List<CarBehaviour> _queue; // current vehicles in the queue
+
+
 
 
     private void Start()

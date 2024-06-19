@@ -78,19 +78,15 @@ public class RouteManager : MonoBehaviour
     {
         for (int i = 0; i < _activeCars.Count; i++)
         {
-            if (_activeCars[i]._carState != CarStates.arriving)
+            if (_activeCars[i]._carState == CarStates.inQueue)
             {
-                print("1");
                 _activeCars[i]._carState = CarStates.queuing;
-
-                print("2");
+                _activeCars[i].inQue = false;
                 _activeCars[i]._movingToQuePoint = true;
-                print("3");
                 _activeCars[i]._isBraking = false;
-                print("4");
+                Debug.Log("5" + _activeCars[i].name);
             }
             _activeCars[i].RPCUpdateRoute();
-            print("5");
 
         }
     }
