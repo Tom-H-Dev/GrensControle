@@ -15,9 +15,9 @@ public class Hefboom : MonoBehaviour
     [SerializeField] private BarrierManager _entranceBarrierManager;
     public CorrectCarManager _correctCarManager;
     public bool _isCorrect = true;
-    public bool _idCorect;
+    public bool _idCorrect;
     public bool _driverSus;
-    public bool _illigalItems;
+    public bool _illegalItems;
     public string _lis;
     //TODO: _illigalItems bool set in car contraband behavior and driver sus asswell
     public void OpenGate()
@@ -31,10 +31,10 @@ public class Hefboom : MonoBehaviour
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
                 _correctCarManager._lis = _lis;
-                if (!_idCorect || _driverSus || _illigalItems)
+                if (!_idCorrect || _driverSus || _illegalItems)
                     _isCorrect = false;
                 else _isCorrect = true;
-                _correctCarManager.ChangeList(_isCorrect, true, _idCorect, _illigalItems, _driverSus);
+                _correctCarManager.ChangeList(_isCorrect, true, _idCorrect, _illegalItems, _driverSus);
             }
             else
             {
@@ -57,10 +57,10 @@ public class Hefboom : MonoBehaviour
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
                 ;
                 _correctCarManager._lis = _lis;
-                if (!_idCorect || _driverSus || _illigalItems)
+                if (!_idCorrect || _driverSus || _illegalItems)
                     _isCorrect = false;
                 else _isCorrect = true;
-                _correctCarManager.ChangeList(_isCorrect, false, _idCorect, _illigalItems, _driverSus);
+                _correctCarManager.ChangeList(_isCorrect, false, _idCorrect, _illegalItems, _driverSus);
             }
             else
             {

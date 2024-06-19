@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
     [SerializeField] private Transform PlayerCamera;
-    [SerializeField] private Vector2 Senstivity;
+    [SerializeField] private Vector2 Sensitivity;
 
     private Vector2 XYRotation;
     public bool _canLook = true;
@@ -20,7 +20,7 @@ public class PlayerLook : MonoBehaviour
     public int team;
 
     [SerializeField] private TMP_Text _interactionText;
-    public bool _isTalkikng;
+    public bool _isTalking;
 
     private void Start()
     {
@@ -51,8 +51,8 @@ public class PlayerLook : MonoBehaviour
             y = Input.GetAxis("Mouse Y")
         };
 
-        XYRotation.x -= MouseInput.y * Senstivity.y;
-        XYRotation.y += MouseInput.x * Senstivity.x;
+        XYRotation.x -= MouseInput.y * Sensitivity.y;
+        XYRotation.y += MouseInput.x * Sensitivity.x;
 
         //Clamp X mouseLook axis to 75 and -75 to ensure no infinite rotation
         XYRotation.x = Mathf.Clamp(XYRotation.x, -75f, 75f);
@@ -120,13 +120,13 @@ public class PlayerLook : MonoBehaviour
                 {
                     if (l_hit.transform.gameObject.TryGetComponent(out Computer l_pc) && _canInteract)
                         _interactionText.text = "Druk op 'E' om de computer te openen.";
-                    else if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_papaers) && !_isTalkikng && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
+                    else if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_papaers) && !_isTalking && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
                         _interactionText.text = "Druk op 'E' om de papieren op te vragen.";
                     else _interactionText.text = "";
                 }
                 else if (team == 2)
                 {
-                    if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && !_isTalkikng && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
+                    if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && !_isTalking && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
                         _interactionText.text = "Druk op 'E' om met de bestuurder te praten.";
                     else _interactionText.text = "";
                 }

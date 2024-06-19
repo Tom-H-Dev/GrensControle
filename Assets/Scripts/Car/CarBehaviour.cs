@@ -7,7 +7,7 @@ public class CarBehaviour : MonoBehaviour
 {
     //----------------------------------------------------------------------------------------------------
     [Header("Voertuig Data")]
-    public bool _isMillitairyVehicle; // Will add DM in the license palte
+    public bool _isMilitaryVehicle; // Will add DM in the license palte
     public bool _hasDutchLicensePlate; //WIll make the license plate color yellow
     public string _duplicateCode = null; // The little number on how often the driver has lost their vehicle, purely aesthetical and has no fucntion
     [SerializeField] string[] _landCodes; // Such as NL (netherlands), PL (poland), DE (Germany) etc...
@@ -17,7 +17,7 @@ public class CarBehaviour : MonoBehaviour
     public bool _override = false;
     [SerializeField] private AudioMixer _carMixer;
     public bool _hasBeenChecked = false;
-    public bool _isControlable = false;
+    public bool _isControllable = false;
     //----------------------------------------------------------------------------------------------------
     [Header("Vehicle dynamics")]
     public NavMeshAgent _agent; //NavMesh agent
@@ -27,7 +27,7 @@ public class CarBehaviour : MonoBehaviour
     public float _defaultAngularSpeed;
     [SerializeField] AudioSource _honkSound; //Honk sound effect
     [SerializeField] AudioSource _brakeSound; //Brake screetch sound effect
-    [SerializeField] LayerMask _CollisionLayerMask; //COllision layermask for the emergency brake
+    [SerializeField] LayerMask _CollisionLayerMask; //Collision layermask for the emergency brake
     public bool _emergencyBrake; // Bool that keeps track of braking
     //----------------------------------------------------------------------------------------------------
     [Header("Radius")]
@@ -70,11 +70,11 @@ public class CarBehaviour : MonoBehaviour
                 float c = Random.value;
                 if (c < 0.30f)
                 {
-                    _isMillitairyVehicle = true;
+                    _isMilitaryVehicle = true;
                 }
             }
 
-            if (_isMillitairyVehicle)
+            if (_isMilitaryVehicle)
             {
                 _middleText = "DM" + _alphabet[Random.Range(0, _alphabet.Length)]; // Add DM into the license plate in case it's a dutch militairy vehicle
             }

@@ -17,14 +17,14 @@ public class CarSpawner : MonoBehaviour
             StartCoroutine(SpawnTimer());
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && PhotonNetwork.IsMasterClient)
-        {
-            print("spawn");
-            SpawnVehicles();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha1) && PhotonNetwork.IsMasterClient)
+    //    {
+    //        print("spawn");
+    //        SpawnVehicles();
+    //    }
+    //}
 
     private void SpawnVehicles()
     {

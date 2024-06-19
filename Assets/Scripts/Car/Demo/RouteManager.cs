@@ -20,10 +20,10 @@ public class RouteManager : MonoBehaviour
     [Header("Cars info")]
     public int _totalActiveCars = 0;
     public int _maximumVehicles = 5;
-    public List<Transform> _queingPositions = new List<Transform>();
+    public List<Transform> _queuingPositions = new List<Transform>();
     public List<CarAI> _activeCars = new List<CarAI>();
 
-    public void CarQueUpdate( int l_index)
+    public void CarQueueUpdate( int l_index)
     {
         _totalActiveCars += l_index;
     }
@@ -58,10 +58,10 @@ public class RouteManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < _queingPositions.Count; i++)
+        for (int i = 0; i < _queuingPositions.Count; i++)
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(_queingPositions[i].position, 0.3f);
+            Gizmos.DrawSphere(_queuingPositions[i].position, 0.3f);
         }
     }
 
@@ -99,6 +99,6 @@ public class RouteManager : MonoBehaviour
 
     public Transform QueMoveUp(int l_index)
     {
-        return _queingPositions[l_index];
+        return _queuingPositions[l_index];
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38358, g: 325.10843, b: 430.30963, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 152001560}
   - component: {fileID: 152001559}
   m_Layer: 5
-  m_Name: Illigal items
+  m_Name: Illegal items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 604055263}
   - component: {fileID: 604055262}
   m_Layer: 5
-  m_Name: Lisence Plate
+  m_Name: License Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 674283754}
   - component: {fileID: 674283753}
   m_Layer: 5
-  m_Name: Lisence Plate
+  m_Name: License Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2047,7 +2047,7 @@ GameObject:
   - component: {fileID: 1086325036}
   - component: {fileID: 1086325035}
   m_Layer: 5
-  m_Name: Illigal items
+  m_Name: Illegal items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2590,7 +2590,7 @@ GameObject:
   - component: {fileID: 1245450452}
   - component: {fileID: 1245450451}
   m_Layer: 5
-  m_Name: Illigal items
+  m_Name: Illegal items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2728,7 +2728,7 @@ GameObject:
   - component: {fileID: 1407365499}
   - component: {fileID: 1407365498}
   m_Layer: 5
-  m_Name: Lisence Plate
+  m_Name: License Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3898,22 +3898,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiItems:
-  - _driversLisanceText: {fileID: 1407365498}
+  - _driversLicenseText: {fileID: 1407365498}
     _idCorrectText: {fileID: 1238716376}
     _driverText: {fileID: 2125564742}
-    _illigalItemsText: {fileID: 152001559}
+    _illegalItemsText: {fileID: 152001559}
     _carNumberText: {fileID: 562203909}
     _wasLetThrough: {fileID: 359635366}
-  - _driversLisanceText: {fileID: 604055262}
+  - _driversLicenseText: {fileID: 604055262}
     _idCorrectText: {fileID: 1853101901}
     _driverText: {fileID: 1745604956}
-    _illigalItemsText: {fileID: 1245450451}
+    _illegalItemsText: {fileID: 1245450451}
     _carNumberText: {fileID: 1688589148}
     _wasLetThrough: {fileID: 1141931925}
-  - _driversLisanceText: {fileID: 674283753}
+  - _driversLicenseText: {fileID: 674283753}
     _idCorrectText: {fileID: 1003979560}
     _driverText: {fileID: 2055091202}
-    _illigalItemsText: {fileID: 1086325035}
+    _illegalItemsText: {fileID: 1086325035}
     _carNumberText: {fileID: 347142301}
     _wasLetThrough: {fileID: 1517994658}
   _wrongCarData:
@@ -3921,6 +3921,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 399250ae0c333bc4a866f2674fcaba93, type: 2}
   - {fileID: 11400000, guid: 3df7184876f54e546987b3847e446132, type: 2}
   _totalVehiclesText: {fileID: 1698842653}
+  _photonView: {fileID: 0}
 --- !u!1 &2030433689
 GameObject:
   m_ObjectHideFlags: 0
