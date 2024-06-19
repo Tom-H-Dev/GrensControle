@@ -213,7 +213,7 @@ public class CarAI : MonoBehaviourPun
         if (_currentNode + 1 >= _nodes.Count - 1 && !_movingToQuePoint)
         {
             float l_finishDist = Vector3.Distance(transform.position, _nodes[_nodes.Count - 1].position);
-            if (l_finishDist <= 15)
+            if (l_finishDist <= 1)
             {
                 _isBraking = true;
             }

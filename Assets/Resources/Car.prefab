@@ -1456,7 +1456,7 @@ MonoBehaviour:
   _emergencyBrake: 0
   _isMovingBackwards: 0
   _movingToQuePoint: 0
-  _sensorLength: 10
+  _sensorLength: 5
   _fronstSensorPosition: {x: 0, y: 0.5, z: 2}
   _frontSideSensorPos: 0.6
   _frontSensorAngle: 30
