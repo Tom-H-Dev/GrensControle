@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using Unity.VisualScripting;
-using Unity.Properties;
 
 public enum CarStates
 {
@@ -207,12 +205,13 @@ public class CarAI : MonoBehaviourPun
                 Debug.Log("Reached the end");
                 _movingToQuePoint = false;
                 if (!inQue)
-                    _carState = CarStates.inQueue;
+                    _carState = CarStates.queuing;
                 inQue = true;
             }
             else
             {
                 _currentNode++;
+                inQue = false;
             }
         }
         if (_currentNode + 1 >= _nodes.Count - 1 && !_movingToQuePoint)
@@ -221,7 +220,7 @@ public class CarAI : MonoBehaviourPun
             if (l_finishDist <= 1)
             {
                 _isBraking = true;
-                
+
             }
         }
         //if (_carState == CarStates.queuing)
@@ -467,7 +466,17 @@ public class CarAI : MonoBehaviourPun
         _barrierManager._barrierAnimator.ResetTrigger("Open");
         _barrierManager._barrierAnimator.SetTrigger("Close");
         RouteManager.instance.CarQueueUpdate(-1);
-        RouteManager.instance.UpdateCarsLocations();
+        //RouteManager.instance.UpdateCarsLocations();
+        for (int i = 0; i < RouteManager.instance._activeCars.Count; i++)
+        {
+            //RouteManager.instance._activeCars[i]._movingToQuePoint = true;
+            RouteManager.instance._activeCars[i]._isBraking = false;
+            //Debug.Log("5" + RouteManager.instance._activeCars[i].name);
+            //if (RouteManager.instance._activeCars[i]._carState == CarStates.queuing)
+            RouteManager.instance._activeCars[i].RPCUpdateRoute();
+
+
+        }
     }
 
     void OnCollisionStay(Collision collision)

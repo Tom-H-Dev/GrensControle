@@ -1689,6 +1689,7 @@ MonoBehaviour:
   _hasBeenChecked: 0
   _com: {x: 0, y: -0.1, z: 0}
   _override: 0
+  inQue: 0
 --- !u!114 &7065249420597622908
 MonoBehaviour:
   m_ObjectHideFlags: 0

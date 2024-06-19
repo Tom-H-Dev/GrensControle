@@ -76,19 +76,19 @@ public class RouteManager : MonoBehaviour
 
     public void UpdateCarsLocations()
     {
-        for (int i = 0; i < _activeCars.Count; i++)
-        {
-            if (_activeCars[i]._carState == CarStates.inQueue)
-            {
-                _activeCars[i]._carState = CarStates.queuing;
-                _activeCars[i].inQue = false;
-                _activeCars[i]._movingToQuePoint = true;
-                _activeCars[i]._isBraking = false;
-                Debug.Log("5" + _activeCars[i].name);
-            }
-            _activeCars[i].RPCUpdateRoute();
+        //for (int i = 0; i < _activeCars.Count; i++)
+        //{
+        //    if (_activeCars[i]._carState == CarStates.queuing)
+        //    {
+        //        _activeCars[i]._carState = CarStates.queuing;
+        //        _activeCars[i].inQue = false;
+        //        _activeCars[i]._movingToQuePoint = true;
+        //        _activeCars[i]._isBraking = false;
+        //        Debug.Log("5" + _activeCars[i].name);
+        //        _activeCars[i].RPCUpdateRoute();
+        //    }
 
-        }
+        //}
     }
 
     private void Update()
