@@ -14,13 +14,14 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     [SerializeField] private List<Button> _choiceButtons;
     [SerializeField] private TMP_Text _playerName;
 
-    
+    [SerializeField] private DelayWatingRoomController _roomController;
 
     [Header("Bolleans")]
     public bool _isChosen = false;
 
     private void Start()
     {
+        _roomController = GetComponentInParent<DelayWatingRoomController>();
         _playerName.text = string.Empty;
         DelayWatingRoomController.instance.PlayerCountUpdate();
     }
@@ -128,7 +129,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         int _playerCount = PhotonNetwork.PlayerList.Length;
         int _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
 
-        if (_playerCount >= _roomsize || DelayWatingRoomController.instance._playerNeedOverride)
+        if (_playerCount >= _roomsize || _roomController._playerNeedOverride)
         {
             for (int i = 0; i < _choiceButtons.Count; i++)
             {

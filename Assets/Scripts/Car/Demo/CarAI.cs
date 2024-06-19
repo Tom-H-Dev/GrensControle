@@ -11,7 +11,8 @@ public enum CarStates
     arriving,
     accepted,
     declined,
-    queuing
+    queuing,
+    inQueue
 };
 
 public class CarAI : MonoBehaviourPun
@@ -59,7 +60,7 @@ public class CarAI : MonoBehaviourPun
     public bool _isControlable = false;
     public bool _hasBeenChecked = false;
     private BarrierManager _barrierManager;
-    [SerializeField] private Vector3 _com; 
+    [SerializeField] private Vector3 _com;
 
     [Header("Network")]
     public bool _override = false;
@@ -204,6 +205,7 @@ public class CarAI : MonoBehaviourPun
             {
                 Debug.Log("Reached the end");
                 _movingToQuePoint = false;
+                //_carState = CarStates.inQueue;
             }
             else
             {
@@ -213,6 +215,14 @@ public class CarAI : MonoBehaviourPun
         if (_currentNode + 1 >= _nodes.Count - 1 && !_movingToQuePoint)
         {
             float l_finishDist = Vector3.Distance(transform.position, _nodes[_nodes.Count - 1].position);
+            if (l_finishDist <= 1)
+            {
+                _isBraking = true;
+            }
+        }
+        if (_carState == CarStates.queuing)
+        {
+            float l_finishDist = Vector3.Distance(transform.position, _nodes[0].position);
             if (l_finishDist <= 1)
             {
                 _isBraking = true;
@@ -323,6 +333,11 @@ public class CarAI : MonoBehaviourPun
             Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
         }
 
+    }
+
+    public void RPCUpdateRoute()
+    {
+        GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]
