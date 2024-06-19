@@ -7,23 +7,24 @@ using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
-    [Header("List")] [Tooltip("how fast the text types closer to the 0 the faster it types")] 
+    [Header("List")] 
+    [Tooltip("How fast the text types closer to the 0 the faster it types.")] 
     [SerializeField] private float textSpeed = 0.5f;
 
-    [Tooltip("if any of these word are being typed change it with driver name and")] 
+    [Tooltip("If any of these word are being typed change it with driver name and secondname.")] 
     [SerializeField] private string[] changeWord;
     
-    [Tooltip("player 2 buttons when talking to driver")] 
+    [Tooltip("Player 2 buttons when talking to driver")] 
     [SerializeField] private List<GameObject> Player2Buttons;
 
-    [Tooltip("player 1 buttons when talking to driver")] 
+    [Tooltip("Player 1 buttons that activiet when talking to the driver.")] 
     [SerializeField] private List<GameObject> Player1Buttons;
 
     [SerializeField] private List<Item> ItemDatabase = new List<Item>();
 
-    [SerializeField] private TextAsset text;
+    //[SerializeField] private TextAsset text;
 
-    [SerializeField] private string textName, teamName, questionName, MadnessName;
+    //[SerializeField] private string textName, teamName, questionName, MadnessName;
     
     
     [SerializeField] private TextMeshProUGUI TextComponent;
@@ -33,29 +34,24 @@ public class DialogueManager : MonoBehaviour
     
     private string driverName;
     private string DriverSecondName;
+    public string[] _words;
+    public string _updatedLine, _wordToType;
     
     private bool _textStart = false, _check;
-    private int _index;
-    private string[] _words;
-    private string _updatedLine, _wordToType;
-
+    
+    public int _index, index2;
+    private int indexlist;   
+    
+    //private Item BlankItem;
+    
+    private PlayerUI _IsTalking; //is for the pas manu when this is false ecape works
     private PlayerMovement _playerMovement;
     private PlayerLook _playerLook;
-    
     private DocVerifyPro _doc;
-
     private carBehaviorDialogue CarBehavior;
     private DriverManager _driverManager;
 
-    private Item BlankItem;
-   
-    
-    private List<Item> _matchingItems = new List<Item>();
-    
-    private PlayerUI _DoingSomething;
-    
-    private int indexlist;
-    
+    public string selectedline;
     private void Start()
     {
         CarBehavior = FindObjectOfType<carBehaviorDialogue>();
@@ -67,7 +63,7 @@ public class DialogueManager : MonoBehaviour
     private void InitializeVariables()
     {
         
-        _index = 0;
+        index2 = _index = 0;
         _textStart = false;
     }
 
@@ -78,7 +74,7 @@ public class DialogueManager : MonoBehaviour
             if (_check)
             {
                 _check = false;
-                string selectedline = ItemDatabase[_index].lines;
+                selectedline = ItemDatabase[_index].myList[index2].lines;
                 _words = selectedline.Split(' ');
                 NextLine();
             }
@@ -93,7 +89,7 @@ public class DialogueManager : MonoBehaviour
 
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
-        _DoingSomething = playerMovement.GetComponent<PlayerUI>();
+        _IsTalking = playerMovement.GetComponent<PlayerUI>();
         _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
         
         if (_driverManager._isFalsified == true)
@@ -118,7 +114,7 @@ public class DialogueManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
             
-        _DoingSomething._isDoingSomething = true;      
+        _IsTalking._isDoingSomething = true;      
             
         
         if (_playerLook.team == 1)
@@ -140,7 +136,7 @@ public class DialogueManager : MonoBehaviour
     {
         float minMadnessDifference = float.MaxValue;
         
-        for (int i = 0; i < ItemDatabase[_index].lines.Length; i++)
+        for (int i = 0; i < ItemDatabase[_index].myList[index2].lines.Length; i++)
         {
             float madnessDifference = Mathf.Abs(ItemDatabase[_index].madness - CarBehavior.madnessTimer);
             
@@ -182,29 +178,41 @@ public class DialogueManager : MonoBehaviour
     {
         
         TextComponent.text = string.Empty; 
-        _matchingItems.Clear();
         foreach (var item in ItemDatabase)
-        { 
-            if (item.team == _playerLook.team && item.question == buttonIndex)
-            {
-                _matchingItems.Add(item);
-            }
-        }
-
-        if (_matchingItems.Count > 0)
         {
-            randomIndex = Random.Range(0, _matchingItems.Count);
-            StartDialogue(_matchingItems[randomIndex]);
-            
+            foreach (var linessss in ItemDatabase[_index].myList)
+            {
+                if (item.team == _playerLook.team && item.question == buttonIndex)
+                {
+                    StartDialogue(linessss.lines);
+                }
+            }
         }
     }
     
 
-    public void StartDialogue(Item selectedItem)
+    public void StartDialogue(string ll)
     {
-        _words = selectedItem.lines.Split(' ');
+        lucas closestLine = null;
+        float minHappinessDifference = float.MaxValue;
+        foreach (var line in ItemDatabase[_index].myList)
+        {
+            float happinessDifference = Mathf.Abs(line.happy - CarBehavior.happiness);
+            if (happinessDifference < minHappinessDifference)
+            {
+                minHappinessDifference = happinessDifference;
+                closestLine = line;
+            }
+        }
+        
+        if (closestLine != null)
+        {
+            ll = closestLine.lines;
+        }
+        
+        _words = ll.Split(' ');
 
-        selectedLineIndex = selectedItem.question;
+        selectedLineIndex = ItemDatabase[_index].question;
         
         TextObject.SetActive(true);
         
@@ -314,7 +322,7 @@ public class DialogueManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
-        _DoingSomething._isDoingSomething = false;
+        _IsTalking._isDoingSomething = false;
 
         
         foreach (var button in Player2Buttons)
@@ -326,6 +334,8 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+    
+    /*
     public void loadItemData()
     {
         ItemDatabase.Clear();
@@ -356,7 +366,7 @@ public class DialogueManager : MonoBehaviour
         tempItem.madness = madness;
         
         ItemDatabase.Add(tempItem);
-    }
+    }*/
 }
 
 
