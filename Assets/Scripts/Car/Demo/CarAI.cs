@@ -61,6 +61,7 @@ public class CarAI : MonoBehaviourPun
     [SerializeField] private Vector3 _com;
     public bool _arriving = true;
     public int _waitingIndex;
+    public int _backupCurrentNode;
 
     [Header("Network")]
     public bool _override = false;
@@ -360,10 +361,10 @@ public class CarAI : MonoBehaviourPun
         switch (_carState)
         {
             case CarStates.arriving:
+                _nodes.Clear();
+                _currentNode = 0;
                 if (_arriving)
                 {
-                    _nodes.Clear();
-                    _currentNode = 0;
                     Transform[] l_pathTransformsArriving = RouteManager.instance._arriveRoute.ToArray();
                     for (int i = 0; i < l_pathTransformsArriving.Length; i++)
                     {
@@ -526,6 +527,7 @@ public class CarAI : MonoBehaviourPun
             }
             else
             {
+                _backupCurrentNode = _currentNode;
                 RouteManager.instance._arrivingCars[a].RPCUpdateRoute();
             }
 
