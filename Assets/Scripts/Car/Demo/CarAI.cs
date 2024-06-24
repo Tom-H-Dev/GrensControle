@@ -159,10 +159,10 @@ public class CarAI : MonoBehaviourPun
     private void FixedUpdate()
     {
         CheckingSensors();
-        ApplySteer();
         DriveCar();
         CheckWaypointDistance();
         CarBreaking();
+        ApplySteer();
 
         if (_isMovingBackwards)
             MovingBackwards();
