@@ -1653,6 +1653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carState: 0
   _nodes: []
+  _currentNode: 0
   _maxSteerAngle: 45
   _wheelFL: {fileID: 2760208195890522549}
   _wheelFR: {fileID: 4254986361254367218}
@@ -1688,7 +1689,9 @@ MonoBehaviour:
   _isControlable: 0
   _hasBeenChecked: 0
   _com: {x: 0, y: -0.1, z: 0}
+  _arriving: 1
   _override: 0
+  inQue: 0
 --- !u!114 &7065249420597622908
 MonoBehaviour:
   m_ObjectHideFlags: 0

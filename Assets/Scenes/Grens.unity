@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 1010.8336, g: 798.5763, b: 572.1773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9079,6 +9079,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1648865248072275383, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 55.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2045867125565642989, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3149996912419439920, guid: 9a4bfb60c3964ce46a353008566e35b9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9129,13 +9139,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4988670631969094461, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6066870568085273520, guid: 9a4bfb60c3964ce46a353008566e35b9,
         type: 3}
       propertyPath: m_Name
       value: Route systems
       objectReference: {fileID: 0}
+    - target: {fileID: 8820501475364610205, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
+      propertyPath: _arriveRoute.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820501475364610205, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
+      propertyPath: _arriveRoute.Array.data[5]
+      value: 
+      objectReference: {fileID: 721428129}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2045867125565642989, guid: 9a4bfb60c3964ce46a353008566e35b9, type: 3}
+    - {fileID: 4988670631969094461, guid: 9a4bfb60c3964ce46a353008566e35b9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6066870568085273520, guid: 9a4bfb60c3964ce46a353008566e35b9,
@@ -9177,6 +9204,12 @@ MonoBehaviour:
   sceneViewId: 5
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!4 &721428129 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5820963449265186556, guid: 9a4bfb60c3964ce46a353008566e35b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 721428125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &724180602
 GameObject:
   m_ObjectHideFlags: 0
