@@ -94,6 +94,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
             }
         }
 
+
         if (_playersReady == _roomsize)
         {
             _readyToStart = true;
@@ -102,6 +103,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         {
             _readyToCountDown = false;
             _readyToStart = false;
+
         }
     }
 

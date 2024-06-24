@@ -57,7 +57,6 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
             ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
             if (choiceButtonScript != this && !choiceButtonScript._isChosen)
             {
-                print("Button Disable");
                 button.interactable = false;
             }
         }
@@ -91,8 +90,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         {
             ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
             if (choiceButtonScript != this && choiceButtonScript._isChosen)
-            {
-                print("Button Disable 2");
+            { 
                 button.interactable = false;
             }
         }
@@ -135,7 +133,6 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     private void DisableButton()
     {
         _choiceButton.interactable = false;
-        print("Button Disable 3");
     }
 
     [PunRPC]
@@ -154,14 +151,12 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
             {
                 if (_choiceButtons[i].GetComponentInParent<ChoiceButton>()._isChosen)
                 {
-                    print("Button Disable4");
                     _choiceButtons[i].interactable = false;
                 }
                 else if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
                 {
                     if ((int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 1 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 2 || (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"] == 3)
                     {
-                        print("Button Disable 4");
                         _choiceButtons[i].interactable = false;
                     }
                     else _choiceButtons[i].interactable = true;
