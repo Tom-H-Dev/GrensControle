@@ -1840,7 +1840,7 @@ MonoBehaviour:
   _delayCancelButton: {fileID: 427505101}
   _loading: {fileID: 519890597}
   _roomSize: 3
-  _nameInputField: {fileID: 0}
+  _nameInputField: {fileID: 1224940313}
 --- !u!1 &1302948779
 GameObject:
   m_ObjectHideFlags: 0

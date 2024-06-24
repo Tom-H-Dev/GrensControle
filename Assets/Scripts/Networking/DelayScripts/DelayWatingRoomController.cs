@@ -84,8 +84,9 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
                 _rollChoiceButtons[i].interactable = true;
             }
         }
-        else
+        else if (!_playerNeedOverride)
         {
+            print("Set Buttons False");
             _waitingText.SetActive(true);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
