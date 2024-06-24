@@ -84,14 +84,16 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
                 _rollChoiceButtons[i].interactable = true;
             }
         }
-        else
+        else if (!_playerNeedOverride)
         {
+            print("Set Buttons False");
             _waitingText.SetActive(true);
             for (int i = 0; i < _rollChoiceButtons.Count; i++)
             {
                 _rollChoiceButtons[i].interactable = false;
             }
         }
+
 
         if (_playersReady == _roomsize)
         {
@@ -101,6 +103,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
         {
             _readyToCountDown = false;
             _readyToStart = false;
+
         }
     }
 

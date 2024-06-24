@@ -24,6 +24,22 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         _roomController = GetComponentInParent<DelayWatingRoomController>();
         _playerName.text = string.Empty;
         DelayWatingRoomController.instance.PlayerCountUpdate();
+
+        //Check if the player already has a CustonProperty with the key 'Team'.
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+        {
+            PhotonNetwork.LocalPlayer.CustomProperties["Team"] = 0;
+        }
+        else //If the player has no CustomProperty is makes a new custom property.
+        {
+            //Makes a new CustomProperty for the player.
+            ExitGames.Client.Photon.Hashtable l_playerProps = new ExitGames.Client.Photon.Hashtable
+            {
+                {"Team", 0 }
+            };
+            //Adds the new CustomProperty to the player.
+            PhotonNetwork.LocalPlayer.SetCustomProperties(l_playerProps);
+        }
     }
 
     public void ChooseRoll(int l_team)
@@ -74,7 +90,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         {
             ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
             if (choiceButtonScript != this && choiceButtonScript._isChosen)
-            {
+            { 
                 button.interactable = false;
             }
         }
