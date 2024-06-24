@@ -23,6 +23,8 @@ public class RouteManager : MonoBehaviour
     public int _maximumVehicles = 5;
     public List<Transform> _queuingPositions = new List<Transform>();
     public List<CarAI> _activeCars = new List<CarAI>();
+    public List<CarAI> _queuedCars = new List<CarAI>();
+    public List<CarAI> _arrivingCars = new List<CarAI>();
 
 
     public void CarQueueUpdate(int l_index)
