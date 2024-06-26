@@ -553,4 +553,10 @@ public class CarAI : MonoBehaviourPun
         _waitForFrame = true;
         yield return null;
     }
+
+    [PunRPC]
+    public void SyncControllableVariable()
+    {
+        _isControlable = true;
+    }
 }

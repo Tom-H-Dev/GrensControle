@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +50,8 @@ public class BarrierManager : MonoBehaviour
         {
             CarAI l_carAI = other.gameObject.GetComponentInParent<CarAI>();
             _vehicle = l_carAI;
+            if (PhotonNetwork.IsMasterClient)
+                _vehicle.photonView.RPC("SyncControllableVariable", RpcTarget.AllBufferedViaServer);
             _vehicle._isControlable = true;
         }
     }
