@@ -1691,6 +1691,7 @@ MonoBehaviour:
   _com: {x: 0, y: -0.1, z: 0}
   _arriving: 1
   _waitingIndex: 0
+  _backupCurrentNode: 0
   _override: 0
   inQue: 0
 --- !u!114 &7065249420597622908

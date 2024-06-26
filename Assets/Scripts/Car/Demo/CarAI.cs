@@ -62,6 +62,7 @@ public class CarAI : MonoBehaviourPun
     public bool _arriving = true;
     public int _waitingIndex;
     public int _backupCurrentNode;
+    bool _waitForFrame = false;
 
     [Header("Network")]
     public bool _override = false;
@@ -73,14 +74,13 @@ public class CarAI : MonoBehaviourPun
         Physics.IgnoreLayerCollision(3, 15);
         GetComponent<Rigidbody>().centerOfMass = _com;
         _nodes = new List<Transform>();
-        RouteManager.instance.CarQueueUpdate(1);
-        RouteManager.instance._activeCars.Add(this);
-        RouteManager.instance._arrivingCars.Add(this);
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;
-
         if (PhotonNetwork.IsMasterClient || _override)
         {
+            RouteManager.instance.CarQueueUpdate(1);
+            RouteManager.instance._activeCars.Add(this);
+            RouteManager.instance._arrivingCars.Add(this);
             float a = Random.value;
             if (a < 0.05f)
             {
@@ -117,6 +117,8 @@ public class CarAI : MonoBehaviourPun
         }
 
         GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
+        StartCoroutine(StartSteerCheck());
+
     }
 
     [PunRPC]
@@ -161,9 +163,13 @@ public class CarAI : MonoBehaviourPun
     {
         CheckingSensors();
         DriveCar();
-        CheckWaypointDistance();
-        CarBreaking();
         ApplySteer();
+        CarBreaking();
+
+        if (_waitForFrame)
+        {
+            CheckWaypointDistance();
+        }
 
         if (_isMovingBackwards)
             MovingBackwards();
@@ -539,5 +545,12 @@ public class CarAI : MonoBehaviourPun
     public void DisEngageBreak()
     {
         _isBraking = false;
+    }
+
+    IEnumerator StartSteerCheck()
+    {
+        yield return new WaitForSeconds(0.25f);
+        _waitForFrame = true;
+        yield return null;
     }
 }
