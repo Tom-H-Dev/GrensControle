@@ -79,8 +79,8 @@ public class CarAI : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient || _override)
         {
             RouteManager.instance.CarQueueUpdate(1);
-            RouteManager.instance._activeCars.Add(this);
-            RouteManager.instance._arrivingCars.Add(this);
+            RouteManager.instance.GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, this, true);
+            RouteManager.instance.GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, this, true);
             float a = Random.value;
             if (a < 0.05f)
             {
@@ -218,8 +218,8 @@ public class CarAI : MonoBehaviourPun
                 {
                     _waitingIndex = RouteManager.instance._queuedCars.Count - 1;
                     _carState = CarStates.queuing;
-                    RouteManager.instance._queuedCars.Add(this);
-                    RouteManager.instance._arrivingCars.Remove(this);
+                    RouteManager.instance.GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, this, true);
+                    RouteManager.instance.GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, this, false);
 
                     RPCUpdateRoute();
 
@@ -460,8 +460,8 @@ public class CarAI : MonoBehaviourPun
     {
         _isControlable = false;
         _isMovingBackwards = true;
-        RouteManager.instance._activeCars.Remove(this);
-        RouteManager.instance._queuedCars.Remove(this);
+        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, this, false);
+        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, this, false);
         yield return new WaitForSeconds(5.5f);
         _isMovingBackwards = false;
         _isBraking = false;
@@ -488,8 +488,8 @@ public class CarAI : MonoBehaviourPun
         _isControlable = false;
         _barrierManager._barrierAnimator.ResetTrigger("Close");
         _barrierManager._barrierAnimator.SetTrigger("Open");
-        RouteManager.instance._activeCars.Remove(this);
-        RouteManager.instance._queuedCars.Remove(this);
+        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, this, false);
+        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, this, false);
         yield return new WaitForSeconds(2f);
         Debug.Log("Car accepted");
         _isBraking = false;

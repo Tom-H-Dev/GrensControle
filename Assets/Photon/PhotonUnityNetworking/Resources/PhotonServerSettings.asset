@@ -65,6 +65,9 @@ MonoBehaviour:
   - DisEngageBreak
   - SyncControlableVariable
   - SyncControllableVariable
+  - SyncArrivingCars
+  - SyncQueuedCars
+  - SyncActiveCars
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

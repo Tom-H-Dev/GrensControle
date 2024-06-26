@@ -75,22 +75,28 @@ public class RouteManager : MonoBehaviour
         }
     }
 
-
-    public void UpdateCarsLocations()
+    [PunRPC]
+    public void SyncArrivingCars(CarAI add, bool addOrRemove)
     {
-        //for (int i = 0; i < _activeCars.Count; i++)
-        //{
-        //    if (_activeCars[i]._carState == CarStates.queuing)
-        //    {
-        //        _activeCars[i]._carState = CarStates.queuing;
-        //        _activeCars[i].inQue = false;
-        //        _activeCars[i]._movingToQuePoint = true;
-        //        _activeCars[i]._isBraking = false;
-        //        Debug.Log("5" + _activeCars[i].name);
-        //        _activeCars[i].RPCUpdateRoute();
-        //    }
+        if (addOrRemove)
+            _arrivingCars.Add(add);
+        else _arrivingCars.Remove(add);
+    }
 
-        //}
+    [PunRPC]
+    public void SyncQueuedCars(CarAI add, bool addOrRemove)
+    {
+        if (addOrRemove)
+            _queuedCars.Add(add);
+        else _queuedCars.Remove(add);
+    }
+
+    [PunRPC]
+    public void SyncActiveCars(CarAI add, bool addOrRemove)
+    {
+        if (addOrRemove)
+            _activeCars.Add(add);
+        else _activeCars.Remove(add);
     }
 
     private void Update()

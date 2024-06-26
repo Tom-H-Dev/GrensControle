@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         DoingSomething = playerMovement.GetComponent<PlayerUI>();
-        _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
+        _driverManager = RouteManager.instance._queuedCars[0].GetComponent<DriverManager>();
         if (_driverManager._isFalsified == true)
         {
             driverName = _driverManager._givenFitstName;
