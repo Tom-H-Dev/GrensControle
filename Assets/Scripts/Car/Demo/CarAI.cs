@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using static UnityEngine.GraphicsBuffer;
 
 public enum CarStates
 {
@@ -79,8 +80,8 @@ public class CarAI : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient || _override)
         {
             RouteManager.instance.CarQueueUpdate(1);
-            RouteManager.instance.GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, this, true);
-            RouteManager.instance.GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, this, true);
+            RPCActiveCars(true);
+            RPCArrivingCars(true);
             float a = Random.value;
             if (a < 0.05f)
             {
@@ -218,8 +219,8 @@ public class CarAI : MonoBehaviourPun
                 {
                     _waitingIndex = RouteManager.instance._queuedCars.Count - 1;
                     _carState = CarStates.queuing;
-                    RouteManager.instance.GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, this, true);
-                    RouteManager.instance.GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, this, false);
+                    RPCQueuedCars(true);
+                    RPCArrivingCars(false);
 
                     RPCUpdateRoute();
 
@@ -358,6 +359,7 @@ public class CarAI : MonoBehaviourPun
 
     public void RPCUpdateRoute()
     {
+        Debug.Log("Update Route");
         GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
     }
 
@@ -460,8 +462,8 @@ public class CarAI : MonoBehaviourPun
     {
         _isControlable = false;
         _isMovingBackwards = true;
-        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, this, false);
-        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, this, false);
+        RPCQueuedCars(false);
+        RPCActiveCars(false);
         yield return new WaitForSeconds(5.5f);
         _isMovingBackwards = false;
         _isBraking = false;
@@ -488,8 +490,9 @@ public class CarAI : MonoBehaviourPun
         _isControlable = false;
         _barrierManager._barrierAnimator.ResetTrigger("Close");
         _barrierManager._barrierAnimator.SetTrigger("Open");
-        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, this, false);
-        RouteManager.instance.GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, this, false);
+        
+        RPCQueuedCars(false);
+        RPCActiveCars(false);
         yield return new WaitForSeconds(2f);
         Debug.Log("Car accepted");
         _isBraking = false;
@@ -559,4 +562,44 @@ public class CarAI : MonoBehaviourPun
     {
         _isControlable = true;
     }
+
+
+
+    public void RPCArrivingCars( bool addOrRemove)
+    {
+        GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, addOrRemove);
+    }
+    [PunRPC]
+    public void SyncArrivingCars(bool addOrRemove)
+    {
+        if (addOrRemove)
+            RouteManager.instance._arrivingCars.Add(this);
+        else RouteManager.instance._arrivingCars.Remove(this);
+    }
+
+    public void RPCQueuedCars( bool addOrRemove)
+    {
+        GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, addOrRemove);
+    }
+    [PunRPC]
+    public void SyncQueuedCars(bool addOrRemove)
+    {
+        if (addOrRemove)
+            RouteManager.instance._queuedCars.Add(this);
+        else RouteManager.instance._queuedCars.Remove(this);
+    }
+
+    public void RPCActiveCars( bool addOrRemove)
+    {
+        GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, addOrRemove);
+    }
+    [PunRPC]
+    public void SyncActiveCars(bool addOrRemove)
+    {
+        if (addOrRemove)
+            RouteManager.instance._activeCars.Add(this);
+        else RouteManager.instance._activeCars.Remove(this);
+    }
+
+
 }
