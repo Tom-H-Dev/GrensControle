@@ -14,15 +14,32 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     [SerializeField] private List<Button> _choiceButtons;
     [SerializeField] private TMP_Text _playerName;
 
-    
+    [SerializeField] private DelayWatingRoomController _roomController;
 
     [Header("Bolleans")]
     public bool _isChosen = false;
 
     private void Start()
     {
+        _roomController = GetComponentInParent<DelayWatingRoomController>();
         _playerName.text = string.Empty;
         DelayWatingRoomController.instance.PlayerCountUpdate();
+
+        //Check if the player already has a CustonProperty with the key 'Team'.
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+        {
+            PhotonNetwork.LocalPlayer.CustomProperties["Team"] = 0;
+        }
+        else //If the player has no CustomProperty is makes a new custom property.
+        {
+            //Makes a new CustomProperty for the player.
+            ExitGames.Client.Photon.Hashtable l_playerProps = new ExitGames.Client.Photon.Hashtable
+            {
+                {"Team", 0 }
+            };
+            //Adds the new CustomProperty to the player.
+            PhotonNetwork.LocalPlayer.SetCustomProperties(l_playerProps);
+        }
     }
 
     public void ChooseRoll(int l_team)
@@ -73,7 +90,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         {
             ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
             if (choiceButtonScript != this && choiceButtonScript._isChosen)
-            {
+            { 
                 button.interactable = false;
             }
         }
@@ -128,7 +145,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         int _playerCount = PhotonNetwork.PlayerList.Length;
         int _roomsize = PhotonNetwork.CurrentRoom.MaxPlayers;
 
-        if (_playerCount >= _roomsize || DelayWatingRoomController.instance._playerNeedOverride)
+        if (_playerCount >= _roomsize || _roomController._playerNeedOverride)
         {
             for (int i = 0; i < _choiceButtons.Count; i++)
             {

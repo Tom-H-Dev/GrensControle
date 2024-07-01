@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,17 @@ public class RouteManager : MonoBehaviour
     public int _maximumVehicles = 5;
     public List<Transform> _queuingPositions = new List<Transform>();
     public List<CarAI> _activeCars = new List<CarAI>();
+    public List<CarAI> _queuedCars = new List<CarAI>();
+    public List<CarAI> _arrivingCars = new List<CarAI>();
 
-    public void CarQueueUpdate( int l_index)
+
+    public void CarQueueUpdate(int l_index)
+    {
+        GetComponent<PhotonView>().RPC("NetworkCarQueueUpdate", RpcTarget.AllBufferedViaServer, l_index);
+    }
+
+    [PunRPC]
+    private void NetworkCarQueueUpdate(int l_index)
     {
         _totalActiveCars += l_index;
     }
@@ -35,7 +45,7 @@ public class RouteManager : MonoBehaviour
             if (i != 0)
             {
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(_arriveRoute[i-1].position, _arriveRoute[i].position);
+                Gizmos.DrawLine(_arriveRoute[i - 1].position, _arriveRoute[i].position);
                 Gizmos.DrawSphere(_arriveRoute[i].position, 0.3f);
             }
         }
@@ -65,15 +75,28 @@ public class RouteManager : MonoBehaviour
         }
     }
 
-    public void UpdateCarsLocations()
+    [PunRPC]
+    public void SyncArrivingCars(CarAI add, bool addOrRemove)
     {
-        for (int i = 0; i < _activeCars.Count; i++)
-        {
-            _activeCars[i]._carState = CarStates.queuing;
-            _activeCars[i]._isBraking = false;
-            _activeCars[i]._movingToQuePoint = true;
-            _activeCars[i].GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
-        }
+        if (addOrRemove)
+            _arrivingCars.Add(add);
+        else _arrivingCars.Remove(add);
+    }
+
+    [PunRPC]
+    public void SyncQueuedCars(CarAI add, bool addOrRemove)
+    {
+        if (addOrRemove)
+            _queuedCars.Add(add);
+        else _queuedCars.Remove(add);
+    }
+
+    [PunRPC]
+    public void SyncActiveCars(CarAI add, bool addOrRemove)
+    {
+        if (addOrRemove)
+            _activeCars.Add(add);
+        else _activeCars.Remove(add);
     }
 
     private void Update()

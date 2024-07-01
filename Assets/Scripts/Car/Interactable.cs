@@ -17,15 +17,19 @@ public class Interactable : MonoBehaviour
 {
     private Animator _animator;
     bool opened = false;
+    public bool _canOpen = true;
 
     public InteractableItem _item;
     public void InteractWithObject()
     {
-        _animator = GetComponentInParent<Animator>();
-        opened = !opened;
-        _animator.SetBool(_item.ToString(), opened);
-        if (opened)
-            _animator.SetTrigger(_item.ToString() + "Open");
-        else _animator.SetTrigger(_item.ToString() + "Close");
+        if (_canOpen == true)
+        {
+            _animator = GetComponentInParent<Animator>();
+            opened = !opened;
+            _animator.SetBool(_item.ToString(), opened);
+            if (opened)
+                _animator.SetTrigger(_item.ToString() + "Open");
+            else _animator.SetTrigger(_item.ToString() + "Close");
+        }
     }
 }

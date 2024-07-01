@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 34ddd0e5-98b4-4dda-926e-3445dde8b415
-    AppVersion: 0.2.0
+    AppVersion: 0.2.6
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -59,6 +59,15 @@ MonoBehaviour:
   - UpdateDebugReadyBoolOverNetwork
   - UpdateRoute
   - UpdateWrongCars
+  - UpdateCarsLocations
+  - CarQueueUpdate
+  - NetworkCarQueueUpdate
+  - DisEngageBreak
+  - SyncControlableVariable
+  - SyncControllableVariable
+  - SyncArrivingCars
+  - SyncQueuedCars
+  - SyncActiveCars
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
