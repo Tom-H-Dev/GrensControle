@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ public class RouteManager : MonoBehaviour
     public List<CarAI> _activeCars = new List<CarAI>();
     public List<CarAI> _queuedCars = new List<CarAI>();
     public List<CarAI> _arrivingCars = new List<CarAI>();
+
+
 
 
     public void CarQueueUpdate(int l_index)
@@ -73,30 +76,6 @@ public class RouteManager : MonoBehaviour
             Gizmos.color = Color.cyan;
             Gizmos.DrawSphere(_queuingPositions[i].position, 0.3f);
         }
-    }
-
-    [PunRPC]
-    public void SyncArrivingCars(CarAI add, bool addOrRemove)
-    {
-        if (addOrRemove)
-            _arrivingCars.Add(add);
-        else _arrivingCars.Remove(add);
-    }
-
-    [PunRPC]
-    public void SyncQueuedCars(CarAI add, bool addOrRemove)
-    {
-        if (addOrRemove)
-            _queuedCars.Add(add);
-        else _queuedCars.Remove(add);
-    }
-
-    [PunRPC]
-    public void SyncActiveCars(CarAI add, bool addOrRemove)
-    {
-        if (addOrRemove)
-            _activeCars.Add(add);
-        else _activeCars.Remove(add);
     }
 
     private void Update()
