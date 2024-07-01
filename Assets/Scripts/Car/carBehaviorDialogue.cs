@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,9 +23,14 @@ public class carBehaviorDialogue : MonoBehaviour
     private void Start()
     {
         dialogue = FindObjectOfType<DialogueManager>();
-        RandomHappieness();
-    }
 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GetComponent<PhotonView>().RPC("RandomHappieness", RpcTarget.AllBufferedViaServer);    
+        }
+        
+    }
+    [PunRPC]
     private void RandomHappieness()
     {
         happiness = Random.Range(80, 30);

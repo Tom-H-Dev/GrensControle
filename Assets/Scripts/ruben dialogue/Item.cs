@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 [Serializable] public class Item
 {
-    public List<lucas> myList = new List<lucas>();
+    public List<lucas> Text = new List<lucas>();
     public int team;
     public int question;
     public int madness;
