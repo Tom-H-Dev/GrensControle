@@ -30,16 +30,16 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI TextComponent;
     [SerializeField] private GameObject TextObject;
 
-    [SerializeField] private int selectedLineIndex = -1, randomIndex;
+     private int selectedLineIndex = -1, randomIndex;
     
     private string driverName;
     private string DriverSecondName;
-    public string[] _words;
-    public string _updatedLine, _wordToType;
+    private string[] _words;
+    private string _updatedLine, _wordToType;
     
     private bool _textStart = false, _check;
     
-    public int _index, index2;
+    private int _index, index2;
     private int indexlist;   
     
     //private Item BlankItem;
@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
     private carBehaviorDialogue CarBehavior;
     private DriverManager _driverManager;
 
-    public string selectedline;
+    private string selectedline;
     private void Start()
     {
         CarBehavior = FindObjectOfType<carBehaviorDialogue>();
@@ -292,10 +292,10 @@ public class DialogueManager : MonoBehaviour
     {
         indexlist = selectedLineIndex;
         
-        
-        if (ItemDatabase[selectedLineIndex].answer == true)
+        print(" hfkshe");
+        if (ItemDatabase[_index].answer)
         {
-            
+            print(" check");
             foreach (var ansButton in ItemDatabase[selectedLineIndex].answerbutton)
             {
                 ansButton.SetActive(true);
