@@ -1025,7 +1025,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textSpeed: 0.1
   changeWord:
-  - '''name'''
+  - '#AfdelingOfLocatie#'
+  - '#tijd#'
+  - '#functie#'
+  - '#naam#'
+  - '#bezoekNaam#'
+  - '#gebouw#'
   Player2Buttons:
   - {fileID: 6298041494302858938}
   - {fileID: 4160476133126280352}
@@ -1035,53 +1040,35 @@ MonoBehaviour:
   - {fileID: 7042071790532999631}
   - {fileID: 8607914543981744976}
   ItemDatabase:
-  - lines: Altijd, alstublieft.
-    team: 1
-    question: 0
-    madness: 100
-    answer: 0
-    answerbutton: []
-  - lines: Nee, ik heb niets illegaals bij me
+  - Text:
+    - lines: ik test #naam# of dit de goede naam is.
+      happy: 100
     team: 2
     question: 0
-    madness: 100
-    answer: 0
-    answerbutton: []
-  - lines: Ik ben hier voor een afspraak
-    team: 2
-    question: 1
     madness: 100
     answer: 1
     answerbutton:
-    - {fileID: 479448513457875060}
-    - {fileID: 644136193575612903}
-  - lines: Ik verwacht hier ongeveer een uur te blijven.
+    - {fileID: 4160476133126280352}
+    - {fileID: 1181436540064104695}
+    - {fileID: 4483343700489768896}
+  - Text:
+    - lines: Question 2
+      happy: 100
+    team: 2
+    question: 2
+    madness: 100
+    answer: 1
+    answerbutton: []
+  - Text:
+    - lines: Question 3
+      happy: 100
     team: 2
     question: 2
     madness: 100
     answer: 0
     answerbutton: []
-  - lines: 'mijn naam is ''name'' '
-    team: 2
-    question: 3
-    madness: 100
-    answer: 0
-    answerbutton: []
-  - lines: good
-    team: 2
-    question: 4
-    madness: 100
-    answer: 0
-    answerbutton: []
-  text: {fileID: 4900000, guid: 16aaf475302a9f84d8b45ea711a67b16, type: 3}
-  textName: text
-  teamName: team
-  questionName: question
-  MadnessName: madness
   TextComponent: {fileID: 283043794773814350}
   TextObject: {fileID: 3435670967921753100}
-  selectedLineIndex: -1
-  randomIndex: 0
 --- !u!1 &2071220467183283578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,7 +2133,7 @@ GameObject:
   - component: {fileID: 6666402916296409042}
   - component: {fileID: 3433682555345441004}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Wat is uw doel op de kazerne?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2261,7 +2248,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

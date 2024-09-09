@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -190,7 +191,6 @@ public class DialogueManager : MonoBehaviour
                     if (item.team == _playerLook.team && item.question == buttonIndex)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        Debug.Log("Index is: " + _index);
                         StartDialogue(ItemDatabase[i].Text[0].lines);
                     }
                 }
@@ -210,6 +210,11 @@ public class DialogueManager : MonoBehaviour
             //    }
             //}
         }
+    }
+
+    public void TestParameter(Button test)
+    {
+
     }
     
 
