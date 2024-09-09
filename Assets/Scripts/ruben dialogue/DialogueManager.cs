@@ -176,17 +176,39 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogueButton(int buttonIndex)
     {
-        
+        bool notFoundText = false;
         TextComponent.text = string.Empty; 
         foreach (var item in ItemDatabase)
         {
-            foreach (var linessss in ItemDatabase[_index].Text)
+
+            for (int i = 0; i < ItemDatabase.Count; i++)
             {
-                if (item.team == _playerLook.team && item.question == buttonIndex)
+                Debug.Log("Database item");
+                if (ItemDatabase[i].question == buttonIndex)
                 {
-                    StartDialogue(linessss.lines);
+                    Debug.Log("Correct button index");
+                    if (item.team == _playerLook.team && item.question == buttonIndex)
+                    {
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        Debug.Log("Index is: " + _index);
+                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                    }
                 }
+                
+                
             }
+            if (notFoundText)
+            {
+
+            }
+            //foreach (var linessss in ItemDatabase[_index].Text)
+            //{
+            //    if (item.team == _playerLook.team && item.question == buttonIndex)
+            //    {
+            //        _index = buttonIndex;
+            //        StartDialogue(linessss.lines);
+            //    }
+            //}
         }
     }
     

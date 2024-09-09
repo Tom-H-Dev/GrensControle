@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 2.6230576, g: 2.4403632, b: 2.5475447, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13303,7 +13303,7 @@ PrefabInstance:
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -13362,8 +13362,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: ItemDatabase.Array.data[1].answer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: ItemDatabase.Array.data[0].question
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].question
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -13372,7 +13382,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: ItemDatabase.Array.data[1].Text.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: ItemDatabase.Array.data[0].answerbutton.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].answerbutton.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
@@ -13397,6 +13417,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
+      propertyPath: ItemDatabase.Array.data[1].Text.Array.data[0].happy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].Text.Array.data[0].lines
+      value: question 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].Text.Array.data[1].happy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].Text.Array.data[1].lines
+      value: question 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
       propertyPath: ItemDatabase.Array.data[0].answerbutton.Array.data[0]
       value: 
       objectReference: {fileID: 980183264}
@@ -13413,6 +13453,21 @@ PrefabInstance:
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[0].answerbutton.Array.data[3]
+      value: 
+      objectReference: {fileID: 980183262}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].answerbutton.Array.data[0]
+      value: 
+      objectReference: {fileID: 980183264}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].answerbutton.Array.data[1]
+      value: 
+      objectReference: {fileID: 980183263}
+    - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: ItemDatabase.Array.data[1].answerbutton.Array.data[2]
       value: 
       objectReference: {fileID: 980183262}
     m_RemovedComponents:
