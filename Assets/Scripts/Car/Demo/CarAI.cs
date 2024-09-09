@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using static UnityEngine.GraphicsBuffer;
 
 public enum CarStates
 {

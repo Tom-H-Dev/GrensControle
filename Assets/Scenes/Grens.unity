@@ -13383,7 +13383,7 @@ PrefabInstance:
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: ItemDatabase.Array.data[0].Text.Array.data[0].lines
-      value: bgfbfgb
+      value: test test test
       objectReference: {fileID: 0}
     - target: {fileID: 8436793033833802024, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
