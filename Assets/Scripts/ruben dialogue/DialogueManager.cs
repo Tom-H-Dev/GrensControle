@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -178,37 +179,17 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogueButton(int buttonIndex)
     {
         bool notFoundText = false;
-        TextComponent.text = string.Empty; 
-        foreach (var item in ItemDatabase)
+        TextComponent.text = string.Empty;
+        for (int i = 0; i < ItemDatabase.Count; i++)
         {
-
-            for (int i = 0; i < ItemDatabase.Count; i++)
+            Debug.Log("Database item " + i);
+            if (ItemDatabase[i].question == buttonIndex && ItemDatabase[i].team == _playerLook.team)
             {
-                Debug.Log("Database item");
-                if (ItemDatabase[i].question == buttonIndex)
-                {
-                    Debug.Log("Correct button index");
-                    if (item.team == _playerLook.team && item.question == buttonIndex)
-                    {
-                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        StartDialogue(ItemDatabase[i].Text[0].lines);
-                    }
-                }
-                
-                
+                Debug.Log("Correct button index");
+                _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));    
+                StartDialogue(ItemDatabase[i].Text[0].lines);
             }
-            if (notFoundText)
-            {
-
-            }
-            //foreach (var linessss in ItemDatabase[_index].Text)
-            //{
-            //    if (item.team == _playerLook.team && item.question == buttonIndex)
-            //    {
-            //        _index = buttonIndex;
-            //        StartDialogue(linessss.lines);
-            //    }
-            //}
         }
     }
 
@@ -323,7 +304,7 @@ public class DialogueManager : MonoBehaviour
         if (ItemDatabase[_index].answer)
         {
             print(" check");
-            foreach (var ansButton in ItemDatabase[selectedLineIndex].answerbutton)
+            foreach (var ansButton in ItemDatabase[_index].answerbutton)
             {
                 ansButton.SetActive(true);
             }
