@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -9,6 +9,7 @@ public class dialogeManagerButton : Editor
         
     public override void OnInspectorGUI()
     {
+        
         DrawDefaultInspector();
 
         DialogueManager loadExcel = (DialogueManager)target;
@@ -19,5 +20,5 @@ public class dialogeManagerButton : Editor
             loadExcel.loadItemData();
         }
     }
-}
+}*/
 

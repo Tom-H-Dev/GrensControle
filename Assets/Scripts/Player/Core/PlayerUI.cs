@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviourPun
 {
     [SerializeField] private GameObject _pauseMenu;
-    public bool _isDoingSomething= false;
+    public bool _isDoingSomething = false;
 
     void Update()
     {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using static UnityEngine.GraphicsBuffer;
 
 public enum CarStates
 {
@@ -370,7 +369,7 @@ public class CarAI : MonoBehaviourPun
         {
             case CarStates.arriving:
                 _nodes.Clear();
-                _currentNode = 0;
+                //_currentNode = 0;
                 if (_arriving)
                 {
                     Transform[] l_pathTransformsArriving = RouteManager.instance._arriveRoute.ToArray();
@@ -429,7 +428,7 @@ public class CarAI : MonoBehaviourPun
                 }
                 break;
             case CarStates.queuing:
-                _currentNode = 0;
+                //_currentNode = 0;
                 _nodes.Clear();
                 int l_thisCarIndex = 0;
                 for (int i = 0; i < RouteManager.instance._activeCars.Count; i++)
