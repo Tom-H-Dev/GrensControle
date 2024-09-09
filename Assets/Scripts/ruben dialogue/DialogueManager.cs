@@ -145,7 +145,6 @@ public class DialogueManager : MonoBehaviour
                 minMadnessDifference = madnessDifference;
             }
         }
-        //testing line
         
         if (selectedLineIndex != -1)
         {
