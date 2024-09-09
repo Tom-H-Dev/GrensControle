@@ -144,7 +144,7 @@ public class DialogueManager : MonoBehaviour
             {
                 minMadnessDifference = madnessDifference;
             }
-        }//test
+        }
         
         if (selectedLineIndex != -1)
         {
