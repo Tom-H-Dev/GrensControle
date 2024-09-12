@@ -199,7 +199,7 @@ public class DialogueManager : MonoBehaviour
         _questionNumberId = firstDigit(l_buttonIndex);
         string l_anwerIndex = _questionNumberId.ToString();
 
-
+        //Set new driver happiness via RPC
 
         if (CarBehavior.happiness >= 0 && CarBehavior.happiness <= 100)
         {
