@@ -5,9 +5,7 @@ using UnityEngine;
 using TMPro;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 using Photon.Pun;
-using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour
 {
