@@ -8,7 +8,7 @@ public class BuildVersionProcessor : IPreprocessBuildWithReport
 {
     public int callbackOrder => 0;
 
-    private const string initialVersion = "0.0";
+    private const string initialVersion = "0.2.6";
 
     public void OnPreprocessBuild(BuildReport report)
     {
