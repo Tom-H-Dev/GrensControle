@@ -1,0 +1,35 @@
+Vraag,- happy,neutral, + happy
+Voor wie werkt u?,Waarom wil je dat weten?,Ik werk voor 'naam' als 'functie',"Ik ben in dienst van 'naam', waar ik de functie van 'functie' vervul. Als u nog meer informatie nodig heeft, hoor ik dat graag."
+5,511,521,531
+Wat is uw naam?,En waarom wil je dat weten?,Mijn naam is 'naam'.,"Mijn naam is 'naam'. Als u nog iets wilt weten of verdere vragen heeft, sta ik daar graag voor open."
+1,111,121,131
+Waarom bent u hier op de kazerne?,,,
+2,,,
+Werk,Wat maakt het uit?,,
+201,211,212,213
+Bezoek,Wat maakt het uit?,Ik ben hier voor werk in het gebouw 'gebouw'.,"Ik ben hier voor werk en ben werkzaam in het gebouw 'gebouw'. Als u meer wilt weten over mijn werkzaamheden of andere vragen heeft, help ik u daar graag mee."
+202,241,242,243
+Waar op de kazerne werkt u?,Waarom moet je dat weten?,Ik werk op 'AfdelingOfLocatie',
+4,411,421,431
+Hoelang blijft u op de kazerne?,Hoezo?,,
+3,311,321,331
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+Waarom wil je dat weten?,"Maar goed, ik werk voor 'naam' als 'functie'.",,
+511,512,,
+En waarom wil je dat weten?,Mijn naam is 'naam'.,,
+111,112,,
+Wat maakt het uit?,,,
+211,2111,,
+Wat maakt het uit?,Ik ben hier voor werk in het gebouw 'gebouw'.,,
+241,2411,,
+Waarom moet je dat weten?,"Maar goed, ik werk bij 'AfdelingOfLocatie'.""",,
+411,412,,
+Hoezo?,"Maar goed, ik blijf hier nog 'tijd'.",,
+311,312,,
