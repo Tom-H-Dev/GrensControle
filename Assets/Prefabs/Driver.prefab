@@ -2010,6 +2010,7 @@ MonoBehaviour:
   - Text:
     - lines: Dank u wel.
       happy: 100
+    lines: 
     team: 2
     question: 99999
     madness: 100
@@ -2021,6 +2022,7 @@ MonoBehaviour:
   - Text:
     - lines: Ik test #naam# of de naam wordt aangepast.
       happy: 100
+    lines: 
     team: 2
     question: 11
     madness: 100
@@ -2032,6 +2034,7 @@ MonoBehaviour:
   - Text:
     - lines: question 2
       happy: 100
+    lines: 
     team: 2
     question: 2
     madness: 100
@@ -2040,6 +2043,15 @@ MonoBehaviour:
     - {fileID: 4160476133126280352}
     - {fileID: 1181436540064104695}
     - {fileID: 4483343700489768896}
+  csvFile: {fileID: 4900000, guid: 1850ae392142ffc4eafbeda5751c0768, type: 3}
+  BlankItem:
+    Text: []
+    lines: 
+    team: 0
+    question: 0
+    madness: 0
+    answer: 0
+    answerbutton: []
   TextComponent: {fileID: 283043794773814350}
   TextObject: {fileID: 3435670967921753100}
 --- !u!1 &2000788916179152355
