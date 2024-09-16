@@ -2629,6 +2629,7 @@ MonoBehaviour:
   _guestPersonRank: 
   _workBuilding: 
   _timeOnBase: 
+  _afdeling: 
   _driverDateOfIssue: 
   _driverDateOfExpiry: 
   _driverBSN: 0

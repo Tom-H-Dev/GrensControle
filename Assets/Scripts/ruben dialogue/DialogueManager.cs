@@ -267,19 +267,16 @@ public class DialogueManager : MonoBehaviour
             {
                 _driverState = MessageStates.Angry;
                 l_anwerIndex += "1";
-                print("Angry Message");
             }
             else if (_carBehavior.happiness >= _neutralAnswerMin && _carBehavior.happiness <= _neutralAnswerMax)
             {
                 _driverState = MessageStates.Neutral;
                 l_anwerIndex += "2";
-                print("Neutral Message");
             }
             else if (_carBehavior.happiness >= _happyAnswerMin && _carBehavior.happiness <= _happyAnswerMax)
             {
                 _driverState = MessageStates.Happy;
                 l_anwerIndex += "3";
-                print("Happy Message");
             }
             else Debug.LogError("Something with the happiness went wrong");
         }
@@ -287,9 +284,12 @@ public class DialogueManager : MonoBehaviour
         {
             SearchForAnswerToGive(99999, l_buttonIndex);
         }
+        else if (l_buttonIndex == 9000)
+        {
+            SearchForAnswerToGive(9000, l_buttonIndex);
+        }
         else
         {
-            Debug.Log("Answer index is: " + l_anwerIndex);
             SearchForAnswerToGive(int.Parse(l_anwerIndex), l_buttonIndex);
         }
 
@@ -358,12 +358,9 @@ public class DialogueManager : MonoBehaviour
         {
             if (!l_isNeutralQuestion)
             {
-                Debug.Log("Database item " + i);
                 if (ItemDatabase[i].question == l_answerIndex && ItemDatabase[i].team == _playerLook.team)
                 {
-                    Debug.Log("Correct button index");
                     _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                    Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
                     StartDialogue(ItemDatabase[i].Text[0].lines);
                 }
             }
@@ -373,16 +370,12 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (_driverManager._driverIsGeust && ItemDatabase[i].question == 202)
                     {
-                        Debug.Log("Correct button index");
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
                         StartDialogue(ItemDatabase[i].Text[0].lines);
                     }
                     else if (!_driverManager._driverIsGeust && ItemDatabase[i].question == 201)
                     {
-                        Debug.Log("Correct button index");
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
                         StartDialogue(ItemDatabase[i].Text[0].lines);
                     }
                 }
@@ -390,11 +383,18 @@ public class DialogueManager : MonoBehaviour
                 {
                     if (ItemDatabase[i].question == 99999 && ItemDatabase[i].team == _playerLook.team)
                     {
-                        Debug.Log("Correct button index");
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
                         StartDialogue(ItemDatabase[i].Text[0].lines);
                     }
+                }
+                if (l_buttonIndex == 9000)
+                {
+                    if (ItemDatabase[i].question == 9000 && ItemDatabase[i].team == _playerLook.team)
+                    {
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                    }
+
                 }
             }
         }
