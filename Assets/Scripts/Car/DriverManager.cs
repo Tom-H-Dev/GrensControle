@@ -54,6 +54,7 @@ public class DriverManager : MonoBehaviour
     public string _givenIssueDate;
     public string _givenExpiryDate;
     public int _givenBSN;
+    public string _givenDriverRank;
 
     [Header("Driver Models")]
     [SerializeField] private GameObject _driverMale;
@@ -68,7 +69,7 @@ public class DriverManager : MonoBehaviour
     private static List<string> _driverSexes = new List<string>() { "Male", "Female" };
     private static List<string> _driverNationalities = new List<string>() { "Nederland" };
     private static List<string> _months = new List<string> { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
-    private static List<char> _buildingName = Enumerable.Range('A', 26).Select(x => (char)x).Concat(Enumerable.Range('a', 26).Select(x => (char)x)).ToList();
+    private static List<char>   _buildingNames = Enumerable.Range('A', 26).Select(x => (char)x).Concat(Enumerable.Range('a', 26).Select(x => (char)x)).ToList();
     private static List<string> _guestPersonFirstNames = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins", "Rico" };
     private static List<string> _guestPersonLastNames = new List<string>{ "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven" };
     private static List<string> _driverRanks = new List<string> { "Sergeant", "Sergeant-Majoor", "Adjudant", "Adjudant-Onderofficier", "Tweede Luitenant", "Eerste Luitenant", "Kapitein", "Majoor", "Luitenant-Kolonel", "Kolonel", "Brigadegeneraal", "Generaal-Majoor", "Luitenant-Generaal", "Generaal" };
@@ -95,8 +96,10 @@ public class DriverManager : MonoBehaviour
         _driverLength = Random.Range(1.59f, 2.1f);
         _driverLength = (Mathf.Round(_driverLength * 100)) / 100.0f;
 
-        //Birthdates
-        string l_month = _months[Random.Range(0, _months.Count)];
+    
+
+    //Birthdates
+    string l_month = _months[Random.Range(0, _months.Count)];
         if (l_month == "FEB") // 28 days
             _driverBirthDate = Random.Range(1, 28) + " " + l_month + " " + (_thisYear - _driverAge);
         else if (l_month == "APR" || l_month == "JUN" || l_month == "SEP" || l_month == "NOV") // 30 days
@@ -118,6 +121,12 @@ public class DriverManager : MonoBehaviour
         //Drivers Lisence
         _driverBSN = Random.Range(111111111, 999999999);
 
+        _guestpersonFirstName = _guestPersonFirstNames[Random.Range(0, _guestPersonFirstNames.Count)];
+        _guestpersonLastName = _guestPersonLastNames[Random.Range(0, _guestPersonLastNames.Count)];
+        _guestPersonRank = _driverRanks[Random.Range(0, _driverRanks.Count)];
+        _workBuilding = _buildingNames[Random.Range(0, _buildingNames.Count)];
+        _timeOnBase = _timeOnBaseTimes[Random.Range(0, _timeOnBaseTimes.Count)];
+
         float l_r = Random.Range(0, 100);
         l_month = _months[Random.Range(0, _months.Count)];
         int l_day = 0;
@@ -126,6 +135,8 @@ public class DriverManager : MonoBehaviour
         {
             _isFalsified = true;
             //issue date
+            _driverRank = _driverRanks[Random.Range(0, _driverRanks.Count)];
+
 
             if (l_month == "FEB") // 28 days
                 l_day = Random.Range(1, 28);
@@ -160,6 +171,9 @@ public class DriverManager : MonoBehaviour
         }
         else //not false
         {
+
+            _driverRank = _driverRanks[Random.Range(0, _driverRanks.Count)];
+            
             //issue date
 
             if (l_month == "FEB") // 28 days
@@ -282,7 +296,8 @@ public class DriverManager : MonoBehaviour
                                                                                                 _givenFitstName, _givenLastName, _givenBirthDate,
                                                                                                 _givenNationality, _givenPersNo, _givenDocumentNo,
                                                                                                 _givenIssueDateDefensie, _givenExpiryDateDefensie, _givenIssueDate,
-                                                                                                _givenExpiryDate, _givenBSN);
+                                                                                                _givenExpiryDate, _givenBSN, _driverRank, _givenDriverRank, _guestpersonFirstName,
+                                                                                                _guestpersonLastName, _guestPersonRank, _workBuilding, _timeOnBase);
     }
 
     [PunRPC]
@@ -295,7 +310,9 @@ public class DriverManager : MonoBehaviour
                                       string l_givenFitstName, string l_givenLastName, string l_givenBirthDate,
                                       string l_givenNationality, string l_givenPersNo, string l_givenDocumentNo,
                                       string l_givenIssueDateDefensie, string l_givenExpiryDateDefensie, string l_givenIssueDate,
-                                      string l_givenExpiryDate, int l_givenBSN)
+                                      string l_givenExpiryDate, int l_givenBSN, string l_driverRank, string l_givenDriverRank,
+                                      string l_guestPersonName, string l_guestPersonLastName, string l_guestPersonRank, char l_workBuilding
+                                      string l_timeOnBase)
     {
         _driverAge =                        l_driverAge;
         _driverLength =                     l_driverLength;
@@ -325,6 +342,13 @@ public class DriverManager : MonoBehaviour
         _givenIssueDate =                   l_givenIssueDate;
         _givenExpiryDate =                  l_givenExpiryDate;
         _givenBSN =                         l_givenBSN;
+        _driverRank =                       l_driverRank;
+        _givenDriverRank =                  l_givenDriverRank;
+        _guestpersonFirstName =             l_guestPersonName;
+        _guestpersonLastName =              l_guestPersonLastName;
+        _guestPersonRank =                  l_guestPersonRank;
+        _workBuilding =                     l_workBuilding;
+        _timeOnBase =                       l_timeOnBase;
     }
 
     [PunRPC]
