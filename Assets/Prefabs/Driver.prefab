@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 4996960820808144337}
   - component: {fileID: 8060940023279838340}
   m_Layer: 5
-  m_Name: Mag ik vragen voor wie u werkt?
+  m_Name: Neutral ik ben op bezoek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 8333225568670697291}
   - component: {fileID: 6925923539009463395}
   m_Layer: 5
-  m_Name: En voor wie werk je eigenlijk
+  m_Name: En hoe heet jij eigenlijk?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1753,7 +1753,7 @@ GameObject:
   - component: {fileID: 8545018951602301309}
   - component: {fileID: 5850997914972263491}
   m_Layer: 5
-  m_Name: Mag ik vragen voor wie u werkt?
+  m_Name: Nerutral ik kom voor werk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1886,6 +1886,7 @@ GameObject:
   - component: {fileID: 1093431992327817321}
   - component: {fileID: 7829639468723663121}
   - component: {fileID: 8436793033833802024}
+  - component: {fileID: 3539634745824816065}
   m_Layer: 0
   m_Name: Driver
   m_TagString: Untagged
@@ -2020,29 +2021,241 @@ MonoBehaviour:
     - {fileID: 7397489615653828061}
     - {fileID: 7792096483880830051}
   - Text:
-    - lines: Ik test #naam# of de naam wordt aangepast.
+    - lines: En waarom wil je dat weten? Maar goed voor deze ene keer, mijn naam
+        is #naam#.
       happy: 100
     lines: 
     team: 2
-    question: 11
+    question: 111
     madness: 100
     answer: 1
     answerbutton:
-    - {fileID: 4160476133126280352}
-    - {fileID: 1181436540064104695}
-    - {fileID: 4483343700489768896}
+    - {fileID: 7747932521329495477}
   - Text:
-    - lines: question 2
+    - lines: Mijn naam is #naam#.
       happy: 100
     lines: 
     team: 2
-    question: 2
+    question: 121
     madness: 100
     answer: 1
     answerbutton:
-    - {fileID: 4160476133126280352}
-    - {fileID: 1181436540064104695}
-    - {fileID: 4483343700489768896}
+    - {fileID: 7747932521329495477}
+  - Text:
+    - lines: Mijn naam is #naam#. Als u nog iets wilt weten of verdere vragen heeft,
+        sta ik daar graag voor open.
+      happy: 100
+    lines: 
+    team: 2
+    question: 131
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 7747932521329495477}
+  - Text:
+    - lines: Ik ben hier voor werk.
+      happy: 100
+    lines: 
+    team: 2
+    question: 201
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 9144892056543229185}
+    - {fileID: 1672696635462983339}
+    - {fileID: 3035149430033932330}
+  - Text:
+    - lines: Ik ben hier op bezoek.
+      happy: 100
+    lines: 
+    team: 2
+    question: 202
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 5087601409796982021}
+    - {fileID: 521475232947339769}
+    - {fileID: 3895420742074224719}
+  - Text:
+    - lines: Wat maakt het uit? Ik ben hier voor werk in het gebouw #gebouw#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 211
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 6100884867111570158}
+    - {fileID: 7626470630728976716}
+    - {fileID: 7796936579467289733}
+  - Text:
+    - lines: Ik ben hier voor werk in het gebouw #gebouw#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 212
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 6100884867111570158}
+    - {fileID: 7626470630728976716}
+    - {fileID: 7796936579467289733}
+  - Text:
+    - lines: k ben hier voor werk en ben werkzaam in het gebouw #gebouw#. Als u meer
+        wilt weten over mijn werkzaamheden of andere vragen heeft, help ik u daar
+        graag mee.
+      happy: 100
+    lines: 
+    team: 2
+    question: 213
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 6100884867111570158}
+    - {fileID: 7626470630728976716}
+    - {fileID: 7796936579467289733}
+  - Text:
+    - lines: Voor #bezoekNaam#. Maar waarom is dat belangrijk?
+      happy: 100
+    lines: 
+    team: 2
+    question: 241
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 6100884867111570158}
+    - {fileID: 7626470630728976716}
+    - {fileID: 7796936579467289733}
+  - Text:
+    - lines: Ik kom op bezoek bij #bezoekNaam#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 242
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 6100884867111570158}
+    - {fileID: 7626470630728976716}
+    - {fileID: 7796936579467289733}
+  - Text:
+    - lines: Ik ben op bezoek bij #bezoekNaam#. Als u nog vragen heeft of meer informatie
+        nodig heeft, laat het me gerust weten.
+      happy: 100
+    lines: 
+    team: 2
+    question: 243
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 6100884867111570158}
+    - {fileID: 7626470630728976716}
+    - {fileID: 7796936579467289733}
+  - Text:
+    - lines: Hoezo? Ik ben hier nog voor #tijd#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 311
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 7039501706872346116}
+    - {fileID: 5363547433600957227}
+    - {fileID: 6607040758145820396}
+  - Text:
+    - lines: Ik blijf hier nog #tijd#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 321
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 7039501706872346116}
+    - {fileID: 5363547433600957227}
+    - {fileID: 6607040758145820396}
+  - Text:
+    - lines: Ik verwacht hier nog ongeveer #tijd# te blijven. Als u nog verdere vragen
+        heeft, hoor ik dat graag.
+      happy: 100
+    lines: 
+    team: 2
+    question: 331
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 7039501706872346116}
+    - {fileID: 5363547433600957227}
+    - {fileID: 6607040758145820396}
+  - Text:
+    - lines: Waarom wil je dat weten? Ik werk gewoon voor #AfdelingOfLocatie#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 411
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 5463642017591392669}
+    - {fileID: 2550866736650245960}
+    - {fileID: 5979275151567305212}
+  - Text:
+    - lines: Ik werk op #AfdelingOfLocatie#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 421
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 5463642017591392669}
+    - {fileID: 2550866736650245960}
+    - {fileID: 5979275151567305212}
+  - Text:
+    - lines: Ik werk op #AfdelingOfLocatie# binnen de kazerne. Mocht u nog verdere
+        vragen hebben, hoor ik dat graag.
+      happy: 100
+    lines: 
+    team: 2
+    question: 431
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 5463642017591392669}
+    - {fileID: 2550866736650245960}
+    - {fileID: 5979275151567305212}
+  - Text:
+    - lines: Waarom wil je dat weten? maar goed ik werk voor #naam# als #functie#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 511
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 8607914543981744976}
+  - Text:
+    - lines: Ik werk voor #naam# als #functie#.
+      happy: 100
+    lines: 
+    team: 2
+    question: 521
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 8607914543981744976}
+  - Text:
+    - lines: Ik ben in dienst van #naam#, waar ik de functie van #functie# vervul.
+        Als u nog meer informatie nodig heeft, hoor ik dat graag.
+      happy: 100
+    lines: 
+    team: 2
+    question: 531
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 8607914543981744976}
   csvFile: {fileID: 4900000, guid: 1850ae392142ffc4eafbeda5751c0768, type: 3}
   BlankItem:
     Text: []
@@ -2054,6 +2267,30 @@ MonoBehaviour:
     answerbutton: []
   TextComponent: {fileID: 283043794773814350}
   TextObject: {fileID: 3435670967921753100}
+  _endConvoButtons:
+  - {fileID: 8607914543981744976}
+--- !u!114 &3539634745824816065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942883468138412058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2000788916179152355
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,7 +3476,7 @@ GameObject:
   - component: {fileID: 7652045980001776431}
   - component: {fileID: 4998254266743484006}
   m_Layer: 5
-  m_Name: En voor wie werk je eigenlijk
+  m_Name: Happy ik kom voor werk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3952,7 +4189,7 @@ GameObject:
   - component: {fileID: 2972908920751359986}
   - component: {fileID: 6521614373320862151}
   m_Layer: 5
-  m_Name: En voor wie werk je eigenlijk
+  m_Name: Happy ik ben op bezoek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4264,7 +4501,7 @@ GameObject:
   - component: {fileID: 6712679439111859576}
   - component: {fileID: 5019045474790657783}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: Button 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4531,7 +4768,7 @@ GameObject:
   - component: {fileID: 5450156563946330705}
   - component: {fileID: 3081319649099388833}
   m_Layer: 5
-  m_Name: Zou u zo vriendelijk willen zijn om te vertellen voor welk bedrijf u werkt?
+  m_Name: Angry ik ben op bezoek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4932,7 +5169,7 @@ GameObject:
   - component: {fileID: 2408969981448166545}
   - component: {fileID: 1124617124406526333}
   m_Layer: 5
-  m_Name: Mag ik vragen voor wie u werkt?
+  m_Name: Mag ik vragen waar op de kazerne u werkt?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5465,7 +5702,7 @@ GameObject:
   - component: {fileID: 6803972152100902889}
   - component: {fileID: 2189770584164941597}
   m_Layer: 5
-  m_Name: En voor wie werk je eigenlijk
+  m_Name: Hoe lang blijf je hier eigenlijk?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5864,7 +6101,8 @@ GameObject:
   - component: {fileID: 4747061037764774638}
   - component: {fileID: 6395836741102692165}
   m_Layer: 5
-  m_Name: Zou u zo vriendelijk willen zijn om te vertellen voor welk bedrijf u werkt?
+  m_Name: Zou u zo vriendelijk willen zijn om te vertellen op welke afdeling of plek
+    op de kazerne u werkzaam bent?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6131,7 +6369,7 @@ GameObject:
   - component: {fileID: 4478380691701788132}
   - component: {fileID: 7463783975768671873}
   m_Layer: 5
-  m_Name: En voor wie werk je eigenlijk
+  m_Name: En waar zit jij dan op de kazerne?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6799,7 +7037,7 @@ GameObject:
   - component: {fileID: 3767324880176162967}
   - component: {fileID: 5355688825869946869}
   m_Layer: 5
-  m_Name: Mag ik vragen voor wie u werkt?
+  m_Name: Mag ik vragen wat uw naam is?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7066,7 +7304,7 @@ GameObject:
   - component: {fileID: 8256311448372974670}
   - component: {fileID: 6307655186632031808}
   m_Layer: 5
-  m_Name: Mag ik vragen voor wie u werkt?
+  m_Name: Mag ik vragen hoelang u op de kazerne blijft?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7332,7 +7570,7 @@ GameObject:
   - component: {fileID: 391116638742165373}
   - component: {fileID: 5785369128916048357}
   m_Layer: 5
-  m_Name: Zou u zo vriendelijk willen zijn om te vertellen voor welk bedrijf u werkt?
+  m_Name: Zou u zo vriendelijk willen zijn om uw naam te geven?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7465,7 +7703,8 @@ GameObject:
   - component: {fileID: 6612303496791746184}
   - component: {fileID: 7261484863679674445}
   m_Layer: 5
-  m_Name: Zou u zo vriendelijk willen zijn om te vertellen voor welk bedrijf u werkt?
+  m_Name: Zou u zo vriendelijk willen zijn om te vertellen hoelang u van plan bent
+    op de kazerne te blijven?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8000,7 +8239,7 @@ GameObject:
   - component: {fileID: 3558743705646822025}
   - component: {fileID: 768215829430483761}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: End Convo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8401,7 +8640,7 @@ GameObject:
   - component: {fileID: 7665629689723544530}
   - component: {fileID: 2242058398929200705}
   m_Layer: 5
-  m_Name: Zou u zo vriendelijk willen zijn om te vertellen voor welk bedrijf u werkt?
+  m_Name: Angry ik kom voor werk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
