@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(PhotonView))]
 public class DelayWatingRoomController : MonoBehaviourPunCallbacks
@@ -26,8 +27,8 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     [SerializeField] private int _minPlayersToStart;
 
     //Text variables for holding the displays for the countdown timer and player count.
-    [SerializeField] private Text _roomCountDisplay;
-    [SerializeField] private Text _timerToStartDisplay;
+    [SerializeField] private TMP_Text _roomCountDisplay;
+    [SerializeField] private TMP_Text _timerToStartDisplay;
 
     //Bool values for if the timer can count down.
     private bool _readyToCountDown;
