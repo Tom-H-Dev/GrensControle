@@ -27,6 +27,10 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private List<Item> ItemDatabase = new List<Item>();
 
+    [SerializeField] private TextAsset csvFile;
+
+    [SerializeField] private Item BlankItem;
+
     [Header("Answer Ranges")]
     float _angryAnswerMin = 0;
     float _angryAnswerMax = 30;
@@ -80,7 +84,6 @@ public class DialogueManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-
         index2 = _index = 0;
         _textStart = false;
     }
@@ -110,7 +113,7 @@ public class DialogueManager : MonoBehaviour
         _IsTalking = playerMovement.GetComponent<PlayerUI>();
         _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
 
-        if (_driverManager._isFalsified == true)
+        if (_driverManager._isFalsified)
         {
             driverName = _driverManager._givenFitstName;
             DriverSecondName = _driverManager._givenLastName;
@@ -371,12 +374,10 @@ public class DialogueManager : MonoBehaviour
 
         if (_playerLook.team == 1)
         {
-            print("fuck");
             ActivateButtons(Player1Buttons);
         }
         else
         {
-            print(" huck");
             ActivateButtons(Player2Buttons);
         }
     }
@@ -385,10 +386,8 @@ public class DialogueManager : MonoBehaviour
     {
         indexlist = selectedLineIndex;
 
-        print(" hfkshe");
         if (ItemDatabase[_index].answer)
         {
-            print(" check");
             foreach (var ansButton in ItemDatabase[_index].answerbutton)
             {
                 ansButton.SetActive(true);
@@ -428,21 +427,21 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    /*
+    
     public void loadItemData()
     {
         ItemDatabase.Clear();
 
-        List<Dictionary<string, object>> data = CSVReader.Read(text.ToString());
+        List<Dictionary<string, object>> data = CSVReader.Read(csvFile.text);
 
         for (var i = 0; i < data.Count; i++) 
         {
-            if (data[i].ContainsKey(textName))
+            if (data[i].ContainsKey("textName"))
             {
-                string text = data[i][textName].ToString();
-                int team = int.Parse(data[i][teamName].ToString(), System.Globalization.NumberStyles.Integer);
-                int question = int.Parse(data[i][questionName].ToString(), System.Globalization.NumberStyles.Integer);
-                int madness = int.Parse(data[i][MadnessName].ToString(), System.Globalization.NumberStyles.Integer);
+                string text = data[i]["textName"].ToString();
+                int team = int.Parse(data[i]["teamName"].ToString(), System.Globalization.NumberStyles.Integer);
+                int question = int.Parse(data[i]["questionName"].ToString(), System.Globalization.NumberStyles.Integer);
+                int madness = int.Parse(data[i]["MadnessName"].ToString(), System.Globalization.NumberStyles.Integer);
 
                 AddItem(text ,team ,question, madness);       
             }
@@ -459,7 +458,7 @@ public class DialogueManager : MonoBehaviour
         tempItem.madness = madness;
 
         ItemDatabase.Add(tempItem);
-    }*/
+    }
 }
 
 enum MessageStates
