@@ -311,7 +311,7 @@ public class DriverManager : MonoBehaviour
                                       string l_givenNationality, string l_givenPersNo, string l_givenDocumentNo,
                                       string l_givenIssueDateDefensie, string l_givenExpiryDateDefensie, string l_givenIssueDate,
                                       string l_givenExpiryDate, int l_givenBSN, string l_driverRank, string l_givenDriverRank,
-                                      string l_guestPersonName, string l_guestPersonLastName, string l_guestPersonRank, char l_workBuilding
+                                      string l_guestPersonName, string l_guestPersonLastName, string l_guestPersonRank, char l_workBuilding,
                                       string l_timeOnBase)
     {
         _driverAge =                        l_driverAge;
