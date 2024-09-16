@@ -3435,10 +3435,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 521475232947339769, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Neutral ik ben op bezoek
+      objectReference: {fileID: 0}
+    - target: {fileID: 993926504116732763, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: En hoe heet jij eigenlijk?
+      objectReference: {fileID: 0}
     - target: {fileID: 1093431992327817321, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672696635462983339, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Nerutral ik kom voor werk
       objectReference: {fileID: 0}
     - target: {fileID: 1942883468138412058, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -3515,15 +3530,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3035149430033932330, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Happy ik kom voor werk
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895420742074224719, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Happy ik ben op bezoek
+      objectReference: {fileID: 0}
     - target: {fileID: 4483343700489768896, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_Name
       value: Button 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5087601409796982021, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Angry ik ben op bezoek
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363547433600957227, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Mag ik vragen waar op de kazerne u werkt?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100884867111570158, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Hoe lang blijf je hier eigenlijk?
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607040758145820396, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Zou u zo vriendelijk willen zijn om te vertellen op welke afdeling of
+        plek op de kazerne u werkzaam bent?
+      objectReference: {fileID: 0}
     - target: {fileID: 6779971351021875398, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039501706872346116, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: En waar zit jij dan op de kazerne?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397489615653828061, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Mag ik vragen wat uw naam is?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626470630728976716, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Mag ik vragen hoelang u op de kazerne blijft?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792096483880830051, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Zou u zo vriendelijk willen zijn om uw naam te geven?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7796936579467289733, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Zou u zo vriendelijk willen zijn om te vertellen hoelang u van plan
+        bent op de kazerne te blijven?
       objectReference: {fileID: 0}
     - target: {fileID: 7930302520910327478, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -5814,6 +5886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: End Convo
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144892056543229185, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Angry ik kom voor werk
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
