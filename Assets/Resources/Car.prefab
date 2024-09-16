@@ -2623,6 +2623,12 @@ MonoBehaviour:
   _driverDefensieDocumentNumber: 
   _driverDefensiePersNo: 
   _driverIsGeust: 0
+  _driverRank: 
+  _guestpersonFirstName: 
+  _guestpersonLastName: 
+  _guestPersonRank: 
+  _workBuilding: 
+  _timeOnBase: 
   _driverDateOfIssue: 
   _driverDateOfExpiry: 
   _driverBSN: 0
@@ -2639,6 +2645,7 @@ MonoBehaviour:
   _givenIssueDate: 
   _givenExpiryDate: 
   _givenBSN: 0
+  _givenDriverRank: 
   _driverMale: {fileID: 0}
   _driverFemale: {fileID: 0}
 --- !u!114 &-7522726847355143360

@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
     private string _driverGuestLastName;
     private string _driverRank;
     private string _driverGuestRank;
-    private char _buildingDefensie;
+    private string _buildingDefensie;
     private string _driverTimeOnBase;
 
     private string[] _words;
@@ -77,7 +77,7 @@ public class DialogueManager : MonoBehaviour
     private PlayerMovement _playerMovement;
     private PlayerLook _playerLook;
     private DocVerifyPro _doc;
-    private carBehaviorDialogue _carBehavior;
+    public carBehaviorDialogue _carBehavior;
     private DriverManager _driverManager;
     private PhotonView _photonView;
 
@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
     private MessageStates _driverState;
     private void Start()
     {
-        _carBehavior = FindObjectOfType<carBehaviorDialogue>();
+        //_carBehavior = FindObjectOfType<carBehaviorDialogue>();
         _doc = FindObjectOfType<DocVerifyPro>();
         _photonView = GetComponent<PhotonView>();
         InitializeVariables();
@@ -195,8 +195,6 @@ public class DialogueManager : MonoBehaviour
             {
                 bool isChecked = false;
 
-
-
                 foreach (string wordToChange in changeWord)
                 {
                     if (word == changeWord[0]) //#tijd#
@@ -227,7 +225,7 @@ public class DialogueManager : MonoBehaviour
                     }
                     else if (word == changeWord[4])//#gebouw#
                     {
-                        string l_building = _buildingDefensie.ToString();
+                        string l_building = _buildingDefensie;
                         _updatedLine += l_building;
                         isChecked = true;
                         break;
@@ -258,7 +256,7 @@ public class DialogueManager : MonoBehaviour
         string l_anwerIndex = _questionNumberId.ToString();
         _photonView.RPC("UpdateDriverHappiness", RpcTarget.AllBufferedViaServer, GetLastDigit(l_buttonIndex));
 
-        if (_carBehavior.happiness >= 0 && _carBehavior.happiness <= 100)
+        if (_carBehavior.happiness >= 0 && _carBehavior.happiness <= 100 && l_buttonIndex != 99999)
         {
             if (_carBehavior.happiness >= _angryAnswerMin && _carBehavior.happiness <= _angryAnswerMax)
             {
@@ -280,9 +278,15 @@ public class DialogueManager : MonoBehaviour
             }
             else Debug.LogError("Something with the happiness went wrong");
         }
-
-        Debug.Log("Answer index is: " + l_anwerIndex);
-        SearchForAnswerToGive(int.Parse(l_anwerIndex), l_buttonIndex);
+        if (l_buttonIndex == 99999)
+        {
+            SearchForAnswerToGive(99999, l_buttonIndex);
+        }
+        else
+        {
+            Debug.Log("Answer index is: " + l_anwerIndex);
+            SearchForAnswerToGive(int.Parse(l_anwerIndex), l_buttonIndex);
+        }
 
     }
 
@@ -318,6 +322,9 @@ public class DialogueManager : MonoBehaviour
             case 6:
                 //Happy answer
                 _happinessAddOrRemove = 5;
+                break;
+            case 9:
+                _happinessAddOrRemove = 0;
                 break;
             default:
                 Debug.LogError("Anser index not found!");
@@ -374,9 +381,9 @@ public class DialogueManager : MonoBehaviour
                         StartDialogue(ItemDatabase[i].Text[0].lines);
                     }
                 }
-                else
+                if (l_buttonIndex == 99999)
                 {
-                    if (ItemDatabase[i].question == l_buttonIndex && ItemDatabase[i].team == _playerLook.team)
+                    if (ItemDatabase[i].question == 99999 && ItemDatabase[i].team == _playerLook.team)
                     {
                         Debug.Log("Correct button index");
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
@@ -503,7 +510,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ActivateButtons(List<GameObject> playerButtons)
     {
-        indexlist = selectedLineIndex;
+        indexlist = _index;
 
         if (ItemDatabase[_index].answer)
         {

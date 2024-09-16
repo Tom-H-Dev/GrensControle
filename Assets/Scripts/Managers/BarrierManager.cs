@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,7 @@ public class BarrierManager : MonoBehaviour
 
     [SerializeField] Transform _stopSpot; // Spot from which the stop locations will be calculated
     public List<CarBehaviour> _queue; // current vehicles in the queue
+    [SerializeField] private DialogueManager _dialogueManager;
 
 
 
@@ -50,6 +52,7 @@ public class BarrierManager : MonoBehaviour
         {
             CarAI l_carAI = other.gameObject.GetComponentInParent<CarAI>();
             _vehicle = l_carAI;
+            _dialogueManager._carBehavior = l_carAI.GetComponent <carBehaviorDialogue>();
             if (PhotonNetwork.IsMasterClient)
                 _vehicle.photonView.RPC("SyncControllableVariable", RpcTarget.AllBufferedViaServer);
             _vehicle._isControlable = true;

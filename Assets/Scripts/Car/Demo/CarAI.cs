@@ -163,12 +163,12 @@ public class CarAI : MonoBehaviourPun
     {
         CheckingSensors();
         DriveCar();
-        ApplySteer();
         CarBreaking();
 
         if (_waitForFrame)
         {
             CheckWaypointDistance();
+            ApplySteer();
         }
 
         if (_isMovingBackwards)
@@ -207,12 +207,14 @@ public class CarAI : MonoBehaviourPun
 
     private void CheckWaypointDistance()
     {
+        
         float l_dist = Vector3.Distance(transform.position, _nodes[_currentNode].position);
         if (l_dist < 0.5f)
         {
             if (_currentNode == _nodes.Count - 1)
             {
                 Debug.Log("Reached the end");
+                _currentNode = 0;
                 _movingToQuePoint = false;
                 if (!inQue)
                 {
@@ -489,7 +491,7 @@ public class CarAI : MonoBehaviourPun
         _isControlable = false;
         _barrierManager._barrierAnimator.ResetTrigger("Close");
         _barrierManager._barrierAnimator.SetTrigger("Open");
-        
+
         RPCQueuedCars(false);
         RPCActiveCars(false);
         yield return new WaitForSeconds(2f);
@@ -564,7 +566,7 @@ public class CarAI : MonoBehaviourPun
 
 
 
-    public void RPCArrivingCars( bool addOrRemove)
+    public void RPCArrivingCars(bool addOrRemove)
     {
         GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, addOrRemove);
     }
@@ -576,7 +578,7 @@ public class CarAI : MonoBehaviourPun
         else RouteManager.instance._arrivingCars.Remove(this);
     }
 
-    public void RPCQueuedCars( bool addOrRemove)
+    public void RPCQueuedCars(bool addOrRemove)
     {
         GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, addOrRemove);
     }
@@ -588,7 +590,7 @@ public class CarAI : MonoBehaviourPun
         else RouteManager.instance._queuedCars.Remove(this);
     }
 
-    public void RPCActiveCars( bool addOrRemove)
+    public void RPCActiveCars(bool addOrRemove)
     {
         GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, addOrRemove);
     }

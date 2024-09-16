@@ -29,7 +29,7 @@ public class DriverManager : MonoBehaviour
     public string _guestpersonFirstName;
     public string _guestpersonLastName;
     public string _guestPersonRank;
-    public char _workBuilding;
+    public string _workBuilding;
     public string _timeOnBase;
 
     [Header("Drivers lisence")]
@@ -63,9 +63,9 @@ public class DriverManager : MonoBehaviour
     #region radomize info lists
     [Header("Random Information")]
     private static List<int> _driverAges = new List<int>() { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 50 };
-    private static List<string> _driverFirstNameMale = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins", "Rico" };
+    private static List<string> _driverFirstNameMale = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins", "Rico", "Bon", "Luuk", "Tim" };
     private static List<string> _driverFirstNameFemale = new List<string>() { "Anna", "Marie", "Petra", "Ingrid", "Yvonne", "Bianca", "Saskia", "Linda", "Miranda", "Deborah", "Sharon", "Vanessa", "Jessica", "Samantha", "Irene", "Esther", "Nicole", "Kimberley", "Amanda", "Nathalie", "Luca", "Kim" };
-    private static List<string> _driverLastNames = new List<string>() { "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven" };
+    private static List<string> _driverLastNames = new List<string>() { "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven", "Hollemans","Veken", "Tkachov" };
     private static List<string> _driverSexes = new List<string>() { "Male", "Female" };
     private static List<string> _driverNationalities = new List<string>() { "Nederland" };
     private static List<string> _months = new List<string> { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
@@ -124,7 +124,7 @@ public class DriverManager : MonoBehaviour
         _guestpersonFirstName = _guestPersonFirstNames[Random.Range(0, _guestPersonFirstNames.Count)];
         _guestpersonLastName = _guestPersonLastNames[Random.Range(0, _guestPersonLastNames.Count)];
         _guestPersonRank = _driverRanks[Random.Range(0, _driverRanks.Count)];
-        _workBuilding = _buildingNames[Random.Range(0, _buildingNames.Count)];
+        _workBuilding = _buildingNames[Random.Range(0, _buildingNames.Count)].ToString();
         _timeOnBase = _timeOnBaseTimes[Random.Range(0, _timeOnBaseTimes.Count)];
 
         float l_r = Random.Range(0, 100);
@@ -311,7 +311,7 @@ public class DriverManager : MonoBehaviour
                                       string l_givenNationality, string l_givenPersNo, string l_givenDocumentNo,
                                       string l_givenIssueDateDefensie, string l_givenExpiryDateDefensie, string l_givenIssueDate,
                                       string l_givenExpiryDate, int l_givenBSN, string l_driverRank, string l_givenDriverRank,
-                                      string l_guestPersonName, string l_guestPersonLastName, string l_guestPersonRank, char l_workBuilding,
+                                      string l_guestPersonName, string l_guestPersonLastName, string l_guestPersonRank, string l_workBuilding,
                                       string l_timeOnBase)
     {
         _driverAge =                        l_driverAge;
