@@ -50,6 +50,7 @@ public class DialogueManager : MonoBehaviour
     [Space(5)]
     [SerializeField] private TextMeshProUGUI TextComponent;
     [SerializeField] private GameObject TextObject;
+    [SerializeField] private List<GameObject> _endConvoButtons;
 
     private int selectedLineIndex = -1, randomIndex;
 
@@ -280,6 +281,8 @@ public class DialogueManager : MonoBehaviour
 
     private void SearchForAnswerToGive(int l_answerIndex, int l_buttonIndex)
     {
+        //Check if first is higher or equal to 4 to end convo
+
         bool l_isNeutralQuestion = false;
         for (int i = 0; i < _neutralQuestionIndexes.Count; i++)
         {
@@ -304,12 +307,32 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                if (ItemDatabase[i].question == l_buttonIndex && ItemDatabase[i].team == _playerLook.team)
+                if (l_buttonIndex == 20) //If the question is wether the driver is works here or is a guest
                 {
-                    Debug.Log("Correct button index");
-                    _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                    Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
-                    StartDialogue(ItemDatabase[i].Text[0].lines);
+                    if (_driverManager._driverIsGeust && ItemDatabase[i].question == 202)
+                    {
+                        Debug.Log("Correct button index");
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
+                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                    }
+                    else if (!_driverManager._driverIsGeust && ItemDatabase[i].question == 201)
+                    {
+                        Debug.Log("Correct button index");
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
+                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                    }
+                }
+                else
+                {
+                    if (ItemDatabase[i].question == l_buttonIndex && ItemDatabase[i].team == _playerLook.team)
+                    {
+                        Debug.Log("Correct button index");
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        Debug.Log("index is; " + _index + " || Item database index is " + ItemDatabase.IndexOf(ItemDatabase[i]));
+                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                    }
                 }
             }
         }
@@ -473,14 +496,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    
+
     public void loadItemData()
     {
         ItemDatabase.Clear();
 
         List<Dictionary<string, object>> data = CSVReader.Read(csvFile.text);
 
-        for (var i = 0; i < data.Count; i++) 
+        for (var i = 0; i < data.Count; i++)
         {
             if (data[i].ContainsKey("textName"))
             {
@@ -489,12 +512,12 @@ public class DialogueManager : MonoBehaviour
                 int question = int.Parse(data[i]["questionName"].ToString(), System.Globalization.NumberStyles.Integer);
                 int madness = int.Parse(data[i]["MadnessName"].ToString(), System.Globalization.NumberStyles.Integer);
 
-                AddItem(text ,team ,question, madness);       
+                AddItem(text, team, question, madness);
             }
         }
     }
 
-    void AddItem(string text, int team , int question, int madness)
+    void AddItem(string text, int team, int question, int madness)
     {
         Item tempItem = new Item(BlankItem);
 
