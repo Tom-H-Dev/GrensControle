@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Question information")]
     private int _questionNumberId = 0;
+    private int _happinessAddOrRemove = 5;
     //[SerializeField] private TextAsset text;
 
     //[SerializeField] private string textName, teamName, questionName, MadnessName;
@@ -68,17 +69,18 @@ public class DialogueManager : MonoBehaviour
     private PlayerMovement _playerMovement;
     private PlayerLook _playerLook;
     private DocVerifyPro _doc;
-    private carBehaviorDialogue CarBehavior;
+    private carBehaviorDialogue _carBehavior;
     private DriverManager _driverManager;
+    private PhotonView _photonView;
 
     private string selectedline;
 
     private MessageStates _driverState;
     private void Start()
     {
-        CarBehavior = FindObjectOfType<carBehaviorDialogue>();
+        _carBehavior = FindObjectOfType<carBehaviorDialogue>();
         _doc = FindObjectOfType<DocVerifyPro>();
-
+        _photonView = GetComponent<PhotonView>();
         InitializeVariables();
     }
 
@@ -159,7 +161,7 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < ItemDatabase[_index].Text[index2].lines.Length; i++)
         {
-            float madnessDifference = Mathf.Abs(ItemDatabase[_index].madness - CarBehavior.madnessTimer);
+            float madnessDifference = Mathf.Abs(ItemDatabase[_index].madness - _carBehavior.madnessTimer);
 
             if (madnessDifference < minMadnessDifference)
             {
@@ -199,26 +201,27 @@ public class DialogueManager : MonoBehaviour
     {
         TextComponent.text = string.Empty;
 
-        _questionNumberId = firstDigit(l_buttonIndex);
+        _questionNumberId = GetFirstDigit(l_buttonIndex);
         string l_anwerIndex = _questionNumberId.ToString();
-
         //Set new driver happiness via RPC
 
-        if (CarBehavior.happiness >= 0 && CarBehavior.happiness <= 100)
+        _photonView.RPC("UpdateDriverHappiness", RpcTarget.AllBufferedViaServer, GetLastDigit(l_buttonIndex));
+
+        if (_carBehavior.happiness >= 0 && _carBehavior.happiness <= 100)
         {
-            if (CarBehavior.happiness >= _angryAnswerMin && CarBehavior.happiness <= _angryAnswerMax)
+            if (_carBehavior.happiness >= _angryAnswerMin && _carBehavior.happiness <= _angryAnswerMax)
             {
                 _driverState = MessageStates.Angry;
                 l_anwerIndex += "1";
                 print("Angry Message");
             }
-            else if (CarBehavior.happiness >= _neutralAnswerMin && CarBehavior.happiness <= _neutralAnswerMax)
+            else if (_carBehavior.happiness >= _neutralAnswerMin && _carBehavior.happiness <= _neutralAnswerMax)
             {
                 _driverState = MessageStates.Neutral;
                 l_anwerIndex += "2";
                 print("Neutral Message");
             }
-            else if (CarBehavior.happiness >= _happyAnswerMin && CarBehavior.happiness <= _happyAnswerMax)
+            else if (_carBehavior.happiness >= _happyAnswerMin && _carBehavior.happiness <= _happyAnswerMax)
             {
                 _driverState = MessageStates.Happy;
                 l_anwerIndex += "3";
@@ -230,6 +233,49 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Answer index is: " + l_anwerIndex);
         SearchForAnswerToGive(int.Parse(l_anwerIndex), l_buttonIndex);
 
+    }
+
+    [PunRPC]
+    public void UpdateDriverHappiness(int l_answerIndex)
+    {
+        switch (l_answerIndex)
+        {
+            case 0:
+                //Neutral answer
+                _happinessAddOrRemove = 0;
+                break;
+            case 1:
+                //Angry answer
+                _happinessAddOrRemove = -5;
+                break;
+            case 2:
+                //Neutral answer
+                _happinessAddOrRemove = 0;
+                break;
+            case 3:
+                //Happy answer
+                _happinessAddOrRemove = 5;
+                break;
+            case 4:
+                //Angry answer
+                _happinessAddOrRemove = -5;
+                break;
+            case 5:
+                //Neutral answer
+                _happinessAddOrRemove = 0;
+                break;
+            case 6:
+                //Happy answer
+                _happinessAddOrRemove = 5;
+                break;
+            default:
+                Debug.LogError("Anser index not found!");
+                break;
+        }
+
+        if (_carBehavior.happiness + _happinessAddOrRemove <= 100 && _carBehavior.happiness > 0)
+            _carBehavior.happiness += _happinessAddOrRemove;
+        else _carBehavior.happiness = 100;
     }
 
     private void SearchForAnswerToGive(int l_answerIndex, int l_buttonIndex)
@@ -268,7 +314,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-    int firstDigit(int n)
+    private static int GetFirstDigit(int n)
     {
         // Remove last digit from number 
         // till only one digit is left 
@@ -279,7 +325,7 @@ public class DialogueManager : MonoBehaviour
         return n;
     }
 
-    public static int lastDigit(int n)
+    private static int GetLastDigit(int n)
     {
         // return the last digit 
         return (n % 10);
@@ -292,7 +338,7 @@ public class DialogueManager : MonoBehaviour
         float minHappinessDifference = float.MaxValue;
         foreach (var line in ItemDatabase[_index].Text)
         {
-            float happinessDifference = Mathf.Abs(line.happy - CarBehavior.happiness);
+            float happinessDifference = Mathf.Abs(line.happy - _carBehavior.happiness);
             if (happinessDifference < minHappinessDifference)
             {
                 minHappinessDifference = happinessDifference;
