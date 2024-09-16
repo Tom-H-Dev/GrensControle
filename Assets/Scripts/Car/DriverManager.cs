@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DriverManager : MonoBehaviour
@@ -22,6 +23,14 @@ public class DriverManager : MonoBehaviour
     public string _driverDefensieDocumentNumber;
     public string _driverDefensiePersNo;
     public bool _driverIsGeust;
+
+    [Header("Defensie Information")]
+    public string _driverRank;
+    public string _guestpersonFirstName;
+    public string _guestpersonLastName;
+    public string _guestPersonRank;
+    public char _workBuilding;
+    public string _timeOnBase;
 
     [Header("Drivers lisence")]
     public string _driverDateOfIssue;
@@ -59,6 +68,12 @@ public class DriverManager : MonoBehaviour
     private static List<string> _driverSexes = new List<string>() { "Male", "Female" };
     private static List<string> _driverNationalities = new List<string>() { "Nederland" };
     private static List<string> _months = new List<string> { "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
+    private static List<char> _buildingName = Enumerable.Range('A', 26).Select(x => (char)x).Concat(Enumerable.Range('a', 26).Select(x => (char)x)).ToList();
+    private static List<string> _guestPersonFirstNames = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins", "Rico" };
+    private static List<string> _guestPersonLastNames = new List<string>{ "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven" };
+    private static List<string> _driverRanks = new List<string> { "Sergeant", "Sergeant-Majoor", "Adjudant", "Adjudant-Onderofficier", "Tweede Luitenant", "Eerste Luitenant", "Kapitein", "Majoor", "Luitenant-Kolonel", "Kolonel", "Brigadegeneraal", "Generaal-Majoor", "Luitenant-Generaal", "Generaal" };
+    private static List<string> _timeOnBaseTimes = new List<string>{"vijftien minuten", "dertig minuten", "vijfenveertig minuten", "één uur", "één uur en vijftien minuten", "één uur en dertig minuten", "één uur en vijfenveertig minuten", "twee uur", "twee uur en vijftien minuten", "twee uur en dertig minuten", "twee uur en vijfenveertig minuten", "drie uur", "drie uur en vijftien minuten", "drie uur en dertig minuten", "drie uur en vijfenveertig minuten","vier uur", "vier uur en vijftien minuten", "vier uur en dertig minuten", "vier uur en vijfenveertig minuten","vijf uur", "vijf uur en vijftien minuten", "vijf uur en dertig minuten", "vijf uur en vijfenveertig minuten","zes uur", "zes uur en vijftien minuten", "zes uur en dertig minuten", "zes uur en vijfenveertig minuten","zeven uur", "zeven uur en vijftien minuten", "zeven uur en dertig minuten", "zeven uur en vijfenveertig minuten","acht uur", "acht uur en vijftien minuten", "acht uur en dertig minuten", "acht uur en vijfenveertig minuten","negen uur", "negen uur en vijftien minuten", "negen uur en dertig minuten", "negen uur en vijfenveertig minuten","tien uur"};
+
     private static int _thisYear = System.DateTime.Now.Year;
     #endregion
 

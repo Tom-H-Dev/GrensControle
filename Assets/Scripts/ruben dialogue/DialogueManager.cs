@@ -56,6 +56,13 @@ public class DialogueManager : MonoBehaviour
 
     private string driverName;
     private string DriverSecondName;
+    private string _driverGuestName;
+    private string _driverGuestLastName;
+    private string _driverRank;
+    private string _driverGuestRank;
+    private char _buildingDefensie;
+    private string _driverTimeOnBase;
+
     private string[] _words;
     private string _updatedLine, _wordToType;
 
@@ -127,6 +134,17 @@ public class DialogueManager : MonoBehaviour
             DriverSecondName = _driverManager._driverLastName;
         }
 
+        if (_driverManager._driverIsGeust)
+        {
+            _driverGuestName = _driverManager._guestpersonFirstName;
+            _driverGuestLastName = _driverManager._guestpersonLastName;
+            _driverGuestRank = _driverManager._guestPersonRank;
+        }
+
+        _buildingDefensie = _driverManager._workBuilding;
+        _driverTimeOnBase = _driverManager._timeOnBase;
+
+
         TextComponent.text = string.Empty;
 
         _playerMovement = playerMovement;
@@ -176,12 +194,46 @@ public class DialogueManager : MonoBehaviour
             foreach (string word in _words)
             {
                 bool isChecked = false;
+
+
+
                 foreach (string wordToChange in changeWord)
                 {
-                    if (word == wordToChange)
+                    if (word == changeWord[0]) //#tijd#
                     {
-                        string test = driverName + " " + DriverSecondName;
-                        _updatedLine += test;
+                        string l_timeOnBase = _driverTimeOnBase;
+                        _updatedLine += l_timeOnBase;
+                        isChecked = true;
+                        break;
+                    }
+                    else if (word == changeWord[1])//#funcite#
+                    {
+                        isChecked = true;
+                        break;
+                    }
+                    else if (word == changeWord[2])//#naam
+                    {
+                        string l_driverName = driverName + " " + DriverSecondName;
+                        _updatedLine += l_driverName;
+                        isChecked = true;
+                        break;
+                    }
+                    else if (word == changeWord[3])//#bezoekNaam
+                    {
+                        string l_guestName = _driverGuestRank + " " + _driverGuestName + " " + _driverGuestLastName;
+                        _updatedLine += l_guestName;
+                        isChecked = true;
+                        break;
+                    }
+                    else if (word == changeWord[4])//#gebouw#
+                    {
+                        string l_building = _buildingDefensie.ToString();
+                        _updatedLine += l_building;
+                        isChecked = true;
+                        break;
+                    }
+                    else if (word == changeWord[5])//#AfdelingOfLocatie#
+                    {
                         isChecked = true;
                         break;
                     }
@@ -204,8 +256,6 @@ public class DialogueManager : MonoBehaviour
 
         _questionNumberId = GetFirstDigit(l_buttonIndex);
         string l_anwerIndex = _questionNumberId.ToString();
-        //Set new driver happiness via RPC
-
         _photonView.RPC("UpdateDriverHappiness", RpcTarget.AllBufferedViaServer, GetLastDigit(l_buttonIndex));
 
         if (_carBehavior.happiness >= 0 && _carBehavior.happiness <= 100)
