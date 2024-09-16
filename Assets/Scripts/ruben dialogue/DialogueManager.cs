@@ -62,6 +62,7 @@ public class DialogueManager : MonoBehaviour
     private string _driverGuestRank;
     private string _buildingDefensie;
     private string _driverTimeOnBase;
+    private string _afdeling;
 
     private string[] _words;
     private string _updatedLine, _wordToType;
@@ -143,6 +144,8 @@ public class DialogueManager : MonoBehaviour
 
         _buildingDefensie = _driverManager._workBuilding;
         _driverTimeOnBase = _driverManager._timeOnBase;
+        _afdeling = _driverManager._afdeling;
+
 
 
         TextComponent.text = string.Empty;
@@ -206,7 +209,7 @@ public class DialogueManager : MonoBehaviour
                     }
                     else if (word == changeWord[1])//#funcite#
                     {
-                        isChecked = true;
+                        isChecked = true; //UNUSED
                         break;
                     }
                     else if (word == changeWord[2])//#naam
@@ -232,6 +235,8 @@ public class DialogueManager : MonoBehaviour
                     }
                     else if (word == changeWord[5])//#AfdelingOfLocatie#
                     {
+                        string l_afdeling = _afdeling;
+                        _updatedLine += l_afdeling;
                         isChecked = true;
                         break;
                     }

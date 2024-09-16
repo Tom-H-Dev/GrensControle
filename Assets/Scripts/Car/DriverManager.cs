@@ -31,6 +31,7 @@ public class DriverManager : MonoBehaviour
     public string _guestPersonRank;
     public string _workBuilding;
     public string _timeOnBase;
+    public string _afdeling;
 
     [Header("Drivers lisence")]
     public string _driverDateOfIssue;
@@ -74,6 +75,7 @@ public class DriverManager : MonoBehaviour
     private static List<string> _guestPersonLastNames = new List<string>{ "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven" };
     private static List<string> _driverRanks = new List<string> { "Sergeant", "Sergeant-Majoor", "Adjudant", "Adjudant-Onderofficier", "Tweede Luitenant", "Eerste Luitenant", "Kapitein", "Majoor", "Luitenant-Kolonel", "Kolonel", "Brigadegeneraal", "Generaal-Majoor", "Luitenant-Generaal", "Generaal" };
     private static List<string> _timeOnBaseTimes = new List<string>{"vijftien minuten", "dertig minuten", "vijfenveertig minuten", "één uur", "één uur en vijftien minuten", "één uur en dertig minuten", "één uur en vijfenveertig minuten", "twee uur", "twee uur en vijftien minuten", "twee uur en dertig minuten", "twee uur en vijfenveertig minuten", "drie uur", "drie uur en vijftien minuten", "drie uur en dertig minuten", "drie uur en vijfenveertig minuten","vier uur", "vier uur en vijftien minuten", "vier uur en dertig minuten", "vier uur en vijfenveertig minuten","vijf uur", "vijf uur en vijftien minuten", "vijf uur en dertig minuten", "vijf uur en vijfenveertig minuten","zes uur", "zes uur en vijftien minuten", "zes uur en dertig minuten", "zes uur en vijfenveertig minuten","zeven uur", "zeven uur en vijftien minuten", "zeven uur en dertig minuten", "zeven uur en vijfenveertig minuten","acht uur", "acht uur en vijftien minuten", "acht uur en dertig minuten", "acht uur en vijfenveertig minuten","negen uur", "negen uur en vijftien minuten", "negen uur en dertig minuten", "negen uur en vijfenveertig minuten","tien uur"};
+    private static List<string> _afdelingenWork = new List<string> { "Verkenningspeloton", "Grondgebiedsteunpeloton", "Veldartillerie Section", "Tankplatoon", "Geniepeloton", "Luchtmobiele Squad", "Opsporingsgroep", "Munitie- en Materieelgroep", "Communicatiegroep", "Medische Sectie", "Technische Ondersteuningsteam", };
 
     private static int _thisYear = System.DateTime.Now.Year;
     #endregion
@@ -126,6 +128,7 @@ public class DriverManager : MonoBehaviour
         _guestPersonRank = _driverRanks[Random.Range(0, _driverRanks.Count)];
         _workBuilding = _buildingNames[Random.Range(0, _buildingNames.Count)].ToString();
         _timeOnBase = _timeOnBaseTimes[Random.Range(0, _timeOnBaseTimes.Count)];
+        _afdeling = _afdelingenWork[Random.Range(0, _afdelingenWork.Count)];
 
         float l_r = Random.Range(0, 100);
         l_month = _months[Random.Range(0, _months.Count)];
@@ -297,7 +300,7 @@ public class DriverManager : MonoBehaviour
                                                                                                 _givenNationality, _givenPersNo, _givenDocumentNo,
                                                                                                 _givenIssueDateDefensie, _givenExpiryDateDefensie, _givenIssueDate,
                                                                                                 _givenExpiryDate, _givenBSN, _driverRank, _givenDriverRank, _guestpersonFirstName,
-                                                                                                _guestpersonLastName, _guestPersonRank, _workBuilding, _timeOnBase);
+                                                                                                _guestpersonLastName, _guestPersonRank, _workBuilding, _timeOnBase, _afdeling);
     }
 
     [PunRPC]
@@ -312,7 +315,7 @@ public class DriverManager : MonoBehaviour
                                       string l_givenIssueDateDefensie, string l_givenExpiryDateDefensie, string l_givenIssueDate,
                                       string l_givenExpiryDate, int l_givenBSN, string l_driverRank, string l_givenDriverRank,
                                       string l_guestPersonName, string l_guestPersonLastName, string l_guestPersonRank, string l_workBuilding,
-                                      string l_timeOnBase)
+                                      string l_timeOnBase, string l_afdeling)
     {
         _driverAge =                        l_driverAge;
         _driverLength =                     l_driverLength;
@@ -349,6 +352,7 @@ public class DriverManager : MonoBehaviour
         _guestPersonRank =                  l_guestPersonRank;
         _workBuilding =                     l_workBuilding;
         _timeOnBase =                       l_timeOnBase;
+        _afdeling =                         l_afdeling;
     }
 
     [PunRPC]
