@@ -6,6 +6,8 @@ using TMPro;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
 using Photon.Pun;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -71,6 +73,7 @@ public class DialogueManager : MonoBehaviour
 
     private int _index, index2;
     private int indexlist;
+    private int lastIndex = 0;
 
     //private Item BlankItem;
 
@@ -348,7 +351,7 @@ public class DialogueManager : MonoBehaviour
         bool l_isNeutralQuestion = false;
         for (int i = 0; i < _neutralQuestionIndexes.Count; i++)
         {
-            if (i == l_buttonIndex)
+            if (_neutralQuestionIndexes[i] == l_buttonIndex)
             {
                 l_isNeutralQuestion = true;
             }
@@ -360,8 +363,10 @@ public class DialogueManager : MonoBehaviour
             {
                 if (ItemDatabase[i].question == l_answerIndex && ItemDatabase[i].team == _playerLook.team)
                 {
+                    print("answer index is: " + l_answerIndex + " {} button index is: " + l_buttonIndex);
                     _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                    StartDialogue(ItemDatabase[i].Text[0].lines);
+                    lastIndex = _index;
+                    StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                 }
             }
             else
@@ -371,12 +376,16 @@ public class DialogueManager : MonoBehaviour
                     if (_driverManager._driverIsGeust && ItemDatabase[i].question == 202)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                        print("pog 2");
+                        lastIndex = _index;
+                        StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
                     else if (!_driverManager._driverIsGeust && ItemDatabase[i].question == 201)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                        print("pog 3");
+                        lastIndex = _index;
+                        StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
                 }
                 if (l_buttonIndex == 99999)
@@ -384,15 +393,21 @@ public class DialogueManager : MonoBehaviour
                     if (ItemDatabase[i].question == 99999 && ItemDatabase[i].team == _playerLook.team)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                        print("pog 4");
+                        lastIndex = _index;
+                        StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
                 }
                 if (l_buttonIndex == 9000)
                 {
+                    print("if is button index 9000 en neutral question");
                     if (ItemDatabase[i].question == 9000 && ItemDatabase[i].team == _playerLook.team)
                     {
+                        print("POWER LEVEL IS OVER 9000!");
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        StartDialogue(ItemDatabase[i].Text[0].lines);
+                        print("index is: " + _index);
+                        lastIndex = _index;
+                        StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
 
                 }
@@ -417,7 +432,7 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-    public void StartDialogue(string ll)
+    public void StartDialogue(string ll, int l_databaseIndex)
     {
         lucas closestLine = null;
         float minHappinessDifference = float.MaxValue;
@@ -442,25 +457,39 @@ public class DialogueManager : MonoBehaviour
 
         TextObject.SetActive(true);
 
-        turnoff();
+        turnoff(l_databaseIndex);
 
         StartCoroutine(TypeLine());
     }
 
-    void turnoff()
+    void turnoff(int l_databaseIndex)
     {
+
+        for (int i = 0; i < ItemDatabase.Count; i++)
+        {
+            for (int j = 0; j < ItemDatabase[i].answerbutton.Count; j++)
+            {
+                ItemDatabase[i].answerbutton[j].SetActive(false);
+            }
+        }
+
+        //print("1");
         foreach (var butt in Player2Buttons)
         {
             butt.SetActive(false);
-            foreach (var button1 in Player1Buttons)
-            {
-                button1.SetActive(false);
-                foreach (var ansButton in ItemDatabase[indexlist].answerbutton)
-                {
-                    ansButton.SetActive(false);
-                }
-            }
+            print(butt.gameObject.name);
         }
+        foreach (var button1 in Player1Buttons)
+        {
+            button1.SetActive(false);
+            print(button1.gameObject.name);
+        }
+        //foreach (var ansButton in ItemDatabase[20].answerbutton)
+        //{
+        //    ansButton.SetActive(false);
+        //    print("4");
+        //    print(ansButton.gameObject.name);
+        //}
     }
     private IEnumerator TypeLine()
     {
@@ -488,6 +517,8 @@ public class DialogueManager : MonoBehaviour
             TextComponent.text += ' ';
         }
         yield return new WaitForSeconds(textSpeed);
+
+
     }
 
     private void NextLine()
@@ -505,32 +536,39 @@ public class DialogueManager : MonoBehaviour
 
         if (_playerLook.team == 1)
         {
+            print("Button Set on? Player 1");
             ActivateButtons(Player1Buttons);
         }
         else
         {
-            ActivateButtons(Player2Buttons);
+            print("Button Set on? Player 2");
+            ActivateButtons(ItemDatabase[_index].answerbutton);
+            print("Index is: " + _index);
         }
     }
 
     private void ActivateButtons(List<GameObject> playerButtons)
     {
-        indexlist = _index;
+        //indexlist = _index;
 
-        if (ItemDatabase[_index].answer)
+        //print("step 1");
+        //if (ItemDatabase[_index].answer)
+        //{
+        //    print("step 2");
+        //    foreach (var ansButton in ItemDatabase[_index].answerbutton)
+        //    {
+        //        print("step 3");
+        //        ansButton.SetActive(true);
+        //        print(ansButton.gameObject.name + " {} The index id: " + indexlist);
+        //    }
+        //}
+        //else
+        //{
+        foreach (var button in playerButtons)
         {
-            foreach (var ansButton in ItemDatabase[_index].answerbutton)
-            {
-                ansButton.SetActive(true);
-            }
+            button.SetActive(true);
         }
-        else
-        {
-            foreach (var button in playerButtons)
-            {
-                button.SetActive(true);
-            }
-        }
+        //}
     }
     public void booleanOn()
     {

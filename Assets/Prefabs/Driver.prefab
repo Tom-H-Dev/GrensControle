@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textSpeed: 0.1
-  _neutralQuestionIndexes: 9f86010014000000
+  _neutralQuestionIndexes: 9f8601001400000028230000
   changeWord:
   - '#tijd#'
   - '#functie#'
@@ -2252,6 +2252,16 @@ MonoBehaviour:
     lines: 
     team: 2
     question: 53
+    madness: 100
+    answer: 1
+    answerbutton:
+    - {fileID: 8607914543981744976}
+  - Text:
+    - lines: Naartuurlijk mag u mijn defensie pas en rijbewijs zien
+      happy: 100
+    lines: 
+    team: 1
+    question: 9000
     madness: 100
     answer: 1
     answerbutton:
@@ -6618,7 +6628,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 9000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
