@@ -137,13 +137,10 @@ public class DialogueManager : MonoBehaviour
             driverName = _driverManager._driverFirstName;
             DriverSecondName = _driverManager._driverLastName;
         }
+        _driverGuestName = _driverManager._guestpersonFirstName;
+        _driverGuestLastName = _driverManager._guestpersonLastName;
+        _driverGuestRank = _driverManager._guestPersonRank;
 
-        if (_driverManager._driverIsGeust)
-        {
-            _driverGuestName = _driverManager._guestpersonFirstName;
-            _driverGuestLastName = _driverManager._guestpersonLastName;
-            _driverGuestRank = _driverManager._guestPersonRank;
-        }
 
         _buildingDefensie = _driverManager._workBuilding;
         _driverTimeOnBase = _driverManager._timeOnBase;
