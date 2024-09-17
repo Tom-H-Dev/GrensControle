@@ -62,6 +62,7 @@ public class DocVerifyPro : MonoBehaviour
 
             GetComponent<Hefboom>()._isCorrect = false;
             GetComponent<Hefboom>()._idCorrect = false;
+            GetComponent<Hefboom>()._driverSus = true;
         }
         else
         {
@@ -80,6 +81,7 @@ public class DocVerifyPro : MonoBehaviour
             
             GetComponent<Hefboom>()._isCorrect = true;
             GetComponent<Hefboom>()._idCorrect = true;
+            GetComponent<Hefboom>()._driverSus = false;
         }
         GetComponent<Hefboom>()._illegalItems = _entranceBarrierManager._vehicle.GetComponent<ContrabandManager>()._hasContraband;
         GetComponent<Hefboom>()._lis = _entranceBarrierManager._vehicle.GetComponent<CarAI>()._licensePlate;

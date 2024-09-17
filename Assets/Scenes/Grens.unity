@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.6211035, g: 2.4371588, b: 2.5411837, a: 1}
+  m_IndirectSpecularColor: {r: 2.6204226, g: 2.436701, b: 2.5407088, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3443,7 +3443,7 @@ PrefabInstance:
     - target: {fileID: 2417188196039299008, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2417188196039299008, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -3463,7 +3463,7 @@ PrefabInstance:
     - target: {fileID: 2417188196039299008, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: EndDialogueButton
+      value: PlayerOnePapaers
       objectReference: {fileID: 0}
     - target: {fileID: 2417188196039299008, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}

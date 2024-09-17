@@ -98,7 +98,7 @@ public class DialogueManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-        index2 = _index = 0;
+        index2 = _index;
         _textStart = false;
     }
 
@@ -109,7 +109,7 @@ public class DialogueManager : MonoBehaviour
             if (_check)
             {
                 _check = false;
-                selectedline = ItemDatabase[_index].Text[index2].lines;
+                selectedline = ItemDatabase[_index].Text[0].lines;
                 _words = selectedline.Split(' ');
                 NextLine();
             }
@@ -184,7 +184,7 @@ public class DialogueManager : MonoBehaviour
     {
         float minMadnessDifference = float.MaxValue;
 
-        for (int i = 0; i < ItemDatabase[_index].Text[index2].lines.Length; i++)
+        for (int i = 0; i < ItemDatabase[_index].Text[0].lines.Length; i++)
         {
             float madnessDifference = Mathf.Abs(ItemDatabase[_index].madness - _carBehavior.madnessTimer);
 
@@ -363,7 +363,6 @@ public class DialogueManager : MonoBehaviour
             {
                 if (ItemDatabase[i].question == l_answerIndex && ItemDatabase[i].team == _playerLook.team)
                 {
-                    print("answer index is: " + l_answerIndex + " {} button index is: " + l_buttonIndex);
                     _index = ItemDatabase.IndexOf(ItemDatabase[i]);
                     lastIndex = _index;
                     StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
@@ -376,14 +375,12 @@ public class DialogueManager : MonoBehaviour
                     if (_driverManager._driverIsGeust && ItemDatabase[i].question == 202)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        print("pog 2");
                         lastIndex = _index;
                         StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
                     else if (!_driverManager._driverIsGeust && ItemDatabase[i].question == 201)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        print("pog 3");
                         lastIndex = _index;
                         StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
@@ -393,19 +390,15 @@ public class DialogueManager : MonoBehaviour
                     if (ItemDatabase[i].question == 99999 && ItemDatabase[i].team == _playerLook.team)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        print("pog 4");
                         lastIndex = _index;
                         StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
                 }
                 if (l_buttonIndex == 9000)
                 {
-                    print("if is button index 9000 en neutral question");
                     if (ItemDatabase[i].question == 9000 && ItemDatabase[i].team == _playerLook.team)
                     {
-                        print("POWER LEVEL IS OVER 9000!");
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                        print("index is: " + _index);
                         lastIndex = _index;
                         StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
@@ -531,19 +524,16 @@ public class DialogueManager : MonoBehaviour
 
         if (_playerLook.team == 1)
         {
-            booleanOn();
+            PlayerOnePapaers();
         }
 
         if (_playerLook.team == 1)
         {
-            print("Button Set on? Player 1");
-            ActivateButtons(Player1Buttons);
+            ActivateButtons(ItemDatabase[_index].answerbutton);
         }
         else
         {
-            print("Button Set on? Player 2");
             ActivateButtons(ItemDatabase[_index].answerbutton);
-            print("Index is: " + _index);
         }
     }
 
@@ -570,7 +560,7 @@ public class DialogueManager : MonoBehaviour
         }
         //}
     }
-    public void booleanOn()
+    public void PlayerOnePapaers()
     {
         _doc.papers = true;
     }
