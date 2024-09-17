@@ -562,7 +562,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void PlayerOnePapaers()
     {
-        _doc.papers = true;
+        _doc.GetComponent<PhotonView>().RPC("SetPapers", RpcTarget.AllBufferedViaServer, true);
     }
 
     public void EndDialogueButton()

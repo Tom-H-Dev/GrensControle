@@ -40,6 +40,7 @@ public class Hefboom : MonoBehaviour
             {
                 print("Vehicle allready passed or no vehicles");
             }
+            GetComponent<PhotonView>().RPC("SetPapers", RpcTarget.AllBufferedViaServer, false);
         }
 
         //TODO: if player tries to press button play error sfx from windows
@@ -66,6 +67,7 @@ public class Hefboom : MonoBehaviour
             {
                 print("Vehicle already declined or no vehicle");
             }
+            GetComponent<PhotonView>().RPC("SetPapers", RpcTarget.AllBufferedViaServer, false);
         }
     }
 }

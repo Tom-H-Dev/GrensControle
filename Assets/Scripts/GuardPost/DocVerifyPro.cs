@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class DocVerifyPro : MonoBehaviour
+public class DocVerifyPro : MonoBehaviourPun
 {
     [Header("User Interface")]
     [SerializeField] private TMP_InputField _nameInputField;
@@ -108,6 +110,12 @@ public class DocVerifyPro : MonoBehaviour
             OnNewCarEnterArea();
             OnGetDriverPapers();
         }
+    }
+
+    [PunRPC]
+    public void SetPapers(bool l_value)
+    {
+        papers = l_value;
     }
 
     public void ZoekOpNaam()
