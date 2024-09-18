@@ -3,11 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Random = UnityEngine.Random;
 using UnityEngine.UI;
 using Photon.Pun;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -184,7 +181,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Processes the dialogue and updates the the happiness locally asswell.
+    /// Processes the dialogue when the user clicks trough the dialogue typing to generate it at once and updates the the happiness locally.
     /// </summary>
     private void ProcessDialogueLine()
     {
@@ -545,7 +542,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Types the line word for word based on the words that are added and changes the wordsin case the prefix gets found in the sentence.
+    /// Types the line word for word based on the words that are added and changes the wordsin case the prefix gets found in the sentence. While typing the sentace out.
     /// </summary>
     private IEnumerator TypeLine()
     {
