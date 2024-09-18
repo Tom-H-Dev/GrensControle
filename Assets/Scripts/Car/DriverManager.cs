@@ -132,7 +132,7 @@ public class DriverManager : MonoBehaviour
 
         float l_r = Random.Range(0, 100);
         l_month = _months[Random.Range(0, _months.Count)];
-        int l_day = 0;
+        int l_day = 1;
         int l_yearsAgo = Random.Range(1, 6);
         if (l_r < _falsifiedPercentage) //fasle info  
         {
@@ -259,7 +259,7 @@ public class DriverManager : MonoBehaviour
             _givenExpiryDateDefensie = l_day + " " + l_month + " " + (_thisYear + (3 - l_yearsAgo));
 
             l_month = _months[Random.Range(0, _months.Count)];
-            l_day = 0;
+            l_day = 1;
             l_yearsAgo = Random.Range(1, 6);
 
             if (l_month == "FEB") // 28 days
