@@ -557,32 +557,37 @@ public class DialogueManager : MonoBehaviour
             {
                 if (word == changeWord[0]) //#tijd#
                 {
+                    _wordToType = string.Empty;
                     string l_timeOnBase = _driverTimeOnBase;
-                    _updatedLine += l_timeOnBase;
+                    _wordToType += l_timeOnBase;
                     break;
                 }
                 else if (word == changeWord[2])//#naam#
                 {
+                    _wordToType = string.Empty;
                     string l_driverName = driverName + " " + DriverSecondName;
-                    _updatedLine += l_driverName;
+                    _wordToType += l_driverName;
                     break;
                 }
-                else if (word == changeWord[3])//#bezoekNaam
+                else if (word == changeWord[3])//#bezoekNaam#
                 {
+                    _wordToType = string.Empty;
                     string l_guestName = _driverGuestRank + " " + _driverGuestName + " " + _driverGuestLastName;
-                    _updatedLine += l_guestName;
+                    _wordToType += l_guestName;
                     break;
                 }
                 else if (word == changeWord[4])//#gebouw#
                 {
+                    _wordToType = string.Empty;
                     string l_building = _buildingDefensie;
-                    _updatedLine += l_building;
+                    _wordToType += l_building;
                     break;
                 }
                 else if (word == changeWord[5])//#AfdelingOfLocatie#
                 {
+                    _wordToType = string.Empty;
                     string l_afdeling = _afdeling;
-                    _updatedLine += l_afdeling;
+                    _wordToType += l_afdeling;
                     break;
                 }
             }
