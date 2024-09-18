@@ -122,7 +122,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Starts the interaction with the driver. All the data gets set from the driver.
+    /// </summary>
+    /// <param name="playerMovement">: The script from the player movement to turn off the movement from the player.
+    /// <param name="playerLook">: The script that refers to the PlayerLook to lock the rotation of the camera while the player is talking to the driver.
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         _IsTalking = playerMovement.GetComponent<PlayerUI>();
@@ -178,6 +182,10 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Processes the dialogue and updates the the happiness locally asswell.
+    /// </summary>
     private void ProcessDialogueLine()
     {
         float minMadnessDifference = float.MaxValue;
@@ -254,6 +262,11 @@ public class DialogueManager : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// The script on the buttons to ask the questions.
+    /// </summary>
+    /// <param name="l_buttonIndex">: The index from the button to know what type of question got asked and on what question the player is.
     public void StartDialogueButton(int l_buttonIndex)
     {
         TextComponent.text = string.Empty;
@@ -298,6 +311,10 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Updates the happiness of the driver based on the question asked by the driver.
+    /// </summary>
+    /// <param name="l_answerIndex">: The last digit of the button index from the questions.
     [PunRPC]
     public void UpdateDriverHappiness(int l_answerIndex)
     {
@@ -344,6 +361,11 @@ public class DialogueManager : MonoBehaviour
         else _carBehavior.happiness = 100;
     }
 
+    /// <summary>
+    /// Searches all the ItemDatabase enteries to search for the correct answer to give.
+    /// </summary>
+    /// <param name="l_answerIndex">: The question index from the answer.
+    /// <param name="l_buttonIndex">: The index of the button.
     private void SearchForAnswerToGive(int l_answerIndex, int l_buttonIndex)
     {
         //Check if first is higher or equal to 4 to end convo
@@ -436,6 +458,12 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// This function will return the first digit of an integer sent by the user.
+    /// </summary>
+    /// <param name="n">: This is the number the user wants to get the first digit of.
+    /// <returns></returns>
     private static int GetFirstDigit(int n)
     {
         // Remove last digit from number 
@@ -447,13 +475,22 @@ public class DialogueManager : MonoBehaviour
         return n;
     }
 
+    /// <summary>
+    /// This function will return the last digit of an integer sent by the user.
+    /// </summary>
+    /// <param name="n">: This is the numver the user wants to get the last digit of.
+    /// <returns></returns>
     private static int GetLastDigit(int n)
     {
         // return the last digit 
         return (n % 10);
     }
 
-
+    /// <summary>
+    /// Starts the dialogue routine.
+    /// </summary>
+    /// <param name="ll">: The lines it needs to type.
+    /// <param name="l_databaseIndex">: The index of the ItemDatabase where the line ll is from.
     public void StartDialogue(string ll, int l_databaseIndex)
     {
         lucas closestLine = null;
@@ -479,12 +516,15 @@ public class DialogueManager : MonoBehaviour
 
         TextObject.SetActive(true);
 
-        turnoff(l_databaseIndex);
+        turnoff();
 
         StartCoroutine(TypeLine());
     }
 
-    void turnoff(int l_databaseIndex)
+    /// <summary>
+    /// Turns all the buttons off in the ItemDatabase, also turns the start buttons for player 1 and player 2 off.
+    /// </summary>
+    void turnoff()
     {
 
         for (int i = 0; i < ItemDatabase.Count; i++)
@@ -494,8 +534,6 @@ public class DialogueManager : MonoBehaviour
                 ItemDatabase[i].answerbutton[j].SetActive(false);
             }
         }
-
-        //print("1");
         foreach (var butt in Player2Buttons)
         {
             butt.SetActive(false);
@@ -504,13 +542,11 @@ public class DialogueManager : MonoBehaviour
         {
             button1.SetActive(false);
         }
-        //foreach (var ansButton in ItemDatabase[20].answerbutton)
-        //{
-        //    ansButton.SetActive(false);
-        //    print("4");
-        //    print(ansButton.gameObject.name);
-        //}
     }
+
+    /// <summary>
+    /// Types the line word for word based on the words that are added and changes the wordsin case the prefix gets found in the sentence.
+    /// </summary>
     private IEnumerator TypeLine()
     {
         foreach (string word in _words)
@@ -519,11 +555,34 @@ public class DialogueManager : MonoBehaviour
 
             foreach (string wordToChange in changeWord)
             {
-                if (word == wordToChange)
+                if (word == changeWord[0]) //#tijd#
                 {
-                    _wordToType = String.Empty;
-                    string test = driverName + " " + DriverSecondName;
-                    _wordToType += test;
+                    string l_timeOnBase = _driverTimeOnBase;
+                    _updatedLine += l_timeOnBase;
+                    break;
+                }
+                else if (word == changeWord[2])//#naam#
+                {
+                    string l_driverName = driverName + " " + DriverSecondName;
+                    _updatedLine += l_driverName;
+                    break;
+                }
+                else if (word == changeWord[3])//#bezoekNaam
+                {
+                    string l_guestName = _driverGuestRank + " " + _driverGuestName + " " + _driverGuestLastName;
+                    _updatedLine += l_guestName;
+                    break;
+                }
+                else if (word == changeWord[4])//#gebouw#
+                {
+                    string l_building = _buildingDefensie;
+                    _updatedLine += l_building;
+                    break;
+                }
+                else if (word == changeWord[5])//#AfdelingOfLocatie#
+                {
+                    string l_afdeling = _afdeling;
+                    _updatedLine += l_afdeling;
                     break;
                 }
             }
@@ -541,6 +600,9 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// NextLine() passes the next set of questions and checks if the driver is a quest and the dialogue needs to be cut short.
+    /// </summary>
     private void NextLine()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -578,34 +640,29 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Activates the buttons passed in the parameter playerButtons for the next user question for the dialogue.
+    /// </summary>
+    /// <param name="playerButtons">: A list of all the buttons that need to be turned on for the next question.
     private void ActivateButtons(List<GameObject> playerButtons)
     {
-        //indexlist = _index;
-
-        //print("step 1");
-        //if (ItemDatabase[_index].answer)
-        //{
-        //    print("step 2");
-        //    foreach (var ansButton in ItemDatabase[_index].answerbutton)
-        //    {
-        //        print("step 3");
-        //        ansButton.SetActive(true);
-        //        print(ansButton.gameObject.name + " {} The index id: " + indexlist);
-        //    }
-        //}
-        //else
-        //{
         foreach (var button in playerButtons)
         {
             button.SetActive(true);
         }
-        //}
     }
+
+    /// <summary>
+    /// In this function there is an RPC request to all the other users connected to the server to syncronize all the data from the driver to the computer so player 1 can check the data.
+    /// </summary>
     public void PlayerOnePapaers()
     {
         _doc.GetComponent<PhotonView>().RPC("SetPapers", RpcTarget.AllBufferedViaServer, true);
     }
 
+    /// <summary>
+    /// Ends the dialogue cycle and closes all the dialogues for the player
+    /// </summary>
     public void EndDialogueButton()
     {
         _playerLook._canLook = true;
