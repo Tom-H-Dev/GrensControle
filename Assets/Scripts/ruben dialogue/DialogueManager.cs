@@ -74,6 +74,7 @@ public class DialogueManager : MonoBehaviour
     private int _index, index2;
     private int indexlist;
     private int lastIndex = 0;
+    private int _answerIndex;
 
     //private Item BlankItem;
 
@@ -212,7 +213,7 @@ public class DialogueManager : MonoBehaviour
                         isChecked = true; //UNUSED
                         break;
                     }
-                    else if (word == changeWord[2])//#naam
+                    else if (word == changeWord[2])//#naam#
                     {
                         string l_driverName = driverName + " " + DriverSecondName;
                         _updatedLine += l_driverName;
@@ -280,6 +281,7 @@ public class DialogueManager : MonoBehaviour
             }
             else Debug.LogError("Something with the happiness went wrong");
         }
+
         if (l_buttonIndex == 99999)
         {
             SearchForAnswerToGive(99999, l_buttonIndex);
@@ -290,6 +292,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            _answerIndex = int.Parse(l_anwerIndex);
             SearchForAnswerToGive(int.Parse(l_anwerIndex), l_buttonIndex);
         }
 
@@ -344,7 +347,6 @@ public class DialogueManager : MonoBehaviour
     private void SearchForAnswerToGive(int l_answerIndex, int l_buttonIndex)
     {
         //Check if first is higher or equal to 4 to end convo
-
         bool l_isNeutralQuestion = false;
         for (int i = 0; i < _neutralQuestionIndexes.Count; i++)
         {
@@ -358,11 +360,41 @@ public class DialogueManager : MonoBehaviour
         {
             if (!l_isNeutralQuestion)
             {
-                if (ItemDatabase[i].question == l_answerIndex && ItemDatabase[i].team == _playerLook.team)
+                if (_driverManager._driverIsGeust && GetLastDigit(l_buttonIndex) >= 4)
                 {
-                    _index = ItemDatabase.IndexOf(ItemDatabase[i]);
-                    lastIndex = _index;
-                    StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
+                    print("is Guest");
+                    string l_guestAnswerIndex = "";
+                    switch (GetLastDigit(l_buttonIndex))
+                    {
+                        case 4:
+                            l_guestAnswerIndex = "24";
+                            break;
+                        case 5:
+                            l_guestAnswerIndex = "25";
+                            break;
+                        case 6:
+                            l_guestAnswerIndex = "25";
+                            break;
+                        default:
+                            Debug.LogError("No last index found");
+                            break;
+                    }
+                    print(l_guestAnswerIndex);
+                    if (ItemDatabase[i].question == int.Parse(l_guestAnswerIndex) && ItemDatabase[i].team == _playerLook.team)
+                    {
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        lastIndex = _index;
+                        StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
+                    }
+                }
+                else
+                {
+                    if (ItemDatabase[i].question == l_answerIndex && ItemDatabase[i].team == _playerLook.team)
+                    {
+                        _index = ItemDatabase.IndexOf(ItemDatabase[i]);
+                        lastIndex = _index;
+                        StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
+                    }
                 }
             }
             else
@@ -467,12 +499,10 @@ public class DialogueManager : MonoBehaviour
         foreach (var butt in Player2Buttons)
         {
             butt.SetActive(false);
-            print(butt.gameObject.name);
         }
         foreach (var button1 in Player1Buttons)
         {
             button1.SetActive(false);
-            print(button1.gameObject.name);
         }
         //foreach (var ansButton in ItemDatabase[20].answerbutton)
         //{
@@ -530,7 +560,21 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            ActivateButtons(ItemDatabase[_index].answerbutton);
+            if (GetFirstDigit(_answerIndex) >= 3)
+            {
+                if (_driverManager._driverIsGeust)
+                {
+                    ActivateButtons(ItemDatabase[20].answerbutton);
+                }
+                else
+                {
+                    ActivateButtons(ItemDatabase[_index].answerbutton);
+                }
+            }
+            else
+            {
+                ActivateButtons(ItemDatabase[_index].answerbutton);
+            }
         }
     }
 
