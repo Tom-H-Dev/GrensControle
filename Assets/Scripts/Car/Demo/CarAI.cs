@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.Audio;
+using Unity.VisualScripting;
 
 public enum CarStates
 {
@@ -48,7 +50,7 @@ public class CarAI : MonoBehaviourPun
     [Header("Data")]
     public bool _isMilitaryVehicle; // Will add DM in the license palte
     public bool _hasDutchLicensePlate; //WIll make the license plate color yellow
-    public string _duplicateCode = null; // The little number on how often the driver has lost their vehicle, purely aesthetical and has no fucntion
+    public string _duplicateCode = null; // The little number on how often the driver has lost their vehicle, purely aesthetical and has no function
     [SerializeField] string[] _landCodes; // Such as NL (netherlands), PL (poland), DE (Germany) etc...
     public string _landCode;
     public string _licensePlate;
@@ -63,6 +65,8 @@ public class CarAI : MonoBehaviourPun
     public int _waitingIndex;
     public int _backupCurrentNode;
     bool _waitForFrame = false;
+    [SerializeField] private AudioSource _carAudioSource;
+    [SerializeField] private float _enginePitch;
 
     [Header("Network")]
     public bool _override = false;
@@ -70,6 +74,7 @@ public class CarAI : MonoBehaviourPun
 
     private void Start()
     {
+        _carAudioSource.GetComponent<AudioSource>();
         _barrierManager = FindObjectOfType<BarrierManager>();
         Physics.IgnoreLayerCollision(3, 15);
         GetComponent<Rigidbody>().centerOfMass = _com;
@@ -162,6 +167,7 @@ public class CarAI : MonoBehaviourPun
     private void FixedUpdate()
     {
         CheckingSensors();
+        UpdateSound();
         DriveCar();
         CarBreaking();
 
@@ -175,6 +181,10 @@ public class CarAI : MonoBehaviourPun
             MovingBackwards();
     }
 
+    private void UpdateSound()
+    {
+        print(_curSpeed);
+    }
 
 
     private void ApplySteer()
