@@ -183,7 +183,7 @@ public class CarAI : MonoBehaviourPun
 
     private void UpdateSound()
     {
-        print(_curSpeed);
+        print("curren speed is " + _curSpeed);
     }
 
 
