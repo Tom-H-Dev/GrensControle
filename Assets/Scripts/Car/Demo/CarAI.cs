@@ -66,15 +66,15 @@ public class CarAI : MonoBehaviourPun
     public int _backupCurrentNode;
     bool _waitForFrame = false;
     [SerializeField] private AudioSource _carAudioSource;
-    [SerializeField] private float _enginePitch;
+    [SerializeField] private float _baseEnginePitch;
+    [SerializeField] private float _enginePitchMultiplier;
 
     [Header("Network")]
     public bool _override = false;
-    public bool inQue = false;
+    public bool inQueue = false;
 
     private void Start()
     {
-        _carAudioSource.GetComponent<AudioSource>();
         _barrierManager = FindObjectOfType<BarrierManager>();
         Physics.IgnoreLayerCollision(3, 15);
         GetComponent<Rigidbody>().centerOfMass = _com;
@@ -167,7 +167,6 @@ public class CarAI : MonoBehaviourPun
     private void FixedUpdate()
     {
         CheckingSensors();
-        UpdateSound();
         DriveCar();
         CarBreaking();
 
@@ -175,6 +174,7 @@ public class CarAI : MonoBehaviourPun
         {
             CheckWaypointDistance();
             ApplySteer();
+            UpdateSound();
         }
 
         if (_isMovingBackwards)
@@ -183,7 +183,8 @@ public class CarAI : MonoBehaviourPun
 
     private void UpdateSound()
     {
-        print("curren speed is " + _curSpeed);
+        _carAudioSource.pitch = _baseEnginePitch + (_curSpeed * _enginePitchMultiplier);
+        _carAudioSource.pitch = Mathf.Clamp(_carAudioSource.pitch, 0.8f, 3f);
     }
 
 
@@ -226,7 +227,7 @@ public class CarAI : MonoBehaviourPun
                 Debug.Log("Reached the end");
                 _currentNode = 0;
                 _movingToQuePoint = false;
-                if (!inQue)
+                if (!inQueue)
                 {
                     _waitingIndex = RouteManager.instance._queuedCars.Count - 1;
                     _carState = CarStates.queuing;
@@ -236,12 +237,12 @@ public class CarAI : MonoBehaviourPun
                     RPCUpdateRoute();
 
                 }
-                inQue = true;
+                inQueue = true;
             }
             else
             {
                 _currentNode++;
-                inQue = false;
+                inQueue = false;
             }
         }
         if (_currentNode + 1 >= _nodes.Count - 1 && !_movingToQuePoint)
