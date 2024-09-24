@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Driver
+  - Contraband
   layers:
   - Default
   - TransparentFX

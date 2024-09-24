@@ -4,7 +4,6 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Audio;
-using Unity.VisualScripting;
 
 public enum CarStates
 {
@@ -47,6 +46,7 @@ public class CarAI : MonoBehaviourPun
     public float _frontSideSensorPos = 0.2f;
     public float _frontSensorAngle = 30f;
     [SerializeField] private List<GameObject> _sensorObjects;
+    [SerializeField] private List<GameObject> _sensorLookObjects;
 
     [Header("Data")]
     public bool _isMilitaryVehicle; // Will add DM in the license palte
@@ -168,7 +168,8 @@ public class CarAI : MonoBehaviourPun
     private void FixedUpdate()
     {
         CheckingSensors();
-        DriveCar();
+        if(!_emergencyBrake)
+            DriveCar();
         CarBreaking();
 
         if (_waitForFrame)
@@ -294,90 +295,19 @@ public class CarAI : MonoBehaviourPun
 
         for (int i = 0; i < _sensorObjects.Count; i++)
         {
-
+            Debug.DrawLine(_sensorObjects[i].transform.position, _sensorLookObjects[i].transform.position, Color.cyan);
+            if (Physics.Raycast(_sensorObjects[i].transform.position, transform.forward, out l_hit, 4))
+            {
+                Debug.DrawLine(_sensorObjects[i].transform.position, l_hit.point, Color.red);
+                if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
+                {
+                    _emergencyBrake = true;
+                    print("Emergency break");
+                }
+                else _emergencyBrake = false;
+            }
+            else _emergencyBrake = false;
         }
-
-        //Front Center sensor
-        //Debug.DrawLine(l_sensorStartPos, transform.forward * 2, Color.blue);
-        //if (Physics.Raycast(l_sensorStartPos, transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-        //    {
-        //        _emergencyBrake = true;
-        //    }
-        //    else _emergencyBrake = false;
-        //}
-        //else _emergencyBrake = false;
-
-        //Front right middle sensor
-        //l_sensorStartPos += transform.right * _frontSideSensorPos / 2;
-        //Debug.DrawLine(l_sensorStartPos, transform.forward * 2, Color.blue);
-        //if (Physics.Raycast(l_sensorStartPos, transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-        //    {
-        //        _emergencyBrake = true;
-        //    }
-        //    else _emergencyBrake = false;
-        //}
-        //else _emergencyBrake = false;
-
-        //Front right sensor
-        //l_sensorStartPos += transform.right * _frontSideSensorPos;
-        //Debug.DrawLine(l_sensorStartPos, transform.forward * 2, Color.blue);
-        //if (Physics.Raycast(l_sensorStartPos, transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-        //    {
-        //        _emergencyBrake = true;
-        //    }
-        //    else _emergencyBrake = false;
-        //}
-        //else _emergencyBrake = false;
-
-        //Right angled sensor
-        //if (Physics.Raycast(l_sensorStartPos, Quaternion.AngleAxis(_frontSensorAngle, transform.up) * transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //}
-
-        //Front Left middle sensor
-        //l_sensorStartPos -= transform.right * 2 * _frontSideSensorPos / 2;
-        //Debug.DrawLine(l_sensorStartPos, transform.forward * 2, Color.blue);
-        //if (Physics.Raycast(l_sensorStartPos, transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-        //    {
-        //        _emergencyBrake = true;
-        //    }
-        //    else _emergencyBrake = false;
-        //}
-        //else _emergencyBrake = false;
-
-        //Front Left sensor
-        //l_sensorStartPos -= transform.right * 2 * _frontSideSensorPos;
-        //Debug.DrawLine(l_sensorStartPos, transform.forward * 2, Color.blue);
-        //if (Physics.Raycast(l_sensorStartPos, transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
-        //    {
-        //        _emergencyBrake = true;
-        //    }
-        //    else _emergencyBrake = false;
-        //}
-        //else _emergencyBrake = false;
-
-        //left angles sensor
-        //if (Physics.Raycast(l_sensorStartPos, Quaternion.AngleAxis(-_frontSensorAngle, transform.up) * transform.forward, out l_hit, _sensorLength))
-        //{
-        //    Debug.DrawLine(l_sensorStartPos, l_hit.point, Color.red);
-        //}
-
     }
 
     public void RPCUpdateRoute()

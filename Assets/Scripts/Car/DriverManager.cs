@@ -301,6 +301,7 @@ public class DriverManager : MonoBehaviour
                                                                                                 _givenIssueDateDefensie, _givenExpiryDateDefensie, _givenIssueDate,
                                                                                                 _givenExpiryDate, _givenBSN, _driverRank, _givenDriverRank, _guestpersonFirstName,
                                                                                                 _guestpersonLastName, _guestPersonRank, _workBuilding, _timeOnBase, _afdeling);
+        GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]
@@ -353,6 +354,7 @@ public class DriverManager : MonoBehaviour
         _workBuilding =                     l_workBuilding;
         _timeOnBase =                       l_timeOnBase;
         _afdeling =                         l_afdeling;
+        GetComponent<PhotonView>().RPC("SetDriverModels", RpcTarget.AllBufferedViaServer);
     }
 
     [PunRPC]
