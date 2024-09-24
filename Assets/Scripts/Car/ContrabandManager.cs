@@ -53,19 +53,18 @@ public class ContrabandManager : MonoBehaviour
     private void SyncContraband(bool l_multipleContraband, int l_index)
     {
         GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
-
+        print("1");
         for (int i = 0; i < _contrabandLocations.Count; i++)
         {
-            for (int j = 0; j < _occupiedContrabandLocations.Count; j++)
+            print(2);
+            if (_contrabandLocations[i].childCount == 0)
             {
-                if (_contrabandLocations[i] != _occupiedContrabandLocations[j].transform)
-                {
-                    Instantiate(randomContrabandObject, _contrabandLocations[i].position, (randomContrabandObject.transform.rotation * _contrabandLocations[l_index].rotation), _contrabandLocations[i]);
-                    _occupiedContrabandLocations.Add(_contrabandLocations[l_index].gameObject);
-                }
+                print("3");
+                Instantiate(randomContrabandObject, _contrabandLocations[i].position, (randomContrabandObject.transform.rotation * _contrabandLocations[l_index].rotation), _contrabandLocations[i]);
+                _occupiedContrabandLocations.Add(_contrabandLocations[l_index].gameObject);
+                _currentContrabandInsideVehicle.Add(randomContrabandObject);
             }
         }
-        _currentContrabandInsideVehicle.Add(randomContrabandObject);
     }
 
     private void CheckIfUsed()
