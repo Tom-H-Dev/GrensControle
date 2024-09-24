@@ -10,15 +10,22 @@ public class ContrabandManager : MonoBehaviour
     [SerializeField] List<Transform> _contrabandLocations = new List<Transform>();
     [SerializeField] List<Transform> _contrabandContainerObjects = new List<Transform>();
     [SerializeField] List<Transform> _contrabandContainerLocations = new List<Transform>();
-    [SerializeField] GameObject[] _currentContrabandInsideVehicle;
+    [SerializeField] List<GameObject> _currentContrabandInsideVehicle = new List<GameObject>();
     [SerializeField][Range(0, 100)] float contrabandChance;
     [SerializeField][Range(0, 100)] float multipleContrabandChance;
     public bool _hasContraband;
 
     private void Start()
     {
+        GenerateContraband();
+    }
+
+    private void GenerateContraband()
+    {
         if (PhotonNetwork.IsMasterClient) // kies role voordat je speelt
         {
+            print("Is master client");
+            
             int randomContrabandChance = Random.Range(0, 100);
             if (randomContrabandChance < contrabandChance)
             {
@@ -40,11 +47,16 @@ public class ContrabandManager : MonoBehaviour
     [PunRPC]
     private void SyncContraband(bool l_multipleContraband, int l_index)
     {
-        GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
+        GameObject randomContrabandObject;
+
+        do
+        {
+            randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
+        }
+        while (_currentContrabandInsideVehicle.Contains(randomContrabandObject));
 
         Instantiate(randomContrabandObject, _contrabandLocations[l_index].position, randomContrabandObject.transform.rotation, _contrabandLocations[l_index]);
-
-        
+        _currentContrabandInsideVehicle.Add(randomContrabandObject);  
     }
 
     [PunRPC]
