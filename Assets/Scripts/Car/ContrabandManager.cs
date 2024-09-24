@@ -28,18 +28,20 @@ public class ContrabandManager : MonoBehaviour
         if (PhotonNetwork.IsMasterClient) // kies role voordat je speelt
         {
             print("Is master client");
-            
+
             int randomContrabandChance = Random.Range(0, 100);
             if (randomContrabandChance < contrabandChance)
             {
+
                 print(gameObject.name + " Has contraband");
                 for (int i = 0; i < _contrabandLocations.Count; i++)
                 {
                     randomContrabandChance = Random.Range(0, 100);
                     if (randomContrabandChance < multipleContrabandChance)
                     {
-                        GetComponent<PhotonView>().RPC("SyncContraband", RpcTarget.AllBufferedViaServer, true, i);
+                        GetComponent<PhotonView>().RPC("SyncContraband", RpcTarget.AllBufferedViaServer, true, Random.Range(0, _contrabandLocations.Count));
                     }
+
                 }
                 GetComponent<PhotonView>().RPC("SyncBools", RpcTarget.AllBufferedViaServer, true);
             }
@@ -50,16 +52,24 @@ public class ContrabandManager : MonoBehaviour
     [PunRPC]
     private void SyncContraband(bool l_multipleContraband, int l_index)
     {
-        GameObject randomContrabandObject;
+        GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
 
-        do
-        {
-            randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
-        }
-        while (_currentContrabandInsideVehicle.Contains(randomContrabandObject));
+        //if (_currentContrabandInsideVehicle.Contains(randomContrabandObject)) 
+        //{
+        //    randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
+        //    print("Staat er al in");
+        //    return;
+        //}
 
-        Instantiate(randomContrabandObject, _contrabandLocations[l_index].position, randomContrabandObject.transform.rotation, _contrabandLocations[l_index]);
-        _currentContrabandInsideVehicle.Add(randomContrabandObject);  
+
+        Instantiate(randomContrabandObject, _contrabandLocations[l_index].position, (randomContrabandObject.transform.rotation * _contrabandLocations[l_index].rotation), _contrabandLocations[l_index]);
+        _currentContrabandInsideVehicle.Add(randomContrabandObject);
+        _occupiedContrabandLocations.Add(_contrabandLocations[l_index].gameObject);
+    }
+
+    private void CheckIfUsed()
+    {
+
     }
 
     [PunRPC]
