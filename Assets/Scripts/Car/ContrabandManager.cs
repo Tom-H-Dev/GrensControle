@@ -10,7 +10,10 @@ public class ContrabandManager : MonoBehaviour
     [SerializeField] List<Transform> _contrabandLocations = new List<Transform>();
     [SerializeField] List<Transform> _contrabandContainerObjects = new List<Transform>();
     [SerializeField] List<Transform> _contrabandContainerLocations = new List<Transform>();
+
     [SerializeField] List<GameObject> _currentContrabandInsideVehicle = new List<GameObject>();
+    [SerializeField] List<GameObject> _occupiedContrabandLocations = new List<GameObject>();
+
     [SerializeField][Range(0, 100)] float contrabandChance;
     [SerializeField][Range(0, 100)] float multipleContrabandChance;
     public bool _hasContraband;
