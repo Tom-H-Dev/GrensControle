@@ -80,21 +80,24 @@ public class RouteManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Insert))
+        if (PhotonNetwork.IsMasterClient)
         {
-            _activeCars[0].GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
-            for (int i = 0; i < _activeCars.Count; i++)
+            if (Input.GetKeyDown(KeyCode.Insert))
             {
-                _activeCars[i]._isBraking = false;
+                _activeCars[0].GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
+                for (int i = 0; i < _activeCars.Count; i++)
+                {
+                    _activeCars[i]._isBraking = false;
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Delete))
-        {
-            _activeCars[0].GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
-            for (int i = 0; i < _activeCars.Count; i++)
+            if (Input.GetKeyDown(KeyCode.Delete))
             {
-                _activeCars[i]._isBraking = false;
+                _activeCars[0].GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
+                for (int i = 0; i < _activeCars.Count; i++)
+                {
+                    _activeCars[i]._isBraking = false;
+                }
             }
         }
     }

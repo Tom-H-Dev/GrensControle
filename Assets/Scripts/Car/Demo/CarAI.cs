@@ -167,29 +167,33 @@ public class CarAI : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        CheckingSensors();
-        if(!_emergencyBrake)
-            DriveCar();
-        CarBreaking();
-
-        if (_waitForFrame)
+        if (PhotonNetwork.IsMasterClient)
         {
-            CheckWaypointDistance();
-            ApplySteer();
-            UpdateSound();
-        }
+            GetComponent<PhotonView>().RPC("CheckingSensors", RpcTarget.AllBufferedViaServer);
+            if (!_emergencyBrake)
+                GetComponent<PhotonView>().RPC("DriveCar", RpcTarget.AllBufferedViaServer);
+            GetComponent<PhotonView>().RPC("CarBreaking", RpcTarget.AllBufferedViaServer);
 
-        if (_isMovingBackwards)
-            MovingBackwards();
+            if (_waitForFrame)
+            {
+                GetComponent<PhotonView>().RPC("CheckWaypointDistance", RpcTarget.AllBufferedViaServer);
+                GetComponent<PhotonView>().RPC("ApplySteer", RpcTarget.AllBufferedViaServer);
+                GetComponent<PhotonView>().RPC("UpdateSound", RpcTarget.AllBufferedViaServer);
+            }
+
+            if (_isMovingBackwards)
+                GetComponent<PhotonView>().RPC("MovingBackwards", RpcTarget.AllBufferedViaServer);
+        }
     }
 
+    [PunRPC]
     private void UpdateSound()
     {
         _carAudioSource.pitch = _baseEnginePitch + (_curSpeed * _enginePitchMultiplier);
         _carAudioSource.pitch = Mathf.Clamp(_carAudioSource.pitch, 0.8f, 3f);
     }
 
-
+    [PunRPC]
     private void ApplySteer()
     {
         Vector3 l_relativeVector = transform.InverseTransformPoint(_nodes[_currentNode].position);
@@ -197,7 +201,7 @@ public class CarAI : MonoBehaviourPun
         _wheelFL.steerAngle = l_newSteer;
         _wheelFR.steerAngle = l_newSteer;
     }
-
+    [PunRPC]
     private void DriveCar()
     {
         _curSpeed = 2 * Mathf.PI * _wheelFL.radius * _wheelFL.rpm * 60 / 1000;
@@ -217,12 +221,12 @@ public class CarAI : MonoBehaviourPun
             _wheelFR.motorTorque = 0;
         }
     }
-
+    [PunRPC]
     private void CheckWaypointDistance()
     {
-        
+
         float l_dist = Vector3.Distance(transform.position, _nodes[_currentNode].position);
-        if (l_dist < 0.5f)
+        if (l_dist < 1f)
         {
             if (_currentNode == _nodes.Count - 1)
             {
@@ -236,7 +240,8 @@ public class CarAI : MonoBehaviourPun
                     RPCQueuedCars(true);
                     RPCArrivingCars(false);
 
-                    RPCUpdateRoute();
+                    if (PhotonNetwork.IsMasterClient)
+                        RPCUpdateRoute();
 
                 }
                 inQueue = true;
@@ -256,16 +261,8 @@ public class CarAI : MonoBehaviourPun
 
             }
         }
-        //if (_carState == CarStates.queuing)
-        //{
-        //    float l_finishDist = Vector3.Distance(transform.position, _nodes[0].position);
-        //    if (l_finishDist <= 1)
-        //    {
-        //        _isBraking = true;
-        //    }
-        //}
     }
-
+    [PunRPC]
     private void CarBreaking()
     {
         if (_isBraking)
@@ -285,13 +282,10 @@ public class CarAI : MonoBehaviourPun
         }
     }
 
+    [PunRPC]
     private void CheckingSensors()
     {
         RaycastHit l_hit;
-        //Vector3 l_sensorStartPos = transform.position;
-        //l_sensorStartPos += transform.forward * _fronstSensorPosition.z;
-        //l_sensorStartPos += transform.up * _fronstSensorPosition.y;
-        Gizmos.color = Color.yellow;
 
         for (int i = 0; i < _sensorObjects.Count; i++)
         {
@@ -302,7 +296,6 @@ public class CarAI : MonoBehaviourPun
                 if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
                 {
                     _emergencyBrake = true;
-                    print("Emergency break");
                 }
                 else _emergencyBrake = false;
             }

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,11 @@ public class WheelAI : MonoBehaviour
 
     private void Update()
     {
-        _targetWheel.GetWorldPose(out _wheelPos, out _wheelRot);
-        transform.position = _wheelPos;
-        transform.rotation = _wheelRot;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _targetWheel.GetWorldPose(out _wheelPos, out _wheelRot);
+            transform.position = _wheelPos;
+            transform.rotation = _wheelRot;
+        }
     }
 }

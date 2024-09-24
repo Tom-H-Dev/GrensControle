@@ -72,6 +72,13 @@ MonoBehaviour:
   - RandomHappieness
   - UpdateDriverHappiness
   - SetPapers
+  - ApplySteer
+  - CarBreaking
+  - CheckingSensors
+  - CheckWaypointDistance
+  - DriveCar
+  - UpdateSound
+  - FilterQeueu
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
