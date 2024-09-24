@@ -8,6 +8,8 @@ public class ContrabandManager : MonoBehaviour
 {
     [SerializeField] List<Transform> _contrabandObjects = new List<Transform>();
     [SerializeField] List<Transform> _contrabandLocations = new List<Transform>();
+    [SerializeField] List<Transform> _contrabandContainerObjects = new List<Transform>();
+    [SerializeField] List<Transform> _contrabandContainerLocations = new List<Transform>();
     [SerializeField] GameObject[] _currentContrabandInsideVehicle;
     [SerializeField][Range(0, 100)] float contrabandChance;
     [SerializeField][Range(0, 100)] float multipleContrabandChance;
@@ -15,12 +17,12 @@ public class ContrabandManager : MonoBehaviour
 
     private void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient) // kies role voordat je speelt
         {
             int randomContrabandChance = Random.Range(0, 100);
             if (randomContrabandChance < contrabandChance)
             {
-                //print(gameObject.name + " Has contraband");
+                print(gameObject.name + " Has contraband");
                 for (int i = 0; i < _contrabandLocations.Count; i++)
                 {
                     randomContrabandChance = Random.Range(0, 100);

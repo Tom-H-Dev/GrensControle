@@ -224,7 +224,7 @@ public class CarAI : MonoBehaviourPun
         {
             if (_currentNode == _nodes.Count - 1)
             {
-                Debug.Log("Reached the end");
+                //Debug.Log("Reached the end");
                 _currentNode = 0;
                 _movingToQuePoint = false;
                 if (!inQueue)
