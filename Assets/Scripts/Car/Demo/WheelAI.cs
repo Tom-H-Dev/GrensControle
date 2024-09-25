@@ -14,9 +14,15 @@ public class WheelAI : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            _targetWheel.GetWorldPose(out _wheelPos, out _wheelRot);
-            transform.position = _wheelPos;
-            transform.rotation = _wheelRot;
+            //GetComponentInParent<PhotonView>().RPC("Wheels", RpcTarget.AllBufferedViaServer);
         }
+    }
+
+    [PunRPC]
+    public void Wheels()
+    {
+        _targetWheel.GetWorldPose(out _wheelPos, out _wheelRot);
+        transform.position = _wheelPos;
+        transform.rotation = _wheelRot;
     }
 }

@@ -79,6 +79,12 @@ MonoBehaviour:
   - DriveCar
   - UpdateSound
   - FilterQeueu
+  - Wheels
+  - QueueSpeedToZero
+  - MovingBackwards
+  - UpdateQueue
+  - UpdateInQueue
+  - UpdateIsBraking
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

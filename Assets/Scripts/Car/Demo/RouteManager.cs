@@ -8,6 +8,7 @@ using UnityEngine;
 public class RouteManager : MonoBehaviour
 {
     public static RouteManager instance;
+    [SerializeField] private BarrierManager _barrierManager;
 
     private void Awake()
     {
@@ -88,6 +89,8 @@ public class RouteManager : MonoBehaviour
                 for (int i = 0; i < _activeCars.Count; i++)
                 {
                     _activeCars[i]._isBraking = false;
+                    _activeCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
+
                 }
             }
 
@@ -97,6 +100,7 @@ public class RouteManager : MonoBehaviour
                 for (int i = 0; i < _activeCars.Count; i++)
                 {
                     _activeCars[i]._isBraking = false;
+                    _activeCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
                 }
             }
         }
