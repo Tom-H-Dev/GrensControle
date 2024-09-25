@@ -266,7 +266,6 @@ public class CarAI : MonoBehaviourPun
             if (l_finishDist <= 1)
             {
                 _isBraking = true;
-                print("finish brake");
                 GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, true);
             }
         }
@@ -338,7 +337,6 @@ public class CarAI : MonoBehaviourPun
         {
             case CarStates.arriving:
                 _nodes.Clear();
-                //_currentNode = 0;
                 if (_arriving)
                 {
                     Transform[] l_pathTransformsArriving = RouteManager.instance._arriveRoute.ToArray();
@@ -399,7 +397,6 @@ public class CarAI : MonoBehaviourPun
                 }
                 break;
             case CarStates.queuing:
-                //_currentNode = 0;
                 _nodes.Clear();
                 int l_thisCarIndex = 0;
                 for (int i = 0; i < RouteManager.instance._activeCars.Count; i++)
@@ -466,7 +463,6 @@ public class CarAI : MonoBehaviourPun
         RPCQueuedCars(false);
         RPCActiveCars(false);
         yield return new WaitForSeconds(2f);
-        Debug.Log("Car accepted");
         _isBraking = false;
         GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
         _emergencyBrake = false;
@@ -501,9 +497,9 @@ public class CarAI : MonoBehaviourPun
         }
         for (int a = 0; a < RouteManager.instance._arrivingCars.Count; a++)
         {
-            RouteManager.instance._arrivingCars[a]._arriving = false;
             if (RouteManager.instance._arrivingCars[a]._currentNode >= RouteManager.instance._arrivingCars[a]._nodes.Count - 1)
             {
+                RouteManager.instance._arrivingCars[a]._arriving = false;
                 _currentNode = 0;
                 _nodes.Clear();
                 _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
