@@ -283,7 +283,8 @@ public class CarAI : MonoBehaviourPun
         inQueue = l_value;
     }
 
-    public void UpdateHasBeenChecked(bool l_value)
+    [PunRPC]
+    public void UpdateHasBeenCheckedValue(bool l_value)
     {
         _hasBeenChecked = l_value;
     }
@@ -494,27 +495,32 @@ public class CarAI : MonoBehaviourPun
     {
         for (int i = 0; i < RouteManager.instance._queuedCars.Count; i++)
         {
-            RouteManager.instance._queuedCars[i]._carState = CarStates.queuing;
-            RouteManager.instance._queuedCars[i]._isBraking = false;
-            RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
-            RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("DisEngageBreak", RpcTarget.AllBufferedViaServer);
-            RouteManager.instance._queuedCars[i].RPCUpdateRoute();
+            if (!RouteManager.instance._queuedCars[i]._hasBeenChecked)
+            {
+                RouteManager.instance._queuedCars[i]._carState = CarStates.queuing;
+                RouteManager.instance._queuedCars[i]._isBraking = false;
+                RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
+                RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("DisEngageBreak", RpcTarget.AllBufferedViaServer);
+                RouteManager.instance._queuedCars[i].RPCUpdateRoute();
+            }
         }
         for (int a = 0; a < RouteManager.instance._arrivingCars.Count; a++)
         {
-            if (RouteManager.instance._arrivingCars[a]._currentNode >= RouteManager.instance._arrivingCars[a]._nodes.Count - 1)
+            if (!RouteManager.instance._queuedCars[a]._hasBeenChecked)
             {
-                RouteManager.instance._arrivingCars[a]._arriving = false;
-                _currentNode = 0;
-                _nodes.Clear();
-                _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
+                if (RouteManager.instance._arrivingCars[a]._currentNode >= RouteManager.instance._arrivingCars[a]._nodes.Count - 1)
+                {
+                    RouteManager.instance._arrivingCars[a]._arriving = false;
+                    _currentNode = 0;
+                    _nodes.Clear();
+                    _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
+                }
+                else
+                {
+                    _backupCurrentNode = _currentNode;
+                    RouteManager.instance._arrivingCars[a].RPCUpdateRoute();
+                }
             }
-            else
-            {
-                _backupCurrentNode = _currentNode;
-                RouteManager.instance._arrivingCars[a].RPCUpdateRoute();
-            }
-
 
         }
     }

@@ -29,7 +29,7 @@ public class Hefboom : MonoBehaviour
                 Debug.Log("Opening Gate");
                 //Check if car is in ther area infront of gate
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
-                _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("UpdateHasBeenChecked", RpcTarget.AllBufferedViaServer, true);
+                _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("UpdateHasBeenCheckedValue", RpcTarget.AllBufferedViaServer, true);
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
                 _correctCarManager._lis = _lis;
                 if (!_idCorrect || _driverSus || _illegalItems)
@@ -55,7 +55,7 @@ public class Hefboom : MonoBehaviour
             {
                 Debug.Log("Denied Vehicle");
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
-                _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("UpdateHasBeenChecked", RpcTarget.AllBufferedViaServer, true);
+                _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("UpdateHasBeenCheckedValue", RpcTarget.AllBufferedViaServer, true);
                 //Check if car is in ther area infront of gate
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
                 ;
