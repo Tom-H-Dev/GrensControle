@@ -518,6 +518,7 @@ public class CarAI : MonoBehaviourPun
     public void DisEngageBreak()
     {
         _isBraking = false;
+        GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
     }
 
     IEnumerator StartSteerCheck()
