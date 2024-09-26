@@ -15,7 +15,6 @@ public class ContrabandManager : MonoBehaviour
     [SerializeField] List<GameObject> _occupiedContrabandLocations = new List<GameObject>();
 
     [SerializeField][Range(0, 100)] float contrabandChance;
-    [SerializeField][Range(0, 100)] float multipleContrabandChance;
     public bool _hasContraband;
 
     private void Start()
@@ -33,12 +32,7 @@ public class ContrabandManager : MonoBehaviour
             {
                 for (int i = 0; i < _contrabandLocations.Count; i++)
                 {
-                    randomContrabandChance = Random.Range(0, 100);
-                    if (randomContrabandChance < multipleContrabandChance)
-                    {
-                        GetComponent<PhotonView>().RPC("SyncContraband", RpcTarget.AllBufferedViaServer, true, Random.Range(0, _contrabandLocations.Count));
-                    }
-
+                GetComponent<PhotonView>().RPC("SyncContraband", RpcTarget.AllBufferedViaServer, true, Random.Range(0, _contrabandLocations.Count));
                 }
                 GetComponent<PhotonView>().RPC("SyncBools", RpcTarget.AllBufferedViaServer, true);
             }
