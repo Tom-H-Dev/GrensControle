@@ -26,14 +26,11 @@ public class ContrabandManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient) // kies role voordat je speelt
         {
-
             int randomContrabandChance = Random.Range(0, 100);
+
             if (randomContrabandChance < contrabandChance)
             {
-                for (int i = 0; i < _contrabandLocations.Count; i++)
-                {
                 GetComponent<PhotonView>().RPC("SyncContraband", RpcTarget.AllBufferedViaServer, true, Random.Range(0, _contrabandLocations.Count));
-                }
                 GetComponent<PhotonView>().RPC("SyncBools", RpcTarget.AllBufferedViaServer, true);
             }
             else GetComponent<PhotonView>().RPC("SyncBools", RpcTarget.AllBufferedViaServer, false);
