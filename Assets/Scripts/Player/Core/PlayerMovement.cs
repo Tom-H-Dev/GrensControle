@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon;
 using Photon.Pun;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
 
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Light _zakLamp;
 
 
     private Animator _animator;
@@ -33,6 +35,14 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         {
             // Get the value of the "Team" property
             int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("f"))
+        {
+            _zakLamp.enabled = !_zakLamp.enabled;
         }
     }
 
