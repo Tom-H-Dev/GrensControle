@@ -283,6 +283,11 @@ public class CarAI : MonoBehaviourPun
         inQueue = l_value;
     }
 
+    public void UpdateHasBeenChecked(bool l_value)
+    {
+        _hasBeenChecked = l_value;
+    }
+
     [PunRPC]
     private void CarBreaking()
     {
