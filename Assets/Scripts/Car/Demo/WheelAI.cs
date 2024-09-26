@@ -14,7 +14,7 @@ public class WheelAI : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            //GetComponentInParent<PhotonView>().RPC("Wheels", RpcTarget.AllBufferedViaServer);
+            GetComponent<PhotonView>().RPC("Wheels", RpcTarget.AllBufferedViaServer);
         }
     }
 

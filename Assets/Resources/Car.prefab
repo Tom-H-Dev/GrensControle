@@ -976,6 +976,7 @@ GameObject:
   - component: {fileID: 4623616634227821977}
   - component: {fileID: 2683524574305785288}
   - component: {fileID: 8514327149088894071}
+  - component: {fileID: 3216847402014198664}
   m_Layer: 3
   m_Name: RF
   m_TagString: Untagged
@@ -1062,6 +1063,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetWheel: {fileID: 4254986361254367218}
+--- !u!114 &3216847402014198664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177929707912609053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &3241664497084121818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,6 +2194,7 @@ GameObject:
   - component: {fileID: 4352723642591362408}
   - component: {fileID: 2413610908909032262}
   - component: {fileID: 8123123059759625056}
+  - component: {fileID: 239001534266528534}
   m_Layer: 3
   m_Name: LF
   m_TagString: Untagged
@@ -2257,6 +2281,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetWheel: {fileID: 2760208195890522549}
+--- !u!114 &239001534266528534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343717664219366073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7371579156468376515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,6 +2603,7 @@ GameObject:
   - component: {fileID: 2239055367044968068}
   - component: {fileID: 3599154110435957042}
   - component: {fileID: 3365174123969272533}
+  - component: {fileID: 563682740879077218}
   m_Layer: 3
   m_Name: LR
   m_TagString: Untagged
@@ -2643,6 +2690,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetWheel: {fileID: 3620162550920097272}
+--- !u!114 &563682740879077218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592268341637678204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7735353563513260194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,6 +2786,7 @@ GameObject:
   - component: {fileID: 8298090716754807324}
   - component: {fileID: 5361427611018630631}
   - component: {fileID: 2724307202952868792}
+  - component: {fileID: 163272035282402284}
   m_Layer: 3
   m_Name: RR
   m_TagString: Untagged
@@ -2803,6 +2873,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetWheel: {fileID: 125160413353172177}
+--- !u!114 &163272035282402284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876723310051893004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8248841248319554458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3883,63 +3975,63 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: TrunkOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: TrunkClose
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: HoodOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: HoodClose
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: FrontLeftDoorOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: FrontLeftDoorClose
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: FrontRightDoorOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: FrontRightDoorClose
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: RearLeftDoorOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: RearLeftDoorClose
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: RearRightDoorOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: RearRightDoorClose
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: GloveBoxOpen
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: GloveBoxClose
   m_SynchronizeLayers:
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 0
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 1
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 2
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 3
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 4
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 5
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 6
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 7
 --- !u!95 &3062332685546937216
 Animator:
