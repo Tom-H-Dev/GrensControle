@@ -169,10 +169,6 @@ public class CarAI : MonoBehaviourPun
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            //if (inQueue)
-            //{
-            //    GetComponent<PhotonView>().RPC("QueueSpeedToZero", RpcTarget.AllBufferedViaServer);
-            //}
             GetComponent<PhotonView>().RPC("CheckingSensors", RpcTarget.AllBufferedViaServer);
             if (!_emergencyBrake)
                 GetComponent<PhotonView>().RPC("DriveCar", RpcTarget.AllBufferedViaServer);
@@ -266,8 +262,21 @@ public class CarAI : MonoBehaviourPun
             if (l_finishDist <= 1)
             {
                 _isBraking = true;
+                GetComponent<PhotonView>().RPC("FreezeCarPosition", RpcTarget.AllBufferedViaServer, true);
                 GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, true);
             }
+        }
+    }
+
+    [PunRPC]
+    private void FreezeCarPosition(bool l_freeze)
+    {
+        if (l_freeze)
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        else
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
         }
     }
 
@@ -339,6 +348,7 @@ public class CarAI : MonoBehaviourPun
     [PunRPC]
     public void UpdateRoute()
     {
+        GetComponent<PhotonView>().RPC("FreezeCarPosition", RpcTarget.AllBufferedViaServer, false);
         switch (_carState)
         {
             case CarStates.arriving:
