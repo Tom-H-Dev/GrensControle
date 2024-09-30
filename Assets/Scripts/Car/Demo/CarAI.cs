@@ -196,6 +196,7 @@ public class CarAI : MonoBehaviourPun
     [PunRPC]
     private void ApplySteer()
     {
+        _currentNode = _currentNode;
         Vector3 l_relativeVector = transform.InverseTransformPoint(_nodes[_currentNode].position);
         float l_newSteer = (l_relativeVector.x / l_relativeVector.magnitude) * _maxSteerAngle;
         _wheelFL.steerAngle = l_newSteer;
@@ -232,6 +233,7 @@ public class CarAI : MonoBehaviourPun
             {
                 //Debug.Log("Reached the end");
                 _currentNode = 0;
+                GetComponent<PhotonView>().RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                 _movingToQuePoint = false;
                 _curSpeed = 0;
                 if (!inQueue)
@@ -252,6 +254,7 @@ public class CarAI : MonoBehaviourPun
             else
             {
                 _currentNode++;
+                GetComponent<PhotonView>().RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                 inQueue = false;
                 GetComponent<PhotonView>().RPC("UpdateInQueue", RpcTarget.AllBufferedViaServer, false);
             }
@@ -316,6 +319,13 @@ public class CarAI : MonoBehaviourPun
             _wheelRL.brakeTorque = 0;
             _wheelRR.brakeTorque = 0;
         }
+    }
+
+
+    [PunRPC]
+    private void UpdateCurrentNode(int l_node)
+    {
+        _currentNode = l_node;
     }
 
     [PunRPC]
@@ -386,6 +396,7 @@ public class CarAI : MonoBehaviourPun
                 break;
             case CarStates.declined:
                 _currentNode = 0;
+                GetComponent<PhotonView>().RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                 _nodes.Clear();
                 _isBraking = false;
                 GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
@@ -400,6 +411,7 @@ public class CarAI : MonoBehaviourPun
                 break;
             case CarStates.accepted:
                 _currentNode = 0;
+                GetComponent<PhotonView>().RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                 _nodes.Clear();
                 _isBraking = false;
                 GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
@@ -522,6 +534,7 @@ public class CarAI : MonoBehaviourPun
                 {
                     RouteManager.instance._arrivingCars[a]._arriving = false;
                     _currentNode = 0;
+                    GetComponent<PhotonView>().RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                     _nodes.Clear();
                     _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
                 }
