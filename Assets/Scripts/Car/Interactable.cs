@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum InteractableItem
 {
@@ -20,6 +22,8 @@ public class Interactable : MonoBehaviour
     public bool _canOpen = true;
 
     public InteractableItem _item;
+
+    [PunRPC]
     public void InteractWithObject()
     {
         if (_canOpen == true)

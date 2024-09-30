@@ -196,7 +196,6 @@ public class CarAI : MonoBehaviourPun
     [PunRPC]
     private void ApplySteer()
     {
-        _currentNode = _currentNode;
         Vector3 l_relativeVector = transform.InverseTransformPoint(_nodes[_currentNode].position);
         float l_newSteer = (l_relativeVector.x / l_relativeVector.magnitude) * _maxSteerAngle;
         _wheelFL.steerAngle = l_newSteer;

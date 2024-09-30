@@ -98,7 +98,8 @@ public class PlayerLook : MonoBehaviour
                     {
                         if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
                         {
-                            l_interactable.InteractWithObject();
+                            l_interactable.GetComponent<PhotonView>().RPC("InteractWithObject", RpcTarget.AllBufferedViaServer);
+                            //l_interactable.InteractWithObject();
                             _interactionText.text = "";
                         }
                     }
