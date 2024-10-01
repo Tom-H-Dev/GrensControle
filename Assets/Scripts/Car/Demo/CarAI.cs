@@ -503,10 +503,10 @@ public class CarAI : MonoBehaviourPun
         RPCActiveCars(false);
         yield return new WaitForSeconds(2f);
         _isBraking = false;
-        GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
+        _photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
         _emergencyBrake = false;
         _carState = CarStates.accepted;
-        GetComponent<PhotonView>().RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
+        _photonView.RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(5f);
         _barrierManager._barrierAnimator.ResetTrigger("Open");
         _barrierManager._barrierAnimator.SetTrigger("Close");
@@ -545,7 +545,7 @@ public class CarAI : MonoBehaviourPun
                 {
                     RouteManager.instance._arrivingCars[a]._arriving = false;
                     _currentNode = 0;
-                    GetComponent<PhotonView>().RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
+                    _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                     _nodes.Clear();
                     _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
                 }
@@ -563,7 +563,7 @@ public class CarAI : MonoBehaviourPun
     public void DisEngageBreak()
     {
         _isBraking = false;
-        GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
+        _photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
     }
 
     IEnumerator StartSteerCheck()
@@ -583,7 +583,7 @@ public class CarAI : MonoBehaviourPun
 
     public void RPCArrivingCars(bool addOrRemove)
     {
-        GetComponent<PhotonView>().RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, addOrRemove);
+        _photonView.RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, addOrRemove);
     }
     [PunRPC]
     public void SyncArrivingCars(bool addOrRemove)
@@ -595,7 +595,7 @@ public class CarAI : MonoBehaviourPun
 
     public void RPCQueuedCars(bool addOrRemove)
     {
-        GetComponent<PhotonView>().RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, addOrRemove);
+        _photonView.RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, addOrRemove);
     }
     [PunRPC]
     public void SyncQueuedCars(bool addOrRemove)
@@ -607,7 +607,7 @@ public class CarAI : MonoBehaviourPun
 
     public void RPCActiveCars(bool addOrRemove)
     {
-        GetComponent<PhotonView>().RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, addOrRemove);
+        _photonView.RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, addOrRemove);
     }
     [PunRPC]
     public void SyncActiveCars(bool addOrRemove)
