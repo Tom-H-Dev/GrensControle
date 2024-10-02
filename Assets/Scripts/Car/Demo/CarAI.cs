@@ -198,8 +198,11 @@ public class CarAI : MonoBehaviourPun
     [PunRPC]
     private void ApplySteer()
     {
+        //Generate angle to which way to rotate
         Vector3 l_relativeVector = transform.InverseTransformPoint(_nodes[_currentNode].position);
+        //Calulate wheel rotation
         float l_newSteer = (l_relativeVector.x / l_relativeVector.magnitude) * _maxSteerAngle;
+        //Set steering angle
         _wheelFL.steerAngle = l_newSteer;
         _wheelFR.steerAngle = l_newSteer;
     }
@@ -233,23 +236,26 @@ public class CarAI : MonoBehaviourPun
             if (_currentNode == _nodes.Count - 1)
             {
                 //Debug.Log("Reached the end");
-                _currentNode = 0;
-                _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
+                _carState = CarStates.queuing;
+                //If the user is the master client update the route of the car
+                if (PhotonNetwork.IsMasterClient)
+                    RPCUpdateRoute();
                 _movingToQuePoint = false;
                 _curSpeed = 0;
-                if (!inQueue)
-                {
-                    _waitingIndex = RouteManager.instance._queuedCars.Count - 1;
-                    _carState = CarStates.queuing;
-                    RPCQueuedCars(true);
-                    RPCArrivingCars(false);
-
-                    if (PhotonNetwork.IsMasterClient)
-                        RPCUpdateRoute();
-
-                }
                 _photonView.RPC("UpdateInQueue", RpcTarget.AllBufferedViaServer, true);
                 inQueue = true;
+                //if (!inQueue)
+                //{
+                //Set State
+                //Current node reset to 0
+                _currentNode = 0;
+                _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
+                _waitingIndex = RouteManager.instance._queuedCars.Count - 1;
+                RPCQueuedCars(true);
+                RPCArrivingCars(false);
+
+
+                //}
 
             }
             else
@@ -458,7 +464,7 @@ public class CarAI : MonoBehaviourPun
                 break;
         }
     }
-    
+
     [PunRPC]
     public void TriggerDeclinedRoute()
     {
