@@ -91,6 +91,7 @@ MonoBehaviour:
   - UpdateCurrentNode
   - InteractWithObject
   - RouteStatus
+  - UpdateRouteList
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
