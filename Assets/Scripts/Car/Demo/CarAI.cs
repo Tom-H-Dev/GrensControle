@@ -263,14 +263,14 @@ public class CarAI : MonoBehaviourPun
         if (_currentNode + 1 >= _nodes.Count - 1 && !_movingToQuePoint)
         {
             float l_finishDist = Vector3.Distance(transform.position, _nodes[_nodes.Count - 1].position);
-            if (l_finishDist <= 10 && _carState != CarStates.queuing)
-            {
-                Debug.Log("Reached final strecht");
-                _carState = CarStates.queuing;
-                _currentNode = 0;
-                _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
-                RPCUpdateRoute();
-            }
+            //if (l_finishDist <= 10 && _carState != CarStates.queuing)
+            //{
+            //    Debug.Log("Reached final strecht");
+            //    _carState = CarStates.queuing;
+            //    _currentNode = 0;
+            //    _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
+            //    RPCUpdateRoute();
+            //}
 
             if (l_finishDist <= 1)
             {
@@ -335,6 +335,7 @@ public class CarAI : MonoBehaviourPun
     [PunRPC]
     private void UpdateCurrentNode(int l_node)
     {
+        print(gameObject.name + " | " + l_node);
         _currentNode = l_node;
     }
 
@@ -406,7 +407,7 @@ public class CarAI : MonoBehaviourPun
                 break;
             case CarStates.declined:
                 _currentNode = 0;
-                _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
+                //_photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
                 _nodes.Clear();
                 _isBraking = false;
                 _photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
