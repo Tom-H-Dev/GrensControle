@@ -4031,6 +4031,42 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: GloveBoxClose
+  - Type: 9
+    SynchronizeType: 0
+    Name: EnterBase
+  - Type: 9
+    SynchronizeType: 0
+    Name: DenyBase
+  - Type: 9
+    SynchronizeType: 0
+    Name: Move21
+  - Type: 9
+    SynchronizeType: 0
+    Name: Move32
+  - Type: 9
+    SynchronizeType: 0
+    Name: Move43
+  - Type: 9
+    SynchronizeType: 0
+    Name: Move54
+  - Type: 9
+    SynchronizeType: 0
+    Name: MovePos1
+  - Type: 9
+    SynchronizeType: 0
+    Name: MovePos2
+  - Type: 9
+    SynchronizeType: 0
+    Name: MovePos3
+  - Type: 9
+    SynchronizeType: 0
+    Name: MovePos4
+  - Type: 9
+    SynchronizeType: 0
+    Name: MovePos5
+  - Type: 1
+    SynchronizeType: 0
+    Name: speedMultiplier
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
@@ -4048,6 +4084,8 @@ MonoBehaviour:
     LayerIndex: 6
   - SynchronizeType: 2
     LayerIndex: 7
+  - SynchronizeType: 0
+    LayerIndex: 8
 --- !u!95 &3062332685546937216
 Animator:
   serializedVersion: 5

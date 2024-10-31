@@ -92,6 +92,8 @@ MonoBehaviour:
   - InteractWithObject
   - RouteStatus
   - UpdateRouteList
+  - UpdateDriveAnimations
+  - UpdateAniamtionSpeed
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
