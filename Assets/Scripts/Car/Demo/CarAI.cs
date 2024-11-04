@@ -598,9 +598,11 @@ public class CarAI : MonoBehaviourPun
             {
                 RouteManager.instance._queuedCars[i]._carState = CarStates.queuing;
                 RouteManager.instance._queuedCars[i]._isBraking = false;
-                RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
+                //RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
                 RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("DisEngageBreak", RpcTarget.AllBufferedViaServer);
-                RouteManager.instance._queuedCars[i].RPCUpdateRoute();
+                //RouteManager.instance._queuedCars[i].RPCUpdateRoute();
+
+                StartCoroutine(MoveUpAnim(i, false));
             }
         }
         for (int a = 0; a < RouteManager.instance._arrivingCars.Count; a++)
@@ -621,7 +623,53 @@ public class CarAI : MonoBehaviourPun
                     RouteManager.instance._arrivingCars[a].RPCUpdateRoute();
                 }
             }
+        }
+    }
 
+    private IEnumerator MoveUpAnim(int l_index, bool l_overrideTimer)
+    {
+        if (l_overrideTimer)
+        {
+            switch (RouteManager.instance._totalActiveCars)
+            {
+                case 1:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move21);
+                    break;
+                case 2:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move32);
+                    break;
+                case 3:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move43);
+                    break;
+                case 4:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move54);
+                    break;
+                default:
+                    Debug.LogError("No vehicle found");
+                    break;
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(8f);
+            switch (l_index)
+            {
+                case 0:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move21);
+                    break;
+                case 1:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move32);
+                    break;
+                case 2:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move43);
+                    break;
+                case 3:
+                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move54);
+                    break;
+                default:
+                    Debug.LogError("No vehicle found");
+                    break;
+            }
         }
     }
 
@@ -707,11 +755,12 @@ public class CarAI : MonoBehaviourPun
         else GetComponent<Animator>().SetFloat("speedMultiplier", 1f);
     }
 
-    public void CheckIfCanMoveUp()
+    public void CheckIfCanMoveUp(int l_positionIndex)
     {
-        for (int i = 0; i < RouteManager.instance._totalActiveCars; i++)
+        switch (l_positionIndex)
         {
-            //if (RouteManager.instance._queuedCars[i].)
+            default:
+                break;
         }
     }
 
