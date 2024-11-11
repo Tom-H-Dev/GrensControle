@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Audio;
+using UnityEditor.Timeline;
 
 public enum CarStates
 {
@@ -602,7 +603,7 @@ public class CarAI : MonoBehaviourPun
                 RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("DisEngageBreak", RpcTarget.AllBufferedViaServer);
                 //RouteManager.instance._queuedCars[i].RPCUpdateRoute();
 
-                StartCoroutine(MoveUpAnim(i, false));
+                photonView.RPC("StartAnims", RpcTarget.AllBufferedViaServer, i, false);
             }
         }
         for (int a = 0; a < RouteManager.instance._arrivingCars.Count; a++)
@@ -626,6 +627,12 @@ public class CarAI : MonoBehaviourPun
         }
     }
 
+    [PunRPC]
+    private void StartAnims(int l_index, bool l_overrideTimer)
+    {
+        print("Start anim func");
+        StartCoroutine(MoveUpAnim(l_index, l_overrideTimer));
+    }
     private IEnumerator MoveUpAnim(int l_index, bool l_overrideTimer)
     {
         if (l_overrideTimer)
@@ -757,11 +764,29 @@ public class CarAI : MonoBehaviourPun
 
     public void CheckIfCanMoveUp(int l_positionIndex)
     {
-        switch (l_positionIndex)
+        if (l_positionIndex >= RouteManager.instance._activeCars.Count)
         {
-            default:
-                break;
+            print("More or equals");
+            switch (l_positionIndex)
+            {
+                case 1:
+                    GetComponent<Animator>().SetTrigger("Move21");
+                    break;
+                case 2:
+                    GetComponent<Animator>().SetTrigger("Move32");
+                    break;
+                case 3:
+                    GetComponent<Animator>().SetTrigger("Move43");
+                    break;
+                case 4:
+                    GetComponent<Animator>().SetTrigger("Move54");
+                    break;
+                default:
+                    Debug.LogError("l_positionIndex is out of amount");
+                    break;
+            }
         }
+
     }
 
 }
