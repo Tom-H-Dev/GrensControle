@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon;
 using Photon.Pun;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerMovement : MonoBehaviourPunCallbacks
 {

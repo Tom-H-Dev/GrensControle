@@ -1,5 +1,4 @@
 using Photon.Pun;
-using Photon.Pun.Demo.SlotRacer.Utils;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,39 +41,15 @@ public class ContrabandManager : MonoBehaviour
     [PunRPC]
     private void SyncContraband(bool l_multipleContraband, int l_index)
     {
-        ////Randomize cantraband object
-        //GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
-        ////on every object
-        //for (int i = 0; i < _contrabandLocations.Count; i++)
-        //{
-        //    //check if no conbtraband already
-        //    if (_contrabandLocations[i].childCount == 0)
-        //    {
-        //        //Instantiate object
-        //        Instantiate(randomContrabandObject, _contrabandLocations[i].position, (randomContrabandObject.transform.rotation * _contrabandLocations[l_index].rotation), _contrabandLocations[i]);
-        //        _occupiedContrabandLocations.Add(_contrabandLocations[l_index].gameObject);
-        //        _currentContrabandInsideVehicle.Add(randomContrabandObject);
-        //    }
-        //}
-
-        //Randomize cantraband object
-        //on every object
-        print(1);
         int amountRandomItem = Random.Range(0, 4);
-
-        print(2);
         for (int i = 0; i < amountRandomItem; i++)
         {
-            print(3);
             usedIndexes.Add(GetRandomInt(0, _contrabandLocations.Count));
         }
-        print(4);
         for (int i = 0; i < usedIndexes.Count; i++)
         {
-            print(usedIndexes[i] + " Randomized num");
             if (_contrabandLocations[usedIndexes[i]].childCount == 0)
             {
-                print(5);
                 GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
                 //Instantiate object
                 Instantiate(randomContrabandObject, _contrabandLocations[usedIndexes[i]].position, (randomContrabandObject.transform.rotation * _contrabandLocations[usedIndexes[i]].rotation), _contrabandLocations[usedIndexes[i]]);
@@ -87,18 +62,7 @@ public class ContrabandManager : MonoBehaviour
     {
         int num = Random.Range(min, max);
 
-        //while (usedIndexes.Contains(num))
-        //{
-        //    print("While");
-        //    num = Random.Range(min, max);
-        //}
-
         return num;
-    }
-
-    private void CheckIfUsed()
-    {
-
     }
 
     [PunRPC]
