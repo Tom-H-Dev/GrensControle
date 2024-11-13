@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.Audio;
-using UnityEditor.Timeline;
 
 public enum CarStates
 {
@@ -77,6 +75,7 @@ public class CarAI : MonoBehaviourPun
     public bool inQueue = false;
     private PhotonView _photonView;
 
+    [Header("Animations")]
     private const string _enterBase = "EnterBase";
     private const string _denyBase = "DenyBase";
     private const string _move21 = "Move21";
@@ -167,7 +166,6 @@ public class CarAI : MonoBehaviourPun
         StartCoroutine(StartSteerCheck());
 
     }
-
     [PunRPC]
     private void GenerateLisencePlate(string l_middleText, string l_licensePlate, string l_landCode, string l_duplicateCode, bool l_isDutchPlate)
     {
@@ -205,7 +203,6 @@ public class CarAI : MonoBehaviourPun
             }
         }
     }
-
     private void FixedUpdate()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -224,16 +221,26 @@ public class CarAI : MonoBehaviourPun
 
             //if (_isMovingBackwards)
             //    _photonView.RPC("MovingBackwards", RpcTarget.AllBufferedViaServer);
+            _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, SensorChecker());
         }
     }
-
+    private bool SensorChecker()
+    {
+        for (int i = 0; i < _sensorHits.Count; ++i)
+        {
+            if (_sensorHits[i] == true)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     [PunRPC]
     private void UpdateSound()
     {
         _carAudioSource.pitch = _baseEnginePitch + (_curSpeed * _enginePitchMultiplier);
         _carAudioSource.pitch = Mathf.Clamp(_carAudioSource.pitch, 0.8f, 3f);
     }
-
     [PunRPC]
     private void ApplySteer()
     {
@@ -325,7 +332,6 @@ public class CarAI : MonoBehaviourPun
             }
         }
     }
-
     [PunRPC]
     private void FreezeCarPosition(bool l_freeze)
     {
@@ -337,25 +343,21 @@ public class CarAI : MonoBehaviourPun
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
         }
     }
-
     [PunRPC]
     private void UpdateIsBraking(bool l_value)
     {
         _isBraking = l_value;
     }
-
     [PunRPC]
     private void UpdateInQueue(bool l_value)
     {
         inQueue = l_value;
     }
-
     [PunRPC]
     public void UpdateHasBeenCheckedValue(bool l_value)
     {
         _hasBeenChecked = l_value;
     }
-
     [PunRPC]
     private void CarBreaking()
     {
@@ -375,15 +377,12 @@ public class CarAI : MonoBehaviourPun
             _wheelRR.brakeTorque = 0;
         }
     }
-
-
     [PunRPC]
     private void UpdateCurrentNode(int l_node)
     {
         print(gameObject.name + " | " + l_node);
         _currentNode = l_node;
     }
-
     [PunRPC]
     private void CheckingSensors()
     {
@@ -399,36 +398,31 @@ public class CarAI : MonoBehaviourPun
                 {
                     Debug.Log("Hit");
                     _sensorHits[i] = true;
-                    _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, true);
                 }
-                else if (!l_hit.transform.TryGetComponent(out PlayerMovement l_player2) || !l_hit.transform.TryGetComponent(out CarAI l_car2))
-                {
-                    print("else 2");
-                    _sensorHits[i] = false;
-                    _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, false);
-                }
+                //else if (!l_hit.transform.TryGetComponent(out PlayerMovement l_player2) || !l_hit.transform.TryGetComponent(out CarAI l_car2))
+                //{
+                //    print("else 2");
+                //    _sensorHits[i] = false;
+                //}
                 else
                 {
                     print("else");
                     _sensorHits[i] = false;
-                    _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, false);
                 }
             }
-            //else
-            //{
-            //    print("else 2");
-            //    _sensorHits[i] = false;
-            //    _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, false);
-            //}
+            else
+            {
+                print("else 3");
+                _sensorHits[i] = false;
+
+            }
         }
     }
-
     public void RPCUpdateRoute()
     {
         Debug.Log("Update Route");
         _photonView.RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
     }
-
     [PunRPC]
     public void UpdateRoute()
     {
@@ -521,13 +515,11 @@ public class CarAI : MonoBehaviourPun
                 break;
         }
     }
-
     [PunRPC]
     public void TriggerDeclinedRoute()
     {
         StartCoroutine(DeclineRoute());
     }
-
     public IEnumerator DeclineRoute()
     {
         _isControlable = false;
@@ -545,15 +537,14 @@ public class CarAI : MonoBehaviourPun
         //_photonView.RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(3f);
         RouteManager.instance.CarQueueUpdate(-1);
-        //FilterQeueu();
+        yield return new WaitForSeconds(1f);
+        FilterQeueu();
     }
-
     [PunRPC]
     private void MovingBackwards()
     {
         transform.position = Vector3.Lerp(transform.position, -transform.forward * 9.5f, 0.4f * Time.deltaTime);
     }
-
     [PunRPC]
     public void TriggerAcceptedRoute()
     {
@@ -578,9 +569,9 @@ public class CarAI : MonoBehaviourPun
         _barrierManager._barrierAnimator.ResetTrigger("Open");
         _barrierManager._barrierAnimator.SetTrigger("Close");
         RouteManager.instance.CarQueueUpdate(-1);
-        //FilterQeueu();
+        yield return new WaitForSeconds(1f);
+        FilterQeueu();
     }
-
     void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out PlayerMovement l_player))  // or the tag of the object pushing
@@ -590,7 +581,6 @@ public class CarAI : MonoBehaviourPun
             GetComponent<Rigidbody>().AddForce(counterForce, ForceMode.Impulse);
         }
     }
-
     public void FilterQeueu()
     {
         for (int i = 0; i < RouteManager.instance._queuedCars.Count; i++)
@@ -599,109 +589,46 @@ public class CarAI : MonoBehaviourPun
             {
                 RouteManager.instance._queuedCars[i]._carState = CarStates.queuing;
                 RouteManager.instance._queuedCars[i]._isBraking = false;
-                //RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
                 RouteManager.instance._queuedCars[i].GetComponent<PhotonView>().RPC("DisEngageBreak", RpcTarget.AllBufferedViaServer);
-                //RouteManager.instance._queuedCars[i].RPCUpdateRoute();
 
-                photonView.RPC("StartAnims", RpcTarget.AllBufferedViaServer, i, false);
-            }
-        }
-        for (int a = 0; a < RouteManager.instance._arrivingCars.Count; a++)
-        {
-            if (!RouteManager.instance._queuedCars[a]._hasBeenChecked)
-            {
-                if (RouteManager.instance._arrivingCars[a]._currentNode >= RouteManager.instance._arrivingCars[a]._nodes.Count - 1)
+                switch (i)
                 {
-                    RouteManager.instance._arrivingCars[a]._arriving = false;
-                    _currentNode = 0;
-                    _photonView.RPC("UpdateCurrentNode", RpcTarget.AllBufferedViaServer, _currentNode);
-                    _nodes.Clear();
-                    _nodes.Add(RouteManager.instance._queuingPositions[RouteManager.instance._totalActiveCars - 1]);
-                }
-                else
-                {
-                    _backupCurrentNode = _currentNode;
-                    RouteManager.instance._arrivingCars[a].RPCUpdateRoute();
+                    case 0:
+                        RouteManager.instance._queuedCars[i].GetComponent<Animator>().SetTrigger(_move21);
+                        break;
+                    case 1:
+                        RouteManager.instance._queuedCars[i].GetComponent<Animator>().SetTrigger(_move32);
+                        break;
+                    case 2:
+                        RouteManager.instance._queuedCars[i].GetComponent<Animator>().SetTrigger(_move43);
+                        break;
+                    case 3:
+                        RouteManager.instance._queuedCars[i].GetComponent<Animator>().SetTrigger(_move54);
+                        break;
+                    default:
+                        Debug.LogError("No vehicle found");
+                        break;
                 }
             }
         }
     }
-
-    [PunRPC]
-    private void StartAnims(int l_index, bool l_overrideTimer)
-    {
-        print("Start anim func");
-        StartCoroutine(MoveUpAnim(l_index, l_overrideTimer));
-    }
-    private IEnumerator MoveUpAnim(int l_index, bool l_overrideTimer)
-    {
-        if (l_overrideTimer)
-        {
-            switch (RouteManager.instance._totalActiveCars)
-            {
-                case 1:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move21);
-                    break;
-                case 2:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move32);
-                    break;
-                case 3:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move43);
-                    break;
-                case 4:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move54);
-                    break;
-                default:
-                    Debug.LogError("No vehicle found");
-                    break;
-            }
-        }
-        else
-        {
-            yield return new WaitForSeconds(8f);
-            switch (l_index)
-            {
-                case 0:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move21);
-                    break;
-                case 1:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move32);
-                    break;
-                case 2:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move43);
-                    break;
-                case 3:
-                    RouteManager.instance._queuedCars[l_index].GetComponent<Animator>().SetTrigger(_move54);
-                    break;
-                default:
-                    Debug.LogError("No vehicle found");
-                    break;
-            }
-        }
-    }
-
     [PunRPC]
     public void DisEngageBreak()
     {
         _isBraking = false;
         _photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
     }
-
     IEnumerator StartSteerCheck()
     {
         yield return new WaitForSeconds(0.25f);
         _waitForFrame = true;
         yield return null;
     }
-
     [PunRPC]
     public void SyncControllableVariable()
     {
         _isControlable = true;
     }
-
-
-
     public void RPCArrivingCars(bool addOrRemove)
     {
         _photonView.RPC("SyncArrivingCars", RpcTarget.AllBufferedViaServer, addOrRemove);
@@ -713,7 +640,6 @@ public class CarAI : MonoBehaviourPun
             RouteManager.instance._arrivingCars.Add(this);
         else RouteManager.instance._arrivingCars.Remove(this);
     }
-
     public void RPCQueuedCars(bool addOrRemove)
     {
         _photonView.RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, addOrRemove);
@@ -725,7 +651,6 @@ public class CarAI : MonoBehaviourPun
             RouteManager.instance._queuedCars.Add(this);
         else RouteManager.instance._queuedCars.Remove(this);
     }
-
     public void RPCActiveCars(bool addOrRemove)
     {
         _photonView.RPC("SyncActiveCars", RpcTarget.AllBufferedViaServer, addOrRemove);
@@ -737,20 +662,16 @@ public class CarAI : MonoBehaviourPun
             RouteManager.instance._activeCars.Add(this);
         else RouteManager.instance._activeCars.Remove(this);
     }
-
     [PunRPC]
     public void QueueSpeedToZero()
     {
         _curSpeed = 0;
     }
-
-
     [PunRPC]
     public void UpdateDriveAnimations(string l_animName)
     {
         GetComponent<Animator>().SetTrigger(l_animName);
     }
-
     [PunRPC]
     public void UpdateAniamtionSpeed(bool l_pause)
     {
@@ -761,9 +682,9 @@ public class CarAI : MonoBehaviourPun
         }
         else GetComponent<Animator>().SetFloat("speedMultiplier", 1f);
     }
-
     public void CheckIfCanMoveUp(int l_positionIndex)
     {
+        photonView.RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, true);
         if (l_positionIndex >= RouteManager.instance._activeCars.Count)
         {
             print("More or equals");
@@ -788,5 +709,4 @@ public class CarAI : MonoBehaviourPun
         }
 
     }
-
 }
