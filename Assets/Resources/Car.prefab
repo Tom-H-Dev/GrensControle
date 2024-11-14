@@ -3710,6 +3710,7 @@ MonoBehaviour:
   _enginePitchMultiplier: 0.05
   _override: 0
   inQueue: 0
+  carIndex: 0
 --- !u!82 &4604827138724412924
 AudioSource:
   m_ObjectHideFlags: 0
