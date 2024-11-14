@@ -102,9 +102,7 @@ public class CarAI : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient || _override)
         {
             photonView.RPC("UpdateVehicleIndex", RpcTarget.AllBufferedViaServer, RouteManager.instance._totalActiveCars);
-            RouteManager.instance.CarQueueUpdate(1);
-            RPCActiveCars(true);
-            RPCArrivingCars(true);
+            RouteManager.instance.CarTotalUpdate(RouteManager.instance._totalCars++);
             float a = Random.value;
             if (a < 0.05f)
             {
@@ -139,11 +137,14 @@ public class CarAI : MonoBehaviourPun
 
             _photonView.RPC("GenerateLisencePlate", RpcTarget.AllBufferedViaServer, _middleText, _licensePlate, _landCode, _duplicateCode, _hasDutchLicensePlate);
         }
-
+        gameObject.name = RouteManager.instance._totalCars + " Car";
         _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, false);
         //_photonView.RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         if (PhotonNetwork.IsMasterClient)
         {
+            RouteManager.instance.CarQueueUpdate(1);
+            RPCActiveCars(true);
+            RPCArrivingCars(true);
             switch (RouteManager.instance._totalActiveCars)
             {
                 case 0:
@@ -544,6 +545,9 @@ public class CarAI : MonoBehaviourPun
             photonView.RPC("UpdateVehicleIndex", RpcTarget.AllBufferedViaServer, carIndex - 1);
         }
         yield return new WaitForSeconds(1f);
+        RouteManager.instance._queuedCars[0]._carState = CarStates.inQueue;
+        RPCQueuedCars(true);
+        RPCActiveCars(true);
         FilterQeueu();
     }
     [PunRPC]
@@ -582,6 +586,9 @@ public class CarAI : MonoBehaviourPun
 
         }
         yield return new WaitForSeconds(1f);
+        RouteManager.instance._queuedCars[0]._carState = CarStates.inQueue;
+        RPCQueuedCars(true);
+        RPCActiveCars(true);
         FilterQeueu();
     }
     void OnCollisionStay(Collision collision)
@@ -613,7 +620,7 @@ public class CarAI : MonoBehaviourPun
         //{
         if (PhotonNetwork.IsMasterClient)
         {
-            switch (RouteManager.instance._queuedCars[i].GetComponent<CarAI>().carIndex - 1)
+            switch (i)
             {
                 case 0:
                     //RouteManager.instance._queuedCars[i].GetComponent<Animator>().SetTrigger(_move21);
@@ -635,6 +642,7 @@ public class CarAI : MonoBehaviourPun
                     Debug.LogError("No vehicle found");
                     break;
             }
+            
         }
         //}
     }
@@ -731,7 +739,7 @@ public class CarAI : MonoBehaviourPun
     {
         photonView.RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, true);
         _carState = CarStates.queuing;
-        if (l_positionIndex >= RouteManager.instance._activeCars.Count)
+        if (l_positionIndex >= RouteManager.instance._totalActiveCars)
         {
             switch (l_positionIndex)
             {
@@ -752,7 +760,8 @@ public class CarAI : MonoBehaviourPun
                     break;
             }
         }
-    
+        photonView.RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, true);
+
     }
     [PunRPC]
     private void UpdateVehicleIndex(int l_index)

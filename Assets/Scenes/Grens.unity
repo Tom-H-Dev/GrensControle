@@ -9736,6 +9736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8820501475364610205, guid: 9a4bfb60c3964ce46a353008566e35b9,
         type: 3}
+      propertyPath: _totalActiveCars
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8820501475364610205, guid: 9a4bfb60c3964ce46a353008566e35b9,
+        type: 3}
       propertyPath: _arriveRoute.Array.size
       value: 6
       objectReference: {fileID: 0}

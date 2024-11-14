@@ -23,6 +23,7 @@ public class RouteManager : MonoBehaviour
 
     [Header("Cars info")]
     public int _totalActiveCars = 0;
+    public int _totalCars;
     public int _maximumVehicles = 5;
     public List<Transform> _queuingPositions = new List<Transform>();
     public List<CarAI> _activeCars = new List<CarAI>();
@@ -41,6 +42,17 @@ public class RouteManager : MonoBehaviour
     private void NetworkCarQueueUpdate(int l_index)
     {
         _totalActiveCars += l_index;
+    }
+
+    public void CarTotalUpdate(int total)
+    {
+        GetComponent<PhotonView>().RPC("NetworkCarTotalUpdate", RpcTarget.AllBufferedViaServer, total);
+    }
+
+    [PunRPC]
+    private void NetworkCarTotalUpdate(int total)
+    {
+        _totalActiveCars = total;
     }
 
     private void OnDrawGizmos()
@@ -114,7 +126,7 @@ public class RouteManager : MonoBehaviour
 
     public void FindAllCarsRPC()
     {
- 
+
         GetComponent<PhotonView>().RPC("FindAllCars", RpcTarget.AllBufferedViaServer);
     }
 
@@ -125,14 +137,14 @@ public class RouteManager : MonoBehaviour
 
         _queuedCars = GetAllObjectsOnlyInScene();
 
+        //for (int i = 0; i < _queuedCars.Count; i++)
+        //{
+        //    if (_queuedCars[i]._carState != CarStates.queuing)
+        //        _queuedCars.Remove(_queuedCars[i]);
+        //}
 
         SortCarsBySpeed(_queuedCars);
-
-        for (int i = 0; i < _queuedCars.Count; i++)
-        {
-            if (_queuedCars[i].carIndex == 0 || _queuedCars[i]._carState != CarStates.queuing)
-                _queuedCars.RemoveAt(i);
-        }
+        print("Clear queue");
     }
 
     public void FindAllActiveCarsRPC()
@@ -146,14 +158,15 @@ public class RouteManager : MonoBehaviour
     {
         _activeCars.Clear();
 
-        _activeCars = GetAllObjectsOnlyInScene();
+        _activeCars = GetAllObjectsOnlyInScenes();
 
         SortCarsBySpeed(_activeCars);
     }
 
     public void SortCarsBySpeed(List<CarAI> carList)
     {
-        carList.Sort((car1, car2) => car1.carIndex.CompareTo(car2.carIndex));
+        carList.Sort((car1, car2) => car1.name.CompareTo(car2.name));
+
     }
 
     public static List<CarAI> GetAllObjectsOnlyInScene()
@@ -162,7 +175,25 @@ public class RouteManager : MonoBehaviour
 
         foreach (CarAI carAI in Resources.FindObjectsOfTypeAll<CarAI>())
         {
-            // Check if the object is in a valid scene (not an asset or prefab)
+            // Check if the object is in a valid scene (not an asset or prefab) and has the required _carState
+            if (carAI.gameObject.scene.IsValid() &&
+                (carAI.hideFlags != HideFlags.NotEditable && carAI.hideFlags != HideFlags.HideAndDontSave) &&
+                carAI._carState == CarStates.queuing)
+            {
+                objectsInScene.Add(carAI);
+            }
+        }
+
+        return objectsInScene;
+    }
+
+    public static List<CarAI> GetAllObjectsOnlyInScenes()
+    {
+        List<CarAI> objectsInScene = new List<CarAI>();
+
+        foreach (CarAI carAI in Resources.FindObjectsOfTypeAll<CarAI>())
+        {
+            // Check if the object is in a valid scene (not an asset or prefab) and has the required _carState
             if (carAI.gameObject.scene.IsValid() &&
                 (carAI.hideFlags != HideFlags.NotEditable && carAI.hideFlags != HideFlags.HideAndDontSave))
             {
