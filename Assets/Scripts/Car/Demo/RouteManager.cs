@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RouteManager : MonoBehaviour
@@ -109,5 +110,66 @@ public class RouteManager : MonoBehaviour
     public Transform QueMoveUp(int l_index)
     {
         return _queuingPositions[l_index];
+    }
+
+    public void FindAllCarsRPC()
+    {
+ 
+        GetComponent<PhotonView>().RPC("FindAllCars", RpcTarget.AllBufferedViaServer);
+    }
+
+    [PunRPC]
+    public void FindAllCars()
+    {
+        _queuedCars.Clear();
+
+        _queuedCars = GetAllObjectsOnlyInScene();
+
+
+        SortCarsBySpeed(_queuedCars);
+
+        for (int i = 0; i < _queuedCars.Count; i++)
+        {
+            if (_queuedCars[i].carIndex == 0 || _queuedCars[i]._carState != CarStates.queuing)
+                _queuedCars.RemoveAt(i);
+        }
+    }
+
+    public void FindAllActiveCarsRPC()
+    {
+
+        GetComponent<PhotonView>().RPC("FindAllActiveCars", RpcTarget.AllBufferedViaServer);
+    }
+
+    [PunRPC]
+    public void FindAllActiveCars()
+    {
+        _activeCars.Clear();
+
+        _activeCars = GetAllObjectsOnlyInScene();
+
+        SortCarsBySpeed(_activeCars);
+    }
+
+    public void SortCarsBySpeed(List<CarAI> carList)
+    {
+        carList.Sort((car1, car2) => car1.carIndex.CompareTo(car2.carIndex));
+    }
+
+    public static List<CarAI> GetAllObjectsOnlyInScene()
+    {
+        List<CarAI> objectsInScene = new List<CarAI>();
+
+        foreach (CarAI carAI in Resources.FindObjectsOfTypeAll<CarAI>())
+        {
+            // Check if the object is in a valid scene (not an asset or prefab)
+            if (carAI.gameObject.scene.IsValid() &&
+                (carAI.hideFlags != HideFlags.NotEditable && carAI.hideFlags != HideFlags.HideAndDontSave))
+            {
+                objectsInScene.Add(carAI);
+            }
+        }
+
+        return objectsInScene;
     }
 }
