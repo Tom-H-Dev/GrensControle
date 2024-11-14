@@ -3917,6 +3917,7 @@ MonoBehaviour:
   _occupiedContrabandLocations: []
   contrabandChance: 100
   _hasContraband: 0
+  usedIndexes: 
 --- !u!114 &-2503472327150345113
 MonoBehaviour:
   m_ObjectHideFlags: 0
