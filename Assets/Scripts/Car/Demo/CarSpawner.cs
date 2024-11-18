@@ -9,6 +9,7 @@ public class CarSpawner : MonoBehaviour
 
     [SerializeField] private GameObject _carPrefab;
     public int _currentVehiclesInt;
+    private bool once = false;
 
     private void Start()
     {
@@ -25,6 +26,20 @@ public class CarSpawner : MonoBehaviour
     //        SpawnVehicles();
     //    }
     //}
+
+    private void Update()
+    {
+        if (!once)
+        {
+            PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
+            if (players.Length >= 3)
+            {
+                once = true;
+                StartCoroutine(SpawnTimer());
+            }
+        }
+
+    }
 
     private void SpawnVehicles()
     {
