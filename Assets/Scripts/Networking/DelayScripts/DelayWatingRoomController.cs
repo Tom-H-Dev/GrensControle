@@ -167,26 +167,30 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
     void WaitingForMorePlayers()
     {
-        //If there is only one player in the room the timer will stop and reset.
-        if(_playerCount <= 1)
+        if (_playerCount <= 1)
         {
             ResetTimer();
         }
-        //When there is enough players in the room the start timer will begin counting down.
-        if(_readyToStart)
+
+        if (_readyToStart)
         {
+            if ((int)_timerToStartGame != (int)(_timerToStartGame - Time.deltaTime))
+            {
+                GetComponent<AudioSource>().Play();
+            }
+
             _fullGameTimer -= Time.deltaTime;
             _timerToStartGame = _fullGameTimer;
         }
-        //Format and display countdown timer.
+
         string tempTimer = string.Format("{0:00}", _timerToStartGame);
         _timerToStartDisplay.text = tempTimer;
-        //If the countdown timer reaches 0 the game will then start.
-        if(_timerToStartGame <= 0f)
+
+        if (_timerToStartGame <= 0f)
         {
             if (_startingGame)
-               
                 return;
+
             StartGame();
         }
     }
