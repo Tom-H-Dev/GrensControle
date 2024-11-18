@@ -127,7 +127,7 @@ public class DialogueManager : MonoBehaviour
     public void TextStart(PlayerMovement playerMovement, PlayerLook playerLook)
     {
         _IsTalking = playerMovement.GetComponent<PlayerUI>();
-        _driverManager = RouteManager.instance._activeCars[0].GetComponent<DriverManager>();
+        _driverManager = BarrierManager.instance._vehicle.GetComponent<DriverManager>();
 
         if (_driverManager._isFalsified)
         {

@@ -11,13 +11,13 @@ public class CarSpawner : MonoBehaviour
     public int _currentVehiclesInt;
     private bool once = false;
 
-    private void Start()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            StartCoroutine(SpawnTimer());
-        }
-    }
+    //private void Start()
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        StartCoroutine(SpawnTimer());
+    //    }
+    //}
     //private void Update()
     //{
     //    if (Input.GetKeyDown(KeyCode.Alpha1) && PhotonNetwork.IsMasterClient)
@@ -29,13 +29,16 @@ public class CarSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!once)
+        if (PhotonNetwork.IsMasterClient)
         {
-            PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
-            if (players.Length >= 3)
+            if (!once)
             {
-                once = true;
-                StartCoroutine(SpawnTimer());
+                PlayerMovement[] players = FindObjectsOfType<PlayerMovement>();
+                if (players.Length >= 3)
+                {
+                    once = true;
+                    StartCoroutine(SpawnTimer());
+                }
             }
         }
 

@@ -17,7 +17,7 @@ MonoBehaviour:
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 34ddd0e5-98b4-4dda-926e-3445dde8b415
-    AppVersion: 0.2.22
+    AppVersion: 0.3.0
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -102,6 +102,9 @@ MonoBehaviour:
   - FindAllCars
   - FindAllActiveCars
   - NetworkCarTotalUpdate
+  - SpawnContraband
+  - SetUserIndexes
+  - SetContrabandObjects
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

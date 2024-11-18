@@ -52,7 +52,7 @@ public class RouteManager : MonoBehaviour
     [PunRPC]
     private void NetworkCarTotalUpdate(int total)
     {
-        _totalActiveCars = total;
+        _totalCars = total;
     }
 
     private void OnDrawGizmos()

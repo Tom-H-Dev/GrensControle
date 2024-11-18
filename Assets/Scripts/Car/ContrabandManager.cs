@@ -16,7 +16,9 @@ public class ContrabandManager : MonoBehaviour
 
     [SerializeField][Range(0, 100)] float contrabandChance;
     public bool _hasContraband;
+    public int _latestContrabandIndex;
     public List<int> usedIndexes = new List<int>();
+    public List<int>  _contrabandItems = new List<int>();
 
     private void Start()
     {
@@ -36,6 +38,23 @@ public class ContrabandManager : MonoBehaviour
             }
             else GetComponent<PhotonView>().RPC("SyncBools", RpcTarget.AllBufferedViaServer, false);
         }
+
+        if (_hasContraband)
+        {
+            for (int i = 0; i < usedIndexes.Count; i++)
+            {
+                if (_contrabandLocations[usedIndexes[i]].childCount == 0)
+                {
+                    //GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
+                    
+                    ////Instantiate object
+                    //Instantiate(randomContrabandObject, _contrabandLocations[usedIndexes[i]].position, (randomContrabandObject.transform.rotation * _contrabandLocations[usedIndexes[i]].rotation), _contrabandLocations[usedIndexes[i]]);
+                    //_occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[i]].gameObject);
+                    //_currentContrabandInsideVehicle.Add(randomContrabandObject);
+                    GetComponent<PhotonView>().RPC("SpawnContraband", RpcTarget.AllBufferedViaServer, i);
+                }
+            }
+        }
     }
 
     [PunRPC]
@@ -44,26 +63,37 @@ public class ContrabandManager : MonoBehaviour
         int amountRandomItem = Random.Range(0, 4);
         for (int i = 0; i < amountRandomItem; i++)
         {
-            usedIndexes.Add(GetRandomInt(0, _contrabandLocations.Count));
-        }
-        for (int i = 0; i < usedIndexes.Count; i++)
-        {
-            if (_contrabandLocations[usedIndexes[i]].childCount == 0)
-            {
-                GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
-                //Instantiate object
-                Instantiate(randomContrabandObject, _contrabandLocations[usedIndexes[i]].position, (randomContrabandObject.transform.rotation * _contrabandLocations[usedIndexes[i]].rotation), _contrabandLocations[usedIndexes[i]]);
-                _occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[i]].gameObject);
-                _currentContrabandInsideVehicle.Add(randomContrabandObject);
-            }
+            //usedIndexes.Add(GetRandomInt(0, _contrabandLocations.Count));
+            GetComponent<PhotonView>().RPC("SetUserIndexes", RpcTarget.AllBufferedViaServer, GetRandomInt(0, _contrabandLocations.Count));
+            GetComponent<PhotonView>().RPC("SetContrabandObjects", RpcTarget.AllBufferedViaServer, GetRandomInt(0, _contrabandObjects.Count));
         }
     }
+    [PunRPC]
+    private void SetUserIndexes(int i)
+    {
+        usedIndexes.Add(i);
+    }
+
+    [PunRPC]
+    private void SetContrabandObjects(int i)
+    {
+        _contrabandItems.Add(i);
+    }
+
     private int GetRandomInt(int min, int max)
     {
         int num = Random.Range(min, max);
 
         return num;
     }
+    [PunRPC]
+    private void SpawnContraband(int l_positionIndex)
+    {
+        Instantiate(_contrabandObjects[_contrabandItems[l_positionIndex]], _contrabandLocations[usedIndexes[l_positionIndex]].position, (_contrabandObjects[_contrabandItems[l_positionIndex]].transform.rotation * _contrabandLocations[usedIndexes[l_positionIndex]].rotation), _contrabandLocations[usedIndexes[l_positionIndex]]);
+        _occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[l_positionIndex]].gameObject);
+        _currentContrabandInsideVehicle.Add(_contrabandObjects[_contrabandItems[l_positionIndex]].gameObject);
+    }
+
 
     [PunRPC]
     private void SyncBools(bool l_hasContraband)

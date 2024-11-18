@@ -102,7 +102,7 @@ public class CarAI : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient || _override)
         {
             photonView.RPC("UpdateVehicleIndex", RpcTarget.AllBufferedViaServer, RouteManager.instance._totalActiveCars);
-            RouteManager.instance.CarTotalUpdate(RouteManager.instance._totalCars++);
+            RouteManager.instance.gameObject.GetComponent<PhotonView>().RPC("NetworkCarTotalUpdate", RpcTarget.AllBufferedViaServer, RouteManager.instance._totalCars + 1);
             float a = Random.value;
             if (a < 0.05f)
             {
