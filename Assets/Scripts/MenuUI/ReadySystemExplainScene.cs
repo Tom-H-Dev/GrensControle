@@ -58,7 +58,10 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
         if (_readyToggle.isOn)
         {
             _photonView.RPC("ChangeReadyPlayer", RpcTarget.AllBufferedViaServer, 1);
-            _readyToggle.interactable = false;
+            if (_playersReady >= PhotonNetwork.CurrentRoom.MaxPlayers)
+            {
+                _readyToggle.interactable = false;
+            }
         }
         else
         {
@@ -76,15 +79,21 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
     [PunRPC]
     private void Countdown()
     {
-        _curTime -= Time.deltaTime;
-
-        //Format and display countdown timer.
         string tempTimer = string.Format("{0:00}", _curTime);
         _countdownTimer.text = tempTimer;
 
         if (_curTime <= 0)
         {
             SceneManager.LoadScene("Grens");
+            _curTime = 0;
+        }
+        else
+        {
+            if ((int)_curTime != (int)(_curTime - Time.deltaTime))
+            {
+                GetComponent<AudioSource>().Play();
+            }
+            _curTime -= Time.deltaTime;
         }
     }
 
