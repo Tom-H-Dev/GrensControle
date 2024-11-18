@@ -16,6 +16,7 @@ public class ContrabandManager : MonoBehaviour
 
     [SerializeField][Range(0, 100)] float contrabandChance;
     public bool _hasContraband;
+    public List<int> usedIndexes = new List<int>();
 
     private void Start()
     {
@@ -40,21 +41,28 @@ public class ContrabandManager : MonoBehaviour
     [PunRPC]
     private void SyncContraband(bool l_multipleContraband, int l_index)
     {
-        GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
-        for (int i = 0; i < _contrabandLocations.Count; i++)
+        int amountRandomItem = Random.Range(0, 4);
+        for (int i = 0; i < amountRandomItem; i++)
         {
-            if (_contrabandLocations[i].childCount == 0)
+            usedIndexes.Add(GetRandomInt(0, _contrabandLocations.Count));
+        }
+        for (int i = 0; i < usedIndexes.Count; i++)
+        {
+            if (_contrabandLocations[usedIndexes[i]].childCount == 0)
             {
-                Instantiate(randomContrabandObject, _contrabandLocations[i].position, (randomContrabandObject.transform.rotation * _contrabandLocations[l_index].rotation), _contrabandLocations[i]);
-                _occupiedContrabandLocations.Add(_contrabandLocations[l_index].gameObject);
+                GameObject randomContrabandObject = _contrabandObjects[Random.Range(0, _contrabandObjects.Count)].gameObject;
+                //Instantiate object
+                Instantiate(randomContrabandObject, _contrabandLocations[usedIndexes[i]].position, (randomContrabandObject.transform.rotation * _contrabandLocations[usedIndexes[i]].rotation), _contrabandLocations[usedIndexes[i]]);
+                _occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[i]].gameObject);
                 _currentContrabandInsideVehicle.Add(randomContrabandObject);
             }
         }
     }
-
-    private void CheckIfUsed()
+    private int GetRandomInt(int min, int max)
     {
+        int num = Random.Range(min, max);
 
+        return num;
     }
 
     [PunRPC]

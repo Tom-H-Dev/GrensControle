@@ -53,10 +53,15 @@ public class BarrierManager : MonoBehaviour
             CarAI l_carAI = other.gameObject.GetComponentInParent<CarAI>();
             _vehicle = l_carAI;
             _dialogueManager._carBehavior = l_carAI.GetComponent <carBehaviorDialogue>();
+            _vehicle._carState = CarStates.inQueue;
+            _vehicle.RPCQueuedCars(false);
             if (PhotonNetwork.IsMasterClient)
                 _vehicle.photonView.RPC("SyncControllableVariable", RpcTarget.AllBufferedViaServer);
             _vehicle._isControlable = true;
+            _vehicle.photonView.RPC("SyncQueuedCars", RpcTarget.AllBufferedViaServer, true);
+
         }
+
     }
     private void OnTriggerExit(Collider other)
     {
