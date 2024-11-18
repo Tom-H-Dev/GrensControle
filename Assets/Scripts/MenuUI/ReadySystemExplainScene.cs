@@ -58,6 +58,7 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
         if (_readyToggle.isOn)
         {
             _photonView.RPC("ChangeReadyPlayer", RpcTarget.AllBufferedViaServer, 1);
+            _readyToggle.interactable = false;
         }
         else
         {
