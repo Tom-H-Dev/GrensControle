@@ -12,7 +12,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
     [Header("User Interface")]
     [SerializeField] private Button _choiceButton;
     [SerializeField] private List<Button> _choiceButtons;
-    [SerializeField] private TMP_Text _playerName;
+    public TMP_Text _playerName;
 
     [SerializeField] private DelayWatingRoomController _roomController;
 
@@ -90,7 +90,7 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
         {
             ChoiceButton choiceButtonScript = button.GetComponentInParent<ChoiceButton>();
             if (choiceButtonScript != this && choiceButtonScript._isChosen)
-            { 
+            {
                 button.interactable = false;
             }
         }
@@ -165,4 +165,22 @@ public class ChoiceButton : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    //public override void OnPlayerEnteredRoom(Player newPlayer)
+    //{
+    //    UpdateButtons(newPlayer);
+    //}
+
+    ////public override void OnJoinedRoom(Player player)
+    ////{
+    ////    UpdateButtons(player);
+    ////}
+
+    //private void UpdateButtons(Player player)
+    //{
+    //    for (int i = 0; i < _choiceButtons.Count; i++)
+    //    {
+    //        _choiceButtons[i].gameObject.GetComponent<PhotonView>().RPC("SetRollChoice", RpcTarget.All, _choiceButtons[i].gameObject.GetComponent<ChoiceButton>()._playerName.text, !_choiceButtons[i].interactable, 0);
+    //    }
+    //}
 }
