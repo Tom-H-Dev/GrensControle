@@ -213,7 +213,7 @@ public class DialogueManager : MonoBehaviour
                         isChecked = true;
                         break;
                     }
-                    else if (word == changeWord[1])//#funcite#
+                    else if (word == changeWord[1])//#functie#
                     {
                         isChecked = true; //UNUSED
                         break;
@@ -379,7 +379,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (!l_isNeutralQuestion)
             {
-                if (_driverManager._driverIsGeust && GetLastDigit(l_buttonIndex) >= 4)
+                if (_driverManager._driverIsGuest && GetLastDigit(l_buttonIndex) >= 4)
                 {
                     print("is Guest");
                     string l_guestAnswerIndex = "";
@@ -420,13 +420,13 @@ public class DialogueManager : MonoBehaviour
             {
                 if (l_buttonIndex == 20) //If the question is wether the driver is works here or is a guest
                 {
-                    if (_driverManager._driverIsGeust && ItemDatabase[i].question == 202)
+                    if (_driverManager._driverIsGuest && ItemDatabase[i].question == 202)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
                         lastIndex = _index;
                         StartDialogue(ItemDatabase[i].Text[0].lines, lastIndex);
                     }
-                    else if (!_driverManager._driverIsGeust && ItemDatabase[i].question == 201)
+                    else if (!_driverManager._driverIsGuest && ItemDatabase[i].question == 201)
                     {
                         _index = ItemDatabase.IndexOf(ItemDatabase[i]);
                         lastIndex = _index;
@@ -626,7 +626,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (GetFirstDigit(_answerIndex) >= 3)
             {
-                if (_driverManager._driverIsGeust)
+                if (_driverManager._driverIsGuest)
                 {
                     ActivateButtons(ItemDatabase[20].answerbutton);
                 }

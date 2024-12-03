@@ -22,7 +22,7 @@ public class DriverManager : MonoBehaviour
     public string _driverDefensieDateOfExpiry;
     public string _driverDefensieDocumentNumber;
     public string _driverDefensiePersNo;
-    public bool _driverIsGeust;
+    public bool _driverIsGuest;
 
     [Header("Defensie Information")]
     public string _driverRank;
@@ -64,8 +64,8 @@ public class DriverManager : MonoBehaviour
     #region radomize info lists
     [Header("Random Information")]
     private static List<int> _driverAges = new List<int>() { 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 50 };
-    private static List<string> _driverFirstNameMale = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins", "Rico", "Bon", "Luuk", "Tim" };
-    private static List<string> _driverFirstNameFemale = new List<string>() { "Anna", "Marie", "Petra", "Ingrid", "Yvonne", "Bianca", "Saskia", "Linda", "Miranda", "Deborah", "Sharon", "Vanessa", "Jessica", "Samantha", "Irene", "Esther", "Nicole", "Kimberley", "Amanda", "Nathalie", "Luca", "Kim" };
+    private static List<string> _driverFirstNameMale = new List<string>() { "Pieter", "Jan", "Dirk", "Willem", "Hans", "Rutger", "Joris", "Bas", "Marco", "Frank", "Robert", "Edwin", "Patrick", "Ronald", "Daniel", "Erik", "Kevin", "Raymond", "Stefan", "Mark", "Tom", "Ahmad", "Mohammed", "Abdul", "Hichem", "Yeshir", "Finn", "Ruben", "Zhahir", "Vins", "Rico", "Bon", "Luuk", "Tim", "Roel" };
+    private static List<string> _driverFirstNameFemale = new List<string>() { "Anna", "Marie", "Petra", "Ingrid", "Yvonne", "Bianca", "Saskia", "Linda", "Miranda", "Deborah", "Sharon", "Vanessa", "Jessica", "Samantha", "Irene", "Esther", "Nicole", "Kimberley", "Amanda", "Nathalie", "Luca", "Kim", "Nomi", "Maud" };
     private static List<string> _driverLastNames = new List<string>() { "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven", "Hollemans","Veken", "Tkachov" };
     private static List<string> _driverSexes = new List<string>() { "Male", "Female" };
     private static List<string> _driverNationalities = new List<string>() { "Nederland" };
@@ -75,7 +75,7 @@ public class DriverManager : MonoBehaviour
     private static List<string> _guestPersonLastNames = new List<string>{ "De Jong", "Jansen", "Van Dijk", "Smit", "De Vries", "Peters", "Molenaar", "Kroon", "De Bruijn", "Blok", "Visser", "Boer", "Meijer", "Bakker", "De Wit", "Dekker", "Wolf", "Kwakman", "Van den Berg", "De Haas", "Holewijn", "Kortekaas", "Lambooij", "Kossen", "Krijgsman", "Alkaf", "Pol", "Verhoeven" };
     private static List<string> _driverRanks = new List<string> { "Sergeant", "Sergeant-Majoor", "Adjudant", "Adjudant-Onderofficier", "Tweede Luitenant", "Eerste Luitenant", "Kapitein", "Majoor", "Luitenant-Kolonel", "Kolonel", "Brigadegeneraal", "Generaal-Majoor", "Luitenant-Generaal", "Generaal" };
     private static List<string> _timeOnBaseTimes = new List<string>{"vijftien minuten", "dertig minuten", "vijfenveertig minuten", "één uur", "één uur en vijftien minuten", "één uur en dertig minuten", "één uur en vijfenveertig minuten", "twee uur", "twee uur en vijftien minuten", "twee uur en dertig minuten", "twee uur en vijfenveertig minuten", "drie uur", "drie uur en vijftien minuten", "drie uur en dertig minuten", "drie uur en vijfenveertig minuten","vier uur", "vier uur en vijftien minuten", "vier uur en dertig minuten", "vier uur en vijfenveertig minuten","vijf uur", "vijf uur en vijftien minuten", "vijf uur en dertig minuten", "vijf uur en vijfenveertig minuten","zes uur", "zes uur en vijftien minuten", "zes uur en dertig minuten", "zes uur en vijfenveertig minuten","zeven uur", "zeven uur en vijftien minuten", "zeven uur en dertig minuten", "zeven uur en vijfenveertig minuten","acht uur", "acht uur en vijftien minuten", "acht uur en dertig minuten", "acht uur en vijfenveertig minuten","negen uur", "negen uur en vijftien minuten", "negen uur en dertig minuten", "negen uur en vijfenveertig minuten","tien uur"};
-    private static List<string> _afdelingenWork = new List<string> { "Verkenningspeloton", "Grondgebiedsteunpeloton", "Veldartillerie Section", "Tankplatoon", "Geniepeloton", "Luchtmobiele Squad", "Opsporingsgroep", "Munitie- en Materieelgroep", "Communicatiegroep", "Medische Sectie", "Technische Ondersteuningsteam", };
+    private static List<string> _afdelingenWork = new List<string> {"Regiment Huzaren van Boreel", "Simulatiecentrum Landoptreden", "43 Gemechaniseerde", "11 Luchtmobiele brigade", "13 Lichte Brigade", "JISTARC", "OTCO", "Land Training Center", "LO & Sport", "400 Geneeskundig Bataljon", "Verbindingstroepen", "Manouvreschool", "Ondersteuningscommando", "Land Warfare center", };
 
     private static int _thisYear = System.DateTime.Now.Year;
     #endregion
@@ -153,7 +153,7 @@ public class DriverManager : MonoBehaviour
 
             //Defensiepas
             //issue date
-            if (!_driverIsGeust)
+            if (!_driverIsGuest)
             {
                 l_month = _months[Random.Range(0, _months.Count)];
                 l_yearsAgo = Random.Range(1, 2);
@@ -191,7 +191,7 @@ public class DriverManager : MonoBehaviour
 
             //Defensiepas
             //issue date
-            if (!_driverIsGeust)
+            if (!_driverIsGuest)
             {
                 l_month = _months[Random.Range(0, _months.Count)];
                 l_yearsAgo = Random.Range(1, 2);
@@ -294,7 +294,7 @@ public class DriverManager : MonoBehaviour
                                                                                                 _driverLastName, _driverSex, _driverBirthDate,
                                                                                                 _driverNationality, _driverDefensieDateOfIssue,
                                                                                                 _driverDefensieDateOfExpiry, _driverDefensieDocumentNumber, _driverDefensiePersNo,
-                                                                                                _driverIsGeust, _driverDateOfIssue, _driverDateOfExpiry,
+                                                                                                _driverIsGuest, _driverDateOfIssue, _driverDateOfExpiry,
                                                                                                 _driverBSN, _isFalsified, _falsifiedPercentage,
                                                                                                 _givenFitstName, _givenLastName, _givenBirthDate,
                                                                                                 _givenNationality, _givenPersNo, _givenDocumentNo,
@@ -329,7 +329,7 @@ public class DriverManager : MonoBehaviour
         _driverDefensieDateOfExpiry =       l_driverDefensieDateOfExpiry;
         _driverDefensieDocumentNumber =     l_driverDefensieDocumentNumber;
         _driverDefensiePersNo =             l_driverDefensiePersNo;
-        _driverIsGeust =                    l_driverIsGeust;
+        _driverIsGuest =                    l_driverIsGeust;
         _driverDateOfIssue =                l_driverDateOfIssue;
         _driverDateOfExpiry =               l_driverDateOfExpiry;
         _driverBSN =                        l_driverBSN;

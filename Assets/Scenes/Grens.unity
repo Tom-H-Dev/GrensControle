@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 2.6189797, g: 2.4350321, b: 2.5390608, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3593,6 +3593,11 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3418109833979678124, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Wat is uw naam?
+      objectReference: {fileID: 0}
     - target: {fileID: 3496661168639400477, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
       propertyPath: m_enableAutoSizing
@@ -3607,6 +3612,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367317524592544320, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_text
+      value: Zou u zo vriendelijk willen zijn om te vertellen voor wie u werkt?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367317524592544320, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28.2
       objectReference: {fileID: 0}
     - target: {fileID: 4367317524592544320, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
@@ -3657,6 +3672,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979275151567305212, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_Name
+      value: Zou u zo vriendelijk willen zijn om te vertellen voor wie u werkt?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979275151567305212, guid: 63b1d5c7aab11364d83b1901c595a197,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6063520701433619822, guid: 63b1d5c7aab11364d83b1901c595a197,
         type: 3}
