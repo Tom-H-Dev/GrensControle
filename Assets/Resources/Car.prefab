@@ -3916,7 +3916,7 @@ MonoBehaviour:
   - {fileID: 1193564611920233290}
   _currentContrabandInsideVehicle: []
   _occupiedContrabandLocations: []
-  contrabandChance: 100
+  contrabandChance: 10
   _hasContraband: 0
   _latestContrabandIndex: 0
   usedIndexes: 
