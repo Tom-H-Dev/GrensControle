@@ -120,7 +120,7 @@ public class DriverManager : MonoBehaviour
         }
         else Debug.LogError("Different sex detected that is not in the list!");
 
-        //Drivers Lisence
+        //Drivers Lice
         _driverBSN = Random.Range(111111111, 999999999);
 
         _guestpersonFirstName = _guestPersonFirstNames[Random.Range(0, _guestPersonFirstNames.Count)];
@@ -134,7 +134,7 @@ public class DriverManager : MonoBehaviour
         l_month = _months[Random.Range(0, _months.Count)];
         int l_day = 1;
         int l_yearsAgo = Random.Range(1, 6);
-        if (l_r < _falsifiedPercentage) //fasle info  
+        if (l_r < _falsifiedPercentage) //false info  
         {
             _isFalsified = true;
             //issue date

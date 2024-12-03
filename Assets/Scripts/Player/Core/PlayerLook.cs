@@ -134,8 +134,16 @@ public class PlayerLook : MonoBehaviour
                 else if (team == 3)
                 {
                     if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
-                        _interactionText.text = "Druk op 'E' om het open te maken.";
-                    else _interactionText.text = "";
+                        if (l_interactable.opened == true)
+                        {
+                            _interactionText.text = "Druk op 'E' om dicht te maken.";
+                        }
+                        else
+                        {
+                            _interactionText.text = "Druk op 'E' om open te maken.";
+                        }
+
+                        else _interactionText.text = "";
                 }
                 else Debug.LogError("No Team was found");
             }

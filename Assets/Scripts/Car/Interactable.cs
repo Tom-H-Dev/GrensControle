@@ -18,7 +18,7 @@ public enum InteractableItem
 public class Interactable : MonoBehaviour
 {
     private Animator _animator;
-    bool opened = false;
+    public bool opened = false;
     public bool _canOpen = true;
 
     public InteractableItem _item;
