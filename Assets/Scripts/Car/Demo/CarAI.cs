@@ -531,6 +531,16 @@ public class CarAI : MonoBehaviourPun
         RPCActiveCars(false);
         if (PhotonNetwork.IsMasterClient)
             _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _denyBase);
+        Interactable[] interactableItems = GetComponentsInChildren<Interactable>();
+        for (int i = 0; i < interactableItems.Length; i++)
+        {
+            if (!interactableItems[i].opened)
+            {
+                interactableItems[i]._animator.SetTrigger(interactableItems[i]._item.ToString() + "Close");
+            }
+            
+        }
+
         yield return new WaitForSeconds(5.5f);
         _isMovingBackwards = false;
         _isBraking = false;
@@ -570,6 +580,15 @@ public class CarAI : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
             RPCQueuedCars(false);
         RPCActiveCars(false);
+        Interactable[] interactableItems = GetComponentsInChildren<Interactable>();
+        for (int i = 0; i < interactableItems.Length; i++)
+        {
+            if (!interactableItems[i].opened)
+            {
+                interactableItems[i]._animator.SetTrigger(interactableItems[i]._item.ToString() + "Close");
+            }
+
+        }
         yield return new WaitForSeconds(2f);
         _isBraking = false;
         //_photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
