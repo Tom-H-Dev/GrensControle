@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,10 +29,21 @@ public class Interactable : MonoBehaviour
         {
             _animator = GetComponentInParent<Animator>();
             opened = !opened;
-            _animator.SetBool(_item.ToString(), opened);
+            OpenSync(opened);
             if (opened)
                 _animator.SetTrigger(_item.ToString() + "Open");
             else _animator.SetTrigger(_item.ToString() + "Close");
         }
+    }
+
+    public void OpenSync(bool value)
+    {
+        GetComponentInParent<PhotonView>().RPC("RPCOpenSync", RpcTarget.AllBufferedViaServer, value);
+    }
+
+    [PunRPC]
+    private void RPCOpenSync(bool value)
+    {
+        opened = value;
     }
 }
