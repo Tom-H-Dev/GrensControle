@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using static Photon.Pun.UtilityScripts.PunTeams;
 
 public class Hefboom : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class Hefboom : MonoBehaviour
                     _isCorrect = false;
                 else _isCorrect = true;
                 _correctCarManager.ChangeList(_isCorrect, true, _idCorrect, _illegalItems, _driverSus);
+                GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }
             else
             {
@@ -64,12 +66,27 @@ public class Hefboom : MonoBehaviour
                     _isCorrect = false;
                 else _isCorrect = true;
                 _correctCarManager.ChangeList(_isCorrect, false, _idCorrect, _illegalItems, _driverSus);
+                GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }
             else
             {
                 print("Vehicle already declined or no vehicle");
             }
             GetComponent<PhotonView>().RPC("SetPapers", RpcTarget.AllBufferedViaServer, false);
+        }
+    }
+
+    [PunRPC]
+    public void EndDialogue()
+    {
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
+        {
+            int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
+
+            if (team == 2 || team == 1)
+            {
+                _entranceBarrierManager._vehicle.GetComponent<carBehaviorDialogue>().dialogue.EndDialogueButton();
+            }
         }
     }
 }
