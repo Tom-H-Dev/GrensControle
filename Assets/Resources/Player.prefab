@@ -811,6 +811,7 @@ MonoBehaviour:
   _runSpeed: 8
   _rigidbody: {fileID: 7904712108543336175}
   _zakLamp: {fileID: 3711922048399053351}
+  _camera: {fileID: 8214158704457150776}
   _canMove: 1
 --- !u!114 &8591313288800628124
 MonoBehaviour:

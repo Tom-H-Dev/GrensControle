@@ -174,23 +174,25 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
 
         if (_readyToStart)
         {
-            if ((int)_timerToStartGame != (int)(_timerToStartGame - Time.deltaTime))
-            {
-                GetComponent<AudioSource>().Play();
-            }
-
+            int previousSecond = Mathf.FloorToInt(_timerToStartGame);
             _fullGameTimer -= Time.deltaTime;
             _timerToStartGame = _fullGameTimer;
+
+            int currentSecond = Mathf.FloorToInt(_timerToStartGame);
+            if (currentSecond < previousSecond)
+            {
+                GetComponent<AudioSource>()?.Play();
+            }
         }
 
-        string tempTimer = string.Format("{0:00}", _timerToStartGame);
-        _timerToStartDisplay.text = tempTimer;
-
-        if (_timerToStartGame <= 0f)
+        string tempTimer = string.Format("{0:00}", Mathf.Max(0, _timerToStartGame));
+        if (_timerToStartDisplay != null)
         {
-            if (_startingGame)
-                return;
+            _timerToStartDisplay.text = tempTimer;
+        }
 
+        if (_timerToStartGame <= 0f && !_startingGame)
+        {
             StartGame();
         }
     }

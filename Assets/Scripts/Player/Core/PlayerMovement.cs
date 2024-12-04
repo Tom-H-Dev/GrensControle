@@ -20,6 +20,13 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Light _zakLamp;
 
+    [SerializeField] private Camera _camera;
+    float targetZoom = 60f;  // Default
+    float zoomSpeed = 10f;   // Speed
+    float lerpSpeed = 5f;    // Lerp Speed
+    float minZoom = 15f;      // Minimum
+    float maxZoom = 60f;     // Maximum
+
 
     private Animator _animator;
 
@@ -40,10 +47,32 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("f")) // Zaklamp
         {
             _zakLamp.enabled = !_zakLamp.enabled;
         }
+
+        Camera mainCamera = Camera.main;
+        
+
+        if (Input.GetMouseButton(1)) // Hold right mouse button to zoom, scroll to go forward and backward
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                targetZoom = Mathf.Clamp(mainCamera.fieldOfView - zoomSpeed, minZoom, maxZoom);
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                targetZoom = Mathf.Clamp(mainCamera.fieldOfView + zoomSpeed, minZoom, maxZoom);
+            }
+        }
+        else if (Input.GetMouseButtonUp(1)) // Reset zoom when the button is released
+        {
+            targetZoom = 60f;
+        }
+
+        // Smoothly transition to the target zoom level
+        mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetZoom, Time.deltaTime * lerpSpeed);
     }
 
     private void FixedUpdate()
