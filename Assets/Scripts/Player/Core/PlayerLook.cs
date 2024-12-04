@@ -80,7 +80,7 @@ public class PlayerLook : MonoBehaviour
                             l_pc.OpenPc(GetComponent<PlayerMovement>(), this, _canvasAnimator);
                             _interactionText.text = "";
                         }
-                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
+                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable && !l_hit.transform.GetComponent<CarAI>()._hasBeenChecked)
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                             _interactionText.text = "";
@@ -88,7 +88,7 @@ public class PlayerLook : MonoBehaviour
                     }
                     else if (team == 2)
                     {
-                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
+                        if (l_hit.transform.gameObject.TryGetComponent(out carBehaviorDialogue l_Text) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable && !l_hit.transform.GetComponent<CarAI>()._hasBeenChecked)
                         {
                             l_Text.DialogeStart(GetComponent<PlayerMovement>(), this);
                             _interactionText.text = "";
@@ -96,7 +96,7 @@ public class PlayerLook : MonoBehaviour
                     }
                     else if (team == 3)
                     {
-                        if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable)
+                        if (l_hit.collider.gameObject.TryGetComponent(out Interactable l_interactable) && l_hit.transform.gameObject.GetComponent<CarAI>()._isControlable && !l_hit.transform.GetComponent<CarAI>()._hasBeenChecked)
                         {
                             l_interactable.GetComponent<PhotonView>().RPC("InteractWithObject", RpcTarget.AllBufferedViaServer);
                             //l_interactable.InteractWithObject();
