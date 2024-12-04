@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public enum CarStates
 {
@@ -538,7 +539,7 @@ public class CarAI : MonoBehaviourPun
             {
                 interactableItems[i]._animator.SetTrigger(interactableItems[i]._item.ToString() + "Close");
             }
-            
+
         }
 
         yield return new WaitForSeconds(5.5f);
@@ -581,12 +582,14 @@ public class CarAI : MonoBehaviourPun
             RPCQueuedCars(false);
         RPCActiveCars(false);
         Interactable[] interactableItems = GetComponentsInChildren<Interactable>();
+        Debug.Log("Found " + interactableItems.Length + " interactable items.");
+
         for (int i = 0; i < interactableItems.Length; i++)
         {
-            if (!interactableItems[i].opened)
-            {
-                interactableItems[i]._animator.SetTrigger(interactableItems[i]._item.ToString() + "Close");
-            }
+            Debug.Log("Closing item: " + interactableItems[i]._item);
+            interactableItems[i].opened = false;
+            interactableItems[i].OpenSync(interactableItems[i].opened);
+            interactableItems[i].GetComponent<PhotonView>().RPC("InteractWithObject", RpcTarget.AllBufferedViaServer);
 
         }
         yield return new WaitForSeconds(2f);
@@ -661,7 +664,7 @@ public class CarAI : MonoBehaviourPun
                     Debug.LogError("No vehicle found");
                     break;
             }
-            
+
         }
         //}
     }
