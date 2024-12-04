@@ -172,7 +172,7 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
             ResetTimer();
         }
 
-        if (_readyToStart)
+        if (_readyToStart && PhotonNetwork.IsMasterClient)
         {
             if ((int)_timerToStartGame != (int)(_timerToStartGame - Time.deltaTime))
             {
