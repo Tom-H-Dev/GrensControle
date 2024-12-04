@@ -3831,7 +3831,7 @@ MonoBehaviour:
   _driverDefensieDateOfExpiry: 
   _driverDefensieDocumentNumber: 
   _driverDefensiePersNo: 
-  _driverIsGeust: 0
+  _driverIsGuest: 0
   _driverRank: 
   _guestpersonFirstName: 
   _guestpersonLastName: 
@@ -4141,6 +4141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  opened: 0
   _canOpen: 1
   _item: 1
 --- !u!65 &6504249715342847085
@@ -4222,6 +4224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  opened: 0
   _canOpen: 1
   _item: 6
 --- !u!65 &660531167933740327
@@ -4285,6 +4289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  opened: 0
   _canOpen: 1
   _item: 0
 --- !u!65 &9213185404351835479
@@ -4354,6 +4360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  opened: 0
   _canOpen: 1
   _item: 2
 --- !u!65 &7595339695452908465
