@@ -1,7 +1,9 @@
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,10 +23,12 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
 
     [Header("Photon")]
     private PhotonView _photonView;
+    private AudioSource _audioSource;
 
     private void Start()
     {
         _photonView = GetComponent<PhotonView>();
+        _audioSource = GetComponent<AudioSource>();
         _curTime = _loadingTime;
 
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
@@ -34,22 +38,22 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
         }
     }
 
-
     void Update()
     {
-        if (_playersReady >= PhotonNetwork.CurrentRoom.MaxPlayers)
+        if (PhotonNetwork.IsMasterClient && _playersReady >= PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            _playerReadyText.gameObject.SetActive(false);
-            _countdownTimer.gameObject.SetActive(true);
-            _photonView.RPC("Countdown", RpcTarget.AllBufferedViaServer);
-        }
+            _curTime -= Time.deltaTime;
+            _photonView.RPC("Countdown", RpcTarget.All, _curTime);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
+            if (_curTime <= 0)
             {
                 SceneManager.LoadScene("Grens");
             }
+        }
+
+        if (PhotonNetwork.IsMasterClient && Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("Grens");
         }
     }
 
@@ -73,33 +77,35 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
     private void ChangeReadyPlayer(int l_playerAddSub)
     {
         _playersReady += l_playerAddSub;
-        _playerReadyText.text = _playersReady + "/3 klaar met lezen.";
+        _playerReadyText.text = $"{_playersReady}/{PhotonNetwork.CurrentRoom.MaxPlayers} klaar met lezen.";
     }
 
     [PunRPC]
-    private void Countdown()
+    private void Countdown(float curTime)
     {
+        _curTime = curTime;
         string tempTimer = string.Format("{0:00}", _curTime);
         _countdownTimer.text = tempTimer;
+        _countdownTimer.gameObject.SetActive(true);
+        _playerReadyText.gameObject.SetActive(false);
 
-        if (_curTime <= 0)
+        if (_curTime > 0)
         {
-            SceneManager.LoadScene("Grens");
-            _curTime = 0;
-        }
-        else
-        {
-            if ((int)_curTime != (int)(_curTime - Time.deltaTime))
+            if (!_audioSource.isPlaying && (int)_curTime != (int)(_curTime - Time.deltaTime))
             {
-                GetComponent<AudioSource>().Play();
+                _audioSource.Play();
             }
-            _curTime -= Time.deltaTime;
         }
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         _photonView.RPC("ChangeReadyPlayer", RpcTarget.AllBufferedViaServer, -1);
-        SceneManager.LoadScene("Main");
+
+        if (_playersReady < PhotonNetwork.CurrentRoom.MaxPlayers)
+        {
+            _playerReadyText.gameObject.SetActive(true);
+            _countdownTimer.gameObject.SetActive(false);
+        }
     }
 }
