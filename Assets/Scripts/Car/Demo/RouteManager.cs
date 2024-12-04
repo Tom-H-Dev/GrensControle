@@ -144,7 +144,6 @@ public class RouteManager : MonoBehaviour
         //}
 
         SortCarsBySpeed(_queuedCars);
-        print("Clear queue");
     }
 
     public void FindAllActiveCarsRPC()
