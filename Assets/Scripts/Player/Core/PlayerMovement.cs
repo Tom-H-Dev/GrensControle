@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviourPunCallbacks
         _controller = GetComponent<CharacterController>();
         _controller.detectCollisions = false;
         _animator = GetComponentInChildren<Animator>();
+        Physics.IgnoreLayerCollision(8, 8);
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
         {
             // Get the value of the "Team" property
