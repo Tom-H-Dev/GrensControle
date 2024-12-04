@@ -679,11 +679,11 @@ public class DialogueManager : MonoBehaviour
         foreach (var button in Player2Buttons)
         {
             button.SetActive(false);
+        }
             foreach (var button1 in Player1Buttons)
             {
                 button1.SetActive(false);
             }
-        }
     }
 
 
