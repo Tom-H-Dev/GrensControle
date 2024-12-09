@@ -44,10 +44,19 @@ public class CollisionChecker : MonoBehaviour
             GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
         }
 
-        if (other.transform.TryGetComponent(out CarBody l_car))
+        if (other.gameObject.layer == 3)
         {
             print("Exit");
-            l_car.UpdateAnimationSpeed(1f);
+            if (other.transform.TryGetComponent(out CarBody l_carBody))
+            {
+                print("Exit");
+                l_carBody.UpdateAnimationSpeed(1f);
+            }
+            else if (other.transform.GetComponent<CarAI>() || other.transform.GetComponentInParent<CarAI>())
+            {
+                print("other Exit");
+                GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
+            }
         }
     }
 

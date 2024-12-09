@@ -30,6 +30,7 @@ public class BarrierManager : MonoBehaviour
     private void Start()
     {
         GetComponent<BoxCollider>().size = _checkCubeSize;
+        Physics.IgnoreLayerCollision(11, 12);
     }
 
     private void OnDrawGizmos()
