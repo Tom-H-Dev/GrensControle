@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60850309ad368f648998573a617964ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isMillitairyVehicle: 0
+  _isMilitaryVehicle: 0
   _hasDutchLicensePlate: 0
   _duplicateCode: 
   _landCodes:
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   _override: 0
   _carMixer: {fileID: 24100000, guid: 12e2f2d150c1560478d9ec89438a6b4f, type: 2}
   _hasBeenChecked: 0
-  _isControlable: 0
+  _isControllable: 0
   _agent: {fileID: 0}
   _wheels:
   - {fileID: 2496747850101449735}
@@ -1190,10 +1190,15 @@ MonoBehaviour:
   _contrabandLocations:
   - {fileID: 8576130765397889227}
   - {fileID: 2919280606155403299}
+  _contrabandContainerObjects: []
+  _contrabandContainerLocations: []
   _currentContrabandInsideVehicle: []
+  _occupiedContrabandLocations: []
   contrabandChance: 50
-  multipleContrabandChance: 50
   _hasContraband: 0
+  _latestContrabandIndex: 0
+  usedIndexes: 
+  _contrabandItems: 
 --- !u!54 &2327961585805885832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1329,7 +1334,14 @@ MonoBehaviour:
   _driverDefensieDateOfExpiry: 
   _driverDefensieDocumentNumber: 
   _driverDefensiePersNo: 
-  _driverIsGeust: 0
+  _driverIsGuest: 0
+  _driverRank: 
+  _guestpersonFirstName: 
+  _guestpersonLastName: 
+  _guestPersonRank: 
+  _workBuilding: 
+  _timeOnBase: 
+  _afdeling: 
   _driverDateOfIssue: 
   _driverDateOfExpiry: 
   _driverBSN: 0
@@ -1346,6 +1358,7 @@ MonoBehaviour:
   _givenIssueDate: 
   _givenExpiryDate: 
   _givenBSN: 0
+  _givenDriverRank: 
   _driverMale: {fileID: 6713079560347753447}
   _driverFemale: {fileID: 1415505072146280607}
 --- !u!82 &8721698657644174194
@@ -1457,9 +1470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb8cc38266a54e44bd7541d5b15a61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoge: {fileID: 0}
+  dialogue: {fileID: 0}
   madnessTimer: 100
   Range: 8
+  happiness: 0
   driverTag: Driver
   cars: []
   timer: 0
@@ -2929,6 +2943,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  opened: 0
+  _canOpen: 1
+  _item: 0
 --- !u!95 &3252682756516331536
 Animator:
   serializedVersion: 5
@@ -3094,6 +3112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  opened: 0
+  _canOpen: 1
+  _item: 0
 --- !u!95 &5150104290250149037
 Animator:
   serializedVersion: 5
@@ -3340,7 +3362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLeftWheel: 0
-  _sped: 0
+  _speed: 0
 --- !u!1 &1402297729097799978
 GameObject:
   m_ObjectHideFlags: 0
@@ -5309,7 +5331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLeftWheel: 1
-  _sped: 0
+  _speed: 0
 --- !u!1 &2999611628919096934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6023,7 +6045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLeftWheel: 1
-  _sped: 0
+  _speed: 0
 --- !u!1 &3626553065811210630
 GameObject:
   m_ObjectHideFlags: 0
@@ -11073,7 +11095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLeftWheel: 0
-  _sped: 0
+  _speed: 0
 --- !u!1 &6610207256087860016
 GameObject:
   m_ObjectHideFlags: 0
