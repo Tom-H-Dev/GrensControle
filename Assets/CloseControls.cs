@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CloseControls : MonoBehaviour
 {
+    [SerializeField] private GameObject toDoListObject;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -15,7 +16,7 @@ public class CloseControls : MonoBehaviour
 
     public void CloseControlsUI()
     {
-        //gameObject.SetActive(false);
+        toDoListObject.SetActive(true);
         Destroy(gameObject);
     }
 }
