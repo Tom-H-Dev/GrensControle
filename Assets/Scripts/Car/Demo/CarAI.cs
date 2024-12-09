@@ -90,6 +90,7 @@ public class CarAI : MonoBehaviourPun
     private const string _movePos5 = "MovePos5";
 
     public int carIndex;
+    public int _raycastRange = 4;
 
     private void Start()
     {
@@ -147,28 +148,8 @@ public class CarAI : MonoBehaviourPun
             RouteManager.instance.CarQueueUpdate(1);
             RPCActiveCars(true);
             RPCArrivingCars(true);
-            switch (RouteManager.instance._totalActiveCars)
-            {
-                case 0:
-                    _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _movePos1);
-                    break;
-                case 1:
-                    _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _movePos2);
-                    break;
-                case 2:
-                    _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _movePos3);
-                    break;
-                case 3:
-                    _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _movePos4);
-                    break;
-                case 4:
-                    _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _movePos5);
-                    break;
-                default:
-                    Debug.LogError("No total active car found.");
-                    break;
-            }
         }
+        _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _movePos1);
         StartCoroutine(StartSteerCheck());
 
     }
@@ -213,7 +194,7 @@ public class CarAI : MonoBehaviourPun
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            _photonView.RPC("CheckingSensors", RpcTarget.AllBufferedViaServer);
+            //_photonView.RPC("CheckingSensors", RpcTarget.AllBufferedViaServer);
             //if (!_emergencyBrake)
             //    _photonView.RPC("DriveCar", RpcTarget.AllBufferedViaServer);
             //_photonView.RPC("CarBreaking", RpcTarget.AllBufferedViaServer);
@@ -227,7 +208,7 @@ public class CarAI : MonoBehaviourPun
 
             //if (_isMovingBackwards)
             //    _photonView.RPC("MovingBackwards", RpcTarget.AllBufferedViaServer);
-            _photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, SensorChecker());
+            //_photonView.RPC("UpdateAniamtionSpeed", RpcTarget.AllBufferedViaServer, SensorChecker());
         }
     }
     private bool SensorChecker()
@@ -397,19 +378,24 @@ public class CarAI : MonoBehaviourPun
 
         for (int i = 0; i < _sensorObjects.Count; i++)
         {
-            Debug.DrawLine(_sensorObjects[i].transform.position, _sensorLookObjects[i].transform.position, Color.cyan);
-            if (Physics.Raycast(_sensorObjects[i].transform.position, transform.forward, out l_hit, 4))
+            Vector3 forward = transform.TransformDirection(_sensorLookObjects[i].transform.position) * _raycastRange;
+            //Debug.DrawLine(_sensorObjects[8].transform.position, _sensorLookObjects[i].transform.position * _raycastRange, Color.cyan);
+            Debug.DrawRay(_sensorObjects[i].transform.position, forward, Color.cyan);
+            if (Physics.Raycast(_sensorObjects[i].transform.position, _sensorLookObjects[i].transform.position, out l_hit, _raycastRange))
             {
-                Debug.DrawLine(_sensorObjects[i].transform.position, l_hit.point, Color.red);
-                if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
+                l_hit.transform.TryGetComponent(out CarAI thisCheck);
+                if (thisCheck != this)
                 {
-                    _sensorHits[i] = true;
+                    Debug.DrawLine(_sensorObjects[i].transform.position, l_hit.point, Color.red);
+                    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
+                    {
+                        _sensorHits[i] = true;
+                    }
+                    else
+                    {
+                        _sensorHits[i] = false;
+                    }
                 }
-                //else if (!l_hit.transform.TryGetComponent(out PlayerMovement l_player2) || !l_hit.transform.TryGetComponent(out CarAI l_car2))
-                //{
-                //    print("else 2");
-                //    _sensorHits[i] = false;
-                //}
                 else
                 {
                     _sensorHits[i] = false;
@@ -574,7 +560,7 @@ public class CarAI : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
             RPCQueuedCars(false);
         RPCActiveCars(false);
-        
+
         CloseDoors();
         yield return new WaitForSeconds(2f);
         _isBraking = false;
@@ -784,5 +770,15 @@ public class CarAI : MonoBehaviourPun
     private void UpdateVehicleIndex(int l_index)
     {
         carIndex = l_index;
+    }
+
+    public void LongRangeRaycast()
+    {
+        GetComponentInChildren<CollisionChecker>().LongCheck();
+    }
+
+    public void ShortRangeRaycast()
+    {
+        GetComponentInChildren<CollisionChecker>().ShortCheck();
     }
 }
