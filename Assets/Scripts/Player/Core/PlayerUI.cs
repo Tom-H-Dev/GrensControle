@@ -1,4 +1,3 @@
-using System;
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +8,8 @@ public class PlayerUI : MonoBehaviourPun
     [SerializeField] private GameObject _pauseMenu;
     public bool _isDoingSomething = false;
 
+    [SerializeField] private GameObject _debugMenu;
+
     void Update()
     {
         if (GetComponent<PhotonView>().IsMine)
@@ -16,6 +17,12 @@ public class PlayerUI : MonoBehaviourPun
             if (Input.GetKeyDown(KeyCode.Escape) && !_isDoingSomething)
             {
                 PauseMenu();
+            }
+            if (Input.GetKeyDown(KeyCode.F3))
+            {
+                if (_debugMenu.activeSelf)
+                    _debugMenu.SetActive(false);
+                else _debugMenu.SetActive(true);
             }
         }
     }
