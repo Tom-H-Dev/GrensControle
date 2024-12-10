@@ -2026,7 +2026,7 @@ GameObject:
   - component: {fileID: 9217963737770471695}
   - component: {fileID: 4338233883723472658}
   - component: {fileID: 4292399696052634977}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Collision Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
