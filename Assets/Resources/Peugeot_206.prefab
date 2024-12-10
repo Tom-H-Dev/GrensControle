@@ -2559,8 +2559,8 @@ GameObject:
   - component: {fileID: 6869215699844306591}
   - component: {fileID: 4784894041060278943}
   - component: {fileID: 1023637062923474951}
-  - component: {fileID: 3122610574048327290}
-  m_Layer: 3
+  - component: {fileID: 3085301263187772289}
+  m_Layer: 14
   m_Name: Peugeot_206_12:peugeot_206auto_heulauto_heul_frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2632,7 +2632,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3122610574048327290
+--- !u!64 &3085301263187772289
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3154,6 +3154,7 @@ GameObject:
   - component: {fileID: 8183750031015225648}
   - component: {fileID: 8544880415448847408}
   - component: {fileID: 1110444812565348194}
+  - component: {fileID: 6677621647189972609}
   m_Layer: 3
   m_Name: Peugeot_206_12:peugeot_206deuren_LDeur_2achter_deur_L
   m_TagString: Untagged
@@ -3226,6 +3227,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6677621647189972609
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737027958312582779}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 461597065691138884, guid: de5af0eccfa3fb845a9619e0781023a2, type: 3}
 --- !u!1 &1750340494780260252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,8 +3392,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.034290485, y: 0.015603636, z: 0.01701336}
-  m_Center: {x: -0.0017305358, y: 0.007791524, z: -0.007992228}
+  m_Size: {x: 0.034290485, y: 0.015603636, z: 0.011612658}
+  m_Center: {x: -0.0017305358, y: 0.007791524, z: -0.0052918773}
 --- !u!1 &1823857814304462459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3736,8 +3759,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03, y: -0.07, z: -0.07}
-  m_Center: {x: 0.01, y: 0, z: -0.035}
+  m_Size: {x: 0.01, y: 0.07, z: 0.07}
+  m_Center: {x: 0.001, y: 0, z: -0.035}
 --- !u!114 &2253577436472389039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4665,6 +4688,7 @@ GameObject:
   - component: {fileID: 2113572524221381555}
   - component: {fileID: 1712682200496325512}
   - component: {fileID: 2467800395773638988}
+  - component: {fileID: 6248264647812606631}
   m_Layer: 3
   m_Name: Peugeot_206_12:peugeot_206voor_deur_Ldeuren_LDeur_1
   m_TagString: Untagged
@@ -4737,6 +4761,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6248264647812606631
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424272920500539631}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3539610137707517411, guid: de5af0eccfa3fb845a9619e0781023a2, type: 3}
 --- !u!1 &2442957090647843353
 GameObject:
   m_ObjectHideFlags: 0
@@ -6423,7 +6469,7 @@ GameObject:
   - component: {fileID: 2065438647560429106}
   - component: {fileID: 1762535537368346742}
   - component: {fileID: 8350131158863847948}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Collision check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6588,8 +6634,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.030000003, y: 0.070000015, z: 0.06019023}
-  m_Center: {x: -0.010000002, y: 0, z: -0.03990506}
+  m_Size: {x: 0.0143, y: 0.07, z: 0.06}
+  m_Center: {x: -0.006, y: 0, z: -0.04}
 --- !u!114 &8043331758864745617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7882,8 +7928,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.08, y: 0.06, z: 0.04}
-  m_Center: {x: 0, y: -0.03, z: -0.03}
+  m_Size: {x: 0.08000001, y: 0.049184408, z: 0.034522194}
+  m_Center: {x: 0, y: -0.024892313, z: -0.03685232}
 --- !u!114 &7952707084236163218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9253,7 +9299,7 @@ GameObject:
   - component: {fileID: 1037943857636824024}
   - component: {fileID: 2375944413523641592}
   - component: {fileID: 2616809399153226249}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Collision check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9499,6 +9545,7 @@ GameObject:
   - component: {fileID: 1718867714332476434}
   - component: {fileID: 4009205902422776081}
   - component: {fileID: 5894264782702396993}
+  - component: {fileID: 8792545905766805949}
   m_Layer: 3
   m_Name: Peugeot_206_12:peugeot_206voor_deur_Ldeuren_RDeur_1
   m_TagString: Untagged
@@ -9571,6 +9618,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8792545905766805949
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322485786396168498}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1050581307755811967, guid: de5af0eccfa3fb845a9619e0781023a2, type: 3}
 --- !u!1 &5367308876954890448
 GameObject:
   m_ObjectHideFlags: 0
@@ -12514,7 +12583,7 @@ GameObject:
   - component: {fileID: 5514886318020222252}
   - component: {fileID: 1907511440609425069}
   - component: {fileID: 8428936720174912071}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Collision check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12975,6 +13044,7 @@ GameObject:
   - component: {fileID: 8088472798167965362}
   - component: {fileID: 1584087315859143183}
   - component: {fileID: 1872880654206376064}
+  - component: {fileID: 3749223866002797259}
   m_Layer: 3
   m_Name: Peugeot_206_12:peugeot_206deuren_RDeur_2achter_deur_L
   m_TagString: Untagged
@@ -13047,6 +13117,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3749223866002797259
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6694536353835869767}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 991830347658432526, guid: de5af0eccfa3fb845a9619e0781023a2, type: 3}
 --- !u!1 &6695368677120881656
 GameObject:
   m_ObjectHideFlags: 0
@@ -14071,8 +14163,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.030000003, y: 0.070000015, z: 0.060622055}
-  m_Center: {x: 0.010000002, y: 0, z: -0.039689034}
+  m_Size: {x: 0.0143, y: 0.07, z: 0.06}
+  m_Center: {x: 0.006, y: 0, z: -0.04}
 --- !u!114 &7713587301776860335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15373,8 +15465,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03, y: -0.07, z: -0.07}
-  m_Center: {x: -0.01, y: 0, z: -0.035}
+  m_Size: {x: 0.010000002, y: 0.070000015, z: 0.056402966}
+  m_Center: {x: -0.0009999999, y: 0, z: -0.028201483}
 --- !u!114 &428808599073784207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15408,7 +15500,7 @@ GameObject:
   - component: {fileID: 7789530635597892775}
   - component: {fileID: 4793257313456603109}
   - component: {fileID: 9187522806741839438}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Collision check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17314,7 +17406,7 @@ GameObject:
   - component: {fileID: 2413053659863804815}
   - component: {fileID: 7868388467109679090}
   - component: {fileID: 1656452401207740653}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Collision check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17330,7 +17422,7 @@ Transform:
   m_GameObject: {fileID: 8893302456086584957}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0556, z: -0.0152}
+  m_LocalPosition: {x: 0, y: -0.0379, z: -0.0296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17368,8 +17460,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.05, z: 0.05}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.1, y: 0.070000015, z: 0.05179586}
+  m_Center: {x: 0, y: 0, z: 0.009102133}
 --- !u!1 &8893392313713977808
 GameObject:
   m_ObjectHideFlags: 0
@@ -17759,7 +17851,7 @@ GameObject:
   - component: {fileID: 2784013993613398215}
   - component: {fileID: 3999553212348776860}
   - component: {fileID: 8263974687905231499}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Collision check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18102,36 +18194,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: License Plate (back)
       objectReference: {fileID: 0}
-    - target: {fileID: 702068282008878037, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624696876275802252, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3030227359752228488, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.06999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.06999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.06999999
-      objectReference: {fileID: 0}
     - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18181,26 +18243,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -269.999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7079545494577507648, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7447076372456930108, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7864841368444929792, guid: 0483b60c154152642934da8ba3be14e1,
-        type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

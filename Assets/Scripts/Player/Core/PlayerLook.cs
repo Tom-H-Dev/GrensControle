@@ -21,6 +21,7 @@ public class PlayerLook : MonoBehaviour
 
     [SerializeField] private TMP_Text _interactionText;
     public bool _isTalking;
+    [SerializeField] private LayerMask _layerMask;
 
     private void Start()
     {
@@ -67,7 +68,7 @@ public class PlayerLook : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach, _layerMask))
             {
                 if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
                 {
@@ -111,7 +112,7 @@ public class PlayerLook : MonoBehaviour
 
     private void InteractionText()
     {
-        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach))
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.forward, out RaycastHit l_hit, Reach, _layerMask))
         {
             if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Team"))
             {

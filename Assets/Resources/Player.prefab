@@ -834,6 +834,9 @@ MonoBehaviour:
   team: 0
   _interactionText: {fileID: 7569984524341749018}
   _isTalking: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 49151
 --- !u!143 &878450100313127682
 CharacterController:
   m_ObjectHideFlags: 0
@@ -854,7 +857,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
