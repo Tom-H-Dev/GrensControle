@@ -3239,6 +3239,7 @@ GameObject:
   - component: {fileID: 1146763108351527077}
   - component: {fileID: 7008926242966747583}
   - component: {fileID: 5711697079081256692}
+  - component: {fileID: 7606611443767228572}
   m_Layer: 3
   m_Name: GloveBox
   m_TagString: Untagged
@@ -3349,6 +3350,27 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!65 &7606611443767228572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750340494780260252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.034290485, y: 0.015603636, z: 0.01701336}
+  m_Center: {x: -0.0017305358, y: 0.007791524, z: -0.007992228}
 --- !u!1 &1823857814304462459
 GameObject:
   m_ObjectHideFlags: 0
@@ -6435,6 +6457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124d3f4b165f694399435cf59e091b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: {fileID: 4396118018145583996}
 --- !u!65 &8350131158863847948
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9264,6 +9287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124d3f4b165f694399435cf59e091b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: {fileID: 2004485804567778172}
 --- !u!65 &2616809399153226249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12524,6 +12548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124d3f4b165f694399435cf59e091b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: {fileID: 1187122546113683698}
 --- !u!65 &8428936720174912071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15417,6 +15442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124d3f4b165f694399435cf59e091b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: {fileID: 2573012669195263591}
 --- !u!65 &9187522806741839438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17322,6 +17348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124d3f4b165f694399435cf59e091b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: {fileID: 2183429227827279555}
 --- !u!65 &1656452401207740653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17766,6 +17793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124d3f4b165f694399435cf59e091b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: {fileID: 1277439226374813948}
 --- !u!65 &8263974687905231499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17959,7 +17987,7 @@ Transform:
   m_GameObject: {fileID: 9147917106378826370}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.4022, y: 0.6284, z: 1.0895}
+  m_LocalPosition: {x: 0.5107, y: 0.6284, z: 1.0895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

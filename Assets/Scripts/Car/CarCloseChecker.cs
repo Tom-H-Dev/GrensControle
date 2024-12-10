@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class CarCloseChecker : MonoBehaviour
 {
+    [SerializeField] private Interactable _interactable;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.TryGetComponent(out PlayerMovement l_player))
         {
-            GetComponentInParent<Interactable>()._canOpen = false;
+            _interactable._canOpen = false;
+            print("can't open");
         }
     }
 
@@ -17,7 +19,7 @@ public class CarCloseChecker : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out PlayerMovement l_player))
         {
-            GetComponentInParent<Interactable>()._canOpen = true;
+            _interactable._canOpen = true;
         }
     }
 }
