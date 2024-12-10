@@ -27,6 +27,7 @@ public class Interactable : MonoBehaviour
     {
         if (_canOpen == true)
         {
+            print(_item);
             _animator = GetComponentInParent<Animator>();
             opened = !opened;
             OpenSync(opened);

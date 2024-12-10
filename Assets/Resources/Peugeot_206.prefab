@@ -3238,7 +3238,7 @@ GameObject:
   - component: {fileID: 583312030026096065}
   - component: {fileID: 1146763108351527077}
   - component: {fileID: 7008926242966747583}
-  - component: {fileID: 1242169243249214320}
+  - component: {fileID: 5711697079081256692}
   m_Layer: 3
   m_Name: handschoen_kast
   m_TagString: Untagged
@@ -3323,11 +3323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
   _item: 5
---- !u!114 &1242169243249214320
+--- !u!114 &5711697079081256692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3336,13 +3336,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750340494780260252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  opened: 0
-  _canOpen: 1
-  _item: 0
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1823857814304462459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,6 +3651,7 @@ GameObject:
   - component: {fileID: 5981709238764540858}
   - component: {fileID: 1277439226374813948}
   - component: {fileID: 649864179948666866}
+  - component: {fileID: 2253577436472389039}
   m_Layer: 3
   m_Name: achter_deur_L
   m_TagString: Untagged
@@ -3684,7 +3691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
   _item: 3
@@ -3709,6 +3716,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03, y: -0.07, z: -0.07}
   m_Center: {x: 0.01, y: 0, z: -0.035}
+--- !u!114 &2253577436472389039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975498989890853515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1977576117902095192
 GameObject:
   m_ObjectHideFlags: 0
@@ -6472,6 +6501,7 @@ GameObject:
   - component: {fileID: 8695583928301594473}
   - component: {fileID: 1187122546113683698}
   - component: {fileID: 5807571633518877303}
+  - component: {fileID: 8043331758864745617}
   m_Layer: 3
   m_Name: voor_deur_R
   m_TagString: Untagged
@@ -6512,10 +6542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 0
+  _item: 2
 --- !u!65 &5807571633518877303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6535,8 +6565,30 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03, y: -0.07, z: -0.07}
-  m_Center: {x: -0.01, y: 0, z: -0.035}
+  m_Size: {x: 0.030000003, y: 0.070000015, z: 0.06019023}
+  m_Center: {x: -0.010000002, y: 0, z: -0.03990506}
+--- !u!114 &8043331758864745617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317335457459968919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &3422299746270223801
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,6 +7795,7 @@ GameObject:
   - component: {fileID: 3694457803904210989}
   - component: {fileID: 2183429227827279555}
   - component: {fileID: 8240061040896361605}
+  - component: {fileID: 7952707084236163218}
   m_Layer: 3
   m_Name: achterbak
   m_TagString: Untagged
@@ -7808,6 +7861,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.08, y: 0.06, z: 0.04}
   m_Center: {x: 0, y: -0.03, z: -0.03}
+--- !u!114 &7952707084236163218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3986199523469286109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4001952087200252849
 GameObject:
   m_ObjectHideFlags: 0
@@ -11834,7 +11909,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 75
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -12094,46 +12169,46 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: TrunkOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: TrunkClose
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: HoodOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: HoodClose
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: FrontLeftDoorOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: FrontLeftDoorClose
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: FrontRightDoorOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: FrontRightDoorClose
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: RearLeftDoorOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: RearLeftDoorClose
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: RearRightDoorOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: RearRightDoorClose
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: GloveBoxOpen
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 0
     Name: GloveBoxClose
   - Type: 9
     SynchronizeType: 0
@@ -12172,23 +12247,23 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: speedMultiplier
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 0
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 1
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 2
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 3
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 4
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 5
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 6
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 7
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 8
 --- !u!95 &2227479367081630605
 Animator:
@@ -13762,7 +13837,8 @@ GameObject:
   - component: {fileID: 4618779354067241124}
   - component: {fileID: 810578873040841477}
   - component: {fileID: 2004485804567778172}
-  - component: {fileID: 2470031523994708344}
+  - component: {fileID: 3815721821868430320}
+  - component: {fileID: 3994576222981392120}
   m_Layer: 3
   m_Name: motorkap
   m_TagString: Untagged
@@ -13848,12 +13924,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 6
---- !u!64 &2470031523994708344
-MeshCollider:
+  _item: 0
+--- !u!114 &3815721821868430320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043335279858220337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!65 &3994576222981392120
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -13870,10 +13968,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2083143801672061736, guid: de5af0eccfa3fb845a9619e0781023a2, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.11430148, y: 0.023327565, z: 0.059782762}
+  m_Center: {x: 0, y: -0.011235659, z: 0.04490455}
 --- !u!1 &7044824183141554635
 GameObject:
   m_ObjectHideFlags: 0
@@ -13885,6 +13982,7 @@ GameObject:
   - component: {fileID: 5574713568223015088}
   - component: {fileID: 2573012669195263591}
   - component: {fileID: 8191029269956453791}
+  - component: {fileID: 7713587301776860335}
   m_Layer: 3
   m_Name: voor_deur_L
   m_TagString: Untagged
@@ -13925,10 +14023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 0
+  _item: 1
 --- !u!65 &8191029269956453791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13948,8 +14046,30 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03, y: -0.07, z: -0.07}
-  m_Center: {x: 0.01, y: 0, z: -0.035}
+  m_Size: {x: 0.030000003, y: 0.070000015, z: 0.060622055}
+  m_Center: {x: 0.010000002, y: 0, z: -0.039689034}
+--- !u!114 &7713587301776860335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044824183141554635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7065793390323731548
 GameObject:
   m_ObjectHideFlags: 0
@@ -15165,6 +15285,7 @@ GameObject:
   - component: {fileID: 8308673968780079653}
   - component: {fileID: 4396118018145583996}
   - component: {fileID: 6675528858716311606}
+  - component: {fileID: 428808599073784207}
   m_Layer: 3
   m_Name: achter_deur_R
   m_TagString: Untagged
@@ -15204,7 +15325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1ef6b0e73999041967e4dffe950448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
   _item: 4
@@ -15229,6 +15350,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03, y: -0.07, z: -0.07}
   m_Center: {x: -0.01, y: 0, z: -0.035}
+--- !u!114 &428808599073784207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7615548895007426164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7657407617170488887
 GameObject:
   m_ObjectHideFlags: 0
