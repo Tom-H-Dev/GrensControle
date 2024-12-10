@@ -10898,6 +10898,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9147056124145384523, guid: 6dad4c6ad29da73408816096ff6ae5c6,
         type: 3}
+      propertyPath: _carPrefab
+      value: 
+      objectReference: {fileID: 6458054856356983645, guid: edeca3232c352ff45bbe0978657c450b,
+        type: 3}
+    - target: {fileID: 9147056124145384523, guid: 6dad4c6ad29da73408816096ff6ae5c6,
+        type: 3}
       propertyPath: _carSpawnLocation
       value: 
       objectReference: {fileID: 721428126}
