@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public enum InteractableItem
 {
@@ -22,12 +23,22 @@ public class Interactable : MonoBehaviour
 
     public InteractableItem _item;
 
+    private void Start()
+    {
+        string objectName = gameObject.name;
+
+        if (Enum.TryParse(objectName, out InteractableItem matchedItem))
+        {
+            _item = matchedItem;
+        }
+
+    }
+
     [PunRPC]
     public void InteractWithObject()
     {
         if (_canOpen == true)
         {
-            print(_item);
             _animator = GetComponentInParent<Animator>();
             opened = !opened;
             OpenSync(opened);

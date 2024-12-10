@@ -3240,7 +3240,7 @@ GameObject:
   - component: {fileID: 7008926242966747583}
   - component: {fileID: 5711697079081256692}
   m_Layer: 3
-  m_Name: handschoen_kast
+  m_Name: GloveBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3653,7 +3653,7 @@ GameObject:
   - component: {fileID: 649864179948666866}
   - component: {fileID: 2253577436472389039}
   m_Layer: 3
-  m_Name: achter_deur_L
+  m_Name: RearLeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3694,7 +3694,7 @@ MonoBehaviour:
   _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 3
+  _item: 0
 --- !u!65 &649864179948666866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6503,7 +6503,7 @@ GameObject:
   - component: {fileID: 5807571633518877303}
   - component: {fileID: 8043331758864745617}
   m_Layer: 3
-  m_Name: voor_deur_R
+  m_Name: FrontRightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6545,7 +6545,7 @@ MonoBehaviour:
   _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 2
+  _item: 0
 --- !u!65 &5807571633518877303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7797,7 +7797,7 @@ GameObject:
   - component: {fileID: 8240061040896361605}
   - component: {fileID: 7952707084236163218}
   m_Layer: 3
-  m_Name: achterbak
+  m_Name: Trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7839,7 +7839,7 @@ MonoBehaviour:
   _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 6
+  _item: 0
 --- !u!65 &8240061040896361605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12169,46 +12169,46 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: TrunkOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: TrunkClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: HoodOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: HoodClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: FrontLeftDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: FrontLeftDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: FrontRightDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: FrontRightDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: RearLeftDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: RearLeftDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: RearRightDoorOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: RearRightDoorClose
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: GloveBoxOpen
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: GloveBoxClose
   - Type: 9
     SynchronizeType: 0
@@ -12247,23 +12247,23 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: speedMultiplier
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 1
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 2
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 3
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 4
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 5
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 6
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 7
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 8
 --- !u!95 &2227479367081630605
 Animator:
@@ -13840,7 +13840,7 @@ GameObject:
   - component: {fileID: 3815721821868430320}
   - component: {fileID: 3994576222981392120}
   m_Layer: 3
-  m_Name: motorkap
+  m_Name: Hood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13984,7 +13984,7 @@ GameObject:
   - component: {fileID: 8191029269956453791}
   - component: {fileID: 7713587301776860335}
   m_Layer: 3
-  m_Name: voor_deur_L
+  m_Name: FrontLeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14026,7 +14026,7 @@ MonoBehaviour:
   _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 1
+  _item: 0
 --- !u!65 &8191029269956453791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15287,7 +15287,7 @@ GameObject:
   - component: {fileID: 6675528858716311606}
   - component: {fileID: 428808599073784207}
   m_Layer: 3
-  m_Name: achter_deur_R
+  m_Name: RearRightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15328,7 +15328,7 @@ MonoBehaviour:
   _animator: {fileID: 2227479367081630605}
   opened: 0
   _canOpen: 1
-  _item: 4
+  _item: 0
 --- !u!65 &6675528858716311606
 BoxCollider:
   m_ObjectHideFlags: 0
