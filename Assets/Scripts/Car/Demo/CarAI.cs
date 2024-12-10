@@ -47,6 +47,7 @@ public class CarAI : MonoBehaviourPun
     public float _frontSensorAngle = 30f;
     [SerializeField] private List<GameObject> _sensorObjects;
     [SerializeField] private List<GameObject> _sensorLookObjects;
+    [SerializeField] private CollisionChecker _collisionChecker;
 
     [Header("Data")]
     public bool _isMilitaryVehicle; // Will add DM in the license palte
@@ -387,7 +388,7 @@ public class CarAI : MonoBehaviourPun
                 if (thisCheck != this)
                 {
                     Debug.DrawLine(_sensorObjects[i].transform.position, l_hit.point, Color.red);
-                    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car))
+                    if (l_hit.transform.TryGetComponent(out PlayerMovement l_player) || l_hit.transform.TryGetComponent(out CarAI l_car) || l_hit.transform.TryGetComponent(out BreakBarrier l_barrier))
                     {
                         _sensorHits[i] = true;
                     }
@@ -519,6 +520,8 @@ public class CarAI : MonoBehaviourPun
         RPCActiveCars(false);
         if (PhotonNetwork.IsMasterClient)
             _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _denyBase);
+        GetComponentInChildren<CollisionChecker>().enabled = false;
+        //_photonView.RPC("TurnOnPauseBarrier", RpcTarget.AllBufferedViaServer);
         GetComponent<Animator>().SetFloat("speedMultiplier", 1f);
         CloseDoors();
 
@@ -530,6 +533,7 @@ public class CarAI : MonoBehaviourPun
         _carState = CarStates.declined;
         //_photonView.RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(3f);
+        //_photonView.RPC("TurnOffPauseBarrier", RpcTarget.AllBufferedViaServer);
         if (PhotonNetwork.IsMasterClient)
         {
             RouteManager.instance.CarQueueUpdate(-1);
@@ -556,6 +560,7 @@ public class CarAI : MonoBehaviourPun
         _isControlable = false;
         _barrierManager._barrierAnimator.ResetTrigger("Close");
         _barrierManager._barrierAnimator.SetTrigger("Open");
+        //RouteManager.instance._queuedCars[1]._photonView.RPC("DisEngadeFor8Seconds", RpcTarget.AllBufferedViaServer);
         if (PhotonNetwork.IsMasterClient)
             _photonView.RPC("UpdateDriveAnimations", RpcTarget.AllBufferedViaServer, _enterBase);
         GetComponent<Animator>().SetFloat("speedMultiplier", 1f);
@@ -782,5 +787,16 @@ public class CarAI : MonoBehaviourPun
     public void ShortRangeRaycast()
     {
         GetComponentInChildren<CollisionChecker>().ShortCheck();
+    }
+    [PunRPC]
+    public void DisEngadeFor8Seconds()
+    {
+
+    }
+    private IEnumerator DisableEnable()
+    {
+        _collisionChecker.enabled = false;
+        yield return new WaitForSeconds(8);
+        _collisionChecker.enabled = true;
     }
 }

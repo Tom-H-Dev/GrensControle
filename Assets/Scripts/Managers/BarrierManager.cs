@@ -23,6 +23,7 @@ public class BarrierManager : MonoBehaviour
     [SerializeField] Transform _stopSpot; // Spot from which the stop locations will be calculated
     public List<CarBehaviour> _queue; // current vehicles in the queue
     [SerializeField] private DialogueManager _dialogueManager;
+    [SerializeField] private GameObject _waitBarrier;
 
 
 
@@ -70,5 +71,16 @@ public class BarrierManager : MonoBehaviour
         {
             _vehicle = null;
         }
+    }
+
+    [PunRPC]
+    public void TurnOnPauseBarrier()
+    {
+        _waitBarrier.SetActive(true);
+    }
+    [PunRPC]
+    public void TurnOffPauseBarrier()
+    {
+        _waitBarrier.SetActive(false);
     }
 }

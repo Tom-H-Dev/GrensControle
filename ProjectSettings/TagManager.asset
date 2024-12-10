@@ -21,7 +21,7 @@ TagManager:
   - Driver
   - VehicleCollision
   - Barriermanager
-  - 
+  - BreakBarrier
   - 
   - OuterWalls
   - 

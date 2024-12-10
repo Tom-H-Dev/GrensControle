@@ -13,7 +13,7 @@ public class CollisionChecker : MonoBehaviour
         ShortCheck();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.transform.TryGetComponent(out PlayerMovement l_player))
         {
@@ -27,13 +27,20 @@ public class CollisionChecker : MonoBehaviour
             if (other.transform.TryGetComponent(out CarBody l_carBody))
             {
                 print("carbody");
-                l_carBody.UpdateAnimationSpeed(0f);
+                GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
             }
             else if (other.transform.GetComponent<CarAI>() || other.transform.GetComponentInParent<CarAI>())
             {
                 print("other car");
                 GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
             }
+        }
+        
+        if (other.transform.TryGetComponent(out BreakBarrier l_barrier))
+        {
+            print("barrier");
+            GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
+            GetComponentInParent<CarAI>().ShortRangeRaycast();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -58,6 +65,15 @@ public class CollisionChecker : MonoBehaviour
                 GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
             }
         }
+        if (other.transform.TryGetComponent(out BreakBarrier l_barrier))
+        {
+            print("barrier");
+            GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
+        }
+    }
+    private void OnDisable()
+    {
+            GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
     }
 
     public void LongCheck()

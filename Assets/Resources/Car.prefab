@@ -3774,6 +3774,7 @@ MonoBehaviour:
   - {fileID: 377946314164523819}
   - {fileID: 6823792084869386953}
   - {fileID: 583897644255962432}
+  _collisionChecker: {fileID: 4338233883723472658}
   _isMilitaryVehicle: 0
   _hasDutchLicensePlate: 0
   _duplicateCode: 
