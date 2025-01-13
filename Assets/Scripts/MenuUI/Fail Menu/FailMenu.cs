@@ -31,8 +31,12 @@ public class FailMenu : MonoBehaviourPunCallbacks
         {
             _uiItems[i]._driversLicenseText.text = "Kenteken:\n" + _wrongCarData[i]._driversLicense;
             if (_wrongCarData[i]._wasIDWrong)
-                _uiItems[i]._idCorrectText.text = "Valse identiteit:\nJa";
-            else _uiItems[i]._idCorrectText.text = "Valse identiteit:\nNee";
+            {
+                if (_wrongCarData[i]._wasLetThrough)
+                    _uiItems[i]._idCorrectText.text = "Identiteit controle:\nValse identiteit";
+                else _uiItems[i]._idCorrectText.text = "Identiteit controle:\nCorrecte indentiteit";
+            }
+            else _uiItems[i]._idCorrectText.text = "Identiteit controle:\nCorrecte indentiteit";
 
             if (_wrongCarData[i]._wasDriverSuspicious)
                 _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nJa";

@@ -83,7 +83,7 @@ public class Hefboom : MonoBehaviour
         {
             int team = (int)PhotonNetwork.LocalPlayer.CustomProperties["Team"];
 
-            if (team == 2 || team == 1)
+            if (team == 2)
             {
                 _entranceBarrierManager._vehicle.GetComponent<carBehaviorDialogue>().dialogue.EndDialogueButton();
             }

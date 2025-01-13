@@ -42,17 +42,6 @@ public class CorrectCarManager : MonoBehaviour
         _photonView = GetComponent<PhotonView>();
     }
 
-    private void Update()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (Input.GetKeyDown(KeyCode.Quote))
-            {
-                SceneManager.LoadScene("AAR");
-            }
-        }
-    }
-
     [PunRPC]
     public void UpdateWrongCars(string l_licensePlate, bool l_wasAllowed, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus)
     {
