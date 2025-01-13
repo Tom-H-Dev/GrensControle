@@ -102,7 +102,7 @@ public class CarAI : MonoBehaviourPun
         _nodes = new List<Transform>();
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;
-        CloseDoors();
+        _photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
         if (PhotonNetwork.IsMasterClient || _override)
         {
             photonView.RPC("UpdateVehicleIndex", RpcTarget.AllBufferedViaServer, RouteManager.instance._totalActiveCars);
@@ -523,7 +523,8 @@ public class CarAI : MonoBehaviourPun
         GetComponentInChildren<CollisionChecker>().enabled = false;
         //_photonView.RPC("TurnOnPauseBarrier", RpcTarget.AllBufferedViaServer);
         GetComponent<Animator>().SetFloat("speedMultiplier", 1f);
-        CloseDoors();
+        _photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
+
 
         yield return new WaitForSeconds(5.5f);
         _isMovingBackwards = false;
@@ -568,7 +569,7 @@ public class CarAI : MonoBehaviourPun
             RPCQueuedCars(false);
         RPCActiveCars(false);
 
-        CloseDoors();
+        _photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(2f);
         _isBraking = false;
         //_photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
@@ -591,6 +592,7 @@ public class CarAI : MonoBehaviourPun
         //FilterQeueu();
     }
 
+    [PunRPC]
     private void CloseDoors()
     {
         Interactable[] interactableItems = GetComponentsInChildren<Interactable>();
