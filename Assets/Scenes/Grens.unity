@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.6208336, g: 2.436869, b: 2.5409396, a: 1}
+  m_IndirectSpecularColor: {r: 2.618995, g: 2.4349883, b: 2.538874, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5446,6 +5446,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4821558035027758, guid: a1307b4a91e909948b68d1c68fb89817, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975374175890577051, guid: a1307b4a91e909948b68d1c68fb89817,
+        type: 3}
+      propertyPath: m_SynchronizeLayers.Array.data[0].SynchronizeType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975374175890577051, guid: a1307b4a91e909948b68d1c68fb89817,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].SynchronizeType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975374175890577051, guid: a1307b4a91e909948b68d1c68fb89817,
+        type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[1].SynchronizeType
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7745368041377076950, guid: a1307b4a91e909948b68d1c68fb89817,

@@ -92,33 +92,6 @@ public class RouteManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (Input.GetKeyDown(KeyCode.Insert))
-            {
-                _activeCars[0].GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
-                for (int i = 0; i < _activeCars.Count; i++)
-                {
-                    _activeCars[i]._isBraking = false;
-                    _activeCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
-
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Delete))
-            {
-                _activeCars[0].GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
-                for (int i = 0; i < _activeCars.Count; i++)
-                {
-                    _activeCars[i]._isBraking = false;
-                    _activeCars[i].GetComponent<PhotonView>().RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
-                }
-            }
-        }
-    }
-
     public Transform QueMoveUp(int l_index)
     {
         return _queuingPositions[l_index];
@@ -136,12 +109,6 @@ public class RouteManager : MonoBehaviour
         _queuedCars.Clear();
 
         _queuedCars = GetAllObjectsOnlyInScene();
-
-        //for (int i = 0; i < _queuedCars.Count; i++)
-        //{
-        //    if (_queuedCars[i]._carState != CarStates.queuing)
-        //        _queuedCars.Remove(_queuedCars[i]);
-        //}
 
         SortCarsBySpeed(_queuedCars);
     }
