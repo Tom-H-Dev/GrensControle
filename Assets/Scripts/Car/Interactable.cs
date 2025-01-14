@@ -43,8 +43,15 @@ public class Interactable : MonoBehaviour
             opened = !opened;
             OpenSync(opened);
             if (opened)
+            {
                 _animator.SetTrigger(_item.ToString() + "Open");
-            else _animator.SetTrigger(_item.ToString() + "Close");
+                GetComponent<PhotonView>().RPC("SyncList", RpcTarget.AllBufferedViaServer, true, (int)_item);
+            }
+            else
+            {
+                _animator.SetTrigger(_item.ToString() + "Close");
+                GetComponent<PhotonView>().RPC("SyncList", RpcTarget.AllBufferedViaServer, false, (int)_item);
+            }
         }
     }
 
@@ -57,5 +64,25 @@ public class Interactable : MonoBehaviour
     private void RPCOpenSync(bool value)
     {
         opened = value;
+    }
+    
+    [PunRPC]
+    private void SyncList(bool add,int index)
+    {
+        //Get inbdex and compare to the index of the enum
+        //Add or remove
+        //Convert enum value to string
+        InteractableItem l_item = (InteractableItem)index;
+
+        if (add)
+        {
+            if (!GetComponentInParent<CarDoorAnimManager>()._openItemsNamed.Contains(l_item.ToString()))
+                GetComponentInParent<CarDoorAnimManager>()._openItemsNamed.Add(l_item.ToString());
+        }
+        else
+        {
+            if (GetComponentInParent<CarDoorAnimManager>()._openItemsNamed.Contains(l_item.ToString()))
+                GetComponentInParent<CarDoorAnimManager>()._openItemsNamed.Remove(l_item.ToString());
+        }
     }
 }

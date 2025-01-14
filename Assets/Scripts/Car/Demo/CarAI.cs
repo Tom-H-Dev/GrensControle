@@ -102,7 +102,7 @@ public class CarAI : MonoBehaviourPun
         _nodes = new List<Transform>();
         string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alphabet....
         string _middleText = null;
-        _photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
+        //_photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
         if (PhotonNetwork.IsMasterClient || _override)
         {
             photonView.RPC("UpdateVehicleIndex", RpcTarget.AllBufferedViaServer, RouteManager.instance._totalActiveCars);
@@ -523,7 +523,11 @@ public class CarAI : MonoBehaviourPun
         GetComponentInChildren<CollisionChecker>().enabled = false;
         //_photonView.RPC("TurnOnPauseBarrier", RpcTarget.AllBufferedViaServer);
         GetComponent<Animator>().SetFloat("speedMultiplier", 1f);
-        _photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
+        //_photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
+        for (int i = 0; i < GetComponent<CarDoorAnimManager>()._openItemsNamed.Count; i++)
+        {
+            GetComponent<Animator>().SetTrigger(GetComponent<CarDoorAnimManager>()._openItemsNamed[i] + "Close");
+        }
 
 
         yield return new WaitForSeconds(5.5f);
@@ -535,11 +539,11 @@ public class CarAI : MonoBehaviourPun
         //_photonView.RPC("UpdateRoute", RpcTarget.AllBufferedViaServer);
         yield return new WaitForSeconds(3f);
         //_photonView.RPC("TurnOffPauseBarrier", RpcTarget.AllBufferedViaServer);
-        if (PhotonNetwork.IsMasterClient)
+        for (int i = 0; i < GetComponent<CarDoorAnimManager>()._openItems.Count; i++)
         {
-            RouteManager.instance.CarQueueUpdate(-1);
-            photonView.RPC("UpdateVehicleIndex", RpcTarget.AllBufferedViaServer, carIndex - 1);
+            GetComponent<Animator>().SetTrigger(GetComponent<CarDoorAnimManager>()._openItems[i]._item.ToString() + "Close");
         }
+        GetComponent<CarDoorAnimManager>()._openItems.Clear();
         yield return new WaitForSeconds(1f);
         RouteManager.instance._queuedCars[0]._carState = CarStates.inQueue;
         RPCQueuedCars(true);
@@ -569,7 +573,12 @@ public class CarAI : MonoBehaviourPun
             RPCQueuedCars(false);
         RPCActiveCars(false);
 
-        _photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
+        //_photonView.RPC("CloseDoors", RpcTarget.AllBufferedViaServer);
+        for (int i = 0; i < GetComponent<CarDoorAnimManager>()._openItemsNamed.Count; i++)
+        {
+            GetComponent<Animator>().SetTrigger(GetComponent<CarDoorAnimManager>()._openItemsNamed[i] + "Close");
+        }
+        
         yield return new WaitForSeconds(2f);
         _isBraking = false;
         //_photonView.RPC("UpdateIsBraking", RpcTarget.AllBufferedViaServer, false);
@@ -790,11 +799,7 @@ public class CarAI : MonoBehaviourPun
     {
         GetComponentInChildren<CollisionChecker>().ShortCheck();
     }
-    [PunRPC]
-    public void DisEngadeFor8Seconds()
-    {
 
-    }
     private IEnumerator DisableEnable()
     {
         _collisionChecker.enabled = false;
