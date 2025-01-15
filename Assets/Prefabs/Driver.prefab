@@ -2089,7 +2089,7 @@ MonoBehaviour:
     - {fileID: 7626470630728976716}
     - {fileID: 7796936579467289733}
   - Text:
-    - lines: Ik ben hier voor werk in het gebouw #gebouw# .
+    - lines: Ik ben hier voor werk in gebouw #gebouw# .
       happy: 100
     lines: 
     team: 2
@@ -2101,9 +2101,9 @@ MonoBehaviour:
     - {fileID: 7626470630728976716}
     - {fileID: 7796936579467289733}
   - Text:
-    - lines: Ik ben hier voor werk en ben werkzaam in het gebouw #gebouw# . Als u
-        meer wilt weten over mijn werkzaamheden of andere vragen heeft, help ik u
-        daar graag mee.
+    - lines: Ik ben hier voor werk en ben werkzaam in gebouw #gebouw# . Als u meer
+        wilt weten over mijn werkzaamheden of andere vragen heeft, help ik u daar
+        graag mee.
       happy: 100
     lines: 
     team: 2
@@ -2176,8 +2176,8 @@ MonoBehaviour:
     - {fileID: 5363547433600957227}
     - {fileID: 6607040758145820396}
   - Text:
-    - lines: Ik verwacht hier nog ongeveer #tijd# te blijven. Als u nog verdere vragen
-        heeft, hoor ik dat graag.
+    - lines: Ik verwacht hier nog ongeveer #tijd#  te blijven. Als u nog verdere
+        vragen heeft, hoor ik dat graag.
       happy: 100
     lines: 
     team: 2
@@ -2213,7 +2213,7 @@ MonoBehaviour:
     - {fileID: 2550866736650245960}
     - {fileID: 5979275151567305212}
   - Text:
-    - lines: Ik werk op #AfdelingOfLocatie# binnen de kazerne. Mocht u nog verdere
+    - lines: Ik werk op #AfdelingOfLocatie#  binnen de kazerne. Mocht u nog verdere
         vragen hebben, hoor ik dat graag.
       happy: 100
     lines: 

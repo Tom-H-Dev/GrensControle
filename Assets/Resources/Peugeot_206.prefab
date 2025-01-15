@@ -2560,6 +2560,7 @@ GameObject:
   - component: {fileID: 4784894041060278943}
   - component: {fileID: 1023637062923474951}
   - component: {fileID: 3085301263187772289}
+  - component: {fileID: 4865533354990777845}
   m_Layer: 14
   m_Name: Peugeot_206_12:peugeot_206auto_heulauto_heul_frame
   m_TagString: Untagged
@@ -2654,6 +2655,27 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6383955418901429294, guid: de5af0eccfa3fb845a9619e0781023a2, type: 3}
+--- !u!65 &4865533354990777845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193105939248796032}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1308094, y: 0.058204807, z: 0.13427973}
+  m_Center: {x: 0, y: 0.08121995, z: 0.10121145}
 --- !u!1 &1206094198014289634
 GameObject:
   m_ObjectHideFlags: 0
