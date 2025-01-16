@@ -12,6 +12,7 @@ public class FailMenu : MonoBehaviourPunCallbacks
     public List<CarFaultStuff> _wrongCarData;
     [SerializeField] private TMP_Text _totalVehiclesText;
     public PhotonView _photonView;
+    private bool _fakeName = false;
 
     void Start()
     {
@@ -32,8 +33,8 @@ public class FailMenu : MonoBehaviourPunCallbacks
             _uiItems[i]._infoLijst.text = "Kenteken: " + _wrongCarData[i]._licensePlate;
             if (_wrongCarData[i]._wasIDWrong)
             {
-                if (_wrongCarData[i]._wasLetThrough)
-                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder had valse identiteit";
+                if (_wrongCarData[i]._wasLetThrough){
+                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder had valse identiteit"; _fakeName = true;}
                 else continue;
             }
             else
@@ -43,11 +44,11 @@ public class FailMenu : MonoBehaviourPunCallbacks
                 else continue;
             }
 
-            
+
             if (_wrongCarData[i]._wasDriverSuspicious)
             {
-                if (_wrongCarData[i]._wasLetThrough)
-                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder heeft gelogen";
+                if (_wrongCarData[i]._wasLetThrough){
+                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder heeft gelogen"; _fakeName = true;}
                 else continue;
             }
             else
@@ -70,8 +71,12 @@ public class FailMenu : MonoBehaviourPunCallbacks
                 else continue;
             }
 
+            if (_fakeName)
+                _uiItems[i]._afwijkingLijst.text += $"\nNepnaam bestuurder was: {_wrongCarData[i]._givenDrivername}";
+
             _uiItems[i]._infoLijst.text = "\nVoertuig: " + _wrongCarData[i]._vehicleNumber;
 
+            _uiItems[i]._infoLijst.text += $"\nEcht naam van bestuurder was: {_wrongCarData[i]._driverName}";
             if (_wrongCarData[i]._wasLetThrough)
                 _uiItems[i]._infoLijst.text = "Voertuig is doorgelaten";
             else _uiItems[i]._infoLijst.text = "Voertuig is afgewezen";
