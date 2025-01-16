@@ -43,7 +43,7 @@ public class CorrectCarManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void UpdateWrongCars(string l_licensePlate, bool l_wasAllowed, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus)
+    public void UpdateWrongCars(string l_licensePlate, bool l_wasAllowed, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus, string l_driverName, string l_giveDriverName)
     {
         _totalVehicles++;
         print("Update cars");
@@ -52,13 +52,16 @@ public class CorrectCarManager : MonoBehaviour
             print("Set wrong updates");
             _playerWrongVehicles++;
             _wrongCarsList[_playerWrongVehicles - 1]._driversLicense = l_licensePlate;
-            _wrongCarsList[_playerWrongVehicles - 1]._wasIDWrong = l_idWrong;
+            _wrongCarsList[_playerWrongVehicles - 1]._wasIDWrong = !l_idWrong;
             _wrongCarsList[_playerWrongVehicles - 1]._wasDriverSuspicious = l_driverSus;
             _wrongCarsList[_playerWrongVehicles - 1]._wasIllegalItemsInCar = l_illigalItemInCar;
             _wrongCarsList[_playerWrongVehicles - 1]._vehicleNumber = _totalVehicles;
             _wrongCarsList[_playerWrongVehicles - 1]._wasCarAllowed = l_wasAllowed;
             _wrongCarsList[_playerWrongVehicles - 1]._playerChoice = l_playerChoice;
             _wrongCarsList[_playerWrongVehicles - 1]._wasLetThrough = l_playerChoice;
+            _wrongCarsList[_playerWrongVehicles - 1]._driverName = l_driverName;
+            _wrongCarsList[_playerWrongVehicles - 1]._givenDrivername = l_giveDriverName;
+
 
             if (_playerWrongVehicles >= 3)
             {
@@ -70,10 +73,10 @@ public class CorrectCarManager : MonoBehaviour
 
     }
 
-    public void ChangeList(bool l_wasCorrect, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus)
+    public void ChangeList(bool l_wasCorrect, bool l_playerChoice, bool l_idWrong, bool l_illigalItemInCar, bool l_driverSus, string l_driverName, string l_givenDriverName)
     {
         //_photonView.RPC("UpdateList", RpcTarget.AllBufferedViaServer, l_wasCorrect, l_playerChoice);
-        _photonView.RPC("UpdateWrongCars", RpcTarget.AllBufferedViaServer, BarrierManager.instance._vehicle._licensePlate,  l_wasCorrect, l_playerChoice, l_idWrong, l_illigalItemInCar, l_driverSus);
+        _photonView.RPC("UpdateWrongCars", RpcTarget.AllBufferedViaServer, BarrierManager.instance._vehicle._licensePlate,  l_wasCorrect, l_playerChoice, l_idWrong, l_illigalItemInCar, l_driverSus, l_driverName, l_givenDriverName);
     }
 
     
