@@ -50,11 +50,6 @@ public class ReadySystemExplainScene : MonoBehaviourPunCallbacks
                 SceneManager.LoadScene("Grens");
             }
         }
-
-        if (PhotonNetwork.IsMasterClient && Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("Grens");
-        }
     }
 
     public void ReadyToggle()

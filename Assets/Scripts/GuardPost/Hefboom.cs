@@ -70,21 +70,22 @@ public class Hefboom : MonoBehaviour
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("UpdateHasBeenCheckedValue", RpcTarget.AllBufferedViaServer, true);
                 //Check if car is in ther area infront of gate
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerDeclinedRoute", RpcTarget.AllBufferedViaServer);
-                if (!_idCorrect && _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._isFalsified)
-                {
-                    _driverName = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverFirstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverLastName;
-                    _givenDrivername = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenFitstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenLastName;
-                }
-                else
+                if (_idCorrect && !_entranceBarrierManager._vehicle.GetComponent<DriverManager>()._isFalsified)
                 {
                     _driverName = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverFirstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverLastName;
                     _givenDrivername = string.Empty;
                 }
+                else
+                {
+                    _driverName = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverFirstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverLastName;
+                    _givenDrivername = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenFitstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenLastName;
+                }
 
                 _correctCarManager._lis = _lis;
-                if (!_idCorrect || _driverSus || _illegalItems)
-                    _isCorrect = false;
-                else _isCorrect = true;
+                if (_idCorrect || !_driverSus || !_illegalItems)
+                    _isCorrect = true;
+                else _isCorrect = false;
+                print(_idCorrect + " " + _driverSus + " " + _illegalItems);
                 _correctCarManager.ChangeList(_isCorrect, false, _idCorrect, _illegalItems, _driverSus, _driverName, _givenDrivername);
                 GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }

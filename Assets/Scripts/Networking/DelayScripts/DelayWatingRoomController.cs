@@ -147,22 +147,6 @@ public class DelayWatingRoomController : MonoBehaviourPunCallbacks
     {
         WaitingForMorePlayers();
         PlayerCountUpdate();
-
-        if (PhotonNetwork.IsMasterClient)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                StartGame();
-            }
-
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                if (_playerNeedOverride)
-                    _photonView.RPC("UpdateDebugReadyBoolOverNetwork", RpcTarget.AllBufferedViaServer, false);
-                else
-                    _photonView.RPC("UpdateDebugReadyBoolOverNetwork", RpcTarget.AllBufferedViaServer, true);
-            }
-        }
     }
 
     void WaitingForMorePlayers()

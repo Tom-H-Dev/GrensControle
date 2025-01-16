@@ -18231,6 +18231,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: License Plate (back)
       objectReference: {fileID: 0}
+    - target: {fileID: 3269911660450218816, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580456925698562731, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580456925698562731, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_ColorTemperature
+      value: 6495
+      objectReference: {fileID: 0}
     - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18280,6 +18295,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -269.999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217136830006398152, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741842010750597875, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741842010750597875, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_ColorTemperature
+      value: 6495
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18331,6 +18361,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269911660450218816, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580456925698562731, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580456925698562731, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_ColorTemperature
+      value: 6495
       objectReference: {fileID: 0}
     - target: {fileID: 5955955071478342361, guid: 0483b60c154152642934da8ba3be14e1,
         type: 3}
@@ -18416,6 +18461,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217136830006398152, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741842010750597875, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741842010750597875, guid: 0483b60c154152642934da8ba3be14e1,
+        type: 3}
+      propertyPath: m_ColorTemperature
+      value: 6495
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

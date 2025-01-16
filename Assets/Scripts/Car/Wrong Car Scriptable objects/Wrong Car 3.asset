@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c131683c7fea52541b639f543e130af3, type: 3}
   m_Name: Wrong Car 3
   m_EditorClassIdentifier: 
-  _driversLisance: 
-  _wasIDWrong: 0
-  _wasDriverSus: 0
-  _wasIlligalItemsInCar: 0
-  _voertuigNummer: 0
+  _licensePlate: 01-GUI-6
+  _wasIDWrong: 1
+  _wasDriverSuspicious: 1
+  _wasIllegalItemsInCar: 1
+  _vehicleNumber: 3
   _wasCarAllowed: 0
-  _playerChoice: 0
+  _playerChoice: 1
+  _wasLetThrough: 1
+  _driverName: Pieter Boer
+  _givenDrivername: ' '
