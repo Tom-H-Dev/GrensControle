@@ -3502,30 +3502,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiItems:
-  - _driversLicenseText: {fileID: 0}
-    _idCorrectText: {fileID: 0}
-    _driverText: {fileID: 0}
-    _illegalItemsText: {fileID: 0}
-    _carNumberText: {fileID: 0}
-    _wasLetThrough: {fileID: 0}
-  - _driversLicenseText: {fileID: 0}
-    _idCorrectText: {fileID: 0}
-    _driverText: {fileID: 0}
-    _illegalItemsText: {fileID: 0}
-    _carNumberText: {fileID: 0}
-    _wasLetThrough: {fileID: 0}
-  - _driversLicenseText: {fileID: 0}
-    _idCorrectText: {fileID: 0}
-    _driverText: {fileID: 0}
-    _illegalItemsText: {fileID: 0}
-    _carNumberText: {fileID: 0}
-    _wasLetThrough: {fileID: 0}
+  - _carIndex: {fileID: 597355368}
+    _infoLijst: {fileID: 34931502}
+    _afwijkingLijst: {fileID: 930098008}
+    _vehicleImage: {fileID: 1249398467}
+  - _carIndex: {fileID: 522819431}
+    _infoLijst: {fileID: 1043774313}
+    _afwijkingLijst: {fileID: 568191333}
+    _vehicleImage: {fileID: 395368275}
+  - _carIndex: {fileID: 1111206389}
+    _infoLijst: {fileID: 915371456}
+    _afwijkingLijst: {fileID: 1379486906}
+    _vehicleImage: {fileID: 568270715}
   _wrongCarData:
   - {fileID: 11400000, guid: c298324f1932a7e4e8cc12c644b41df6, type: 2}
   - {fileID: 11400000, guid: 399250ae0c333bc4a866f2674fcaba93, type: 2}
   - {fileID: 11400000, guid: 3df7184876f54e546987b3847e446132, type: 2}
   _totalVehiclesText: {fileID: 1698842653}
-  _photonView: {fileID: 0}
+  _photonView: {fileID: 1925343212}
 --- !u!1 &2030433689
 GameObject:
   m_ObjectHideFlags: 0

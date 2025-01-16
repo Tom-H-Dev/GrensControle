@@ -51,7 +51,7 @@ public class CorrectCarManager : MonoBehaviour
         {
             print("Set wrong updates");
             _playerWrongVehicles++;
-            _wrongCarsList[_playerWrongVehicles - 1]._driversLicense = l_licensePlate;
+            _wrongCarsList[_playerWrongVehicles - 1]._licensePlate = l_licensePlate;
             _wrongCarsList[_playerWrongVehicles - 1]._wasIDWrong = !l_idWrong;
             _wrongCarsList[_playerWrongVehicles - 1]._wasDriverSuspicious = l_driverSus;
             _wrongCarsList[_playerWrongVehicles - 1]._wasIllegalItemsInCar = l_illigalItemInCar;

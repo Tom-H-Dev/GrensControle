@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CarFaultStuff : ScriptableObject
 {
-    public string _driversLicense;
+    public string _licensePlate;
     public bool _wasIDWrong;
     public bool _wasDriverSuspicious;
     public bool _wasIllegalItemsInCar;

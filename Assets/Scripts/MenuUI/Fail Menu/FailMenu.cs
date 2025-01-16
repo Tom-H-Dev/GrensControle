@@ -29,28 +29,52 @@ public class FailMenu : MonoBehaviourPunCallbacks
 
         for (int i = 0; i < _uiItems.Count; i++)
         {
-            _uiItems[i]._driversLicenseText.text = "Kenteken:\n" + _wrongCarData[i]._driversLicense;
+            _uiItems[i]._infoLijst.text = "Kenteken: " + _wrongCarData[i]._licensePlate;
             if (_wrongCarData[i]._wasIDWrong)
             {
                 if (_wrongCarData[i]._wasLetThrough)
-                    _uiItems[i]._idCorrectText.text = "Identiteit controle:\nValse identiteit";
-                else _uiItems[i]._idCorrectText.text = "Identiteit controle:\nCorrecte indentiteit";
+                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder had valse identiteit";
+                else continue;
             }
-            else _uiItems[i]._idCorrectText.text = "Identiteit controle:\nCorrecte indentiteit";
+            else
+            {
+                if (!_wrongCarData[i]._wasLetThrough)
+                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder had geen valse identiteit";
+                else continue;
+            }
 
+            
             if (_wrongCarData[i]._wasDriverSuspicious)
-                _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nJa";
-            else _uiItems[i]._driverText.text = "Verdachte Bestuurder:\nNee";
+            {
+                if (_wrongCarData[i]._wasLetThrough)
+                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder heeft gelogen";
+                else continue;
+            }
+            else
+            {
+                if (!_wrongCarData[i]._wasLetThrough)
+                    _uiItems[i]._afwijkingLijst.text += "\nBestuurder heeft niet gelogen";
+                else continue;
+            }
 
             if (_wrongCarData[i]._wasIllegalItemsInCar)
-                _uiItems[i]._illegalItemsText.text = "Verboden Spullen:\nJa";
-            else _uiItems[i]._illegalItemsText.text = "Verboden Spullen:\nNee";
+            {
+                if (_wrongCarData[i]._wasLetThrough)
+                    _uiItems[i]._afwijkingLijst.text += "\nEr lagen illegale spullen in de auto";
+                else continue;
+            }
+            else
+            {
+                if (!_wrongCarData[i]._wasLetThrough)
+                    _uiItems[i]._afwijkingLijst.text += "\nEr lagen geen illegale spullen in de auto";
+                else continue;
+            }
 
-            _uiItems[i]._carNumberText.text = "Voertuig: " + _wrongCarData[i]._vehicleNumber;
+            _uiItems[i]._infoLijst.text = "\nVoertuig: " + _wrongCarData[i]._vehicleNumber;
 
             if (_wrongCarData[i]._wasLetThrough)
-                _uiItems[i]._wasLetThrough.text = "Is voertuig doorgelaten:\nDoorgelaten";
-            else _uiItems[i]._wasLetThrough.text = "Is voertuig doorgelaten:\nAfgewezen";
+                _uiItems[i]._infoLijst.text = "Voertuig is doorgelaten";
+            else _uiItems[i]._infoLijst.text = "Voertuig is afgewezen";
         }
     }
 
