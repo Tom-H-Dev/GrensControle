@@ -16,4 +16,7 @@ public class CarFaultStuff : ScriptableObject
     public bool _playerChoice;
 
     public bool _wasLetThrough;
+
+    public string _driverName;
+    public string _givenDrivername;
 }
