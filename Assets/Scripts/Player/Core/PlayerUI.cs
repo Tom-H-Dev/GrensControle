@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviourPun
 {
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _crossHair;
     public bool _isDoingSomething = false;
 
     [SerializeField] private GameObject _debugMenu;
@@ -37,6 +38,7 @@ public class PlayerUI : MonoBehaviourPun
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            _crossHair.SetActive(true);
 
             _pauseMenu.SetActive(false);
         }
@@ -48,6 +50,7 @@ public class PlayerUI : MonoBehaviourPun
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            _crossHair.SetActive(false);
 
             _pauseMenu.SetActive(true);
         }
