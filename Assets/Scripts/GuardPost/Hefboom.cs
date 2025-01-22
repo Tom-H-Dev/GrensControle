@@ -80,10 +80,9 @@ public class Hefboom : MonoBehaviour
                     _driverName = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverFirstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverLastName;
                     _givenDrivername = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenFitstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenLastName;
                 }
-                if (_idCorrect || !_driverSus || !_illegalItems)
-                    _isCorrect = true;
-                else _isCorrect = false;
-                print(_idCorrect + " " + _driverSus + " " + _illegalItems);
+                if (!_idCorrect || _driverSus || _illegalItems)
+                    _isCorrect = false;
+                else _isCorrect = true;
                 AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, false, false, _entranceBarrierManager._vehicle._licensePlate, _driverName, _givenDrivername);
 
                 GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
