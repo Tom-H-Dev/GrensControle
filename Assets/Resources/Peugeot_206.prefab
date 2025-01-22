@@ -12123,7 +12123,7 @@ MonoBehaviour:
   _arriving: 1
   _waitingIndex: 0
   _backupCurrentNode: 0
-  _carAudioSource: {fileID: 0}
+  _carAudioSource: {fileID: 3968472694562905139}
   _baseEnginePitch: 1
   _enginePitchMultiplier: 0.05
   _override: 0
