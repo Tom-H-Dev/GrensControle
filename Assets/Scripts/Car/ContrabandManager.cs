@@ -89,7 +89,10 @@ public class ContrabandManager : MonoBehaviour
     [PunRPC]
     private void SpawnContraband(int l_positionIndex)
     {
-        Instantiate(_contrabandObjects[_contrabandItems[l_positionIndex]], _contrabandLocations[usedIndexes[l_positionIndex]].position, (_contrabandObjects[_contrabandItems[l_positionIndex]].transform.rotation * _contrabandLocations[usedIndexes[l_positionIndex]].rotation), _contrabandLocations[usedIndexes[l_positionIndex]]);
+        GameObject l_contrband = PhotonNetwork.Instantiate(_contrabandObjects[_contrabandItems[l_positionIndex]].name, _contrabandLocations[usedIndexes[l_positionIndex]].position, (_contrabandObjects[_contrabandItems[l_positionIndex]].transform.rotation * _contrabandLocations[usedIndexes[l_positionIndex]].rotation));
+        print("Contraband name is: " + _contrabandObjects[_contrabandItems[l_positionIndex]].name);
+        print("Positionname is: " + _contrabandLocations[usedIndexes[l_positionIndex]].name);
+        l_contrband.transform.parent = _contrabandLocations[usedIndexes[l_positionIndex]];
         _occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[l_positionIndex]].gameObject);
         _currentContrabandInsideVehicle.Add(_contrabandObjects[_contrabandItems[l_positionIndex]].gameObject);
     }
