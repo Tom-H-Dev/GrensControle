@@ -9,13 +9,13 @@ public class CloseControls : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            CloseControlsUI();
+            ToggleControls();
         }
     }
 
-    public void CloseControlsUI()
+    public void ToggleControls()
     {
-        toDoListObject.SetActive(true);
-        Destroy(gameObject);
+        toDoListObject.SetActive(!toDoListObject.activeSelf);
+        gameObject.SetActive(!gameObject.activeSelf);
     }
 }
