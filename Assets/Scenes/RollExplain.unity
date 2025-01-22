@@ -452,8 +452,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rol uitleg
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 71021b1e466508c4fb7181f3663738f7, type: 2}
+  m_sharedMaterial: {fileID: 3783203420006231144, guid: 71021b1e466508c4fb7181f3663738f7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -477,8 +478,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -663,20 +664,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Als bestuurder controleur ben je verantwoordelijk voor het communiceren
-    met bestuurders van voertuigen die toegang willen krijgen tot een specifieke
-    locatie. Je dient als eerste contactpunt om te bepalen of de bestuurder geautoriseerd
-    is om de locatie te betreden en om het doel van hun bezoek te verifi\xEBren.\n\nTaken
-    en verantwoordelijkheden:\n\nInformatie verzamelen: Je begroet de bestuurders
-    van voertuigen vriendelijk en vraagt hen naar het doel van hun bezoek aan de
-    kazerne. Dit kan vari\xEBren van werkgerelateerde afspraken tot sociale bezoeken
-    of leveringen.\n\nDoelverificatie: Je beoordeelt de verstrekte informatie om
-    te controleren of het bezoekdoel overeenkomt met de toegangsvoorwaarden van de
-    kazerne. Indien nodig vraag je om aanvullende details of documentatie om de legitimiteit
-    van het bezoek te verifi\xEBren.\n\nToegangsverlening of weigering: Op basis
-    van de verstrekte informatie die je van de bestuurder hebt ontvangen neem jij
-    een beslissing samen met jouw collega's of de bestuurder toegang mag krijgen
-    tot de kazerne."
+  m_text: "Als bestuurder-controleur ben je verantwoordelijk voor de communicatie
+    met bestuurders van voertuigen die toegang willen tot een specifieke locatie.
+    Je bent het eerste aanspreekpunt en bepaalt of de bestuurder geautoriseerd is
+    om de locatie te betreden. Daarnaast verifieer je het doel van hun bezoek.\n\n<b>Taken
+    en verantwoordelijkheden:</b>\n\nInformatie verzamelen: Je begroet bestuurders
+    vriendelijk en vraagt naar het doel van hun bezoek. Dit kan vari\xEBren van werkafspraken
+    en leveringen tot sociale bezoeken.\n\nDoelverificatie: Je beoordeelt de verstrekte
+    informatie om na te gaan of het bezoek overeenkomt met de toegangsvoorwaarden.
+    Indien nodig vraag je om aanvullende details of documentatie om de legitimiteit
+    van het bezoek te controleren.\n\nToegangsverlening of weigering: Op basis van
+    de verzamelde informatie besluit je samen met je collega\u2019s of de bestuurder
+    toegang krijgt tot de locatie."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -710,7 +709,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -739,7 +738,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 30.203857, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -810,19 +809,30 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Als identiteitscontroleur ben je verantwoordelijk voor het controleren
-    van de identiteitspapieren van personen die toegang willen krijgen tot een bepaald
-    gebied of een specifieke locatie. Je bent belast met het waarborgen van de veiligheid
-    en het handhaven van de toegangsregels.\r\n\r\nTaken en verantwoordelijkheden:\r\n\r\nIdentiteitsverificatie:
-    Je vraagt de identiteitspapieren op van personen die toegang willen verkrijgen
-    tot de beveiligde locatie. Dit kan onder meer een rijbewijs en defensiepas zijn.\r\n\r\nDocumentcontrole:
-    Na ontvangst van de identiteitspapieren controleer je de geldigheid en authenticiteit
-    ervan. Je kijkt naar de vervaldatum, de foto van de persoon, eventuele specifieke
-    kenmerken zoals hologrammen of watermerken, en vergelijkt deze met de persoon
-    die voor je staat.\r\n\r\nToegangsbeheer: Indien de identiteitsdocumenten geldig
-    zijn bevonden, heb je de bevoegdheid om de persoon door te laten gaan naar de
-    beveiligde locatie. Je bedient de controlesystemen die de toegangspoort openen,
-    en zorgt ervoor dat alleen geautoriseerde personen toegang krijgen.\r\n\r"
+  m_text: 'Als identiteitscontroleur ben je verantwoordelijk voor het controleren
+    van de identiteitspapieren van personen die toegang willen tot een bepaald gebied
+    of een specifieke locatie. Je draagt zorg voor de veiligheid en handhaaft de
+    toegangsregels.
+
+
+    <b>Taken en verantwoordelijkheden:</b>
+
+
+    Identiteitsverificatie:
+    Je vraagt de identiteitspapieren op van personen die toegang willen tot de beveiligde
+    locatie, zoals een rijbewijs of een defensiepas.
+
+
+    Documentcontrole: Na ontvangst
+    controleer je de geldigheid en authenticiteit van de documenten. Je let op de
+    vervaldatum, de foto, specifieke kenmerken zoals hologrammen of watermerken,
+    en vergelijkt deze zorgvuldig met de persoon die voor je staat.
+
+
+    Toegangsbeheer:
+    Als de documenten geldig zijn, geef je de persoon toestemming om door te gaan
+    naar de beveiligde locatie. Je bedient het controlesysteem voor de toegangspoort
+    en zorgt ervoor dat alleen geautoriseerde personen naar binnen kunnen.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -856,14 +866,14 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 11.54
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
@@ -885,7 +895,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 30.203857, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1894,7 +1904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1774902167
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1934,31 +1944,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Als voertuig controleur ben je verantwoordelijk voor het grondig onderzoeken
-    van voertuigen om te controleren op de aanwezigheid van illegale substanties,
-    contrabande of andere verboden goederen. Je speelt een cruciale rol bij het handhaven
-    van de veiligheid en het voorkomen van illegale activiteiten op de betreffende
-    kazerne.
-
-
-    Taken en verantwoordelijkheden:
-
-
-    Voertuiginspectie: Je voert
-    gedetailleerde inspecties uit van voertuigen die de kazerne willen betreden.
-    Dit omvat het grondig doorzoeken van het interieur, de kofferbak en eventuele
-    andere opslagruimtes van het voertuig.
-
-
-    Detectie van verboden middelen:
-    Met behulp van speciale apparatuur en technieken, evenals visuele inspectie,
-    identificeer je  de aanwezigheid van verboden middelen zoals drugs, wapens, explosieven,
-    munitie, geclassificeerde documenten, afluisterapparatuur, verdachte koffers
-    of rugzakken.
-
-
-    Rapportage en actie: Indien je verboden middelen ontdekt,
-    rapporteer je dit bij je collega''s met de bevindingen die jij hebt gemaakt.'
+  m_text: "Als voertuigcontroleur ben je verantwoordelijk voor het grondig onderzoeken
+    van voertuigen om te controleren op illegale substanties, contrabande of andere
+    verboden goederen. Je speelt een cruciale rol bij het waarborgen van de veiligheid
+    en het voorkomen van illegale activiteiten op de kazerne.\n\n<b>Taken en verantwoordelijkheden:</b>\n\nVoertuiginspectie:
+    Je voert gedetailleerde inspecties uit van voertuigen die toegang willen tot
+    de kazerne. Hierbij doorzoek je grondig het interieur, de kofferbak en andere
+    opslagruimtes van het voertuig.\n\nDetectie van verboden middelen: Met behulp
+    van speciale apparatuur, technieken en visuele inspecties spoor je verboden middelen
+    op, zoals drugs, wapens, explosieven, munitie, geclassificeerde documenten, afluisterapparatuur,
+    of verdachte koffers en rugzakken.\n\nRapportage en actie: Bij het aantreffen
+    van verboden middelen rapporteer je je bevindingen direct aan je collega\u2019s
+    en onderneem je de benodigde stappen volgens het protocol."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1992,7 +1989,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2021,7 +2018,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 32.949707, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2085,7 +2082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.15686275}
+  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.078431375}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
