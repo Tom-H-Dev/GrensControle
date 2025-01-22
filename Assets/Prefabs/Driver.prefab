@@ -2257,7 +2257,7 @@ MonoBehaviour:
     answerbutton:
     - {fileID: 8607914543981744976}
   - Text:
-    - lines: Naartuurlijk mag u mijn defensie pas en rijbewijs zien
+    - lines: Natuurlijk mag u mijn defensie pas en rijbewijs zien
       happy: 100
     lines: 
     team: 1
