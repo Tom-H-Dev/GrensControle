@@ -48,7 +48,7 @@ public class Hefboom : MonoBehaviour
                 if (!_idCorrect || _driverSus || _illegalItems)
                     _isCorrect = false;
                 else _isCorrect = true;
-                AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, true, true, _lis, _driverName, _givenDrivername);
+                AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, true, true, _entranceBarrierManager._vehicle._licensePlate, _driverName, _givenDrivername);
                 GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }
             else
@@ -84,7 +84,7 @@ public class Hefboom : MonoBehaviour
                     _isCorrect = true;
                 else _isCorrect = false;
                 print(_idCorrect + " " + _driverSus + " " + _illegalItems);
-                AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, false, false, _lis, _driverName, _givenDrivername);
+                AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, false, false, _entranceBarrierManager._vehicle._licensePlate, _driverName, _givenDrivername);
 
                 GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }
