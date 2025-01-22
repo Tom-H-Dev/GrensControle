@@ -68,6 +68,8 @@ public class DocVerifyPro : MonoBehaviourPun
         }
         else
         {
+            _driverManager._givenBirthDate = _driverManager._driverBirthDate;
+
             _driversLisenceFirstName.text = _driverManager._driverFirstName;
             _driversLisenceLastName.text = _driverManager._driverLastName;
             _driversLisenceBirthDate.text = _driverManager._driverBirthDate;
