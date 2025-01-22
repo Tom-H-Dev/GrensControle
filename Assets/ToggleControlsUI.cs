@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseControls : MonoBehaviour
+public class ToggleControls : MonoBehaviour
 {
     [SerializeField] private GameObject toDoListObject;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            ToggleControls();
+            Toggle();
         }
     }
 
-    public void ToggleControls()
+    public void Toggle()
     {
         toDoListObject.SetActive(!toDoListObject.activeSelf);
         gameObject.SetActive(!gameObject.activeSelf);
