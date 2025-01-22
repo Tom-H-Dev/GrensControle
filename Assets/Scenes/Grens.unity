@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.621113, g: 2.437155, b: 2.5411932, a: 1}
+  m_IndirectSpecularColor: {r: 2.6212294, g: 2.4372122, b: 2.5415843, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30945,7 +30945,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 1.23, y: 0, z: 0}
 --- !u!1 &2027585407
 GameObject:
   m_ObjectHideFlags: 0
