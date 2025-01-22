@@ -60,7 +60,9 @@ public class FailMenu : MonoBehaviourPunCallbacks
                     if (!named)
                     {
                         named = true;
-                        _uiItems[i]._afwijkingLijst.text += $"\nNepnaam bestuurder was: {AARSceneData.instance._data[i]._givenDriverName}";
+                        if (_uiItems[i]._afwijkingLijst.text == string.Empty)
+                            _uiItems[i]._afwijkingLijst.text += $"Nepnaam bestuurder was: {AARSceneData.instance._data[i]._givenDriverName}";
+                        else _uiItems[i]._afwijkingLijst.text += $"\nNepnaam bestuurder was: {AARSceneData.instance._data[i]._givenDriverName}";
                     }
                 }
             }
@@ -74,7 +76,9 @@ public class FailMenu : MonoBehaviourPunCallbacks
                     if (!named)
                     {
                         named = true;
-                        _uiItems[i]._afwijkingLijst.text += $"\nNepnaam bestuurder was: {AARSceneData.instance._data[i]._givenDriverName}";
+                        if (_uiItems[i]._afwijkingLijst.text == string.Empty)
+                            _uiItems[i]._afwijkingLijst.text += $"Nepnaam bestuurder was: {AARSceneData.instance._data[i]._givenDriverName}";
+                        else _uiItems[i]._afwijkingLijst.text += $"\nNepnaam bestuurder was: {AARSceneData.instance._data[i]._givenDriverName}";
                     }
                 }
             }
