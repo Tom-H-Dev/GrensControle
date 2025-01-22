@@ -33,7 +33,7 @@ public class Hefboom : MonoBehaviour
                 _entranceBarrierManager._vehicle._hasBeenChecked = true;
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("UpdateHasBeenCheckedValue", RpcTarget.AllBufferedViaServer, true);
                 _entranceBarrierManager._vehicle.GetComponent<PhotonView>().RPC("TriggerAcceptedRoute", RpcTarget.AllBufferedViaServer);
-                _correctCarManager._lis = _lis;
+                
                 if (!_idCorrect && _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._isFalsified)
                 {
                     _driverName = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverFirstName +" "+ _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverLastName;
@@ -48,7 +48,7 @@ public class Hefboom : MonoBehaviour
                 if (!_idCorrect || _driverSus || _illegalItems)
                     _isCorrect = false;
                 else _isCorrect = true;
-                _correctCarManager.ChangeList(_isCorrect, true, _idCorrect, _illegalItems, _driverSus, _driverName, _givenDrivername);
+                AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, true, true, _lis, _driverName, _givenDrivername);
                 GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }
             else
@@ -80,13 +80,12 @@ public class Hefboom : MonoBehaviour
                     _driverName = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverFirstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._driverLastName;
                     _givenDrivername = _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenFitstName + " " + _entranceBarrierManager._vehicle.GetComponent<DriverManager>()._givenLastName;
                 }
-
-                _correctCarManager._lis = _lis;
                 if (_idCorrect || !_driverSus || !_illegalItems)
                     _isCorrect = true;
                 else _isCorrect = false;
                 print(_idCorrect + " " + _driverSus + " " + _illegalItems);
-                _correctCarManager.ChangeList(_isCorrect, false, _idCorrect, _illegalItems, _driverSus, _driverName, _givenDrivername);
+                AARSceneData.instance.GetComponent<PhotonView>().RPC("SetAARData", RpcTarget.AllBufferedViaServer, _idCorrect, _driverSus, _illegalItems, _isCorrect, false, false, _lis, _driverName, _givenDrivername);
+
                 GetComponent<PhotonView>().RPC("EndDialogue", RpcTarget.AllBufferedViaServer);
             }
             else

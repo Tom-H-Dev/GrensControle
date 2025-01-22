@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.6211627, g: 2.4377768, b: 2.5430338, a: 1}
+  m_IndirectSpecularColor: {r: 2.6211627, g: 2.4377768, b: 2.5430377, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29283,6 +29283,104 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.808464, y: 3.4643638, z: 1}
   m_Center: {x: 0.19488907, y: 0.7191471, z: 0}
+--- !u!1 &1962392295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962392298}
+  - component: {fileID: 1962392297}
+  - component: {fileID: 1962392296}
+  m_Layer: 0
+  m_Name: AAR Data
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1962392296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962392295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1962392297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962392295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bfa361715a2840439dcb5c3b4259d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+  - _wasIDWrong: 0
+    _wasDriverSuspisious: 0
+    _wereIlligalItemsInCar: 0
+    _wasCarAllowed: 0
+    _playerChoice: 0
+    _wasLetThrough: 0
+    _vehicleNumber: 0
+    _licecnsePlate: 
+    _driverName: 
+    _givenDriverName: 
+  - _wasIDWrong: 0
+    _wasDriverSuspisious: 0
+    _wereIlligalItemsInCar: 0
+    _wasCarAllowed: 0
+    _playerChoice: 0
+    _wasLetThrough: 0
+    _vehicleNumber: 0
+    _licecnsePlate: 
+    _driverName: 
+    _givenDriverName: 
+  - _wasIDWrong: 0
+    _wasDriverSuspisious: 0
+    _wereIlligalItemsInCar: 0
+    _wasCarAllowed: 0
+    _playerChoice: 0
+    _wasLetThrough: 0
+    _vehicleNumber: 0
+    _licecnsePlate: 
+    _driverName: 
+    _givenDriverName: 
+--- !u!4 &1962392298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962392295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.126926, y: 17.010065, z: -3.1281624}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1967221860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33032,3 +33130,4 @@ SceneRoots:
   - {fileID: 761691874}
   - {fileID: 1679141983}
   - {fileID: 562474877}
+  - {fileID: 1962392298}
