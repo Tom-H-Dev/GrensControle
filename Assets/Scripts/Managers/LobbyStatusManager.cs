@@ -10,12 +10,12 @@ public class LobbyStatusManager : MonoBehaviourPunCallbacks
     public bool unityDebug = true;
     void Update()
     {
-        /*
+
         if (PhotonNetwork.PlayerList.Length != PhotonNetwork.CurrentRoom.MaxPlayers && !unityDebug)
         {
             LeaveRoom();
         }
-        */
+
     }
 
     public void LeaveRoom()
