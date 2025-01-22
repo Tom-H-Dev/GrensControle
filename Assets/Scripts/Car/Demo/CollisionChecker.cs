@@ -17,28 +17,23 @@ public class CollisionChecker : MonoBehaviour
     {
         if (other.transform.TryGetComponent(out PlayerMovement l_player))
         {
-            print("Collision");
             GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
         }
 
         if (other.gameObject.layer == 3)
         {
-            print("Collision");
             if (other.transform.TryGetComponent(out CarBody l_carBody))
             {
-                print("carbody");
                 GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
             }
             else if (other.transform.GetComponent<CarAI>() || other.transform.GetComponentInParent<CarAI>())
             {
-                print("other car");
                 GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
             }
         }
         
         if (other.transform.TryGetComponent(out BreakBarrier l_barrier))
         {
-            print("barrier");
             GetComponentInParent<Animator>().SetFloat("speedMultiplier", 0f);
             GetComponentInParent<CarAI>().ShortRangeRaycast();
         }
@@ -47,27 +42,22 @@ public class CollisionChecker : MonoBehaviour
     {
         if (other.transform.TryGetComponent(out PlayerMovement l_player))
         {
-            print("Exit");
             GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
         }
 
         if (other.gameObject.layer == 3)
         {
-            print("Exit");
             if (other.transform.TryGetComponent(out CarBody l_carBody))
             {
-                print("Exit");
                 l_carBody.UpdateAnimationSpeed(1f);
             }
             else if (other.transform.GetComponent<CarAI>() || other.transform.GetComponentInParent<CarAI>())
             {
-                print("other Exit");
                 GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
             }
         }
         if (other.transform.TryGetComponent(out BreakBarrier l_barrier))
         {
-            print("barrier");
             GetComponentInParent<Animator>().SetFloat("speedMultiplier", 1f);
         }
     }

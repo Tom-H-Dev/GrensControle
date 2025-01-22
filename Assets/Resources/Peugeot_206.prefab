@@ -12245,6 +12245,7 @@ MonoBehaviour:
   _latestContrabandIndex: 0
   usedIndexes: 
   _contrabandItems: 
+  randomContraCount: 0
 --- !u!114 &7818241043503212275
 MonoBehaviour:
   m_ObjectHideFlags: 0
