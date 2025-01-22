@@ -99,6 +99,10 @@ public class ContrabandManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// TODO: Set all clients the contraband to correct parent
+    /// </summary>
+
 
     [PunRPC]
     private void SyncBools(bool l_hasContraband)

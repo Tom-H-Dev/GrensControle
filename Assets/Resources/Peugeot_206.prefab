@@ -12240,7 +12240,7 @@ MonoBehaviour:
   - {fileID: 0}
   _currentContrabandInsideVehicle: []
   _occupiedContrabandLocations: []
-  contrabandChance: 10
+  contrabandChance: 95
   _hasContraband: 0
   _latestContrabandIndex: 0
   usedIndexes: 
