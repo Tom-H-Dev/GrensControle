@@ -5,17 +5,13 @@ using UnityEngine;
 public class ToggleControls : MonoBehaviour
 {
     [SerializeField] private GameObject toDoListObject;
+    [SerializeField] private GameObject controlsListObject;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Toggle();
+            toDoListObject.SetActive(!toDoListObject.activeSelf);
+            controlsListObject.SetActive(!controlsListObject.activeSelf);
         }
-    }
-
-    public void Toggle()
-    {
-        toDoListObject.SetActive(!toDoListObject.activeSelf);
-        gameObject.SetActive(!gameObject.activeSelf);
     }
 }

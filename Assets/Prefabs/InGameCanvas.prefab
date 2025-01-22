@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 8564202399744099015}
   - component: {fileID: 292073923857364106}
   - component: {fileID: 2264644684264050451}
+  - component: {fileID: 8220377633707533746}
   m_Layer: 5
   m_Name: InGameCanvas
   m_TagString: Untagged
@@ -341,6 +342,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8220377633707533746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257259669503536227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b71d9110e4c1c444ac580c3efb5abbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toDoListObject: {fileID: 6691058458581274963}
+  controlsListObject: {fileID: 3169252779098304613}
 --- !u!1 &466480548403911691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3365,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 670176387904850748}
-  - component: {fileID: 2718946391758247440}
   m_Layer: 5
   m_Name: Zaklamp
   m_TagString: Untagged
@@ -3378,19 +3392,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2718946391758247440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247124229743128494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fb29761d441264daafe807b86a30e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
 --- !u!1 &2280777224883642573
 GameObject:
   m_ObjectHideFlags: 0
@@ -4521,7 +4522,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8656273743006909758}
   - component: {fileID: 8686289421267841152}
-  - component: {fileID: 6221592246166886222}
   m_Layer: 5
   m_Name: Uitleg
   m_TagString: Untagged
@@ -4580,19 +4580,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6221592246166886222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3169252779098304613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b71d9110e4c1c444ac580c3efb5abbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toDoListObject: {fileID: 6691058458581274963}
 --- !u!1 &3193450689643188791
 GameObject:
   m_ObjectHideFlags: 0
@@ -12558,9 +12545,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4487232139512534278}
-  - component: {fileID: 311042786831316534}
   m_Layer: 5
-  m_Name: Zaklamp (1)
+  m_Name: Voice chat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12586,19 +12572,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &311042786831316534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941768773152771156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fb29761d441264daafe807b86a30e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
 --- !u!1 &8970013588107010585
 GameObject:
   m_ObjectHideFlags: 0
