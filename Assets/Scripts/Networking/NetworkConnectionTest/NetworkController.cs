@@ -8,6 +8,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         PhotonNetwork.ConnectUsingSettings(); //Connects to Photon Master Servers
         //Read the Documentation of GrensControle to find the documentation of Photon. 
     }

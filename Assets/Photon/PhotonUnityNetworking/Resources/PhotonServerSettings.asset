@@ -16,8 +16,8 @@ MonoBehaviour:
     AppIdRealtime: b901926f-841b-4976-91ec-c3762b7f5d40
     AppIdFusion: 
     AppIdChat: 
-    AppIdVoice: 34ddd0e5-98b4-4dda-926e-3445dde8b415
-    AppVersion: 0.4.5
+    AppIdVoice: 
+    AppVersion: 0.4.6
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -116,6 +116,8 @@ MonoBehaviour:
   - SetAARData
   - GenerateContrabandSpawn
   - ParentContraband
+  - ContrabandInVehicleRPC
+  - OccupiedLocationRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -90,11 +90,33 @@ public class ContrabandManager : MonoBehaviour
     [PunRPC]
     private void SpawnContraband(int l_positionIndex)
     {
+
+
         if (_contrabandLocations[usedIndexes[l_positionIndex]].childCount == 0)
         {
-            GameObject l_contrband = PhotonNetwork.InstantiateRoomObject(_contrabandObjects[_contrabandItems[l_positionIndex]].name, _contrabandLocations[usedIndexes[l_positionIndex]].position, (_contrabandObjects[_contrabandItems[l_positionIndex]].transform.rotation * _contrabandLocations[usedIndexes[l_positionIndex]].rotation));
-            l_contrband.transform.SetParent(_contrabandLocations[usedIndexes[l_positionIndex]]);
+            GameObject l_contrband = Instantiate(_contrabandObjects[_contrabandItems[l_positionIndex]], _contrabandLocations[usedIndexes[l_positionIndex]].position, (_contrabandObjects[_contrabandItems[l_positionIndex]].transform.rotation * _contrabandLocations[usedIndexes[l_positionIndex]].rotation), _contrabandLocations[usedIndexes[l_positionIndex]]);
+            //GetComponent<PhotonView>().RPC("OccupiedLocationRPC", RpcTarget.AllBufferedViaServer, l_positionIndex);
             _occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[l_positionIndex]].gameObject);
+            //GetComponent<PhotonView>().RPC("ContrabandInVehicleRPC", RpcTarget.AllBufferedViaServer, l_positionIndex);
+            _currentContrabandInsideVehicle.Add(_contrabandObjects[_contrabandItems[l_positionIndex]].gameObject);
+            //l_contrband.transform.SetParent(_contrabandLocations[usedIndexes[l_positionIndex]]);
+        }
+
+    }
+
+    [PunRPC]
+    private void OccupiedLocationRPC(int l_positionIndex)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _occupiedContrabandLocations.Add(_contrabandLocations[usedIndexes[l_positionIndex]].gameObject);
+        }
+    }
+    [PunRPC]
+    private void ContrabandInVehicleRPC(int l_positionIndex)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
             _currentContrabandInsideVehicle.Add(_contrabandObjects[_contrabandItems[l_positionIndex]].gameObject);
         }
     }
